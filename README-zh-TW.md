@@ -1,5 +1,11 @@
 # Gun Harness Engineering
 
+[English](./README.md) | [繁體中文](./README-zh-TW.md)
+
+<p align="center">
+  <img src="./assets/00-gun-harness-engineering-logo.webp" alt="chat-gun"/>
+</p>
+
 這是一套討論 AI Agent 在真實產品中受到約束、完成執行、故障恢復的知識庫
 
 - 這些內容起源自個人對於 [chat-gun](https://github.com/HsienW/chat-gun) 的實戰加上對 [claude-code-best/claude-code](https://github.com/claude-code-best/claude-code) 的研究與思考。 
@@ -16,8 +22,8 @@
 圖中由下而上可以看到四個部分 (最上層綁定的領域是跟隨業務來替換的，越往下越是 Agent 的通用能力)
 
 1. Infra: 這是屬於模型範圍，例如: GPT-5 / GPT-6 和 Claude Opus / Sonnet 等系列都是大眾熟悉的模型。
-2. Harness: 是模型的控制層，決定能力跟大方向的控制器，例如: 構建與編排層（Prompt / Workflow）、連接層（API / MCP 等協議、能力層（Skills / Tools） 都在在層。
-3. Runtime: 是大方向已經被控制器定好之後，真正運行時的管控，例如: 沙箱環境、狀態與記憶、重試機制、節流、權限治理、Trace 關測都在這。
+2. Harness: 是模型的控制層，決定能力跟大方向的控制器，例如: 構建與編排層（Prompt / Workflow）、連接層（API / MCP 等協議、能力層（Skills / Tools） 都在這層。
+3. Runtime: 是大方向已經被控制器定好之後，真正運行時的管控，例如: 沙箱環境、狀態與記憶、重試機制、節流、權限治理、Trace 觀測都在這。
 4. Business: 是具體業務在前三層之上疊加不同 Domain 落地的範圍，其實也是現在 FDE 在做的事，例如: 教育、金融、航空等等不同業務領域的 Agent 落地。
 
 **因為 Business 強綁定業務、而 Infra 歸屬模型能力跟模型訓練範疇，所以本庫只會聚焦在以下兩個的主線:**
