@@ -12,7 +12,61 @@ This is a knowledge base about how AI agents are constrained, carried through ex
 - The content grew out of my hands-on work on [chat-gun](https://github.com/HsienW/chat-gun), together with my study of and reflection on [claude-code-best/claude-code](https://github.com/claude-code-best/claude-code).
 - This repo does not start from the Agent Infra side or survey Harness papers. It looks at the role and capabilities of the Harness from the product-practice side, because that is what matters when shipping to real business use.
 
-## What I Mean by Harness and Runtime
+## Can You Explain Harness and Runtime Without Technical Jargon?
+
+> If you cannot answer clearly, or if parts of your answer feel vague, this knowledge base can help you distinguish between the two.
+
+### My Answer: Think of a Race, Such as a Triathlon
+
+#### Part 1: Harness and Runtime
+
+<p>
+  <img src="./assets/01-harness_runtime.webp" alt="source: hsien-wei" width="768" />
+</p>
+
+- Harness = The event organizer, which plans the overall direction of the race.
+  - Examples: setting the date / defining the rules / securing the venue / raising funds / finding sponsors. These tasks set the direction and tend to remain fixed.
+
+- Runtime = The equipment, aid station, and medical crews that carry out the work and adapt while the race is underway.
+  - Examples: adjusting the number and location of aid stations based on the weather / moving medical stations / adding or removing equipment tents. These decisions happen during the race and need to remain flexible.
+
+- Context = The information that keeps changing as the race unfolds.
+  - Examples: how many athletes are competing / which stage is in progress / who is leading / whether anyone has broken a record.
+
+#### Part 2: Other Agent Capabilities
+
+<p>
+  <img src="./assets/02-harness_runtime.webp" alt="source: hsien-wei" width="768" />
+</p>
+
+- LLM = The coordination team within the event organization. It plans the race and determines which outside partners are needed.
+  - Examples: deciding whether the race needs another equipment provider / choosing who to rent the venue from / working out how to obtain equipment / deciding whether to seek support from sponsors and advertisers.
+
+- MCP = The event organizer's single point of contact for external communication. It contacts outside partners according to the list prepared by the coordination team.
+  - Examples: contacting the venue owner / confirming rental dates / notifying suppliers that provide race provisions / contacting medical equipment vendors.
+
+- Tool = Each outside partner named on the race checklist.
+  - Examples: provision suppliers / sponsors / media outlets covering the event.
+
+- Log / Trace = Records from the race that help review disputes and improve the next event.
+  - Examples: referees / photographers / timing systems.
+
+#### Part 3: What Humans Are Responsible For
+
+<p>
+  <img src="./assets/03-harness_runtime.webp" alt="source: hsien-wei" width="768" />
+</p>
+
+- Human = The owner of the event organization. The owner uses Log / Trace to observe and control the following roles so the next race can run better.
+  - Coordination team (LLM) + event organizer (Harness) + equipment, aid station, and medical crews (Runtime) + information generated during the race (Context)
+  - Outside partners (Tool)
+  - Replacing the coordination team (Change Model)
+  - Running a different type of race (Change Business)
+
+> In plain language, Runtime operates within the boundaries planned by the Harness and adapts as needed. Context is the information being processed, while Tools provide additional capabilities.
+> Humans use the LLM, Harness, Runtime, and other components to control the Agent for different Business needs.
+
+## What I Mean by Harness and Runtime in Technical Terms
 
 - The commonly accepted view in the industry today is Agent = Harness + LLM. Breaking that down further gives the figure below:
 
