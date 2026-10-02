@@ -64,7 +64,10 @@ This is a knowledge base about how AI agents are constrained, carried through ex
   - Running a different type of race (Change Business)
 
 > In plain language, Runtime operates within the boundaries planned by the Harness and adapts as needed. Context is the information being processed, while Tools provide additional capabilities.
-> Humans use the LLM, Harness, Runtime, and other components to control the Agent for different Business needs.
+> Humans use Harness and Runtime design to control LLM and Agent to meet the operational needs of different businesses.
+
+In layman's terms, Runtime can be understood as running within the pre-defined scope of Harness and flexibly adjusting its role, while Context is the content, and Tools are additional capabilities.
+
 
 ## What I Mean by Harness and Runtime in Technical Terms
 

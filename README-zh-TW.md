@@ -63,7 +63,7 @@
   - 執行別種類型的比賽(Change Business)
 
 > 所以用白話來說可以理解為 Runtime 是在 Harness 的規劃好的範圍內運行 + 靈活調整的角色，而 Context 是內容，Tool 是額外能力
-> 而人類使用 LLM + Harness + Runtime 等等控制 Agent 來滿足不同的 Business
+> 而人類使用 Harness + Runtime 設計來控制 LLM 和 Agent 滿足不同的 Business 的操作
 
 ## 用技術名詞來說，我所認知的 Harness 與 Runtime
 
