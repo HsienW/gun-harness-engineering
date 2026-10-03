@@ -30,8 +30,10 @@ This is a knowledge base about how AI agents are constrained, carried through ex
 - **Runtime** = The equipment, aid station, and medical crews that handle live operations and adapt while the race is underway.
   - Examples: adjusting the number and location of aid stations based on the weather / moving medical stations / adding or removing equipment tents. These decisions happen during the race and need to remain flexible.
 
-- **Context** = The information that keeps changing as the race unfolds. Because it grows over time, scoreboards, media reports, and race broadcasts focus on the main points. Agent context works the same way: when it gets too long, it needs to be compressed into summaries and memory.
+- **Context** = The information that keeps changing as the race unfolds. Because it grows over time, scoreboards, media reports, and race broadcasts focus only on the main points.
   - Examples: how many athletes are competing / which stage is in progress / who is leading / whether anyone has broken a record.
+
+  AI Agents work the same way. When their context grows too long, it needs to be compressed into summaries and memory. In the race analogy, broadcasters have limited airtime, so they report only on the leading athletes instead of reading out every participant's name.
 
 #### Part 2: Other Agent Capabilities
 
