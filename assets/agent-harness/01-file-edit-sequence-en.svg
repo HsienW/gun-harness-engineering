@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="file-edit-en-title file-edit-en-desc" id="d-01-file-edit-sequence-en-root">
+        <title id="file-edit-en-title">FileEdit Handoff When Human Approval Is Required</title>
+        <desc id="file-edit-en-desc">The user requests a change, the Harness passes task conditions to the Runtime, and the model proposes FileEdit. The Runtime asks the Harness for authorization; the Harness confirms with the user when required. An allow decision runs FileEdit, while a denial returns a refusal result.</desc>
+        <style>
+          .txt { font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+          .mono { font-family: 'Geist Mono', 'Noto Sans TC', monospace; }
+          .ink { fill: #102743; } .muted { fill: #52657d; } .white { fill: #fff; }
+          .actor { fill: #fff; stroke: #b9cce3; stroke-width: 1.2; }
+          .lifeline { stroke: #b9cce3; stroke-width: 1; stroke-dasharray: 5 5; }
+          .message { fill: none; stroke: #52657d; stroke-width: 1.2; marker-end: url(#d-01-file-edit-sequence-en-arrow); }
+          .return { fill: none; stroke: #52657d; stroke-width: 1; stroke-dasharray: 5 4; marker-end: url(#d-01-file-edit-sequence-en-arrow); }
+          .focus { fill: none; stroke: #0066d6; stroke-width: 1.2; marker-end: url(#d-01-file-edit-sequence-en-arrow-blue); }
+        </style>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #d-01-file-edit-sequence-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-01-file-edit-sequence-en-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-01-file-edit-sequence-en-root .diagram-container { overflow-x: visible; }
+      #d-01-file-edit-sequence-en-root .txt { font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-01-file-edit-sequence-en-root .mono { font-family: 'Geist Mono', 'Noto Sans TC', monospace; }
+      #d-01-file-edit-sequence-en-root .ink { fill: #102743; }
+      #d-01-file-edit-sequence-en-root .muted { fill: #52657d; }
+      #d-01-file-edit-sequence-en-root .white { fill: #fff; }
+      #d-01-file-edit-sequence-en-root .actor { fill: #fff; stroke: #b9cce3; stroke-width: 1.2; }
+      #d-01-file-edit-sequence-en-root .lifeline { stroke: #b9cce3; stroke-width: 1; stroke-dasharray: 5 5; }
+      #d-01-file-edit-sequence-en-root .message { fill: none; stroke: #52657d; stroke-width: 1.2; marker-end: url(#d-01-file-edit-sequence-en-arrow); }
+      #d-01-file-edit-sequence-en-root .return { fill: none; stroke: #52657d; stroke-width: 1; stroke-dasharray: 5 4; marker-end: url(#d-01-file-edit-sequence-en-arrow); }
+      #d-01-file-edit-sequence-en-root .focus { fill: none; stroke: #0066d6; stroke-width: 1.2; marker-end: url(#d-01-file-edit-sequence-en-arrow-blue); }</style>
+          <marker id="d-01-file-edit-sequence-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-01-file-edit-sequence-en-arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0066d6"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="600" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="192" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" class="mono ink" font-size="12" font-weight="500" letter-spacing=".10em">FILE EDIT SCENARIO</text>
+        <text x="1184" y="108" class="txt muted" font-size="12" text-anchor="end">Responsibility handoff · time flows down</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+        <!-- Lifelines and activation bars sit behind messages. -->
+        <g class="lifeline">
+          <line x1="136" y1="168" x2="136" y2="608"/>
+          <line x1="376" y1="168" x2="376" y2="608"/>
+          <line x1="616" y1="168" x2="616" y2="608"/>
+          <line x1="856" y1="168" x2="856" y2="608"/>
+          <line x1="1096" y1="168" x2="1096" y2="608"/>
+        </g>
+        <rect x="372" y="192" width="8" height="280" rx="2" fill="#e6f0fb" stroke="#b9cce3" stroke-width=".8"/>
+        <rect x="612" y="232" width="8" height="362" rx="2" fill="#d6e9ff" stroke="#8dbcf3" stroke-width=".8"/>
+        <rect x="852" y="272" width="8" height="40" rx="2" fill="#e6f0fb" stroke="#b9cce3" stroke-width=".8"/>
+        <rect x="1092" y="540" width="8" height="24" rx="2" fill="#e6f0fb" stroke="#b9cce3" stroke-width=".8"/>
+
+        <!-- One representative path: a FileEdit that requires a human confirmation. -->
+        <path d="M136 192 H376" class="message"/>
+        <text x="256" y="178" class="txt ink" font-size="12" text-anchor="middle">Change timeout</text>
+        <path d="M376 232 H616" class="message"/>
+        <text x="496" y="218" class="txt ink" font-size="12" text-anchor="middle">Assemble task conditions</text>
+        <path d="M616 272 H856" class="message"/>
+        <text x="736" y="258" class="txt ink" font-size="12" text-anchor="middle">Advance model turn</text>
+        <path d="M856 312 H616" class="message"/>
+        <text x="736" y="298" class="txt ink" font-size="12" text-anchor="middle">FileEdit proposal</text>
+        <path d="M616 352 H376" class="focus"/>
+        <text x="496" y="338" class="txt ink" font-size="12" text-anchor="middle">Permission request</text>
+        <path d="M376 392 H136" class="message"/>
+        <text x="256" y="378" class="txt ink" font-size="12" text-anchor="middle">Confirm if needed</text>
+        <path d="M136 432 H376" class="return"/>
+        <text x="256" y="418" class="txt ink" font-size="12" text-anchor="middle">Allow / deny</text>
+        <path d="M376 472 H616" class="return"/>
+        <text x="496" y="458" class="txt ink" font-size="12" text-anchor="middle">Return decision</text>
+
+        <!-- A single UML alt fragment distinguishes execution from denial. -->
+        <rect x="576" y="500" width="608" height="108" rx="4" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <path d="M576 500 H636 L624 520 H576 Z" fill="#eef4fb" stroke="#b9cce3" stroke-width="1"/>
+        <text x="588" y="514" class="mono ink" font-size="11" font-weight="500">alt</text>
+        <text x="648" y="526" class="txt muted" font-size="11">[allow]</text>
+        <path d="M616 548 H1096" class="focus"/>
+        <rect x="790" y="530" width="132" height="16" fill="#ffffff"/>
+        <text x="856" y="543" class="txt ink" font-size="12" text-anchor="middle">Run FileEdit</text>
+        <line x1="576" y1="564" x2="1184" y2="564" stroke="#b9cce3" stroke-width="1" stroke-dasharray="5 4"/>
+        <text x="592" y="582" class="txt muted" font-size="11">[deny]</text>
+        <path d="M616 596 H856" class="return"/>
+        <rect x="680" y="578" width="112" height="16" fill="#ffffff"/>
+        <text x="736" y="591" class="txt ink" font-size="12" text-anchor="middle">Denial result</text>
+
+        <rect x="48" y="112" width="176" height="56" rx="8" class="actor"/>
+        <rect x="288" y="112" width="176" height="56" rx="8" class="actor"/>
+        <rect x="528" y="112" width="176" height="56" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <rect x="768" y="112" width="176" height="56" rx="8" class="actor"/>
+        <rect x="1008" y="112" width="176" height="56" rx="8" class="actor"/>
+        <text x="136" y="146" class="txt ink" font-size="14" font-weight="600" text-anchor="middle">User</text>
+        <text x="376" y="146" class="txt ink" font-size="14" font-weight="600" text-anchor="middle">Harness</text>
+        <text x="616" y="146" class="txt white" font-size="14" font-weight="600" text-anchor="middle">Runtime</text>
+        <text x="856" y="146" class="txt ink" font-size="14" font-weight="600" text-anchor="middle">Model</text>
+        <text x="1096" y="146" class="txt ink" font-size="14" font-weight="600" text-anchor="middle">Tool</text>
+
+        <line x1="96" y1="620" x2="1184" y2="620" stroke="#d5e1ee" stroke-width="1"/>
+        <text x="96" y="648" class="txt muted" font-size="12">This branch requires human confirmation; the article covers the earlier FileRead and tool_result steps.</text>
+      </svg>

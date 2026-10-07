@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="boundary-en-title boundary-en-desc" id="d-01-claude-code-boundary-en-root">
+        <title id="boundary-en-title">Claude Code Interactive and Headless/SDK Boundaries</title>
+        <desc id="boundary-en-desc">Interactive and Headless/SDK have separate entry, task setup, and output paths. Both call the shared query Runtime, which requests decisions from the corresponding Harness through a Permission callback.</desc>
+        <style>
+          .txt { font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+          .mono { font-family: 'Geist Mono', 'Noto Sans TC', monospace; }
+          .ink { fill: #102743; } .muted { fill: #52657d; } .white { fill: #fff; }
+          .card { fill: #fff; stroke: #b9cce3; stroke-width: 1.2; }
+          .tag { fill: #eef4fb; stroke: #b9cce3; stroke-width: .8; }
+        </style>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #d-01-claude-code-boundary-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-01-claude-code-boundary-en-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-01-claude-code-boundary-en-root .diagram-container { overflow-x: visible; }
+      #d-01-claude-code-boundary-en-root .txt { font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-01-claude-code-boundary-en-root .mono { font-family: 'Geist Mono', 'Noto Sans TC', monospace; }
+      #d-01-claude-code-boundary-en-root .ink { fill: #102743; }
+      #d-01-claude-code-boundary-en-root .muted { fill: #52657d; }
+      #d-01-claude-code-boundary-en-root .white { fill: #fff; }
+      #d-01-claude-code-boundary-en-root .tag { fill: #eef4fb; stroke: #b9cce3; stroke-width: .8; }</style>
+          <marker id="d-01-claude-code-boundary-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-01-claude-code-boundary-en-arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0066d6"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="552" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="176" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" class="mono ink" font-size="12" font-weight="500" letter-spacing=".10em">CLAUDE CODE</text>
+        <text x="1184" y="108" class="txt muted" font-size="12" text-anchor="end">Earlier code path · responsibilities</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+        <text x="96" y="160" class="txt ink" font-size="12" font-weight="600">INTERACTIVE</text>
+        <text x="96" y="372" class="txt ink" font-size="12" font-weight="600">HEADLESS / SDK</text>
+        <line x1="96" y1="344" x2="684" y2="344" stroke="#d5e1ee" stroke-width="1"/>
+        <line x1="964" y1="344" x2="1184" y2="344" stroke="#d5e1ee" stroke-width="1"/>
+
+        <!-- Separate input/output paths share query(), which crosses the two rows. -->
+        <g fill="none" stroke-width="1.2" marker-end="url(#d-01-claude-code-boundary-en-arrow)">
+          <path d="M296 252 H360" stroke="#52657d"/>
+          <path d="M944 252 H1008" stroke="#52657d"/>
+          <path d="M296 452 H360" stroke="#52657d"/>
+          <path d="M944 452 H1008" stroke="#52657d"/>
+        </g>
+        <g fill="none" stroke="#0066d6" stroke-width="1.2" marker-end="url(#d-01-claude-code-boundary-en-arrow-blue)">
+          <path d="M640 252 H704"/><path d="M640 452 H704"/>
+        </g>
+        <g fill="none" stroke="#52657d" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#d-01-claude-code-boundary-en-arrow)">
+          <path d="M704 300 H640"/><path d="M704 500 H640"/>
+        </g>
+        <rect x="640" y="274" width="64" height="16" fill="#fafdff"/>
+        <text x="672" y="287" class="txt muted" font-size="10" text-anchor="middle">Approval?</text>
+        <rect x="640" y="474" width="64" height="16" fill="#fafdff"/>
+        <text x="672" y="487" class="txt muted" font-size="10" text-anchor="middle">Approval?</text>
+
+        <rect x="96" y="184" width="200" height="136" rx="8" class="card"/>
+        <rect x="116" y="204" width="48" height="16" rx="2" class="tag"/>
+        <text x="140" y="216" class="mono muted" font-size="8" text-anchor="middle">INPUT</text>
+        <text x="116" y="252" class="txt ink" font-size="14" font-weight="600">User input</text>
+        <text x="116" y="280" class="txt muted" font-size="12">Conversational UI</text>
+
+        <rect x="360" y="184" width="280" height="136" rx="8" class="card"/>
+        <rect x="380" y="204" width="64" height="16" rx="2" class="tag"/>
+        <text x="412" y="216" class="mono muted" font-size="8" text-anchor="middle">HARNESS</text>
+        <text x="380" y="248" class="txt ink" font-size="14" font-weight="600">REPL / processUserInput</text>
+        <text x="380" y="272" class="txt muted" font-size="12">Prompt · Context · Tools · Permission</text>
+        <text x="380" y="296" class="txt muted" font-size="12">Permission callback and UI state</text>
+
+        <rect x="704" y="184" width="240" height="336" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <rect x="724" y="204" width="64" height="16" rx="2" fill="#1c78e4" stroke="#a8d2ff" stroke-width=".8"/>
+        <text x="756" y="216" class="mono white" font-size="8" text-anchor="middle">RUNTIME</text>
+        <text x="724" y="260" class="txt white" font-size="14" font-weight="600">query()</text>
+        <text x="724" y="284" class="txt white" font-size="12">Shared execution core</text>
+        <line x1="724" y1="316" x2="924" y2="316" stroke="#9bcaff" stroke-width="1"/>
+        <rect x="724" y="344" width="4" height="4" fill="#a8d2ff"/>
+        <text x="740" y="352" class="txt white" font-size="12">Model stream</text>
+        <rect x="724" y="388" width="4" height="4" fill="#a8d2ff"/>
+        <text x="740" y="396" class="txt white" font-size="12">tool_use → tool_result</text>
+        <rect x="724" y="432" width="4" height="4" fill="#a8d2ff"/>
+        <text x="740" y="440" class="txt white" font-size="12">Next round or stop</text>
+        <text x="724" y="492" class="txt" fill="#e2efff" font-size="12">Calls back for decisions</text>
+
+        <rect x="1008" y="184" width="176" height="136" rx="8" class="card"/>
+        <rect x="1028" y="204" width="56" height="16" rx="2" class="tag"/>
+        <text x="1056" y="216" class="mono muted" font-size="8" text-anchor="middle">OUTPUT</text>
+        <text x="1028" y="252" class="txt ink" font-size="14" font-weight="600">Event display</text>
+        <text x="1028" y="280" class="txt muted" font-size="12">transcript</text>
+
+        <rect x="96" y="384" width="200" height="136" rx="8" class="card"/>
+        <rect x="116" y="404" width="48" height="16" rx="2" class="tag"/>
+        <text x="140" y="416" class="mono muted" font-size="8" text-anchor="middle">INPUT</text>
+        <text x="116" y="452" class="txt ink" font-size="14" font-weight="600">stdin / SDK input</text>
+        <text x="116" y="480" class="txt muted" font-size="12">Noninteractive entry</text>
+
+        <rect x="360" y="384" width="280" height="136" rx="8" class="card"/>
+        <rect x="380" y="404" width="64" height="16" rx="2" class="tag"/>
+        <text x="412" y="416" class="mono muted" font-size="8" text-anchor="middle">HARNESS</text>
+        <text x="380" y="448" class="txt ink" font-size="12" font-weight="600">QueryEngine.submitMessage()</text>
+        <text x="380" y="472" class="txt muted" font-size="12">processUserInput · task setup</text>
+        <text x="380" y="496" class="txt muted" font-size="12">Permission callback and output</text>
+
+        <rect x="1008" y="384" width="176" height="136" rx="8" class="card"/>
+        <rect x="1028" y="404" width="56" height="16" rx="2" class="tag"/>
+        <text x="1056" y="416" class="mono muted" font-size="8" text-anchor="middle">OUTPUT</text>
+        <text x="1028" y="452" class="txt ink" font-size="14" font-weight="600">SDKMessage</text>
+        <text x="1028" y="480" class="txt muted" font-size="12">Structured output</text>
+        <line x1="96" y1="552" x2="1184" y2="552" stroke="#d5e1ee" stroke-width="1"/>
+        <text x="96" y="584" class="txt muted" font-size="12">Each entry has its own outer orchestration. Both hand prepared conditions to query() and consume its events.</text>
+      </svg>
