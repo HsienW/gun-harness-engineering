@@ -1,177 +1,179 @@
-# 實際落地的 Agent Harness 是什麼?
+# What Is an Agent Harness in Practice?
 
-- 我認為 Agent Harness 是產品放在模型與真實世界之間的控制層
-  - 它整理使用者輸入
-  - 決定模型此刻能看見哪些資料
-  - 可以使用哪些能力
-  - 採取行動前要經過哪些檢查
-  - 也規定使用者如何在執行中補充、取消或批准操作
+[English](./01-what-is-agent-harness.md) | [繁體中文](./01-what-is-agent-harness-zh-TW.md)
 
-> 這個定義關心的是「責任」，不要求專案裡一定存在名為 Harness 的 class、package 或目錄。
-> 對比在 Claude Code 的相關責任是分散在啟動組裝、REPL、QueryEngine、輸入處理、Prompt、Tool registry、Permission。
-> 顯示層；把這些檔案逐一列出，只能得到元件表。沿著一次任務追蹤「誰做決定」，才看得到 Harness。
+- I see an Agent Harness as the control layer a product places between the model and the real world.
+  - It organizes user input.
+  - It decides what data the model can see at a given moment.
+  - It determines which capabilities the model may use.
+  - It specifies the checks required before an action.
+  - It defines how users can add information, cancel, or approve an operation while it runs.
 
-## Harness 位於哪裡
+> This definition concerns responsibility. It does not require a class, package, or directory named Harness in the project.
+> In Claude Code, these responsibilities are spread across startup assembly, REPL, QueryEngine, input handling, Prompt, the Tool registry, and Permission.
+> The display layer is involved as well. Listing these files only gives you a component inventory. To see the Harness, trace who makes each decision during a task.
 
-一個具備 Agent 能力的產品可以先用三層理解：
+## Where the Harness Sits
 
-![Agent Product、Agent Harness 與 Agent Runtime 的責任位置，以及任務與事件的雙向交接](../../assets/agent-harness/01-harness-location.svg)
+An Agent-enabled product can be understood in three layers:
 
-- 產品層: 承接終端、帳號、業務流程與使用者體驗。
-- Harness: 把產品意圖轉成一次可執行且受治理的 Agent 任務。
-- Runtime: 接手之後，負責讓該任務實際運轉到完成、取消或失敗。
+![The responsibilities of Agent Product, Agent Harness, and Agent Runtime, including the two-way handoff of tasks and events](../../assets/agent-harness/01-harness-location-en.svg)
 
-這三層可能寫在同一個程式裡。分層的用途是釐清決策權與狀態所有權，而非要求每層都成為獨立服務。
+- Product layer: Handles terminals, accounts, business workflows, and user experience.
+- Harness: Turns product intent into an Agent task that can run under defined controls.
+- Runtime: Takes over execution and runs the task until it completes, is canceled, or fails.
 
-## Harness 持有的五個決策面
+These three layers may live in the same program. The point of separating them is to clarify decision authority and state ownership, not to require a separate service for each layer.
 
-### 1. 輸入
+## The Five Decision Surfaces Owned by the Harness
 
-**Harness 先判斷「使用者到底提交了什麼」:**
+### 1. Input
 
-一段輸入可能同時含有文字、附件、圖片、IDE selection、Slash Command 或對既有任務的補充。這些來源需先被辨識、驗證並轉成一致的輸入契約，Runtime 才知道該開始新任務、延續舊任務，或只執行本地命令。
-Claude Code 的 processUserInput 會處理一般訊息、附件與命令分流。Interactive 與 Headless 模式的入口不同，但兩者都必須先完成這層轉換，才把資料送入核心 Agent loop。
+**The Harness first asks, "What did the user submit?":**
 
-### 2. 上下文 (Context)
+An input may contain text, attachments, images, an IDE selection, a Slash Command, or an addition to an existing task. The Harness must identify and validate these sources, then turn them into a consistent input contract so the Runtime knows whether to start a new task, continue an existing one, or run only a local command.
+Claude Code's processUserInput handles ordinary messages, attachments, and command routing. Interactive and Headless modes have different entry points, but both must complete this conversion before passing data to the core Agent loop.
 
-**Harness 決定「這一輪要讓模型知道什麼」:**
+### 2. Context
 
-上下文 (Context) 不只包含歷史訊息，也可能包括 System Prompt、專案指令、目前目錄、檔案內容、記憶、Tool Result 與使用者附件。Harness 需要處理來源權威、優先序、Token 預算與壓縮策略。
-這項責任會直接改變模型行為。相同模型與相同問題，在不同 Context 組裝下可能選擇不同工具、忽略不同限制，甚至理解成不同任務。
+**The Harness decides, "What should the model know in this round?":**
 
-### 3. 行為與能力
+Context includes more than message history. It may also include the System Prompt, project instructions, the current directory, file contents, memory, Tool Results, and user attachments. The Harness must handle source authority, precedence, the Token budget, and compression strategy.
+This responsibility can change the model's behavior. Given the same model and question, different Context assemblies may lead it to choose different tools, disregard different constraints, or even understand the task differently.
 
-**Harness 決定「Agent 被允許考慮哪些做法」:**
+### 3. Behavior and Capabilities
 
-System Prompt 與專案規則描述行為；Tool、Skill、MCP、Command 與 Subagent 定義可用能力。能力是否出現在模型面前，也是一項政策決定。某個 Tool 已經實作，不代表每個 Agent、模式與使用者都應看見它。
-Claude Code 會依啟動模式、設定、Feature Gate、身份、目錄信任與 Permission mode 組裝能力。Chat Gun 面對的則是 C 端業務工具、租戶資源與不同 Agent Graph。產品不同，控制問題相同：能力必須在進入模型與進入執行器之前受到約束。
+**The Harness decides, "Which approaches may the Agent consider?":**
 
-### 4. 行動治理
+The System Prompt and project rules describe behavior; Tools, Skills, MCP, Commands, and Subagents define available capabilities. Deciding whether the model can see a capability is itself a policy decision. The fact that a Tool exists does not mean every Agent, mode, and user should see it.
+Claude Code assembles capabilities according to launch mode, settings, Feature Gates, identity, directory trust, and Permission mode. Chat Gun deals with consumer-facing business tools, tenant resources, and different Agent Graphs. The products differ, but the control problem is the same: capabilities must be constrained before the model sees them and before an executor runs them.
 
-**Harness 決定「模型提出的行動能否真的執行」:**
+### 4. Action Governance
 
-模型可以提出 FileEdit、Shell、退款或通知等工具呼叫；執行權仍由系統持有。Harness 應根據 Tool 風險、作用資源、Principal、Scope、Policy 與使用者批准作出決策，再把結果交回 Runtime。
-因此，Tool 對模型可見與本次 Tool Call 獲准是兩個不同問題。前者屬於能力配置，後者屬於特定行動的授權。
+**The Harness decides, "May the model's proposed action actually run?":**
 
-### 5. 互動與回饋
+The model may propose Tool Calls such as FileEdit, Shell, a refund, or a notification, but the system retains execution authority. The Harness should decide based on Tool risk, the affected resource, Principal, Scope, Policy, and user approval, then return the decision to the Runtime.
+Making a Tool visible to the model and approving a specific Tool Call are two separate questions. The first concerns capability configuration; the second concerns authorization for a particular action.
 
-**Harness 決定「執行期間，人與 Agent 如何繼續對話」:**
+### 5. Interaction and Feedback
 
-使用者可能在任務執行中補充條件、要求取消、送出第二個問題，或回覆一項人工確認。Harness 必須決定這筆輸入屬於目前 Run、下一個 Run，還是應取代正在執行的工作。
-任務結束後，Harness 還要把 Runtime 事件轉成使用者看得懂的進度、錯誤與結果。評估資料也從這裡形成，用來檢查既有約束是否真的改善行為。
+**The Harness decides, "How do people and the Agent keep talking during execution?":**
 
-## 對比在 Claude Code 看見責任邊界
+While a task runs, a user may add a constraint, request cancellation, ask a second question, or respond to an approval request. The Harness must decide whether that input belongs to the current Run or the next one, or whether it should replace the work in progress.
+When the task ends, the Harness must also turn Runtime events into progress, errors, and results that users can understand. Evaluation data takes shape here too, so the team can check whether the existing controls improve behavior.
 
-在分析的 Claude Code 復刻版中，Interactive 與 Headless／SDK 並未共用同一個外層編排器：
+## Seeing the Responsibility Boundary in Claude Code
 
-![Claude Code 的 Interactive 與 Headless／SDK 各自組裝執行條件，再交給共同的 query Runtime，並各自處理輸出與授權請求](../../assets/agent-harness/01-claude-code-boundary.svg)
+In the Claude Code replica analyzed here, Interactive and Headless/SDK do not share the same outer orchestrator:
 
-兩條路徑最後都把準備好的執行資料交給 query()
+![Claude Code Interactive and Headless/SDK assemble execution conditions separately, pass them to the shared query Runtime, and handle output and authorization requests through their own paths](../../assets/agent-harness/01-claude-code-boundary-en.svg)
 
-> query() 與內部 query loop 負責模型串流、解析 tool_use、執行工具、回填 tool_result，然後決定繼續下一輪或結束。
+Both paths eventually pass prepared execution data to query().
 
-這提供了一條可操作的分界: 
-1. Harness 組裝執行條件
-2. Runtime 執行 Agent loop，再由 Harness 消費訊息與事件
+> query() and its internal query loop handle model streaming, parse tool_use, run tools, feed back tool_result, and then decide whether to continue for another round or stop.
 
-Runtime 執行期間仍可能呼叫 Harness 提供的介面。例如工具準備執行時，Runtime 透過 Permission callback 請求決策；Interactive Harness 可以顯示確認視窗，Headless Harness 則可以把請求交給 SDK host。Runtime 不需要知道決策來自 TUI、遠端服務或預先設定的政策，只需遵守回傳結果。
-由此可見，Harness 與 Runtime 的交接不是單向函式呼叫，而是一組雙向契約：執行輸入向內流，政策決策在需要時回應，訊息與事件再向外流。
+This gives us a practical boundary:
+1. The Harness assembles the execution conditions.
+2. The Runtime runs the Agent loop, and the Harness consumes its messages and events.
 
-## 落地場景: 以一個檔案修改當範例
+During execution, the Runtime may still call an interface supplied by the Harness. Before running a tool, for example, the Runtime requests a decision through a Permission callback. An Interactive Harness can show a confirmation dialog, while a Headless Harness can pass the request to an SDK host. The Runtime does not need to know whether the decision came from a TUI, a remote service, or a preset policy; it only needs to follow the returned result.
+The handoff between Harness and Runtime is therefore a two-way contract rather than a one-way function call: execution input flows inward, policy decisions return when needed, and messages and events flow outward.
 
-**假設使用者輸入：「把 src/app.ts 的 timeout 改成 30 秒。」**
+## Implementation Scenario: Modifying a File
 
-Harness 先完成以下工作：
+**Suppose the user enters: "Change the timeout in src/app.ts to 30 seconds."**
 
-1. 將文字與 IDE Context 轉成標準輸入。
-2. 組裝專案規則、對話歷史與目前工作目錄。
-3. 提供 FileRead 與 FileEdit 等本次可用工具。
-4. 設定 FileEdit 的 Permission policy。
-5. 把以上資料交給 Runtime。
+The Harness first does the following:
 
-Runtime 開始模型與工具迴圈：
-1. 模型先提出 FileRead，Runtime 執行後把內容回灌
-2. 模型接著提出 FileEdit。到了修改動作，Runtime 呼叫 Harness 提供的 Permission 介面
-   - 若政策規則允許，Runtime 執行 FileEdit，再讓模型整理結果
-   - 若需要人工確認，Harness 顯示操作內容並等待使用者 ➜ 若使用者拒絕，Harness 回傳拒絕決策，Runtime 將拒絕結果放回對話，讓模型改用其他方法或說明無法繼續。
+1. Converts the text and IDE Context into standard input.
+2. Assembles project rules, conversation history, and the current working directory.
+3. Provides FileRead, FileEdit, and other Tools available for this task.
+4. Sets the Permission policy for FileEdit.
+5. Passes this data to the Runtime.
 
-![需要人工確認的 FileEdit 場景：使用者、Harness、Runtime、模型與工具之間的授權交接及允許／拒絕分支](../../assets/agent-harness/01-file-edit-sequence.svg)
+The Runtime starts the model and tool loop:
+1. The model proposes FileRead. The Runtime runs it and feeds the file contents back.
+2. The model then proposes FileEdit. When it reaches the modification, the Runtime calls the Permission interface supplied by the Harness.
+   - If policy allows the action, the Runtime runs FileEdit and lets the model summarize the result.
+   - If human confirmation is required, the Harness shows the proposed operation and waits for the user. If the user denies it, the Harness returns a denial decision, and the Runtime puts that result back into the conversation so the model can try another approach or explain why it cannot continue.
 
-這個場景中，**模型提出候選行動**，再者**Harness 持有行動條件與決策權**，最後**Runtime 持有執行順序與狀態轉移**。三者各自負責一段不同的問題。
+![A FileEdit scenario that requires human confirmation, showing the authorization handoff among the user, Harness, Runtime, model, and tool, with allow and deny branches](../../assets/agent-harness/01-file-edit-sequence-en.svg)
 
-## 從前述的 Coding Agent 的範例延伸到 Chat Gun 的開發經驗
+In this scenario, **the model proposes candidate actions**, **the Harness owns the conditions and decision authority for those actions**, and **the Runtime owns execution order and state transitions**. Each is responsible for a different part of the problem.
 
-場景落地的類型: 
-1. Coding Agent 的外部世界主要是檔案、Shell、Git、MCP 與開發環境。
-2. Chat Gun 這類 C 端任務 Agent 會接觸帳號、租戶資料、搜尋服務與未來的業務操作。
-   - 當 Tool 只讀取天氣時，Harness 需要決定位置與隱私資料如何進入 Context
-   - 當 Tool 會退款、預約或發送通知時，Harness 還需要判斷 Principal、Resource Scope、風險等級與批准條件。
+## Applying the Coding Agent Example to Chat Gun Development
 
-Runtime 承接問題的類型：
-1. 工具是否可以並行、逾時後能否重試
-2. 外部操作已成功但回應遺失時如何回查
-3. 程序崩潰後能否安全恢復、是否有副作用
+Types of implementation scenarios:
+1. A Coding Agent's external world consists mainly of files, Shell, Git, MCP, and the development environment.
+2. A consumer-facing task Agent such as Chat Gun may access accounts, tenant data, search services, and future business operations.
+   - When a Tool only reads the weather, the Harness must decide how location and private data enter Context.
+   - When a Tool can issue refunds, make reservations, or send notifications, the Harness must also assess Principal, Resource Scope, risk level, and approval conditions.
 
-以上的分工讓同一套 Harness 定義可以跨越 Coding Agent 與業務型 Agent，同時保留各自的風險模型。
+Types of problems the Runtime handles:
+1. Whether Tools can run in parallel and whether a timed-out call can be retried.
+2. How to check an external operation that succeeded when its response was lost.
+3. Whether the system can recover safely after a process crash and whether recovery may cause side effects.
 
-## 如何判斷一個系統是否有完整 Harness
+This division of responsibilities lets the same Harness definition cover both Coding Agents and business Agents while retaining their different risk models.
 
-可以沿一次真實任務問七個問題：
+## How to Tell Whether a System Has a Complete Harness
 
-1. 哪些輸入形式可以進入 Agent，誰負責驗證與正規化？
-2. 哪些資料會進入模型，來源衝突時如何排序？
-3. 本次任務能看見哪些能力，由誰配置？
-4. 模型提出行動後，由誰決定允許、拒絕或請人確認？
-5. 使用者在執行中再次輸入時，如何判斷歸屬？
-6. Runtime 以什麼訊息與事件契約回傳結果？
-7. 如何證明上述政策確實存在於正式執行路徑？
+Follow a real task and ask seven questions:
 
-> 前六題描述控制面，第七題要求落地證據。
-> 若規則只寫在 Prompt、文件或一個沒有接線的模組裡，它仍只是設計材料，尚未成為產品的 Harness 行為。
+1. Which input formats can enter the Agent, and who validates and normalizes them?
+2. Which data reaches the model, and how are conflicting sources ordered?
+3. Which capabilities can this task see, and who configures them?
+4. After the model proposes an action, who decides to allow it, deny it, or ask a person?
+5. When the user provides more input during execution, how is that input assigned?
+6. What message and event contract does the Runtime use to return results?
+7. How can we prove that these policies exist in the production execution path?
 
-## 場景角色的概念的責任
+> The first six questions describe the control surface; the seventh calls for implementation evidence.
+> If a rule exists only in a Prompt, a document, or a module that is not connected to execution, it is still design material, not product Harness behavior.
 
-| 概念 | 在本知識庫中的責任 |
+## Conceptual Responsibilities of Each Role
+
+| Concept | Responsibility in this knowledge base |
 |---|---|
-| Agent Product | 提供使用者體驗、帳號、業務流程與產品政策 |
-| Agent Harness | 組裝任務條件，約束 Agent 的認知、能力、行動與互動 |
-| Agent Runtime | 執行 Run 生命週期、模型與工具迴圈、狀態轉移及恢復 |
-| Agent Framework | 提供 Graph、Message、Tool、Checkpoint 等開發原語 |
-| System Prompt | Harness 使用的一種行為控制材料 |
-| Tool Runtime | Runtime 中負責 Tool 驗證、排程、執行與結果處理的部分 |
-| Evaluation | 檢查 Harness 規則與 Runtime 行為是否產生預期結果 |
+| Agent Product | Provides user experience, accounts, business workflows, and product policy |
+| Agent Harness | Assembles task conditions and constrains what the Agent knows, can do, and can act on, as well as how it interacts |
+| Agent Runtime | Runs the Run lifecycle, model and tool loop, state transitions, and recovery |
+| Agent Framework | Provides development primitives such as Graph, Message, Tool, and Checkpoint |
+| System Prompt | A behavior-control input used by the Harness |
+| Tool Runtime | The part of the Runtime that validates, schedules, runs, and processes Tool results |
+| Evaluation | Checks whether Harness rules and Runtime behavior produce the expected results |
 
-- 框架可以承載 Harness，也可以承載 Runtime；但採用 LangGraph、LangChain 或自製 loop，並不會自動回答產品的輸入權威、能力範圍與授權政策。
+- A framework can host both Harness and Runtime, but adopting LangGraph, LangChain, or a custom loop does not answer questions about input authority, capability scope, or authorization policy for the product.
 
-## 責任邊界
+## Responsibility Boundaries
 
-- 這套定義適合會讓模型自主選擇步驟、呼叫工具，並可能接受執行中介入的 Agent 產品。單次文字補全也有 Prompt 與輸入處理，但若沒有能力選擇、行動治理或持續執行狀態，使用完整 Harness 模型的收益有限。
-- Harness 也無法替代領域授權系統。它可以在 Tool dispatch 前呼叫授權服務並執行決策，不能自行宣告某個使用者擁有退款、醫療資料或企業資源的權限。
+- This definition applies to Agent products that let a model choose steps, call tools, and potentially accept intervention while running. Single-turn text completion also involves Prompt and input handling, but the full Harness model offers limited benefit without capability selection, action governance, or persistent execution state.
+- The Harness cannot replace a domain authorization system. It can call an authorization service before Tool dispatch and enforce its decision, but it cannot grant a user rights to refunds, medical data, or enterprise resources on its own.
 
-## Harness 的定義
+## Definition of the Harness
 
-- Harness 在 Agent Product 中負責組裝輸入、Context、行為規則與能力，治理模型提出的行動，並承接人與 Runtime 互動的控制層。
-- Harness 在工程線索中，每項規則都應找到決策者、執行位置與可觀測結果。如此一來，Harness 才能從概念變成可驗證的產品行為。
+- Within an Agent Product, the Harness is the control layer that assembles input, Context, behavior rules, and capabilities; governs actions proposed by the model; and handles interaction between people and the Runtime.
+- For each Harness rule, engineers should be able to identify the decision-maker, execution point, and observable result. That is how the Harness becomes verifiable product behavior rather than a concept alone.
 
-## 參考落地的來源
+## Implementation References
 
 ### [claude-code-best](https://github.com/claude-code-best/claude-code)
 
-- claude-code-best：src/screens/REPL.tsx
-- claude-code-best：src/QueryEngine.ts
-- claude-code-best：src/query.ts
-- claude-code-best：src/utils/processUserInput/processUserInput.ts
-- claude-code-best：ARCHITECTURE.md
+- claude-code-best: src/screens/REPL.tsx
+- claude-code-best: src/QueryEngine.ts
+- claude-code-best: src/query.ts
+- claude-code-best: src/utils/processUserInput/processUserInput.ts
+- claude-code-best: ARCHITECTURE.md
 
 
-### Chat Gun 的使用方式
+### How Chat Gun Is Used Here
 
-- Chat Gun 在本篇只用於檢查這套定義能否延伸到 C 端任務 Agent
-- 個別能力是否已接入正式路徑，仍應依對應文章與程式證據標為「已接入」、「模組可用」或「規劃中」。
+- This article uses Chat Gun only to test whether the definition extends to consumer-facing task Agents.
+- Whether a specific capability is connected to the production path should still be labeled "integrated," "module available," or "planned," based on the relevant article and code evidence.
 
-## 接續閱讀
+## Further Reading
 
-- [Harness 的控制面](./02-control-surfaces.md)
-- [Harness 與 Runtime 的邊界](./03-harness-runtime-boundary.md)
-- [Agent Harness 設計原則](./04-design-principles.md)
-- [一次任務的完整走法](./05-one-turn-walkthrough.md)
+- [Harness control surfaces](./02-control-surfaces.md)
+- [The boundary between Harness and Runtime](./03-harness-runtime-boundary.md)
+- [Agent Harness design principles](./04-design-principles.md)
+- [The complete path of a task](./05-one-turn-walkthrough.md)
