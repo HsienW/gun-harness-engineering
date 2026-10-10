@@ -17,7 +17,7 @@
 
 一個具備 Agent 能力的產品可以先用三層理解：
 
-![Agent Product、Agent Harness 與 Agent Runtime 的責任位置，以及任務與事件的雙向交接](../../assets/agent-harness/01-harness-location.svg)
+![Agent Product、Agent Harness 與 Agent Runtime 的責任位置，以及任務與事件的雙向交接](../../assets/agent-harness/foundations/01-what-is-agent-harness/01-harness-location.svg)
 
 - 產品層: 承接終端、帳號、業務流程與使用者體驗。
 - Harness: 把產品意圖轉成一次可執行且受治理的 Agent 任務。
@@ -66,7 +66,7 @@ Claude Code 會依啟動模式、設定、Feature Gate、身份、目錄信任�
 
 在分析的 Claude Code 復刻版中，Interactive 與 Headless／SDK 並未共用同一個外層編排器：
 
-![Claude Code 的 Interactive 與 Headless／SDK 各自組裝執行條件，再交給共同的 query Runtime，並各自處理輸出與授權請求](../../assets/agent-harness/01-claude-code-boundary.svg)
+![Claude Code 的 Interactive 與 Headless／SDK 各自組裝執行條件，再交給共同的 query Runtime，並各自處理輸出與授權請求](../../assets/agent-harness/foundations/01-what-is-agent-harness/01-claude-code-boundary.svg)
 
 兩條路徑最後都把準備好的執行資料交給 query()
 
@@ -97,7 +97,7 @@ Runtime 開始模型與工具迴圈：
    - 若政策規則允許，Runtime 執行 FileEdit，再讓模型整理結果
    - 若需要人工確認，Harness 顯示操作內容並等待使用者 ➜ 若使用者拒絕，Harness 回傳拒絕決策，Runtime 將拒絕結果放回對話，讓模型改用其他方法或說明無法繼續。
 
-![需要人工確認的 FileEdit 場景：使用者、Harness、Runtime、模型與工具之間的授權交接及允許／拒絕分支](../../assets/agent-harness/01-file-edit-sequence.svg)
+![需要人工確認的 FileEdit 場景：使用者、Harness、Runtime、模型與工具之間的授權交接及允許／拒絕分支](../../assets/agent-harness/foundations/01-what-is-agent-harness/01-file-edit-sequence.svg)
 
 這個場景中，**模型提出候選行動**，再者**Harness 持有行動條件與決策權**，最後**Runtime 持有執行順序與狀態轉移**。三者各自負責一段不同的問題。
 
