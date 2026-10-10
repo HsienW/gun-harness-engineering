@@ -157,6 +157,8 @@ Runtime 承接問題的類型：
 
 ## 參考落地的來源
 
+### [chat-gun](https://github.com/HsienW/chat-gun)
+
 ### [claude-code-best](https://github.com/claude-code-best/claude-code)
 
 - claude-code-best：src/screens/REPL.tsx
