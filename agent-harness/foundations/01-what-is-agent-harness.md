@@ -17,7 +17,7 @@
 
 An Agent-enabled product can be understood in three layers:
 
-![The responsibilities of Agent Product, Agent Harness, and Agent Runtime, including the two-way handoff of tasks and events](../../assets/agent-harness/01-harness-location-en.svg)
+![The responsibilities of Agent Product, Agent Harness, and Agent Runtime, including the two-way handoff of tasks and events](../../assets/agent-harness/foundations/01-what-is-agent-harness/01-harness-location-en.svg)
 
 - Product layer: Handles terminals, accounts, business workflows, and user experience.
 - Harness: Turns product intent into an Agent task that can run under defined controls.
@@ -66,7 +66,7 @@ When the task ends, the Harness must also turn Runtime events into progress, err
 
 In the Claude Code replica analyzed here, Interactive and Headless/SDK do not share the same outer orchestrator:
 
-![Claude Code Interactive and Headless/SDK assemble execution conditions separately, pass them to the shared query Runtime, and handle output and authorization requests through their own paths](../../assets/agent-harness/01-claude-code-boundary-en.svg)
+![Claude Code Interactive and Headless/SDK assemble execution conditions separately, pass them to the shared query Runtime, and handle output and authorization requests through their own paths](../../assets/agent-harness/foundations/01-what-is-agent-harness/01-claude-code-boundary-en.svg)
 
 Both paths eventually pass prepared execution data to query().
 
@@ -97,7 +97,7 @@ The Runtime starts the model and tool loop:
    - If policy allows the action, the Runtime runs FileEdit and lets the model summarize the result.
    - If human confirmation is required, the Harness shows the proposed operation and waits for the user. If the user denies it, the Harness returns a denial decision, and the Runtime puts that result back into the conversation so the model can try another approach or explain why it cannot continue.
 
-![A FileEdit scenario that requires human confirmation, showing the authorization handoff among the user, Harness, Runtime, model, and tool, with allow and deny branches](../../assets/agent-harness/01-file-edit-sequence-en.svg)
+![A FileEdit scenario that requires human confirmation, showing the authorization handoff among the user, Harness, Runtime, model, and tool, with allow and deny branches](../../assets/agent-harness/foundations/01-what-is-agent-harness/01-file-edit-sequence-en.svg)
 
 In this scenario, **the model proposes candidate actions**, **the Harness owns the conditions and decision authority for those actions**, and **the Runtime owns execution order and state transitions**. Each is responsible for a different part of the problem.
 
