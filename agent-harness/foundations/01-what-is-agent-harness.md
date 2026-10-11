@@ -157,6 +157,8 @@ Follow a real task and ask seven questions:
 
 ## Implementation References
 
+### [chat-gun](https://github.com/HsienW/chat-gun)
+
 ### [claude-code-best](https://github.com/claude-code-best/claude-code)
 
 - claude-code-best: src/screens/REPL.tsx

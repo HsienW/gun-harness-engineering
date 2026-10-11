@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="refund-approval-sequence-en-title refund-approval-sequence-en-desc" id="d-02-refund-approval-sequence-en-root">
+        <title id="refund-approval-sequence-en-title">Refund approval and execution sequence</title>
+        <desc id="refund-approval-sequence-en-desc">After the user requests a refund, the Harness limits order and tool scope. The Runtime checks the order and requests confirmation. Once the user approves the specified Interrupt, the original Run executes the refund with an Idempotency Key and reports the result.</desc>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #d-02-refund-approval-sequence-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-02-refund-approval-sequence-en-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-02-refund-approval-sequence-en-root .diagram-container { overflow-x: visible; }</style>
+          <marker id="d-02-refund-approval-sequence-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-02-refund-approval-sequence-en-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+          <marker id="d-02-refund-approval-sequence-en-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0066d6"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="584" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="224" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".1em">REFUND APPROVAL</text>
+        <text x="1184" y="108" text-anchor="end" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Approved path · time flows downward</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+        <!-- Lifelines and active intervals. -->
+        <g stroke="#b9cce3" stroke-width="1" stroke-dasharray="4 4">
+          <line x1="168" y1="168" x2="168" y2="652"/><line x1="480" y1="168" x2="480" y2="652"/>
+          <line x1="792" y1="168" x2="792" y2="652"/><line x1="1104" y1="168" x2="1104" y2="652"/>
+        </g>
+        <g fill="#eef4fb" stroke="#9db5cf" stroke-width=".8">
+          <rect x="476" y="196" width="8" height="200"/><rect x="476" y="436" width="8" height="200"/>
+          <rect x="788" y="236" width="8" height="120"/><rect x="788" y="476" width="8" height="120"/>
+          <rect x="1100" y="276" width="8" height="40"/><rect x="1100" y="516" width="8" height="40"/>
+        </g>
+
+        <!-- Twelve messages; dashed filled arrows are returns, solid blue arrows are tool calls or the final response. -->
+        <g fill="none" stroke-width="1.2">
+          <path d="M168 196 H480" stroke="#52657d" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M480 236 H792" stroke="#52657d" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M792 276 H1104" stroke="#0066d6" marker-end="url(#d-02-refund-approval-sequence-en-arrow-link)"/>
+          <path d="M1104 316 H792" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M792 356 H480" stroke="#52657d" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M480 396 H168" stroke="#52657d" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M168 436 H480" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M480 476 H792" stroke="#52657d" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M792 516 H1104" stroke="#0066d6" marker-end="url(#d-02-refund-approval-sequence-en-arrow-link)"/>
+          <path d="M1104 556 H792" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M792 596 H480" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-02-refund-approval-sequence-en-arrow)"/>
+          <path d="M480 636 H168" stroke="#0078fc" marker-end="url(#d-02-refund-approval-sequence-en-arrow-accent)"/>
+        </g>
+
+        <g fill="#fafdff">
+          <rect x="256" y="172" width="136" height="16" rx="2"/><rect x="518" y="212" width="236" height="16" rx="2"/>
+          <rect x="848" y="252" width="200" height="16" rx="2"/><rect x="862" y="292" width="172" height="16" rx="2"/>
+          <rect x="546" y="332" width="180" height="16" rx="2"/><rect x="202" y="372" width="244" height="16" rx="2"/>
+          <rect x="202" y="412" width="244" height="16" rx="2"/><rect x="548" y="452" width="176" height="16" rx="2"/>
+          <rect x="848" y="492" width="200" height="16" rx="2"/><rect x="856" y="532" width="184" height="16" rx="2"/>
+          <rect x="580" y="572" width="112" height="16" rx="2"/><rect x="190" y="612" width="268" height="16" rx="2"/>
+        </g>
+        <g fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif" text-anchor="middle">
+          <text x="324" y="185">Request a refund</text>
+          <text x="636" y="225">Pass order scope and available tools</text>
+          <text x="948" y="265">Read order with OrderReadTool</text>
+          <text x="948" y="305">Candidate orders and status</text>
+          <text x="636" y="345">Request approval for refund</text>
+          <text x="324" y="385">Show amount, order, and approval scope</text>
+          <text x="324" y="425">Approve the specified Interrupt</text>
+          <text x="636" y="465">Resume the original Run</text>
+          <text x="948" y="505">Refund with Idempotency Key</text>
+          <text x="948" y="545">Business Effect and result</text>
+          <text x="636" y="585">Terminal Status</text>
+          <text x="324" y="625" fill="#0066d6" font-weight="600">Show success / failure / manual review</text>
+        </g>
+
+        <rect x="96" y="120" width="144" height="48" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="168" y="149" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">User</text>
+        <rect x="408" y="120" width="144" height="48" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <text x="480" y="149" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Harness</text>
+        <rect x="720" y="120" width="144" height="48" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="792" y="149" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Agent Runtime</text>
+        <rect x="1032" y="120" width="144" height="48" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="1104" y="140" text-anchor="middle" fill="#102743" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Order / refund tools</text>
+        <text x="1104" y="157" text-anchor="middle" fill="#52657d" font-size="9" font-family="'Geist Mono', monospace">READ / REFUND</text>
+
+        <text x="96" y="688" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">If the refund succeeds but its response is lost, the Harness should show "Checking status" and avoid prompting another submission.</text>
+      </svg>

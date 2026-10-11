@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="control-surfaces-map-en-title control-surfaces-map-en-desc" id="d-02-control-surfaces-map-en-root">
+        <title id="control-surfaces-map-en-title">The five main Harness control surfaces</title>
+        <desc id="control-surfaces-map-en-desc">User input passes through input, context, behavior and capability, and action governance before entering the Runtime. Interaction and feedback control handles the result; tool feedback or a clarification reply can re-enter relevant controls.</desc>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #d-02-control-surfaces-map-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-02-control-surfaces-map-en-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-02-control-surfaces-map-en-root .diagram-container { overflow-x: visible; }</style>
+          <marker id="d-02-control-surfaces-map-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-02-control-surfaces-map-en-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+          <marker id="d-02-control-surfaces-map-en-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0066d6"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="224" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".1em">CONTROL SURFACES</text>
+        <text x="1184" y="108" text-anchor="end" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Execution path · dashed lines show possible re-entry</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+        <!-- Main path and two representative re-entry paths. -->
+        <g fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-02-control-surfaces-map-en-arrow)">
+          <path d="M640 184 V196"/><path d="M640 260 V272"/><path d="M640 336 V348"/>
+          <path d="M640 412 V424"/><path d="M640 488 V500"/><path d="M640 564 V576"/>
+        </g>
+        <path d="M800 528 H936 Q944 528 944 520 V308 Q944 300 936 300 H800" fill="none" stroke="#52657d" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#d-02-control-surfaces-map-en-arrow)"/>
+        <path d="M480 604 H344 Q336 604 336 596 V232 Q336 224 344 224 H480" fill="none" stroke="#52657d" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#d-02-control-surfaces-map-en-arrow)"/>
+        <text x="968" y="416" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Tool feedback</text>
+        <text x="96" y="416" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Clarification reply</text>
+
+        <rect x="480" y="120" width="320" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="640" y="148" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">User and product</text>
+        <text x="640" y="168" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Raw request and product entry</text>
+
+        <rect x="480" y="196" width="320" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="500" y="220" fill="#0066d6" font-size="12" font-family="'Geist Mono', monospace">01</text>
+        <text x="540" y="220" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Input control</text>
+        <text x="540" y="242" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Normalize and validate task input</text>
+
+        <rect x="480" y="272" width="320" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="500" y="296" fill="#0066d6" font-size="12" font-family="'Geist Mono', monospace">02</text>
+        <text x="540" y="296" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Context control</text>
+        <text x="540" y="318" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Choose what the model sees this turn</text>
+
+        <rect x="480" y="348" width="320" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="500" y="372" fill="#0066d6" font-size="12" font-family="'Geist Mono', monospace">03</text>
+        <text x="540" y="372" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Behavior and capability control</text>
+        <text x="540" y="394" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Set rules and available methods</text>
+
+        <rect x="480" y="424" width="320" height="64" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <text x="500" y="448" fill="#a8d2ff" font-size="12" font-family="'Geist Mono', monospace">04</text>
+        <text x="540" y="448" fill="#ffffff" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Action governance</text>
+        <text x="540" y="470" fill="#e2efff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Decide whether this action may run</text>
+
+        <rect x="480" y="500" width="320" height="64" rx="8" fill="#eef4fb" stroke="#9db5cf" stroke-width="1.2"/>
+        <text x="500" y="524" fill="#52657d" font-size="12" font-family="'Geist Mono', monospace">RUN</text>
+        <text x="540" y="524" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Agent Runtime</text>
+        <text x="540" y="546" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Run the model and tool loop</text>
+
+        <rect x="480" y="576" width="320" height="56" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="500" y="598" fill="#0066d6" font-size="12" font-family="'Geist Mono', monospace">05</text>
+        <text x="540" y="598" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Interaction and feedback control</text>
+        <text x="540" y="618" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Handle intervention, results, and evaluation</text>
+
+        <text x="96" y="682" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Dashed paths are examples of re-entry; another sample, human approval, or Context compression may revisit different controls.</text>
+      </svg>

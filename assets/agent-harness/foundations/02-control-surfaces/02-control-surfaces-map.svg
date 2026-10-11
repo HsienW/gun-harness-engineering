@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="control-surfaces-map-title control-surfaces-map-desc" id="d-02-control-surfaces-map-root">
+        <title id="control-surfaces-map-title">Harness 的五個主要控制面</title>
+        <desc id="control-surfaces-map-desc">使用者輸入依序經過輸入、Context、行為與能力、行動治理，再進入 Runtime，由互動與回饋控制面承接結果；工具回灌和澄清回覆可能使任務重新進入相關控制面。</desc>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #d-02-control-surfaces-map-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-02-control-surfaces-map-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-02-control-surfaces-map-root .diagram-container { overflow-x: visible; }</style>
+          <marker id="d-02-control-surfaces-map-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-02-control-surfaces-map-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+          <marker id="d-02-control-surfaces-map-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0066d6"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="224" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".1em">CONTROL SURFACES</text>
+        <text x="1184" y="108" text-anchor="end" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">執行路徑 · 虛線為可能的重入</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+        <!-- Main path and two representative re-entry paths. -->
+        <g fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-02-control-surfaces-map-arrow)">
+          <path d="M640 184 V196"/><path d="M640 260 V272"/><path d="M640 336 V348"/>
+          <path d="M640 412 V424"/><path d="M640 488 V500"/><path d="M640 564 V576"/>
+        </g>
+        <path d="M800 528 H936 Q944 528 944 520 V308 Q944 300 936 300 H800" fill="none" stroke="#52657d" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#d-02-control-surfaces-map-arrow)"/>
+        <path d="M480 604 H344 Q336 604 336 596 V232 Q336 224 344 224 H480" fill="none" stroke="#52657d" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#d-02-control-surfaces-map-arrow)"/>
+        <text x="968" y="416" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">工具回灌等</text>
+        <text x="96" y="416" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">澄清回覆等</text>
+
+        <rect x="480" y="120" width="320" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="640" y="148" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">使用者與產品</text>
+        <text x="640" y="168" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">原始需求與產品入口</text>
+
+        <rect x="480" y="196" width="320" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="500" y="220" fill="#0066d6" font-size="12" font-family="'Geist Mono', monospace">01</text>
+        <text x="540" y="220" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">輸入控制</text>
+        <text x="540" y="242" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">將互動轉為受驗證的任務輸入</text>
+
+        <rect x="480" y="272" width="320" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="500" y="296" fill="#0066d6" font-size="12" font-family="'Geist Mono', monospace">02</text>
+        <text x="540" y="296" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Context 控制</text>
+        <text x="540" y="318" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">決定模型這一輪能看見什麼</text>
+
+        <rect x="480" y="348" width="320" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="500" y="372" fill="#0066d6" font-size="12" font-family="'Geist Mono', monospace">03</text>
+        <text x="540" y="372" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">行為與能力控制</text>
+        <text x="540" y="394" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">規定行為邊界與可選方法</text>
+
+        <rect x="480" y="424" width="320" height="64" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <text x="500" y="448" fill="#a8d2ff" font-size="12" font-family="'Geist Mono', monospace">04</text>
+        <text x="540" y="448" fill="#ffffff" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">行動治理</text>
+        <text x="540" y="470" fill="#e2efff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">判斷本次行動能否執行</text>
+
+        <rect x="480" y="500" width="320" height="64" rx="8" fill="#eef4fb" stroke="#9db5cf" stroke-width="1.2"/>
+        <text x="500" y="524" fill="#52657d" font-size="12" font-family="'Geist Mono', monospace">RUN</text>
+        <text x="540" y="524" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Agent Runtime</text>
+        <text x="540" y="546" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">推進模型與工具迴圈</text>
+
+        <rect x="480" y="576" width="320" height="56" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="500" y="598" fill="#0066d6" font-size="12" font-family="'Geist Mono', monospace">05</text>
+        <text x="540" y="598" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">互動與回饋控制</text>
+        <text x="540" y="618" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">承接中途介入、結果與評估</text>
+
+        <text x="96" y="682" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">虛線只示意重入；再次取樣、人工批准或 Context 壓縮可能重新經過不同控制面。</text>
+      </svg>

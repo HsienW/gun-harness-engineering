@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="capability-action-gates-title capability-action-gates-desc" id="d-02-capability-action-gates-root">
+        <title id="capability-action-gates-title">能力公開與單次行動授權</title>
+        <desc id="capability-action-gates-desc">Capability Control 在模型取樣前決定 RefundTool 是否可見；模型提出具體退款呼叫後，Action Governance 再依使用者、訂單與範圍決定允許、拒絕或要求人工確認。</desc>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #d-02-capability-action-gates-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-02-capability-action-gates-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-02-capability-action-gates-root .diagram-container { overflow-x: visible; }</style>
+          <marker id="d-02-capability-action-gates-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-02-capability-action-gates-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+          <marker id="d-02-capability-action-gates-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0066d6"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="232" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".1em">TWO DECISION GATES</text>
+        <text x="1184" y="108" text-anchor="end" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">可見性 ≠ 本次執行許可</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+        <!-- Orthogonal connectors are drawn before boxes. -->
+        <g fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-02-capability-action-gates-arrow)">
+          <path d="M640 176 V208"/>
+          <path d="M490 256 H264 Q256 256 256 264 V340"/>
+          <path d="M640 304 V340"/>
+          <path d="M640 396 V420"/>
+          <path d="M490 468 H280 Q272 468 272 476 V560"/>
+          <path d="M640 516 V560"/>
+        </g>
+        <path d="M790 468 H1000 Q1008 468 1008 476 V560" fill="none" stroke="#0078fc" stroke-width="1.2" marker-end="url(#d-02-capability-action-gates-arrow-accent)"/>
+
+        <rect x="370" y="230" width="80" height="16" rx="2" fill="#fafdff"/>
+        <text x="410" y="242" text-anchor="middle" fill="#52657d" font-size="8" font-family="'Geist Mono', monospace">NOT VISIBLE</text>
+        <text x="660" y="326" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">可見</text>
+        <rect x="374" y="440" width="44" height="16" rx="2" fill="#fafdff"/>
+        <text x="396" y="452" text-anchor="middle" fill="#52657d" font-size="8" font-family="'Geist Mono', monospace">DENY</text>
+        <rect x="658" y="526" width="116" height="16" rx="2" fill="#fafdff"/>
+        <text x="716" y="538" text-anchor="middle" fill="#52657d" font-size="8" font-family="'Geist Mono', monospace">REQUIRE CONFIRM</text>
+        <rect x="860" y="440" width="52" height="16" rx="2" fill="#fafdff"/>
+        <text x="886" y="452" text-anchor="middle" fill="#0066d6" font-size="8" font-family="'Geist Mono', monospace">ALLOW</text>
+
+        <rect x="480" y="120" width="320" height="56" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="640" y="145" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">候選能力與任務條件</text>
+        <text x="640" y="164" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">例如 RefundTool、Agent 模式與租戶設定</text>
+
+        <polygon points="640,208 790,256 640,304 490,256" fill="#ffffff" stroke="#9db5cf" stroke-width="1.2"/>
+        <text x="640" y="248" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Capability Control</text>
+        <text x="640" y="270" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">模型能否看見 RefundTool？</text>
+
+        <rect x="128" y="340" width="288" height="56" rx="8" fill="#eef4fb" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="272" y="366" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">不公開 RefundTool</text>
+        <text x="272" y="384" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">模型不會選用這項能力</text>
+
+        <rect x="480" y="340" width="320" height="56" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="640" y="366" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">模型提出具體 Tool Call</text>
+        <text x="640" y="384" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">指定使用者、訂單與退款動作</text>
+
+        <polygon points="640,420 790,468 640,516 490,468" fill="#eef4fb" stroke="#0066d6" stroke-width="1.5"/>
+        <text x="640" y="460" text-anchor="middle" fill="#0066d6" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Action Governance</text>
+        <text x="640" y="482" text-anchor="middle" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">這筆訂單可執行退款？</text>
+
+        <rect x="128" y="560" width="288" height="72" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="272" y="590" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">拒絕本次執行</text>
+        <text x="272" y="612" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">不得觸及真實資源</text>
+        <rect x="496" y="560" width="288" height="72" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="640" y="590" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">暫停並請求確認</text>
+        <text x="640" y="612" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">批准綁定本次 Run 與資源</text>
+        <rect x="864" y="560" width="288" height="72" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <text x="1008" y="590" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">交由 Runtime 執行</text>
+        <text x="1008" y="612" text-anchor="middle" fill="#e2efff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">授權通過後才產生副作用</text>
+
+        <text x="96" y="682" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">第一道關卡在模型取樣前；第二道關卡針對每次具體行動，在 Tool Dispatch 前判斷。</text>
+      </svg>
