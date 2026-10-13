@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="handoff-contracts-title handoff-contracts-desc" id="d-03-handoff-contracts-root">
+        <title id="handoff-contracts-title">Harness 與 Runtime 的五份雙向交接契約</title>
+        <desc id="handoff-contracts-desc">Harness 以 Execution Request 交付條件；Runtime 透過 Decision Ports 往返請求政策決策，並以 Runtime Events、Terminal Result 和 Persistence and Effect Evidence 回報執行事實。五份契約是不同通道，不是五個順序步驟。</desc>
+        <defs>
+      <style>#d-03-handoff-contracts-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-03-handoff-contracts-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-03-handoff-contracts-root .diagram-container { overflow-x: visible; }</style>
+          <marker id="d-03-handoff-contracts-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-03-handoff-contracts-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="208" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".10em">RUNTIME HANDOFF</text>
+        <text x="1184" y="108" text-anchor="end" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">契約方向 · 非執行步驟</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+        <!-- Contract arrows attach to distinct side ports on the two owners. -->
+        <g fill="none" stroke-width="1.2">
+          <path d="M368 192 H456" stroke="#0078fc" marker-end="url(#d-03-handoff-contracts-arrow-accent)"/>
+          <path d="M824 192 H912" stroke="#0078fc" marker-end="url(#d-03-handoff-contracts-arrow-accent)"/>
+          <path d="M912 268 H824" stroke="#52657d" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M456 268 H368" stroke="#52657d" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M368 292 H456" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M824 292 H912" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M912 360 H824" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M456 360 H368" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M912 444 H824" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M456 444 H368" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M912 528 H824" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+          <path d="M456 528 H368" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-handoff-contracts-arrow)"/>
+        </g>
+
+        <!-- Owner panels. -->
+        <rect x="96" y="152" width="272" height="420" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <rect x="116" y="172" width="72" height="16" rx="2" fill="#1c78e4" stroke="#a8d2ff" stroke-width=".8"/>
+        <text x="152" y="184" text-anchor="middle" fill="#ffffff" font-size="8" font-family="'Geist Mono', monospace" letter-spacing=".08em">HARNESS</text>
+        <text x="116" y="228" fill="#ffffff" font-size="16" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">決定執行條件</text>
+        <text x="116" y="256" fill="#e2efff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">驗證輸入、Context、能力與政策</text>
+        <line x1="116" y1="284" x2="348" y2="284" stroke="#9bcaff"/>
+        <text x="116" y="332" fill="#ffffff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">提供 Execution Request</text>
+        <text x="116" y="376" fill="#ffffff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">回覆授權與人工決策</text>
+        <text x="116" y="420" fill="#ffffff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">消費事件與終止結果</text>
+        <text x="116" y="464" fill="#ffffff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">將結果轉成產品語言</text>
+
+        <rect x="912" y="152" width="272" height="420" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <rect x="932" y="172" width="72" height="16" rx="2" fill="#eef4fb" stroke="#b9cce3" stroke-width=".8"/>
+        <text x="968" y="184" text-anchor="middle" fill="#52657d" font-size="8" font-family="'Geist Mono', monospace" letter-spacing=".08em">RUNTIME</text>
+        <text x="932" y="228" fill="#102743" font-size="16" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">推進 Run 生命週期</text>
+        <text x="932" y="256" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">模型、工具、狀態與恢復</text>
+        <line x1="932" y1="284" x2="1164" y2="284" stroke="#d5e1ee"/>
+        <text x="932" y="332" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">消費已驗證的條件</text>
+        <text x="932" y="376" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">遇政策問題時請求決策</text>
+        <text x="932" y="420" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">發出執行事實與終止判定</text>
+      <text x="932" y="464" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">儲存狀態與提供恢復證據</text>
+
+        <!-- Five typed contracts, not a vertical process. -->
+        <g font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">
+          <rect x="456" y="160" width="368" height="64" rx="8" fill="#eef4fb" stroke="#0078fc" stroke-width="1.2"/>
+          <text x="476" y="186" fill="#0066d6" font-size="12" font-weight="600">01</text>
+          <text x="508" y="186" fill="#102743" font-size="14" font-weight="600">Execution Request</text>
+          <text x="508" y="207" fill="#52657d" font-size="12">已治理的輸入、能力與限制 →</text>
+
+          <rect x="456" y="244" width="368" height="64" rx="8" fill="#ffffff" stroke="#9db5cf" stroke-width="1.2"/>
+          <text x="476" y="270" fill="#0066d6" font-size="12" font-weight="600">02</text>
+          <text x="508" y="270" fill="#102743" font-size="14" font-weight="600">Decision Ports</text>
+          <text x="508" y="291" fill="#52657d" font-size="12">← 決策請求　／　決策回覆 →</text>
+
+          <rect x="456" y="328" width="368" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+          <text x="476" y="354" fill="#0066d6" font-size="12" font-weight="600">03</text>
+          <text x="508" y="354" fill="#102743" font-size="14" font-weight="600">Runtime Events</text>
+          <text x="508" y="375" fill="#52657d" font-size="12">← 可重播的進度與執行事實</text>
+
+          <rect x="456" y="412" width="368" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+          <text x="476" y="438" fill="#0066d6" font-size="12" font-weight="600">04</text>
+          <text x="508" y="438" fill="#102743" font-size="14" font-weight="600">Terminal Result</text>
+          <text x="508" y="459" fill="#52657d" font-size="12">← 本次 Run 的終止判定</text>
+
+          <rect x="456" y="496" width="368" height="64" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+          <text x="476" y="522" fill="#0066d6" font-size="12" font-weight="600">05</text>
+          <text x="508" y="522" fill="#102743" font-size="14" font-weight="600">Persistence / Effect Evidence</text>
+  <text x="508" y="543" fill="#52657d" font-size="12">← Checkpoint 與外部 Commit 證據須分辨</text>
+        </g>
+
+        <line x1="96" y1="608" x2="1184" y2="608" stroke="#d5e1ee"/>
+        <text x="96" y="632" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">外部 Commit 真相由下游系統與 Side-effect Ledger 證明；Runtime Checkpoint 不能單獨代替它。</text>
+      </svg>
