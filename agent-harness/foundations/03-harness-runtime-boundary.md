@@ -443,16 +443,16 @@ The first handler owns technical remediation. The Harness owns product policy an
 
 ## Evidence sources
 
-### Observed: older Claude Code version
+### [claude-code-best](https://github.com/claude-code-best/claude-code)
 
-- claude-code-avatar: QueryParams and the query AsyncGenerator in src/query.ts
-- claude-code-avatar: Interactive query call in src/screens/REPL.tsx
-- claude-code-avatar: Headless / SDK query call in src/QueryEngine.ts
-- claude-code-avatar: src/services/tools/toolOrchestration.ts
-- claude-code-avatar: canUseTool round trip in src/services/tools/toolExecution.ts
-- claude-code-avatar: ARCHITECTURE.md
+- claude-code-best: QueryParams and the query AsyncGenerator in src/query.ts
+- claude-code-best: Interactive query call in src/screens/REPL.tsx
+- claude-code-best: Headless / SDK query call in src/QueryEngine.ts
+- claude-code-best: src/services/tools/toolOrchestration.ts
+- claude-code-best: canUseTool round trip in src/services/tools/toolExecution.ts
+- claude-code-best: ARCHITECTURE.md
 
-### Integrated or partially verified: Chat Gun
+### [chat-gun](https://github.com/HsienW/chat-gun)
 
 - backend/src/operations/execution-composition-root.ts
 - backend/src/platform/interaction-runtime.ts

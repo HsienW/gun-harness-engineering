@@ -443,16 +443,16 @@ Runtime 負責確保未獲准的工具不會執行，Harness 則持有決策權�
 
 ## 證據來源
 
-### 已觀察：Claude Code 舊版
+### [claude-code-best](https://github.com/claude-code-best/claude-code)
 
-- claude-code-avatar：src/query.ts 的 QueryParams 與 query AsyncGenerator
-- claude-code-avatar：src/screens/REPL.tsx 的 Interactive query 呼叫
-- claude-code-avatar：src/QueryEngine.ts 的 Headless／SDK query 呼叫
-- claude-code-avatar：src/services/tools/toolOrchestration.ts
-- claude-code-avatar：src/services/tools/toolExecution.ts 的 canUseTool 往返
-- claude-code-avatar：ARCHITECTURE.md
+- claude-code-best：src/query.ts 的 QueryParams 與 query AsyncGenerator
+- claude-code-best：src/screens/REPL.tsx 的 Interactive query 呼叫
+- claude-code-best：src/QueryEngine.ts 的 Headless／SDK query 呼叫
+- claude-code-best：src/services/tools/toolOrchestration.ts
+- claude-code-best：src/services/tools/toolExecution.ts 的 canUseTool 往返
+- claude-code-best：ARCHITECTURE.md
 
-### 已接入或部分驗證：Chat Gun
+### [chat-gun](https://github.com/HsienW/chat-gun)
 
 - backend/src/operations/execution-composition-root.ts
 - backend/src/platform/interaction-runtime.ts
