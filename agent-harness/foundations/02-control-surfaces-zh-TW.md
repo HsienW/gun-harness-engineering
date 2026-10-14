@@ -301,15 +301,15 @@ Harness 的成熟度不應以設定數量衡量，而應看產品能否回答三
 
 ## 證據來源
 
-### 已觀察：Claude Code Best
+### [claude-code-best](https://github.com/claude-code-best/claude-code)
 
-- claude-code-avatar：src/utils/processUserInput/processUserInput.ts
-- claude-code-avatar：src/screens/REPL.tsx
-- claude-code-avatar：src/QueryEngine.ts
-- claude-code-avatar：src/query.ts
-- claude-code-avatar：ARCHITECTURE.md
+- claude-code-best：src/utils/processUserInput/processUserInput.ts
+- claude-code-best：src/screens/REPL.tsx
+- claude-code-best：src/QueryEngine.ts
+- claude-code-best：src/query.ts
+- claude-code-best：ARCHITECTURE.md
 
-### 已接入或部分接入：Chat Gun
+### [chat-gun](https://github.com/HsienW/chat-gun)
 
 - backend/src/runtime/input/normalized-agent-input.ts
 - backend/src/runtime/input/read-normalized-agent-input.ts

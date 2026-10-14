@@ -301,7 +301,7 @@ Only then does a control surface become an engineering capability rather than a 
 
 ## Evidence sources
 
-### Observed: Claude Code Best
+### [claude-code-best](https://github.com/claude-code-best/claude-code)
 
 - claude-code-avatar: src/utils/processUserInput/processUserInput.ts
 - claude-code-avatar: src/screens/REPL.tsx
@@ -309,7 +309,7 @@ Only then does a control surface become an engineering capability rather than a 
 - claude-code-avatar: src/query.ts
 - claude-code-avatar: ARCHITECTURE.md
 
-### Integrated or partially integrated: Chat Gun
+### [chat-gun](https://github.com/HsienW/chat-gun)
 
 - backend/src/runtime/input/normalized-agent-input.ts
 - backend/src/runtime/input/read-normalized-agent-input.ts

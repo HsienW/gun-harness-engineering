@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="effect-evidence-crash-en-title effect-evidence-crash-en-desc" id="d-03-effect-evidence-crash-en-root">
+        <title id="effect-evidence-crash-en-title">Failure Sequence After a Refund Commits but Before the Tool Result Reaches the Checkpoint</title>
+        <desc id="effect-evidence-crash-en-desc">The Runtime prepares a ledger record and calls the external refund service. The process crashes after the external system commits but before the Tool Result reaches the Graph Checkpoint. After restart, the Runtime checks the ledger and external operation ID, then asks the Harness for a recovery policy based on commit evidence. It must not retry blindly.</desc>
+        <defs>
+      <style>#d-03-effect-evidence-crash-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-03-effect-evidence-crash-en-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-03-effect-evidence-crash-en-root .diagram-container { overflow-x: visible; }</style>
+          <marker id="d-03-effect-evidence-crash-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-03-effect-evidence-crash-en-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+          <marker id="d-03-effect-evidence-crash-en-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0066d6"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="608" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="224" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".10em">EFFECT EVIDENCE</text>
+        <text x="1184" y="108" text-anchor="end" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Refund example · time flows downward</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+        <!-- Runtime's interrupted lifeline has a visible gap at the crash window. -->
+        <g stroke="#b9cce3" stroke-width="1" stroke-dasharray="4 4">
+          <line x1="168" y1="176" x2="168" y2="672"/>
+          <line x1="480" y1="176" x2="480" y2="336"/>
+          <line x1="480" y1="392" x2="480" y2="672"/>
+          <line x1="792" y1="176" x2="792" y2="672"/>
+          <line x1="1104" y1="176" x2="1104" y2="672"/>
+        </g>
+        <g fill="#eef4fb" stroke="#9db5cf" stroke-width=".8">
+          <rect x="476" y="200" width="8" height="104"/>
+          <rect x="476" y="456" width="8" height="212"/>
+          <rect x="788" y="240" width="8" height="48"/>
+          <rect x="788" y="464" width="8" height="152"/>
+          <rect x="1100" y="280" width="8" height="40"/>
+          <rect x="1100" y="520" width="8" height="48"/>
+        </g>
+
+        <!-- Messages and one local external commit. Dashed arrows carry evidence back. -->
+        <g fill="none" stroke-width="1.2">
+          <path d="M480 208 H792" stroke="#52657d" marker-end="url(#d-03-effect-evidence-crash-en-arrow)"/>
+          <path d="M792 252 H1104" stroke="#0066d6" marker-end="url(#d-03-effect-evidence-crash-en-arrow-link)"/>
+          <path d="M1104 292 H1176 Q1184 292 1184 300 V304 Q1184 312 1176 312 H1104" stroke="#0078fc" marker-end="url(#d-03-effect-evidence-crash-en-arrow-accent)"/>
+          <path d="M480 468 H792" stroke="#52657d" marker-end="url(#d-03-effect-evidence-crash-en-arrow)"/>
+          <path d="M792 512 H1104" stroke="#0066d6" marker-end="url(#d-03-effect-evidence-crash-en-arrow-link)"/>
+          <path d="M1104 556 H792" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-effect-evidence-crash-en-arrow)"/>
+          <path d="M792 600 H480" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-effect-evidence-crash-en-arrow)"/>
+          <path d="M480 632 H168" stroke="#52657d" marker-end="url(#d-03-effect-evidence-crash-en-arrow)"/>
+          <path d="M168 664 H480" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-effect-evidence-crash-en-arrow)"/>
+        </g>
+
+        <!-- Labels float above their message strokes. -->
+        <g fill="#fafdff">
+          <rect x="536" y="184" width="200" height="16" rx="2"/>
+          <rect x="876" y="228" width="144" height="16" rx="2"/>
+          <rect x="544" y="444" width="184" height="16" rx="2"/>
+          <rect x="884" y="488" width="128" height="16" rx="2"/>
+          <rect x="900" y="532" width="104" height="16" rx="2"/>
+          <rect x="572" y="576" width="128" height="16" rx="2"/>
+          <rect x="224" y="608" width="200" height="16" rx="2"/>
+          <rect x="214" y="640" width="220" height="16" rx="2"/>
+        </g>
+        <g fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif" text-anchor="middle">
+          <text x="636" y="197">Prepare ledger / operation ID</text>
+          <text x="948" y="241">Call refund tool</text>
+          <text x="636" y="457">Check ledger after restart</text>
+          <text x="948" y="501">Look up operation ID</text>
+          <text x="952" y="545">Confirm commit</text>
+          <text x="636" y="589">Return commit evidence</text>
+          <text x="324" y="621">Request recovery policy</text>
+          <text x="324" y="653">Allow recovery or manual review</text>
+        </g>
+        <rect x="876" y="276" width="192" height="20" rx="2" fill="#fafdff"/>
+        <text x="972" y="291" text-anchor="middle" fill="#0066d6" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">External commit succeeds</text>
+
+        <!-- The crash interrupts the runtime, not the external effect. -->
+        <rect x="96" y="340" width="1088" height="44" rx="6" fill="#eef4fb" stroke="#9db5cf" stroke-width="1" stroke-dasharray="5 4"/>
+        <rect x="96" y="340" width="5" height="44" fill="#0078fc"/>
+        <text x="640" y="367" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Process crash: external commit completed; Tool Result not written to the Graph Checkpoint</text>
+
+        <rect x="364" y="396" width="232" height="48" rx="6" fill="#ffffff" stroke="#9db5cf" stroke-width="1.2"/>
+        <text x="480" y="416" text-anchor="middle" fill="#102743" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Graph Checkpoint</text>
+        <text x="480" y="433" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Tool Result: not written</text>
+
+        <rect x="96" y="124" width="144" height="52" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <text x="168" y="154" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Harness</text>
+        <rect x="408" y="124" width="144" height="52" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="480" y="154" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Runtime</text>
+        <rect x="720" y="124" width="144" height="52" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="792" y="146" text-anchor="middle" fill="#102743" font-size="12" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Tool Adapter / Ledger</text>
+        <text x="792" y="163" text-anchor="middle" fill="#52657d" font-size="9" font-family="'Geist Mono', monospace">EFFECT EVIDENCE</text>
+        <rect x="1032" y="124" width="144" height="52" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <text x="1104" y="154" text-anchor="middle" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">External refund system</text>
+
+        <text x="96" y="704" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">A checkpoint without the Tool Result means only that the outcome is unknown. Do not resend the refund until the external commit is verified.</text>
+      </svg>

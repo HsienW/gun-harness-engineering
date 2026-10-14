@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="chat-gun-boundary-en-title chat-gun-boundary-en-desc" id="d-03-chat-gun-boundary-en-root">
+        <title id="chat-gun-boundary-en-title">Chat Gun Product, Harness, Runtime, and External Commit Responsibilities</title>
+        <desc id="chat-gun-boundary-en-desc">The product entry point and BFF establish trusted identity. The Interaction Harness governs input and actions, LangGraph owns the Run and checkpoint, Tool Dispatch executes allowed tools, and external systems plus the ledger provide commit evidence. Tool authorization returns through the Harness; events and terminal results return to the product.</desc>
+        <defs>
+      <style>#d-03-chat-gun-boundary-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+      #d-03-chat-gun-boundary-en-root .diagram-container { width: 100%; overflow-x: auto; }
+      #d-03-chat-gun-boundary-en-root .diagram-container { overflow-x: visible; }</style>
+          <marker id="d-03-chat-gun-boundary-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+          <marker id="d-03-chat-gun-boundary-en-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+          <marker id="d-03-chat-gun-boundary-en-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0066d6"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#f5f8fc"/>
+        <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <rect x="88" y="60" width="208" height="24" fill="#f5f8fc"/>
+        <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".10em">CHAT GUN BOUNDARY</text>
+        <text x="1184" y="108" text-anchor="end" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Responsibilities · not deployment topology</text>
+        <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+        <!-- The main path, policy callback, and result return occupy separate rails. -->
+        <g fill="none" stroke-width="1.2">
+          <path d="M280 336 H316" stroke="#52657d" marker-end="url(#d-03-chat-gun-boundary-en-arrow)"/>
+          <path d="M508 336 H544" stroke="#0078fc" marker-end="url(#d-03-chat-gun-boundary-en-arrow-accent)"/>
+          <path d="M736 336 H772" stroke="#52657d" marker-end="url(#d-03-chat-gun-boundary-en-arrow)"/>
+          <path d="M964 336 H1000" stroke="#0066d6" marker-end="url(#d-03-chat-gun-boundary-en-arrow-link)"/>
+          <path d="M844 224 V156 Q844 148 836 148 H396 Q388 148 388 156 V224" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-chat-gun-boundary-en-arrow)"/>
+          <path d="M436 224 V192 Q436 184 444 184 H884 Q892 184 892 192 V224" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-chat-gun-boundary-en-arrow)"/>
+          <path d="M640 452 V508 Q640 516 632 516 H420 Q412 516 412 508 V452" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-chat-gun-boundary-en-arrow)"/>
+          <path d="M412 452 V556 Q412 564 404 564 H192 Q184 564 184 556 V452" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-03-chat-gun-boundary-en-arrow)"/>
+        </g>
+        <rect x="556" y="124" width="120" height="16" rx="2" fill="#fafdff"/>
+        <text x="616" y="137" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Auth request</text>
+        <rect x="604" y="160" width="120" height="16" rx="2" fill="#fafdff"/>
+        <text x="664" y="173" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Policy decision</text>
+        <rect x="438" y="492" width="176" height="16" rx="2" fill="#fafdff"/>
+        <text x="526" y="505" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Runtime event / terminal</text>
+        <rect x="206" y="540" width="184" height="16" rx="2" fill="#fafdff"/>
+        <text x="298" y="553" text-anchor="middle" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Product state / user feedback</text>
+
+        <rect x="88" y="224" width="192" height="228" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <rect x="108" y="244" width="72" height="16" rx="2" fill="#eef4fb" stroke="#b9cce3" stroke-width=".8"/>
+        <text x="144" y="256" text-anchor="middle" fill="#52657d" font-size="8" font-family="'Geist Mono', monospace">PRODUCT</text>
+        <text x="108" y="292" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Browser / BFF</text>
+        <line x1="108" y1="312" x2="260" y2="312" stroke="#d5e1ee"/>
+        <text x="108" y="372" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Trusted principal / scope</text>
+        <text x="108" y="400" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Cancel / timeout boundary</text>
+
+        <rect x="316" y="224" width="192" height="228" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+        <rect x="336" y="244" width="72" height="16" rx="2" fill="#1c78e4" stroke="#a8d2ff" stroke-width=".8"/>
+        <text x="372" y="256" text-anchor="middle" fill="#ffffff" font-size="8" font-family="'Geist Mono', monospace">HARNESS</text>
+        <text x="336" y="292" fill="#ffffff" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Interaction Harness</text>
+        <line x1="336" y1="312" x2="488" y2="312" stroke="#9bcaff"/>
+        <text x="336" y="372" fill="#ffffff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Input / run ownership</text>
+        <text x="336" y="400" fill="#e2efff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Authorization / approval</text>
+        <text x="336" y="424" fill="#e2efff" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Interaction policy</text>
+
+        <rect x="544" y="224" width="192" height="228" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <rect x="564" y="244" width="72" height="16" rx="2" fill="#eef4fb" stroke="#b9cce3" stroke-width=".8"/>
+        <text x="600" y="256" text-anchor="middle" fill="#52657d" font-size="8" font-family="'Geist Mono', monospace">RUNTIME</text>
+        <text x="564" y="292" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">LangGraph Runtime</text>
+        <line x1="564" y1="312" x2="716" y2="312" stroke="#d5e1ee"/>
+        <text x="564" y="372" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Run / Thread / Interrupt</text>
+        <text x="564" y="400" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Graph State / Checkpoint</text>
+        <text x="564" y="428" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Event / Terminal</text>
+
+        <rect x="772" y="224" width="192" height="228" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <rect x="792" y="244" width="72" height="16" rx="2" fill="#eef4fb" stroke="#b9cce3" stroke-width=".8"/>
+        <text x="828" y="256" text-anchor="middle" fill="#52657d" font-size="8" font-family="'Geist Mono', monospace">TOOL</text>
+        <text x="792" y="292" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Tool Dispatch</text>
+        <line x1="792" y1="312" x2="944" y2="312" stroke="#d5e1ee"/>
+        <text x="792" y="372" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Decode / validate</text>
+        <text x="792" y="400" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Schedule / execute</text>
+        <text x="792" y="428" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Tool Result</text>
+
+        <rect x="1000" y="224" width="192" height="228" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+        <rect x="1020" y="244" width="72" height="16" rx="2" fill="#eef4fb" stroke="#b9cce3" stroke-width=".8"/>
+        <text x="1056" y="256" text-anchor="middle" fill="#52657d" font-size="8" font-family="'Geist Mono', monospace">EFFECT</text>
+        <text x="1020" y="284" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">External systems</text>
+        <text x="1020" y="302" fill="#102743" font-size="14" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">and ledger</text>
+        <line x1="1020" y1="312" x2="1172" y2="312" stroke="#d5e1ee"/>
+        <text x="1020" y="360" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">External systems hold</text>
+        <text x="1020" y="380" fill="#102743" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">commit truth</text>
+        <text x="1020" y="410" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">The ledger provides</text>
+        <text x="1020" y="430" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">recovery evidence</text>
+
+        <line x1="96" y1="608" x2="1184" y2="608" stroke="#d5e1ee"/>
+        <text x="96" y="632" fill="#52657d" font-size="12" font-family="'Geist', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">Production Agent Server persistence in PostgreSQL / Redis still lacks live evidence. This diagram assigns responsibility; it does not claim deployment validation is complete.</text>
+      </svg>
