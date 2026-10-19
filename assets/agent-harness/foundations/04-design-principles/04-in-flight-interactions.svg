@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="in-flight-interactions-title in-flight-interactions-desc" id="d-04-in-flight-interactions-root">
+  <title id="in-flight-interactions-title">執行中補充、確認與取消的狀態轉移</title>
+  <desc id="in-flight-interactions-desc">Run 執行中可等待釐清或人工確認；收到補充指令時 Harness 依 Run ownership 和 generation 選擇排隊、取代或釐清。確認後以原 Run 條件恢復；取消及拒絕進入終止狀態，使用者收到對應結果。</desc>
+  <defs>
+    <style>
+      #d-04-in-flight-interactions-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #d-04-in-flight-interactions-root .label { fill: #102743; font-size: 14px; font-weight: 600; }
+      #d-04-in-flight-interactions-root .detail { fill: #52657d; font-size: 12px; }
+      #d-04-in-flight-interactions-root .tag { font-family: 'Geist Mono', monospace; font-size: 9px; letter-spacing: .08em; }
+    </style>
+    <marker id="d-04-in-flight-interactions-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+    <marker id="d-04-in-flight-interactions-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="608" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="256" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".10em">IN-FLIGHT INTERACTION</text>
+  <text x="1184" y="108" text-anchor="end" class="detail">原則 5 · Run 狀態與使用者回饋</text>
+  <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+  <rect x="96" y="136" width="1088" height="376" rx="8" fill="none" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="112" y="128" width="140" height="20" fill="#fafdff"/>
+  <text x="120" y="143" class="tag" fill="#52657d">ACTIVE RUN</text>
+
+  <g fill="none" stroke-width="1.2">
+    <path d="M548 252 V296 H272 V336" stroke="#52657d" marker-end="url(#d-04-in-flight-interactions-arrow)"/>
+    <path d="M732 252 V296 H1008 V336" stroke="#52657d" marker-end="url(#d-04-in-flight-interactions-arrow)"/>
+    <path d="M144 380 H112 V204 H500" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-04-in-flight-interactions-arrow)"/>
+    <path d="M1136 380 H1168 V204 H780" stroke="#0078fc" stroke-dasharray="5 4" marker-end="url(#d-04-in-flight-interactions-arrow-accent)"/>
+    <path d="M640 252 V568" stroke="#52657d" marker-end="url(#d-04-in-flight-interactions-arrow)"/>
+    <path d="M272 512 V568" stroke="#52657d" marker-end="url(#d-04-in-flight-interactions-arrow)"/>
+    <path d="M1008 432 V568" stroke="#52657d" marker-end="url(#d-04-in-flight-interactions-arrow)"/>
+  </g>
+
+  <rect x="184" y="272" width="136" height="18" rx="2" fill="#fafdff"/>
+  <text x="252" y="285" text-anchor="middle" class="detail">需要釐清</text>
+  <rect x="920" y="272" width="176" height="18" rx="2" fill="#fafdff"/>
+  <text x="1008" y="285" text-anchor="middle" class="detail">要求人工確認</text>
+  <rect x="568" y="392" width="144" height="20" rx="2" fill="#fafdff"/>
+  <text x="640" y="407" text-anchor="middle" class="detail">執行完成</text>
+  <rect x="200" y="528" width="144" height="18" rx="2" fill="#fafdff"/>
+  <text x="272" y="541" text-anchor="middle" class="detail">取消請求</text>
+  <rect x="936" y="488" width="144" height="18" rx="2" fill="#fafdff"/>
+  <text x="1008" y="501" text-anchor="middle" class="detail">拒絕或逾時</text>
+
+  <rect x="500" y="172" width="280" height="80" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+  <rect x="520" y="188" width="56" height="18" rx="2" fill="#1c78e4" stroke="#a8d2ff" stroke-width=".8"/>
+  <text x="548" y="201" text-anchor="middle" class="tag" fill="#ffffff">RUNNING</text>
+  <text x="520" y="232" fill="#ffffff" font-size="16" font-weight="600">Runtime 推進本次 Run</text>
+
+  <rect x="144" y="336" width="264" height="96" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <rect x="160" y="352" width="132" height="18" rx="2" fill="#eef4fb"/>
+  <text x="226" y="365" text-anchor="middle" class="tag" fill="#52657d">WAITING FOR INPUT</text>
+  <text x="160" y="394" class="label">等待使用者釐清</text>
+  <text x="160" y="416" class="detail">回覆須對應原 Run</text>
+
+  <rect x="872" y="336" width="264" height="96" rx="8" fill="#eef4fb" stroke="#0078fc" stroke-width="1.2"/>
+  <rect x="888" y="352" width="144" height="18" rx="2" fill="#ffffff"/>
+  <text x="960" y="365" text-anchor="middle" class="tag" fill="#0066d6">WAITING FOR APPROVAL</text>
+  <text x="888" y="394" class="label">等待人工確認</text>
+  <text x="888" y="416" class="detail">核准綁定本次 Run 與資源</text>
+
+  <rect x="144" y="568" width="264" height="72" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="160" y="596" class="label">Cancelled</text>
+  <text x="160" y="620" class="detail">回報取消結果與已生效操作</text>
+
+  <rect x="500" y="568" width="280" height="72" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="520" y="596" class="label">Completed</text>
+  <text x="520" y="620" class="detail">回報 Terminal Result</text>
+
+  <rect x="872" y="568" width="264" height="72" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="888" y="596" class="label">Rejected</text>
+  <text x="888" y="620" class="detail">回報拒絕或逾時原因</text>
+
+  <text x="96" y="652" class="detail">執行中收到補充指令：Harness 依 Run generation 決定排隊、取代或釐清。</text>
+  <text x="96" y="668" class="detail">取消可發生在 Running 或等待期間；終止後的晚到事件不得使 Run 回到 Running。</text>
+</svg>
