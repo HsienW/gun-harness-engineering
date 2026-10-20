@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="file-edit-one-turn-title file-edit-one-turn-desc" id="d-05-file-edit-one-turn-root">
+  <title id="file-edit-one-turn-title">一次檔案修改任務的完整執行路徑</title>
+  <desc id="file-edit-one-turn-desc">使用者要求修改檔案後，Harness 正規化輸入並組裝任務，Runtime 執行模型提出的 FileRead，將 Tool Result 回灌模型後取得 FileEdit 提案。Harness 決定修改權限，Runtime 執行或回灌拒絕結果，最後以 Terminal Result 和使用者可見回覆結束本次任務。</desc>
+  <defs>
+    <style>
+      #d-05-file-edit-one-turn-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #d-05-file-edit-one-turn-root .stage-title { fill: #102743; font-size: 16px; font-weight: 600; }
+      #d-05-file-edit-one-turn-root .slot { fill: #0066d6; font-family: 'Geist Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: .08em; }
+      #d-05-file-edit-one-turn-root .body { fill: #102743; font-size: 12px; }
+      #d-05-file-edit-one-turn-root .muted { fill: #52657d; font-size: 12px; }
+      #d-05-file-edit-one-turn-root .technical { fill: #52657d; font-family: 'Geist Mono', monospace; font-size: 10px; }
+    </style>
+    <marker id="d-05-file-edit-one-turn-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+    <marker id="d-05-file-edit-one-turn-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="220" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" fill="#102743" font-family="'Geist Mono', monospace" font-size="12" font-weight="500" letter-spacing=".10em">ONE TURN / FILE EDIT</text>
+  <text x="1184" y="108" text-anchor="end" class="muted">Claude Code 舊版案例 · 時間由左至右</text>
+  <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+  <g fill="none" stroke-width="1.2">
+    <path d="M288 368 H320" stroke="#52657d" marker-end="url(#d-05-file-edit-one-turn-arrow)"/>
+    <path d="M512 368 H544" stroke="#52657d" marker-end="url(#d-05-file-edit-one-turn-arrow)"/>
+    <path d="M736 368 H768" stroke="#0078fc" marker-end="url(#d-05-file-edit-one-turn-arrow-accent)"/>
+    <path d="M960 368 H992" stroke="#52657d" marker-end="url(#d-05-file-edit-one-turn-arrow)"/>
+  </g>
+
+  <g stroke="#b9cce3" stroke-width="1.2">
+    <rect x="96" y="164" width="192" height="368" rx="8" fill="#ffffff"/>
+    <rect x="320" y="164" width="192" height="368" rx="8" fill="#ffffff"/>
+    <rect x="544" y="164" width="192" height="368" rx="8" fill="#eef4fb" stroke="#0078fc" stroke-width="1.5"/>
+    <rect x="768" y="164" width="192" height="368" rx="8" fill="#ffffff"/>
+    <rect x="992" y="164" width="192" height="368" rx="8" fill="#ffffff"/>
+  </g>
+
+  <g stroke="#d5e1ee" stroke-width="1">
+    <path d="M96 240 H288 M96 316 H288 M96 432 H288"/>
+    <path d="M320 240 H512 M320 316 H512 M320 432 H512"/>
+    <path d="M544 240 H736 M544 316 H736 M544 432 H736"/>
+    <path d="M768 240 H960 M768 316 H960 M768 432 H960"/>
+    <path d="M992 240 H1184 M992 316 H1184 M992 432 H1184"/>
+  </g>
+
+  <g fill="#eef4fb">
+    <rect x="112" y="180" width="32" height="20" rx="2"/>
+    <rect x="336" y="180" width="32" height="20" rx="2"/>
+    <rect x="560" y="180" width="32" height="20" rx="2" fill="#0078fc"/>
+    <rect x="784" y="180" width="32" height="20" rx="2"/>
+    <rect x="1008" y="180" width="32" height="20" rx="2"/>
+  </g>
+  <g font-family="'Geist Mono', monospace" font-size="10" font-weight="600" text-anchor="middle" fill="#0066d6">
+    <text x="128" y="194">01</text>
+    <text x="352" y="194">02</text>
+    <text x="800" y="194">04</text>
+    <text x="1024" y="194">05</text>
+  </g>
+  <text x="576" y="194" text-anchor="middle" fill="#ffffff" font-family="'Geist Mono', monospace" font-size="10" font-weight="600">03</text>
+
+  <g class="stage-title">
+    <text x="112" y="222">接收輸入</text>
+    <text x="336" y="222">組裝任務</text>
+    <text x="560" y="222">讀取檔案</text>
+    <text x="784" y="222">修改檔案</text>
+    <text x="1008" y="222">完成回覆</text>
+  </g>
+
+  <g class="slot">
+    <text x="112" y="260">HARNESS</text><text x="336" y="260">HARNESS</text><text x="560" y="260">HARNESS</text><text x="784" y="260">HARNESS</text><text x="1008" y="260">HARNESS</text>
+    <text x="112" y="336">RUNTIME</text><text x="336" y="336">RUNTIME</text><text x="560" y="336">RUNTIME</text><text x="784" y="336">RUNTIME</text><text x="1008" y="336">RUNTIME</text>
+    <text x="112" y="452">HANDOFF</text><text x="336" y="452">HANDOFF</text><text x="560" y="452">HANDOFF</text><text x="784" y="452">HANDOFF</text><text x="1008" y="452">HANDOFF</text>
+  </g>
+
+  <g class="body">
+    <text x="112" y="284">正規化請求與</text><text x="112" y="302">IDE Context</text>
+    <text x="336" y="284">選 Context、規則</text><text x="336" y="302">與 FileRead／FileEdit</text>
+    <text x="560" y="284">提供本次可用的</text><text x="560" y="302">FileRead 能力</text>
+    <text x="784" y="284">判斷 FileEdit 權限</text><text x="784" y="302">必要時請人確認</text>
+    <text x="1008" y="284">呈現訊息與結果</text><text x="1008" y="302">承接下一次輸入</text>
+
+    <text x="112" y="362">尚未啟動本次 Run</text>
+    <text x="336" y="362">啟動模型回合</text><text x="336" y="382">交付執行條件</text>
+    <text x="560" y="362">模型提出 FileRead</text><text x="560" y="382">執行後回灌結果</text><text x="560" y="402">模型再次取樣</text>
+    <text x="784" y="362">模型提出 FileEdit</text><text x="784" y="382">執行或回灌拒絕</text><text x="784" y="402">結果交回模型</text>
+    <text x="1008" y="362">發出 Runtime Events</text><text x="1008" y="382">與 Terminal Result</text>
+  </g>
+
+  <g class="technical">
+    <text x="112" y="482">Normalized Input</text>
+    <text x="336" y="482">Execution Request</text>
+    <text x="560" y="482" fill="#0066d6">FileRead Tool Result</text>
+    <text x="784" y="482">Decision / Tool Result</text>
+    <text x="1008" y="482">User-visible Reply</text>
+  </g>
+  <g class="muted">
+    <text x="112" y="510">含本次修改目標</text>
+    <text x="336" y="510">Context、能力與限制</text>
+    <text x="560" y="510">檔案內容或讀取錯誤</text>
+    <text x="784" y="510">允許、拒絕或確認</text>
+    <text x="1008" y="510">明示完成或失敗</text>
+  </g>
+
+  <rect x="96" y="552" width="528" height="56" rx="6" fill="#ffffff" stroke="#b9cce3" stroke-width="1"/>
+  <rect x="640" y="552" width="544" height="56" rx="6" fill="#ffffff" stroke="#b9cce3" stroke-width="1"/>
+  <text x="112" y="574" fill="#102743" font-size="12" font-weight="600">失敗沿同一條回路返回</text>
+  <text x="112" y="594" class="muted">Tool error／Permission denial → 模型處理 → 使用者可見結果</text>
+  <text x="656" y="574" fill="#102743" font-size="12" font-weight="600">執行中再次輸入</text>
+  <text x="656" y="594" class="muted">互動歸屬與 Run generation 由 Harness 判定</text>
+  <text x="96" y="632" class="muted">本圖呈現 Claude Code 主案例；Chat Gun 各段是否進入正式路徑，需依實際接線逐項核對。</text>
+</svg>

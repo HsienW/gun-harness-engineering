@@ -6,8 +6,8 @@ This section covers how an agent's behavior is controlled: how user input enters
 
 ## Reading Order
 
-1. Foundations: Establish the definitions, the control plane, and the boundary between Harness and Runtime.
-2. Input and Context: Input normalization, context assembly, and trust boundaries (planned).
+1. [Foundations](./foundations/README.md): Read from the definition, control surfaces, and Harness/Runtime boundary through design principles and one complete task walkthrough.
+2. [Input and Context](./input-and-context/README.md): Article plans for input normalization, Context assembly, trust boundaries, Memory, and a case study.
 3. Behavior and Capabilities: Behavior rules and capability configuration (planned).
 4. Action Governance: Tool risk, authorization, and human confirmation (planned).
 5. Interaction and Feedback: Interaction during execution and behavior evaluation (planned).

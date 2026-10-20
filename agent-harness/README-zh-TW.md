@@ -6,8 +6,8 @@
 
 ## 閱讀順序
 
-1. Foundations：先建立定義、控制面與 Harness／Runtime 邊界。
-2. Input and Context：輸入正規化、上下文組裝與信任邊界（規劃中）。
+1. [Foundations](./foundations/README-zh-TW.md)：從定義、控制層與 Harness／Runtime 邊界，讀到設計原則及一次任務的完整流程。
+2. [Input and Context](./input-and-context/README-zh-TW.md)：輸入正規化、Context 組裝、信任邊界、Memory 與案例的正體中文初稿。
 3. Behavior and Capabilities：行為規則與能力配置（規劃中）。
 4. Action Governance：工具風險、授權與人工確認（規劃中）。
 5. Interaction and Feedback：執行中互動與行為評估（規劃中）。

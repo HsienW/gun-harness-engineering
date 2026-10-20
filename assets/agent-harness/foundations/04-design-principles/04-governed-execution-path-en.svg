@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="governed-execution-path-en-title governed-execution-path-en-desc" id="d-04-governed-execution-path-en-root">
+  <title id="governed-execution-path-en-title">From Governed Input to Traceable Execution</title>
+  <desc id="governed-execution-path-en-desc">The Harness filters memory and external content according to the current instruction, passing only the context and capabilities needed for the task. When the model proposes an action, an authorization gate on the execution path decides whether the Runtime may act and preserves evidence of the decision and result.</desc>
+  <defs>
+    <style>
+      #d-04-governed-execution-path-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #d-04-governed-execution-path-en-root .label { fill: #102743; font-size: 14px; font-weight: 600; }
+      #d-04-governed-execution-path-en-root .detail { fill: #52657d; font-size: 12px; }
+      #d-04-governed-execution-path-en-root .tag { font-family: 'Geist Mono', monospace; font-size: 9px; letter-spacing: .08em; }
+    </style>
+    <marker id="d-04-governed-execution-path-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker>
+    <marker id="d-04-governed-execution-path-en-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="224" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" fill="#102743" font-size="12" font-family="'Geist Mono', monospace" font-weight="500" letter-spacing=".10em">GOVERNED EXECUTION</text>
+  <text x="1184" y="108" text-anchor="end" class="detail">Principles 1–4 · From input to execution</text>
+  <rect x="96" y="116" width="64" height="4" fill="#0078fc"/>
+
+  <g fill="none" stroke-width="1.2">
+    <path d="M352 220 H408" stroke="#0078fc" marker-end="url(#d-04-governed-execution-path-en-arrow-accent)"/>
+    <path d="M352 336 H408" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-04-governed-execution-path-en-arrow)"/>
+    <path d="M704 272 H808" stroke="#0078fc" marker-end="url(#d-04-governed-execution-path-en-arrow-accent)"/>
+    <path d="M832 372 V400 H744 V488 H704" stroke="#52657d" marker-end="url(#d-04-governed-execution-path-en-arrow)"/>
+    <path d="M408 500 H352" stroke="#0078fc" marker-end="url(#d-04-governed-execution-path-en-arrow-accent)"/>
+    <path d="M224 544 V576 H976 V544" stroke="#52657d" stroke-dasharray="5 4" marker-end="url(#d-04-governed-execution-path-en-arrow)"/>
+  </g>
+  <rect x="356" y="476" width="48" height="16" rx="2" fill="#fafdff"/>
+  <text x="380" y="488" text-anchor="middle" class="tag" fill="#0066d6">ALLOW</text>
+
+  <rect x="96" y="176" width="256" height="88" rx="8" fill="#ffffff" stroke="#0078fc" stroke-width="1.2"/>
+  <rect x="112" y="192" width="104" height="18" rx="2" fill="#eef4fb"/>
+  <text x="164" y="205" text-anchor="middle" class="tag" fill="#0066d6">CURRENT TURN</text>
+  <text x="112" y="234" class="label">Current explicit instruction</text>
+  <text x="112" y="252" class="detail">Defines task and allowed scope</text>
+
+  <rect x="96" y="292" width="256" height="88" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <rect x="112" y="308" width="100" height="18" rx="2" fill="#eef4fb"/>
+  <text x="162" y="321" text-anchor="middle" class="tag" fill="#52657d">DATA SOURCE</text>
+  <text x="112" y="350" class="label">Memory, tools, external content</text>
+  <text x="112" y="368" class="detail">Supply data, not instruction authority</text>
+
+  <rect x="408" y="176" width="296" height="204" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/>
+  <rect x="428" y="196" width="72" height="18" rx="2" fill="#1c78e4" stroke="#a8d2ff" stroke-width=".8"/>
+  <text x="464" y="209" text-anchor="middle" class="tag" fill="#ffffff">HARNESS</text>
+  <text x="428" y="248" fill="#ffffff" font-size="17" font-weight="600">Govern model-visible inputs</text>
+  <line x1="428" y1="268" x2="684" y2="268" stroke="#9bcaff"/>
+  <text x="428" y="298" fill="#ffffff" font-size="12">Select Context for this task</text>
+  <text x="428" y="326" fill="#ffffff" font-size="12">Expose needed capabilities and limits</text>
+  <text x="428" y="354" fill="#e2efff" font-size="12">Issue Execution Request</text>
+
+  <rect x="808" y="176" width="336" height="196" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <rect x="828" y="196" width="56" height="18" rx="2" fill="#eef4fb"/>
+  <text x="856" y="209" text-anchor="middle" class="tag" fill="#52657d">MODEL</text>
+  <text x="828" y="248" class="label">Advance the task within limits</text>
+  <text x="828" y="278" class="detail">Read filtered context</text>
+  <text x="828" y="304" class="detail">Propose a specific Tool Call</text>
+  <line x1="828" y1="324" x2="1124" y2="324" stroke="#d5e1ee"/>
+  <text x="828" y="350" fill="#0066d6" font-size="12" font-weight="600">A proposal is not permission to execute</text>
+
+  <rect x="408" y="432" width="296" height="112" rx="8" fill="#eef4fb" stroke="#0078fc" stroke-width="1.5"/>
+  <rect x="428" y="448" width="128" height="18" rx="2" fill="#ffffff"/>
+  <text x="492" y="461" text-anchor="middle" class="tag" fill="#0066d6">ACTION POLICY</text>
+  <text x="428" y="492" class="label">Authorization gate for execution</text>
+  <text x="428" y="516" class="detail">Check identity, resource, policy version</text>
+  <text x="428" y="534" class="detail">Allow / Deny / Request approval</text>
+
+  <rect x="96" y="432" width="256" height="112" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <rect x="112" y="448" width="64" height="18" rx="2" fill="#eef4fb"/>
+  <text x="144" y="461" text-anchor="middle" class="tag" fill="#52657d">RUNTIME</text>
+  <text x="112" y="492" class="label">Execute authorized actions</text>
+  <text x="112" y="516" class="detail">Dispatch Tool Call and report result</text>
+
+  <rect x="808" y="432" width="336" height="112" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <rect x="828" y="448" width="72" height="18" rx="2" fill="#eef4fb"/>
+  <text x="864" y="461" text-anchor="middle" class="tag" fill="#52657d">EVIDENCE</text>
+  <text x="828" y="492" class="label">Retain decision and execution evidence</text>
+  <text x="828" y="516" class="detail">Decision / Event / Terminal Result</text>
+
+  <line x1="96" y1="608" x2="1184" y2="608" stroke="#d5e1ee"/>
+  <text x="96" y="632" class="detail">Behavior rules must apply on the execution path; rules in a document alone cannot block an unauthorized Tool Call.</text>
+</svg>
