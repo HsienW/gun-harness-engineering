@@ -17,7 +17,7 @@
 
 > A behavioral rule needs to specify what it changes, where it takes effect, and what happens if enforcement fails. For "only the README may be modified in this task," the Context assembler should preserve the requirement, capability configuration should restrict unrelated tools, and action authorization should check the actual target path. The model interprets the written request; the system must still enforce constraints wherever it can check them.
 
-![The Harness filters current instructions, memory, and external data before passing them to the model; the model proposes an action, an authorization gate decides whether the Runtime executes it, and the system records evidence of the decision and result](../../assets/agent-harness/foundations/04-design-principles/04-governed-execution-path.svg)
+![The Harness filters current instructions, memory, and external data before passing them to the model; the model proposes an action, an authorization gate decides whether the Runtime executes it, and the system records evidence of the decision and result](../../assets/agent-harness/foundations/04-design-principles/04-governed-execution-path-en.svg)
 
 - Use the path in the diagram to check design responsibilities. Memory and tool output can supply facts, while the current user instructions define the task; both remain subject to product policy, identity, and resource permissions. "Current instructions take precedence" applies to conflicts over task intent. It cannot override the system's security boundaries.
 
@@ -97,7 +97,7 @@ Start by tracing one execution path from beginning to end:
 
 > While the Agent is modifying files, the user adds, "stop for now; do not touch configuration files." If the system only appends this text to the next Prompt, the original write may already have started. If it starts a new Run instead, the old Run may return a result later and overwrite the new task's display. This is a problem of execution ownership and state transitions, which the system must address when the input arrives.
 
-![A Run can wait for clarification or approval; the system must determine which Run owns additional input, report operations that already took effect after cancellation, and prevent late events from returning a terminated Run to the running state](../../assets/agent-harness/foundations/04-design-principles/04-in-flight-interactions.svg)
+![A Run can wait for clarification or approval; the system must determine which Run owns additional input, report operations that already took effect after cancellation, and prevent late events from returning a terminated Run to the running state](../../assets/agent-harness/foundations/04-design-principles/04-in-flight-interactions-en.svg)
 
 - The states in the diagram form a conceptual model; their actual names may differ across Runtimes. A call waiting for approval may resume or end after rejection; when a tool is denied, the Run may also continue with a response that does not execute the tool, according to product policy.
 - Interpret `Rejected` in the diagram as a branch where the product chooses to terminate. It does not mean that every tool denial must terminate the entire Run.
