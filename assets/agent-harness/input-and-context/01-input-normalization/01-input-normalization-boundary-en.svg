@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="input-en-title input-en-desc" id="input-context-01-normalization-en">
+  <title id="input-en-title">Input normalization contract and actual reader boundary</title>
+  <desc id="input-en-desc">The input contract lists four kinds: prompt, clarification_resume, cancel, and command. readNormalizedAgentInput reads input from a string or a set of messages, checks the kind, text, and attachment references, then produces a normalized input and a raw-input digest or returns a categorized error. The current reader returns unsupported_command for command. beforeRun and execution-composition-root are two call sites that use the same reader.</desc>
+  <defs>
+    <style>
+      #input-context-01-normalization-en { font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #input-context-01-normalization-en .ink { fill: #102743; }
+      #input-context-01-normalization-en .muted { fill: #52657d; }
+      #input-context-01-normalization-en .blue { fill: #0066d6; }
+      #input-context-01-normalization-en .small { font-size: 12px; }
+      #input-context-01-normalization-en .body { font-size: 14px; }
+      #input-context-01-normalization-en .label { font-size: 15px; font-weight: 600; }
+      #input-context-01-normalization-en .mono { font-family: 'Geist Mono', Consolas, monospace; }
+    </style>
+    <marker id="input-en-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0 0 L9 3.5 L0 7 Z" fill="#52657d"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="292" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" class="blue mono small" letter-spacing=".10em">INPUT &amp; CONTEXT / 01</text>
+  <text x="96" y="133" class="ink" font-size="26" font-weight="600">Input normalization: contract and reader boundary</text>
+  <text x="96" y="164" class="muted body">A kind listed in the data contract still has to pass the actual entry-point check; the raw-input digest is only for correlation.</text>
+
+  <rect x="96" y="201" width="304" height="350" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="118" y="231" class="ink label">Entry material</text>
+  <text x="118" y="254" class="muted small">A string, or the latest human message</text>
+  <rect x="118" y="271" width="260" height="58" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="133" y="295" class="ink body">Text and attachment references</text>
+  <text x="133" y="315" class="muted small">Metadata only; content not read</text>
+  <text x="118" y="359" class="ink label">kind contract</text>
+  <rect x="118" y="373" width="124" height="36" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="180" y="396" text-anchor="middle" class="blue mono small">prompt</text>
+  <rect x="252" y="373" width="126" height="36" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="315" y="396" text-anchor="middle" class="ink mono small">cancel</text>
+  <rect x="118" y="418" width="260" height="36" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="248" y="441" text-anchor="middle" class="ink mono small">clarification_resume</text>
+  <rect x="118" y="463" width="260" height="36" rx="5" fill="#fff1f2" stroke="#d7a0aa"/>
+  <text x="248" y="486" text-anchor="middle" fill="#8d5260" class="mono small">command → unsupported_command</text>
+  <text x="118" y="531" class="muted small">Listed does not mean executable.</text>
+
+  <path d="M408 376 H442" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#input-en-arrow)"/>
+  <rect x="451" y="201" width="342" height="350" rx="8" fill="#ffffff" stroke="#80baff" stroke-width="1.4"/>
+  <rect x="451" y="201" width="342" height="40" rx="8" fill="#e7f2ff"/>
+  <text x="472" y="227" class="blue label mono">readNormalizedAgentInput</text>
+  <circle cx="480" cy="281" r="12" fill="#0066d6"/><text x="480" y="286" text-anchor="middle" fill="#ffffff" class="small">1</text>
+  <text x="504" y="285" class="ink body">Check kind against client metadata</text>
+  <circle cx="480" cy="334" r="12" fill="#0066d6"/><text x="480" y="339" text-anchor="middle" fill="#ffffff" class="small">2</text>
+  <text x="504" y="328" class="ink body">NFC, LF, strip control characters</text>
+  <text x="504" y="349" class="muted small">Trim whitespace; check attachment refs</text>
+  <circle cx="480" cy="401" r="12" fill="#0066d6"/><text x="480" y="406" text-anchor="middle" fill="#ffffff" class="small">3</text>
+  <text x="504" y="396" class="ink body">Create a raw-input digest ref</text>
+  <text x="504" y="417" class="muted small">SHA-256 and byte length</text>
+  <line x1="472" y1="445" x2="771" y2="445" stroke="#d5e1ee"/>
+  <text x="472" y="477" class="ink small">Call site: interaction-runtime.beforeRun</text>
+  <text x="472" y="501" class="ink small">Other call site: execution-composition-root</text>
+  <text x="472" y="529" class="muted small">Shared reader contract, separate entry points.</text>
+
+  <path d="M801 376 H833" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#input-en-arrow)"/>
+  <rect x="842" y="201" width="342" height="350" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="863" y="231" class="ink label">Read result</text>
+  <rect x="863" y="251" width="300" height="132" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="881" y="279" class="blue label">Valid input</text>
+  <text x="881" y="307" class="ink mono small">normalizedInput</text>
+  <text x="881" y="330" class="ink mono small">rawInputRef</text>
+  <text x="881" y="360" class="muted small">Later Harness steps carry text constraints</text>
+  <rect x="863" y="397" width="300" height="128" rx="5" fill="#fff1f2" stroke="#d7a0aa"/>
+  <text x="881" y="425" fill="#8d5260" class="label">Rejected or stopped</text>
+  <text x="881" y="452" class="ink small">empty_input, invalid fields or attachments</text>
+  <text x="881" y="476" class="ink mono small">unsupported_command</text>
+  <text x="881" y="503" class="muted small">Not passed to the model to guess intent</text>
+
+  <text x="96" y="595" class="ink small">Attachment references and the raw digest do not prove that an attachment was scanned or reached the model, nor do they prove user identity or authorization.</text>
+  <text x="96" y="682" class="muted small">Drawn from the Chat Gun normalization contract and reader; check the listed errors and results against the actual call sites.</text>
+</svg>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="input-title input-desc" id="input-context-01-normalization">
+  <title id="input-title">輸入正規化的契約與實際讀取邊界</title>
+  <desc id="input-desc">輸入契約列出 prompt、clarification_resume、cancel、command 四種 kind。readNormalizedAgentInput 從字串或訊息集合讀取輸入，核對 kind、文字和附件參照，產生正規化輸入及原始輸入摘要，或回傳分類錯誤。command 在目前讀取器回傳 unsupported_command。beforeRun 與 execution-composition-root 是兩個使用同一讀取器的接點。</desc>
+  <defs>
+    <style>
+      #input-context-01-normalization { font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #input-context-01-normalization .ink { fill: #102743; }
+      #input-context-01-normalization .muted { fill: #52657d; }
+      #input-context-01-normalization .blue { fill: #0066d6; }
+      #input-context-01-normalization .small { font-size: 12px; }
+      #input-context-01-normalization .body { font-size: 14px; }
+      #input-context-01-normalization .label { font-size: 15px; font-weight: 600; }
+      #input-context-01-normalization .mono { font-family: 'Geist Mono', Consolas, monospace; }
+    </style>
+    <marker id="input-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0 0 L9 3.5 L0 7 Z" fill="#52657d"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="292" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" class="blue mono small" letter-spacing=".10em">INPUT &amp; CONTEXT / 01</text>
+  <text x="96" y="133" class="ink" font-size="26" font-weight="600">輸入正規化：契約與讀取器的邊界</text>
+  <text x="96" y="164" class="muted body">可列在資料契約中的 kind，仍須經過實際入口檢查；原始輸入摘要只供關聯。</text>
+
+  <rect x="96" y="201" width="304" height="350" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="118" y="231" class="ink label">入口材料</text>
+  <text x="118" y="254" class="muted small">字串，或訊息集合中的最近人類訊息</text>
+  <rect x="118" y="271" width="260" height="58" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="133" y="295" class="ink body">文字與附件參照</text>
+  <text x="133" y="315" class="muted small">附件是 metadata，非已讀取的內容</text>
+  <text x="118" y="359" class="ink label">kind 契約</text>
+  <rect x="118" y="373" width="124" height="36" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="180" y="396" text-anchor="middle" class="blue mono small">prompt</text>
+  <rect x="252" y="373" width="126" height="36" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="315" y="396" text-anchor="middle" class="ink mono small">cancel</text>
+  <rect x="118" y="418" width="260" height="36" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="248" y="441" text-anchor="middle" class="ink mono small">clarification_resume</text>
+  <rect x="118" y="463" width="260" height="36" rx="5" fill="#fff1f2" stroke="#d7a0aa"/>
+  <text x="248" y="486" text-anchor="middle" fill="#8d5260" class="mono small">command → unsupported_command</text>
+  <text x="118" y="531" class="muted small">列在契約中，不代表每種都可執行。</text>
+
+  <path d="M408 376 H442" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#input-arrow)"/>
+  <rect x="451" y="201" width="342" height="350" rx="8" fill="#ffffff" stroke="#80baff" stroke-width="1.4"/>
+  <rect x="451" y="201" width="342" height="40" rx="8" fill="#e7f2ff"/>
+  <text x="472" y="227" class="blue label mono">readNormalizedAgentInput</text>
+  <circle cx="480" cy="281" r="12" fill="#0066d6"/><text x="480" y="286" text-anchor="middle" fill="#ffffff" class="small">1</text>
+  <text x="504" y="285" class="ink body">核對 kind 與客戶端 metadata</text>
+  <circle cx="480" cy="334" r="12" fill="#0066d6"/><text x="480" y="339" text-anchor="middle" fill="#ffffff" class="small">2</text>
+  <text x="504" y="328" class="ink body">文字轉 NFC、LF，清理控制字元</text>
+  <text x="504" y="349" class="muted small">去除前後空白；核對附件參照</text>
+  <circle cx="480" cy="401" r="12" fill="#0066d6"/><text x="480" y="406" text-anchor="middle" fill="#ffffff" class="small">3</text>
+  <text x="504" y="396" class="ink body">為原始輸入建立摘要參照</text>
+  <text x="504" y="417" class="muted small">SHA-256 與位元組長度</text>
+  <line x1="472" y1="445" x2="771" y2="445" stroke="#d5e1ee"/>
+  <text x="472" y="477" class="ink small">呼叫接點：interaction-runtime.beforeRun</text>
+  <text x="472" y="501" class="ink small">另一接點：execution-composition-root</text>
+  <text x="472" y="529" class="muted small">兩處共用讀取契約，仍是不同執行入口。</text>
+
+  <path d="M801 376 H833" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#input-arrow)"/>
+  <rect x="842" y="201" width="342" height="350" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="863" y="231" class="ink label">讀取結果</text>
+  <rect x="863" y="251" width="300" height="132" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="881" y="279" class="blue label">有效輸入</text>
+  <text x="881" y="307" class="ink mono small">normalizedInput</text>
+  <text x="881" y="330" class="ink mono small">rawInputRef</text>
+  <text x="881" y="360" class="muted small">文字限制仍須由後續 Harness 承接</text>
+  <rect x="863" y="397" width="300" height="128" rx="5" fill="#fff1f2" stroke="#d7a0aa"/>
+  <text x="881" y="425" fill="#8d5260" class="label">拒絕或停止</text>
+  <text x="881" y="452" class="ink small">empty_input、無效欄位或附件</text>
+  <text x="881" y="476" class="ink mono small">unsupported_command</text>
+  <text x="881" y="503" class="muted small">不交給模型猜測輸入意圖</text>
+
+  <text x="96" y="595" class="ink small">附件參照與原始摘要不能證明附件已掃描、已進模型，也不能證明使用者身分或授權。</text>
+  <text x="96" y="682" class="muted small">依 Chat Gun 正規化契約與讀取器繪製；圖中列出的錯誤與結果應按實際呼叫接點核對。</text>
+</svg>
