@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="context-budget-en-title context-budget-en-desc" id="input-context-02-budget-en">
+  <title id="context-budget-en-title">Context tradeoffs when the budget runs short</title>
+  <desc id="context-budget-en-desc">Candidate sources are ordered from P0 to P5. Within the effective limit, the assembler first shortens P5 and P4, then removes lower-priority blocks in order; when P0, or P0 plus P1, still exceeds the limit, normal assembly stops. Model-visible text, the manifest, and truncatedBlocks are separate outputs.</desc>
+  <defs>
+    <style>
+      #input-context-02-budget-en { font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #input-context-02-budget-en .ink { fill: #102743; }
+      #input-context-02-budget-en .muted { fill: #52657d; }
+      #input-context-02-budget-en .blue { fill: #0066d6; }
+      #input-context-02-budget-en .small { font-size: 12px; }
+      #input-context-02-budget-en .body { font-size: 14px; }
+      #input-context-02-budget-en .label { font-size: 15px; font-weight: 600; }
+      #input-context-02-budget-en .mono { font-family: 'Geist Mono', Consolas, monospace; }
+    </style>
+    <marker id="context-budget-en-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0 0 L9 3.5 L0 7 Z" fill="#52657d"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="292" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" class="blue mono small" letter-spacing=".10em">INPUT &amp; CONTEXT / 02</text>
+  <text x="96" y="133" class="ink" font-size="26" font-weight="600">When the budget runs short, what stays?</text>
+  <text x="96" y="164" class="muted body">Candidate sources are layered first; the effective limit decides whether to shorten, remove, or stop this model call.</text>
+
+  <rect x="96" y="198" width="314" height="366" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="118" y="228" class="ink label">Candidate Context blocks</text>
+  <text x="118" y="248" class="muted small">Not every source exists for each call</text>
+  <g class="body">
+    <rect x="118" y="266" width="270" height="40" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+    <text x="132" y="291" class="blue mono small">P0</text><text x="180" y="291" class="ink">System Policy</text>
+    <rect x="118" y="311" width="270" height="40" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+    <text x="132" y="336" class="blue mono small">P1</text><text x="180" y="336" class="ink">Current Task</text>
+    <rect x="118" y="356" width="270" height="40" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+    <text x="132" y="381" class="muted mono small">P2</text><text x="180" y="381" class="ink">Active State</text>
+    <rect x="118" y="401" width="270" height="40" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+    <text x="132" y="426" class="muted mono small">P3</text><text x="180" y="426" class="ink">Memory</text>
+    <rect x="118" y="446" width="270" height="40" rx="5" fill="#f6f8fb" stroke="#c6d4e4"/>
+    <text x="132" y="471" class="muted mono small">P4</text><text x="180" y="471" class="ink">Recent Messages</text>
+    <rect x="118" y="491" width="270" height="40" rx="5" fill="#f6f8fb" stroke="#c6d4e4"/>
+    <text x="132" y="516" class="muted mono small">P5</text><text x="180" y="516" class="ink">Tool Output</text>
+  </g>
+
+  <path d="M418 380 H451" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#context-budget-en-arrow)"/>
+  <rect x="460" y="198" width="350" height="366" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="482" y="228" class="ink label">Effective limit and order</text>
+  <rect x="482" y="248" width="306" height="59" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="496" y="271" class="blue mono small">EFFECTIVE LIMIT</text>
+  <text x="496" y="293" class="ink small">min(budget, window − output reserve)</text>
+  <g class="body">
+    <circle cx="497" cy="340" r="13" fill="#0066d6"/><text x="497" y="345" text-anchor="middle" fill="#ffffff" class="small">1</text>
+    <text x="522" y="345" class="ink">Shorten P5, then P4 messages</text>
+    <circle cx="497" cy="390" r="13" fill="#0066d6"/><text x="497" y="395" text-anchor="middle" fill="#ffffff" class="small">2</text>
+    <text x="522" y="395" class="ink">Remove P5 → P2 if needed</text>
+    <circle cx="497" cy="440" r="13" fill="#8d5260"/><text x="497" y="445" text-anchor="middle" fill="#ffffff" class="small">3</text>
+    <text x="522" y="445" class="ink">Error if P0 or P0+P1 exceeds</text>
+  </g>
+  <line x1="482" y1="473" x2="788" y2="473" stroke="#d5e1ee"/>
+  <text x="482" y="500" class="muted small">Truncate and remove only; no summary.</text>
+  <text x="482" y="526" class="muted small">Flags and limits vary by environment.</text>
+
+  <path d="M818 380 H841" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#context-budget-en-arrow)"/>
+  <rect x="850" y="198" width="334" height="366" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="872" y="228" class="ink label">Assembly yields three outputs</text>
+  <rect x="872" y="253" width="290" height="72" rx="5" fill="#0066d6"/>
+  <text x="890" y="278" fill="#ffffff" class="label">Model-visible text</text>
+  <text x="890" y="302" fill="#e2efff" class="small">Formatted only from retained blocks</text>
+  <rect x="872" y="338" width="290" height="78" rx="5" fill="#eef4fb" stroke="#9db5cf"/>
+  <text x="890" y="365" class="ink label">ContextManifest</text>
+  <text x="890" y="388" class="muted small">Sources, Tokens, limit, reason codes</text>
+  <rect x="872" y="429" width="290" height="77" rx="5" fill="#f6f8fb" stroke="#b9cce3"/>
+  <text x="890" y="456" class="ink label">truncatedBlocks</text>
+  <text x="890" y="479" class="muted small">Removed blocks in the assembly result</text>
+  <text x="872" y="538" class="muted small">The manifest keeps no full removed text.</text>
+
+  <text x="96" y="611" class="ink small">Budget priority decides what fits; instruction authority and tool authorization need other rules.</text>
+  <text x="96" y="682" class="muted small">Drawn from the Chat Gun Context Assembler code path; it shows branches, not the actual blocks of any production run.</text>
+</svg>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="case-en-title case-en-desc" id="input-context-05-case-en">
+  <title id="case-en-title">Input normalization and Context assembly paths for one request</title>
+  <desc id="case-en-desc">In the scenario, interaction governance calls readNormalizedAgentInput from beforeRun and produces normalizedInput and rawInputRef; the chatbot Context assembly takes the latest HumanMessage from the Graph state.messages as current_task. The two paths must be checked for consistency rather than assumed to match. The assembler can use Memory, produces blocks, truncatedBlocks, and a manifest, then sends formatted text to llm.invoke.</desc>
+  <defs>
+    <style>
+      #input-context-05-case-en { font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #input-context-05-case-en .ink { fill: #102743; }
+      #input-context-05-case-en .muted { fill: #52657d; }
+      #input-context-05-case-en .blue { fill: #0066d6; }
+      #input-context-05-case-en .small { font-size: 12px; }
+      #input-context-05-case-en .body { font-size: 14px; }
+      #input-context-05-case-en .label { font-size: 15px; font-weight: 600; }
+      #input-context-05-case-en .mono { font-family: 'Geist Mono', Consolas, monospace; }
+    </style>
+    <marker id="case-en-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0 0 L9 3.5 L0 7 Z" fill="#52657d"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="292" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" class="blue mono small" letter-spacing=".10em">INPUT &amp; CONTEXT / 05</text>
+  <text x="96" y="126" class="ink" font-size="26" font-weight="600">One request, two paths for reading input</text>
+  <rect x="950" y="102" width="232" height="32" rx="16" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="1066" y="123" text-anchor="middle" class="blue small">Scenario · not a run record</text>
+  <text x="96" y="159" class="muted body">Current request: "Explain the limitations of this design in full, and do not leave out details this time."</text>
+
+  <rect x="96" y="191" width="502" height="228" rx="8" fill="#ffffff" stroke="#80baff" stroke-width="1.4"/>
+  <rect x="96" y="191" width="502" height="39" rx="8" fill="#e7f2ff"/>
+  <text x="117" y="217" class="blue label">Interaction governance input path</text>
+  <rect x="117" y="252" width="144" height="55" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="189" y="284" text-anchor="middle" class="ink mono small">beforeRun</text>
+  <path d="M268 279 H294" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-en-arrow)"/>
+  <rect x="302" y="252" width="271" height="55" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="437" y="275" text-anchor="middle" class="ink mono small">readNormalizedAgentInput</text>
+  <text x="437" y="294" text-anchor="middle" class="muted small">Check kind, text, and format</text>
+  <path d="M438 313 V336" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-en-arrow)"/>
+  <rect x="117" y="344" width="456" height="52" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="136" y="366" class="ink mono small">normalizedInput</text>
+  <text x="136" y="385" class="muted small">Valid prompt and rawInputRef; not the same as Graph messages</text>
+
+  <rect x="682" y="191" width="502" height="228" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <rect x="682" y="191" width="502" height="39" rx="8" fill="#eef4fb"/>
+  <text x="703" y="217" class="ink label">Chatbot Context path</text>
+  <rect x="703" y="252" width="180" height="55" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="793" y="284" text-anchor="middle" class="ink mono small">state.messages</text>
+  <path d="M890 279 H917" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-en-arrow)"/>
+  <rect x="925" y="252" width="238" height="55" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="1044" y="275" text-anchor="middle" class="ink mono small">latest HumanMessage</text>
+  <text x="1044" y="294" text-anchor="middle" class="muted small">Others classified separately</text>
+  <path d="M1044 313 V336" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-en-arrow)"/>
+  <rect x="703" y="344" width="460" height="52" rx="5" fill="#eef4fb" stroke="#b9cce3"/>
+  <text x="722" y="366" class="ink mono small">current_task (P1)</text>
+  <text x="722" y="385" class="muted small">recent_messages (P4), tool_output (P5) depending on messages</text>
+
+  <path d="M600 356 H680" fill="none" stroke="#8d5260" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <rect x="96" y="428" width="318" height="27" rx="13" fill="#fff1f2" stroke="#d7a0aa"/>
+  <text x="255" y="446" text-anchor="middle" fill="#8d5260" class="small">Check that both texts match; do not assume</text>
+
+  <path d="M728 419 V461" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-en-arrow)"/>
+  <rect x="96" y="469" width="237" height="119" rx="8" fill="#f6f8fb" stroke="#b9cce3"/>
+  <text x="115" y="499" class="ink label">Memory (if recalled)</text>
+  <text x="115" y="528" class="muted small">Earlier: "keep answers short"</text>
+  <text x="115" y="553" class="muted small">P3; not present every time</text>
+  <path d="M340 528 H384" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-en-arrow)"/>
+  <rect x="393" y="469" width="492" height="119" rx="8" fill="#ffffff" stroke="#80baff" stroke-width="1.4"/>
+  <text x="414" y="499" class="blue label">assembleAgentContext</text>
+  <text x="414" y="527" class="ink body">Decides sources, budget, and retained blocks</text>
+  <text x="414" y="554" class="muted small">Output: blocks, truncatedBlocks, manifest</text>
+  <path d="M893 528 H918" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-en-arrow)"/>
+  <rect x="927" y="469" width="257" height="119" rx="8" fill="#0066d6"/>
+  <text x="946" y="499" fill="#ffffff" class="label mono">llm.invoke</text>
+  <text x="946" y="528" fill="#e2efff" class="small">Formatted retained blocks</text>
+  <text x="946" y="553" fill="#e2efff" class="small">Does not prove the reply</text>
+
+  <text x="96" y="619" class="muted small">Checking an actual call still requires fixing the Graph messages, feature flag, Memory settings, assembly result, and model input.</text>
+  <text x="96" y="682" class="muted small">Drawn from Chat Gun entry-point and Context integration points; this scenario did not capture an actual Prompt or manifest.</text>
+</svg>

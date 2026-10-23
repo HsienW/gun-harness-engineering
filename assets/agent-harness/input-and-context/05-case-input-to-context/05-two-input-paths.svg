@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="case-title case-desc" id="input-context-05-case">
+  <title id="case-title">一次請求的輸入正規化與 Context 組裝路徑</title>
+  <desc id="case-desc">教學情境中，互動治理從 beforeRun 呼叫 readNormalizedAgentInput，產生 normalizedInput 與 rawInputRef；Chatbot Context 組裝則從 Graph 的 state.messages 取得最新 HumanMessage 作為 current_task。兩條路徑需核對一致，不能直接推定。組裝器可選用 Memory，產生 blocks、truncatedBlocks 與 manifest，然後格式化文字送入 llm.invoke。</desc>
+  <defs>
+    <style>
+      #input-context-05-case { font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #input-context-05-case .ink { fill: #102743; }
+      #input-context-05-case .muted { fill: #52657d; }
+      #input-context-05-case .blue { fill: #0066d6; }
+      #input-context-05-case .small { font-size: 12px; }
+      #input-context-05-case .body { font-size: 14px; }
+      #input-context-05-case .label { font-size: 15px; font-weight: 600; }
+      #input-context-05-case .mono { font-family: 'Geist Mono', Consolas, monospace; }
+    </style>
+    <marker id="case-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0 0 L9 3.5 L0 7 Z" fill="#52657d"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="292" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" class="blue mono small" letter-spacing=".10em">INPUT &amp; CONTEXT / 05</text>
+  <text x="96" y="126" class="ink" font-size="26" font-weight="600">同一請求，兩條取值路徑</text>
+  <rect x="950" y="102" width="232" height="32" rx="16" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="1066" y="123" text-anchor="middle" class="blue small">教學情境 · 非執行紀錄</text>
+  <text x="96" y="159" class="muted body">本次要求：「請完整說明這個設計的限制，這次不要省略細節。」</text>
+
+  <rect x="96" y="191" width="502" height="228" rx="8" fill="#ffffff" stroke="#80baff" stroke-width="1.4"/>
+  <rect x="96" y="191" width="502" height="39" rx="8" fill="#e7f2ff"/>
+  <text x="117" y="217" class="blue label">互動治理的輸入路徑</text>
+  <rect x="117" y="252" width="144" height="55" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="189" y="284" text-anchor="middle" class="ink mono small">beforeRun</text>
+  <path d="M268 279 H294" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-arrow)"/>
+  <rect x="302" y="252" width="271" height="55" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="437" y="275" text-anchor="middle" class="ink mono small">readNormalizedAgentInput</text>
+  <text x="437" y="294" text-anchor="middle" class="muted small">檢查 kind、文字與格式</text>
+  <path d="M438 313 V336" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-arrow)"/>
+  <rect x="117" y="344" width="456" height="52" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="136" y="366" class="ink mono small">normalizedInput</text>
+  <text x="136" y="385" class="muted small">有效 prompt 與 rawInputRef；不直接等於 Graph 訊息</text>
+
+  <rect x="682" y="191" width="502" height="228" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <rect x="682" y="191" width="502" height="39" rx="8" fill="#eef4fb"/>
+  <text x="703" y="217" class="ink label">Chatbot 的 Context 路徑</text>
+  <rect x="703" y="252" width="180" height="55" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="793" y="284" text-anchor="middle" class="ink mono small">state.messages</text>
+  <path d="M890 279 H917" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-arrow)"/>
+  <rect x="925" y="252" width="238" height="55" rx="5" fill="#f1f6fc" stroke="#b9cce3"/>
+  <text x="1044" y="275" text-anchor="middle" class="ink mono small">latest HumanMessage</text>
+  <text x="1044" y="294" text-anchor="middle" class="muted small">其餘訊息另行分類</text>
+  <path d="M1044 313 V336" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-arrow)"/>
+  <rect x="703" y="344" width="460" height="52" rx="5" fill="#eef4fb" stroke="#b9cce3"/>
+  <text x="722" y="366" class="ink mono small">current_task (P1)</text>
+  <text x="722" y="385" class="muted small">recent_messages (P4)、tool_output (P5) 視訊息而定</text>
+
+  <path d="M600 356 H680" fill="none" stroke="#8d5260" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <rect x="96" y="428" width="318" height="27" rx="13" fill="#fff1f2" stroke="#d7a0aa"/>
+  <text x="255" y="446" text-anchor="middle" fill="#8d5260" class="small">須核對兩邊文字一致，不能直接推定</text>
+
+  <path d="M728 419 V461" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-arrow)"/>
+  <rect x="96" y="469" width="237" height="119" rx="8" fill="#f6f8fb" stroke="#b9cce3"/>
+  <text x="115" y="499" class="ink label">Memory（若成功召回）</text>
+  <text x="115" y="528" class="muted small">先前偏好：「回答請簡短」</text>
+  <text x="115" y="553" class="muted small">P3；不可假設每次都有</text>
+  <path d="M340 528 H384" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-arrow)"/>
+  <rect x="393" y="469" width="492" height="119" rx="8" fill="#ffffff" stroke="#80baff" stroke-width="1.4"/>
+  <text x="414" y="499" class="blue label">assembleAgentContext</text>
+  <text x="414" y="527" class="ink body">決定來源、容量與保留區塊</text>
+  <text x="414" y="554" class="muted small">輸出：blocks、truncatedBlocks、manifest</text>
+  <path d="M893 528 H918" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#case-arrow)"/>
+  <rect x="927" y="469" width="257" height="119" rx="8" fill="#0066d6"/>
+  <text x="946" y="499" fill="#ffffff" class="label mono">llm.invoke</text>
+  <text x="946" y="528" fill="#e2efff" class="small">送入保留區塊的格式化文字</text>
+  <text x="946" y="553" fill="#e2efff" class="small">不等於已證明模型如何回覆</text>
+
+  <text x="96" y="619" class="muted small">要核對實際呼叫，仍需固定 Graph 訊息、feature flag、Memory 設定、組裝結果與模型輸入。</text>
+  <text x="96" y="682" class="muted small">依 Chat Gun 入口與 Context 程式接點繪製；本情境未取得實際 Prompt 或 manifest。</text>
+</svg>
