@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1420" width="1600" height="1420" lang="zh-TW" role="img" aria-labelledby="title desc">
+<title id="title">組裝、派送與隔離各有成立條件</title><desc id="desc">下圖呈現組裝關係與設定，不表示每個 Agent 都沿同一條執行時序。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1420" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 04</text>
+<text x="70" y="105" class="title">組裝、派送與隔離各有成立條件</text>
+<text x="70" y="146" class="small">下圖呈現組裝關係與設定，不表示每個 Agent 都沿同一條執行時序。</text>
+<g>
+<rect x="70" y="190" width="1460" height="125" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="223" class="heading">Registry: loadAgentToolRuntime()</text>
+<text x="92" y="255" class="body">建立 authorization、confirmation Store、Runtime descriptor、execution profile 與 enforcer。</text>
+<text x="92" y="283" class="body">治理包裝與可選 pipeline 分開組裝；需沿實際 consumer 核對。</text>
+</g>
+<path d="M 420 315 V 380" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="440" y="355" class="label">套用治理</text>
+<path d="M 1170 315 V 380" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1190" y="355" class="label">來源開關控制</text>
+<g>
+<rect x="70" y="380" width="700" height="190" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="413" class="heading">Governance wrapper</text>
+<text x="92" y="445" class="body">工具啟用、輸入大小、授權與 audit。</text>
+<text x="92" y="473" class="body">Timeout、取消與結果處理。</text>
+<text x="92" y="501" class="body">Wrapper 存在不代表完整 pipeline 已啟用。</text>
+</g>
+<g>
+<rect x="810" y="380" width="720" height="190" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="832" y="413" class="heading">Optional dispatch pipeline</text>
+<text x="832" y="445" class="body">Descriptor、canonical Context、排程與限流。</text>
+<text x="832" y="473" class="body">Step lock、runner、結構化結果。</text>
+<text x="832" y="501" class="body">MATH／DEEP_RESEARCHER／MCP 來源各有開關。</text>
+</g>
+<text x="70" y="625" class="small">以下展開 profile enforcement 的設定與能力；不是兩個方塊之後共用的必經時序。</text>
+<g>
+<rect x="70" y="660" width="1460" height="155" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="693" class="heading">ExecutionProfileEnforcer</text>
+<text x="92" y="725" class="body">必須核對 enforcer 注入與 TOOL_EXECUTION_PROFILE_ENFORCEMENT_ENABLED。</text>
+<text x="92" y="753" class="body">關閉：仍處理必要 secret 解析，回傳 disabled。啟用：核對 profile 參照、版本與 runner 能力。</text>
+<text x="92" y="781" class="body">這個開關與完整 dispatch pipeline 的來源開關分開。</text>
+</g>
+<path d="M 420 815 V 875" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1170 815 V 875" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="875" width="700" height="155" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="908" class="heading">trusted_in_process</text>
+<text x="92" y="940" class="body">Capability matching 直接允許對應 mode。</text>
+<text x="92" y="968" class="body">不能推論所有 CPU／記憶體／檔案條件都有 OS 隔離。</text>
+<text x="92" y="996" class="body">需分開核對工具實作與實際執行條件。</text>
+</g>
+<g>
+<rect x="810" y="875" width="720" height="155" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="832" y="908" class="heading">isolated_process</text>
+<text x="832" y="940" class="body">需要 runner 與符合 profile 的隔離能力。</text>
+<text x="832" y="968" class="body">缺少 runner 或能力不足 → typed deny。</text>
+<text x="832" y="996" class="body">一般 subprocess 不等於已滿足隔離契約。</text>
+</g>
+<g>
+<rect x="70" y="1100" width="1460" height="215" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="1133" class="heading">固定版本的限制與不同入口</text>
+<text x="92" y="1165" class="body">安全文件指出：沒有 production SandboxRunnerPort 實作，不能把測試替身畫成部署保證。</text>
+<text x="92" y="1193" class="body">Math 的 loadMathCalculatorTool()：pipeline 關閉時直接回傳原 calculator；啟用時從 Runtime 工具取得。</text>
+<text x="92" y="1221" class="body">Pipeline 關閉不會移除 Registry 套用的所有 wrapper；Math 的直接匯入分支則須另外看待。</text>
+<text x="92" y="1249" class="body">MCP 能否執行，需同時核對來源開關、註冊、profile、runner 與必要依賴。</text>
+</g>
+<text x="70" y="1370" class="small">閱讀位置：第 1～4 節。圖示不宣稱隔離、網路或多實例測試已通過。</text>
+</svg>

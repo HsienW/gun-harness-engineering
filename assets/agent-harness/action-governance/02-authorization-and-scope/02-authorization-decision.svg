@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1490" width="1600" height="1490" lang="zh-TW" role="img" aria-labelledby="title desc">
+<title id="title">授權判斷：基本邊界先於 grant 匹配</title><desc id="desc">可信入口建立身分與 Scope；模型參數不能自行取得操作權。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1490" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 02</text>
+<text x="70" y="105" class="title">授權判斷：基本邊界先於 grant 匹配</text>
+<text x="70" y="146" class="small">可信入口建立身分與 Scope；模型參數不能自行取得操作權。</text>
+<g>
+<rect x="70" y="190" width="850" height="115" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="223" class="heading">AuthorizationRequest</text>
+<text x="92" y="255" class="body">可信 Principal／Tenant／Scope ＋ action／ResourceRef。</text>
+<text x="92" y="283" class="body">Context、政策與資源解析各有可信來源。</text>
+</g>
+<path d="M 495 305 V 365" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="365" width="850" height="170" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="398" class="heading">1  先檢查不能由 grant 跨越的邊界</text>
+<text x="92" y="430" class="body">Account／Tenant 是否相符，active scope 是否存在。</text>
+<text x="92" y="458" class="body">Scope 是否支援要求的讀寫，policy 是否宣告 action。</text>
+<text x="92" y="486" class="body">缺少 policy 或條件不符，先回傳對應拒絕原因。</text>
+</g>
+<path d="M 920 450 H 1040" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="948" y="432" class="label">不符</text>
+<g>
+<rect x="1040" y="365" width="490" height="170" rx="10" fill="#fff0f0" stroke="#d99696"/>
+<text x="1062" y="398" class="heading">deny：不跳過基本邊界</text>
+<text x="1062" y="430" class="body">CROSS_TENANT_DENIED 等原因。</text>
+<text x="1062" y="458" class="body">資料庫有 grant 也不能繞過。</text>
+<text x="1062" y="486" class="body">保留原因碼與決策關聯。</text>
+</g>
+<path d="M 495 535 V 595" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="515" y="575" class="label">基本邊界通過</text>
+<g>
+<rect x="70" y="595" width="850" height="190" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="628" class="heading">2  核對 policy authority、owner 與 grant</text>
+<text x="92" y="660" class="body">政策若限制角色或 Principal scope，需符合或有有效匹配 grant。</text>
+<text x="92" y="688" class="body">ownerScopeId 若與目前 Scope 不符，核對 grant 支持。</text>
+<text x="92" y="716" class="body">Grant 需仍有效且匹配 resource、Scope、Tenant、action。</text>
+<text x="92" y="744" class="body">未設定角色／Principal scope 條件時，authority 可直接成立。</text>
+</g>
+<g>
+<rect x="1040" y="595" width="490" height="190" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="1062" y="628" class="heading">Grant 的有效性與匹配</text>
+<text x="1062" y="660" class="body">撤銷／到期狀態。</text>
+<text x="1062" y="688" class="body">資源型別、ID、Tenant、account。</text>
+<text x="1062" y="716" class="body">受授 Scope、owner Scope 與 action。</text>
+<text x="1062" y="744" class="body">過去同意不等於本次匹配。</text>
+</g>
+<path d="M 495 785 V 850" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="850" width="1460" height="125" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="883" class="heading">3  Context 判斷、工具風險與決策交接</text>
+<text x="92" y="915" class="body">Policy 的 Context 與風險條件可能要求拒絕或確認；必要依賴失敗須保留不可用。</text>
+<text x="92" y="943" class="body">下列是不同結果，不表示每次呼叫都依序走過四個方塊。</text>
+</g>
+<path d="M 800 975 V 1005 H 245 V 1045" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 800 975 V 1005 H 615 V 1045" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 800 975 V 1005 H 985 V 1045" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 800 975 V 1005 H 1355 V 1045" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="1045" width="350" height="145" rx="10" fill="#fff0f0" stroke="#d99696"/>
+<text x="92" y="1078" class="heading">deny</text>
+<text x="92" y="1110" class="body">拒絕，不派送。</text>
+</g>
+<g>
+<rect x="440" y="1045" width="350" height="145" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="462" y="1078" class="heading">require_confirmation</text>
+<text x="462" y="1110" class="body">建立等待與恢復資料。</text>
+</g>
+<g>
+<rect x="810" y="1045" width="350" height="145" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="832" y="1078" class="heading">allow</text>
+<text x="832" y="1110" class="body">仍須通過執行限制。</text>
+</g>
+<g>
+<rect x="1180" y="1045" width="350" height="145" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="1202" y="1078" class="heading">AUTHORIZATION_UNAVAILABLE</text>
+<text x="1202" y="1110" class="body">必要依賴或交接失敗。</text>
+<text x="1202" y="1138" class="body">保留失敗，不直接放行。</text>
+</g>
+<g>
+<rect x="70" y="1250" width="1460" height="155" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="1283" class="heading">引擎能力與目前組裝要分開</text>
+<text x="92" y="1315" class="body">預設 resolveScopeAccess() 缺少 active scope 或 Tenant 不符時回 none，其他情況回 writable。</text>
+<text x="92" y="1343" class="body">此處沒有逐檔或逐筆業務資源的 ACL 查詢；ResourceRef 粒度仍須核對 resolver。</text>
+<text x="92" y="1371" class="body">未配置 authorization 的 executor 可直接 authorized；Registry 組裝則會提供設定。</text>
+</g>
+<text x="70" y="1450" class="small">閱讀位置：第 1～5 節。流程依文章所讀引擎整理，未執行跨租戶或部署驗證。</text>
+<path d="M 920 700 H 980 V 500 H 1040" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/><text x="1040" y="570" class="label">Authority／owner 缺少有效支持</text><text x="515" y="825" class="label">檢查通過</text></svg>

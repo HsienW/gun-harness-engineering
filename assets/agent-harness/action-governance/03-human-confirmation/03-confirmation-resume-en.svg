@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1490" width="1600" height="1490" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Confirmation: bound approval and execution handoff</title><desc id="desc">Save the wait, consume the bound approval, then execute using the evaluated authorization.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs>
+<style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1490" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 03</text>
+<text x="70" y="105" class="title">Confirmation: bound approval and execution handoff</text>
+<text x="70" y="146" class="small">Save the wait, consume the bound approval, then execute using the evaluated authorization.</text>
+<rect x="105" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="127" y="220" class="heading">Caller / user</text>
+<path d="M 250 244 V 1050" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="505" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="527" y="220" class="heading">Graph</text>
+<path d="M 650 244 V 1050" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="885" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="907" y="220" class="heading">Store / manifest</text>
+<path d="M 1030 244 V 1050" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="1255" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="1277" y="220" class="heading">Governance executor</text>
+<path d="M 1400 244 V 1050" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<path d="M 650 290 H 1400" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="277" class="label">authorizeTyped()</text>
+<path d="M 1400 380 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="367" class="label">Confirmation required → descriptor</text>
+<path d="M 650 470 H 1030" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="457" class="label">Save pending + manifest</text>
+<path d="M 650 560 H 250" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="547" class="label">interrupt(): wait for approval</text>
+<path d="M 250 680 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="667" class="label">Resume: decision + IDs</text>
+<path d="M 650 770 H 1030" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="757" class="label">Trusted Context → consume()</text>
+<path d="M 1030 860 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="847" class="label">Valid approval: approved</text>
+<path d="M 650 950 H 1400" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="937" class="label">physicalDispatch() → executeAuthorizedTyped()</text>
+<text x="280" y="620" class="label">Wait: resume data must match the specified call.</text>
+<g>
+<rect x="70" y="1090" width="700" height="225" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="1123" class="heading">Existing checks and blocking points</text>
+<text x="92" y="1155" class="body">Approval IDs, trusted identity, Run/Scope/Tenant, expiry.</text>
+<text x="92" y="1183" class="body">Stored resource and policy version binding.</text>
+<text x="92" y="1211" class="body">Save failure / incompatible manifest: no direct fallback.</text>
+<text x="92" y="1239" class="body">Denial, expiry, mismatch: no approved dispatch path.</text>
+</g>
+<g>
+<rect x="810" y="1090" width="720" height="225" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="832" y="1123" class="heading">Guarantees needing separate design or verification</text>
+<text x="832" y="1155" class="body">The descriptor has no complete tool-argument hash.</text>
+<text x="832" y="1183" class="body">The Store does not fully requery the latest policy.</text>
+<text x="832" y="1211" class="body">Approval does not unconditionally rerun authorization.</text>
+<text x="832" y="1239" class="body">Cross-process / deployment recovery needs real evidence.</text>
+</g>
+<text x="70" y="1380" class="small">The success path reuses authorization; execution checks still depend on wrapper, pipeline, and enforcer settings.</text>
+<text x="70" y="1420" class="small">Reading: Sections 2-4. This traces pinned source; it does not report tests executed during this work.</text>
+</svg>

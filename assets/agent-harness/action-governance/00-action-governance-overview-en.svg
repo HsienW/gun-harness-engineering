@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1840" width="1600" height="1840" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Action governance: from a concrete call to evidence</title>
+<desc id="desc">A conceptual flow covering contracts, authorization, confirmation, execution limits, dispatch, outcomes, reconciliation, and completion evidence. It is not a shared implementation sequence or a claim of deployment guarantees.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs>
+<style>text{font-family:'Segoe UI',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1840" fill="#f5f8fc"/>
+<text x="100" y="58" class="kicker">ACTION GOVERNANCE / OVERVIEW</text>
+<text x="100" y="108" class="title">From a concrete call to evidence</text>
+<text x="100" y="146" class="small">Conceptual reading map. Check actual consumers for ordering, early returns, and feature flags.</text>
+<path d="M 360 290 V 340" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 360 450 V 500" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 620 555 H 900" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="658" y="541" class="label">Confirmation required</text>
+<path d="M 620 525 H 750 V 235 H 900" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="800" y="175" class="label">Denied / required condition unavailable</text>
+<path d="M 1160 610 V 700" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1420 755 H 1480 V 235 H 1420" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1020" y="400" class="label">Denied, expired, or mismatched</text>
+<path d="M 900 755 H 800 V 955 H 620" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="660" y="865" class="label">Valid approval</text>
+<path d="M 360 610 V 900" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="380" y="800" class="label">Allowed</text>
+<path d="M 360 1010 V 1060" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 360 1170 V 1220" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 100 1275 H 40 V 955 H 100" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="70" y="850" class="label">Retry only if safe</text>
+<text x="70" y="875" class="label">and within budget</text>
+<path d="M 620 1275 H 900" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="658" y="1248" class="label">Uncertain external effect</text>
+<path d="M 360 1330 V 1480" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1160 1330 V 1420 H 360 V 1480" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 100 555 H 18 V 1630 H 250 V 1660" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6"/>
+<path d="M 1420 785 H 1540 V 1630 H 1200 V 1660" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6"/>
+<path d="M 620 1115 H 760 V 1610 H 650 V 1660" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6"/>
+<path d="M 620 1300 H 720 V 1590 H 900 V 1660" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 6"/>
+<g data-node="call"><rect x="100" y="180" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="122" y="212" class="heading">Concrete call</text>
+<text x="122" y="242" class="body">Tool name and arguments</text>
+<text x="122" y="268" class="body">Trusted execution Context</text>
+</g>
+<g data-node="contract"><rect x="100" y="340" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="122" y="372" class="heading">Check contract and risk</text>
+<text x="122" y="402" class="body">Tool contract, declared action, and resource</text>
+<text x="122" y="428" class="body">Risk policy and required execution conditions</text>
+</g>
+<g data-node="authorization"><rect x="100" y="500" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="122" y="532" class="heading">Evaluate authorization</text>
+<text x="122" y="562" class="body">Trusted identity, resource, and policy</text>
+<text x="122" y="588" class="body">Allow, deny, or require confirmation</text>
+</g>
+<g data-node="blocked"><rect x="900" y="180" width="520" height="110" rx="10" fill="#fff0f0" stroke="#d99696"/>
+<text x="922" y="212" class="heading">Do not dispatch</text>
+<text x="922" y="242" class="body">Retain the reason for stopping</text>
+<text x="922" y="268" class="body">Approval cannot override a denial</text>
+</g>
+<g data-node="pending"><rect x="900" y="500" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="922" y="532" class="heading">Save pending confirmation</text>
+<text x="922" y="562" class="body">Persist the pending descriptor and manifest</text>
+<text x="922" y="588" class="body">Wait for the specified approval</text>
+</g>
+<g data-node="approval"><rect x="900" y="700" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="922" y="732" class="heading">Check approval binding and validity</text>
+<text x="922" y="762" class="body">Identity, execution binding, and expiry</text>
+<text x="922" y="788" class="body">A valid approval follows its bound call</text>
+</g>
+<g data-node="controls"><rect x="100" y="900" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="122" y="932" class="heading">Enforce limits before dispatch</text>
+<text x="122" y="962" class="body">Check applicable execution restrictions</text>
+<text x="122" y="988" class="body">Profiles, dependencies, and consumer settings</text>
+</g>
+<g data-node="dispatch"><rect x="100" y="1060" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="122" y="1092" class="heading">Governed tool execution</text>
+<text x="122" y="1122" class="body">Dispatch through the configured path</text>
+<text x="122" y="1148" class="body">Track execution and cancellation conditions</text>
+</g>
+<g data-node="outcome"><rect x="100" y="1220" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="122" y="1252" class="heading">Classify the outcome</text>
+<text x="122" y="1282" class="body">Success, non-commit, uncertainty, or cancellation</text>
+<text x="122" y="1308" class="body">An uncertain effect is not a confirmed non-commit</text>
+</g>
+<g data-node="reconcile"><rect x="900" y="1220" width="520" height="110" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="922" y="1252" class="heading">Query, reconcile, or handle manually</text>
+<text x="922" y="1282" class="body">Check external state when effects are uncertain</text>
+<text x="922" y="1308" class="body">Reconciliation capability must actually exist</text>
+</g>
+<g data-node="result"><rect x="100" y="1480" width="520" height="110" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="122" y="1512" class="heading">Tool result and completion statement</text>
+<text x="122" y="1542" class="body">Use results and resource evidence</text>
+<text x="122" y="1568" class="body">A successful reply alone is insufficient</text>
+</g>
+<g data-node="evidence"><rect x="100" y="1660" width="1320" height="110" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="122" y="1692" class="heading">Correlate decision, attempt, and effect evidence</text>
+<text x="122" y="1722" class="body">Authorization, approval, dispatch, and outcomes must remain traceable to the same call.</text>
+<text x="122" y="1748" class="body">Dashed connectors show evidence relationships, not extra execution steps.</text>
+</g>
+<text x="100" y="1810" class="small">Reading guide: 01 Contract → 02 Authorization → 03 Confirmation → 04 Dispatch → 05 Effects → 06 Case</text></svg>

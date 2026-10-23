@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1420" width="1600" height="1420" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Composition, dispatch, and isolation have separate conditions</title><desc id="desc">This maps composition and settings, not one execution sequence shared by every Agent.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1420" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 04</text>
+<text x="70" y="105" class="title">Composition, dispatch, and isolation have separate conditions</text>
+<text x="70" y="146" class="small">This maps composition and settings, not one execution sequence shared by every Agent.</text>
+<g>
+<rect x="70" y="190" width="1460" height="125" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="223" class="heading">Registry: loadAgentToolRuntime()</text>
+<text x="92" y="255" class="body">Compose authorization, confirmation Store, Runtime descriptors, execution profiles, and the enforcer.</text>
+<text x="92" y="283" class="body">Compose governance wrappers separately from the optional pipeline; check the actual consumers.</text>
+</g>
+<path d="M 420 315 V 380" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="440" y="355" class="label">Apply governance</text>
+<path d="M 1170 315 V 380" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1190" y="355" class="label">Source flags control this path</text>
+<g>
+<rect x="70" y="380" width="700" height="190" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="413" class="heading">Governance wrapper</text>
+<text x="92" y="445" class="body">Tool enablement, input size, authorization, and audit.</text>
+<text x="92" y="473" class="body">Timeouts, cancellation, and result handling.</text>
+<text x="92" y="501" class="body">A wrapper does not establish an enabled full pipeline.</text>
+</g>
+<g>
+<rect x="810" y="380" width="720" height="190" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="832" y="413" class="heading">Optional dispatch pipeline</text>
+<text x="832" y="445" class="body">Descriptors, canonical Context, scheduling, rate limits.</text>
+<text x="832" y="473" class="body">Step locks, runners, and structured results.</text>
+<text x="832" y="501" class="body">Separate flags for MATH / DEEP_RESEARCHER / MCP.</text>
+</g>
+<text x="70" y="625" class="small">Below: profile enforcement settings and capabilities, not a mandatory next stage after both boxes.</text>
+<g>
+<rect x="70" y="660" width="1460" height="155" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="693" class="heading">ExecutionProfileEnforcer</text>
+<text x="92" y="725" class="body">Check enforcer injection and TOOL_EXECUTION_PROFILE_ENFORCEMENT_ENABLED.</text>
+<text x="92" y="753" class="body">Disabled: resolve required secrets, then return disabled. Enabled: check profile reference, version, and runner.</text>
+<text x="92" y="781" class="body">This flag is separate from the source-specific full dispatch pipeline flags.</text>
+</g>
+<path d="M 420 815 V 875" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1170 815 V 875" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="875" width="700" height="155" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="908" class="heading">trusted_in_process</text>
+<text x="92" y="940" class="body">Capability matching directly allows this mode.</text>
+<text x="92" y="968" class="body">This does not establish OS isolation for all resource limits.</text>
+<text x="92" y="996" class="body">Check tool implementations and actual conditions separately.</text>
+</g>
+<g>
+<rect x="810" y="875" width="720" height="155" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="832" y="908" class="heading">isolated_process</text>
+<text x="832" y="940" class="body">Requires a runner with profile-matching capabilities.</text>
+<text x="832" y="968" class="body">Missing runner / insufficient capabilities → typed deny.</text>
+<text x="832" y="996" class="body">An ordinary subprocess does not establish isolation.</text>
+</g>
+<g>
+<rect x="70" y="1100" width="1460" height="215" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="1133" class="heading">Pinned-version limits and distinct entry points</text>
+<text x="92" y="1165" class="body">Security docs state no production SandboxRunnerPort implementation; test doubles are not deployment guarantees.</text>
+<text x="92" y="1193" class="body">Math loadMathCalculatorTool(): pipeline off returns the original calculator; on obtains it from Runtime tools.</text>
+<text x="92" y="1221" class="body">Disabling the pipeline retains Registry wrappers; treat the Math direct-import branch separately.</text>
+<text x="92" y="1249" class="body">MCP execution requires checking source flags, registration, profiles, runners, and dependencies together.</text>
+</g>
+<text x="70" y="1370" class="small">Reading: Sections 1-4. This diagram does not establish passing isolation, network, or multi-instance tests.</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1490" width="1600" height="1490" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Authorization: basic boundaries precede grant matching</title><desc id="desc">Trusted entry points supply identity and Scope; model arguments cannot establish authority.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1490" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 02</text>
+<text x="70" y="105" class="title">Authorization: basic boundaries precede grant matching</text>
+<text x="70" y="146" class="small">Trusted entry points supply identity and Scope; model arguments cannot establish authority.</text>
+<g>
+<rect x="70" y="190" width="850" height="115" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="223" class="heading">AuthorizationRequest</text>
+<text x="92" y="255" class="body">Trusted Principal/Tenant/Scope + action/ResourceRef.</text>
+<text x="92" y="283" class="body">Context, policy, and resource resolution need trusted sources.</text>
+</g>
+<path d="M 495 305 V 365" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="365" width="850" height="170" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="398" class="heading">1  Check boundaries that grants cannot cross</text>
+<text x="92" y="430" class="body">Matching account/tenant; active scope exists.</text>
+<text x="92" y="458" class="body">Scope permits requested access; policy declares the action.</text>
+<text x="92" y="486" class="body">Missing policy / failed conditions return denial reasons.</text>
+</g>
+<path d="M 920 450 H 1040" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="948" y="432" class="label">Fails</text>
+<g>
+<rect x="1040" y="365" width="490" height="170" rx="10" fill="#fff0f0" stroke="#d99696"/>
+<text x="1062" y="398" class="heading">deny: retain basic boundaries</text>
+<text x="1062" y="430" class="body">E.g. CROSS_TENANT_DENIED.</text>
+<text x="1062" y="458" class="body">A stored grant cannot bypass these.</text>
+<text x="1062" y="486" class="body">Retain reason codes and correlation.</text>
+</g>
+<path d="M 495 535 V 595" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="515" y="575" class="label">Basic boundaries pass</text>
+<g>
+<rect x="70" y="595" width="850" height="190" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="628" class="heading">2  Check policy authority, owner, and grants</text>
+<text x="92" y="660" class="body">Meet role / Principal scope conditions, or use a valid matching grant.</text>
+<text x="92" y="688" class="body">If ownerScopeId differs from current Scope, check grant support.</text>
+<text x="92" y="716" class="body">Grants must be valid and match resource, Scope, Tenant, and action.</text>
+<text x="92" y="744" class="body">With no role / Principal scope conditions, authority can pass directly.</text>
+</g>
+<g>
+<rect x="1040" y="595" width="490" height="190" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="1062" y="628" class="heading">Grant validity and matching</text>
+<text x="1062" y="660" class="body">Revocation / expiry.</text>
+<text x="1062" y="688" class="body">Resource type, ID, Tenant, account.</text>
+<text x="1062" y="716" class="body">Grantee Scope, owner Scope, action.</text>
+<text x="1062" y="744" class="body">Past agreement is not a current match.</text>
+</g>
+<path d="M 495 785 V 850" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="850" width="1460" height="125" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="883" class="heading">3  Context evaluation, tool risk, and decision handoff</text>
+<text x="92" y="915" class="body">Policy Context and risk may require denial or confirmation; dependency failures retain unavailability.</text>
+<text x="92" y="943" class="body">The following are alternative results, not four sequential stages.</text>
+</g>
+<path d="M 800 975 V 1005 H 245 V 1045" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 800 975 V 1005 H 615 V 1045" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 800 975 V 1005 H 985 V 1045" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 800 975 V 1005 H 1355 V 1045" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="1045" width="350" height="145" rx="10" fill="#fff0f0" stroke="#d99696"/>
+<text x="92" y="1078" class="heading">deny</text>
+<text x="92" y="1110" class="body">Deny without dispatch.</text>
+</g>
+<g>
+<rect x="440" y="1045" width="350" height="145" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="462" y="1078" class="heading">require_confirmation</text>
+<text x="462" y="1110" class="body">Create confirmation data.</text>
+</g>
+<g>
+<rect x="810" y="1045" width="350" height="145" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="832" y="1078" class="heading">allow</text>
+<text x="832" y="1110" class="body">Execution limits still apply.</text>
+</g>
+<g>
+<rect x="1180" y="1045" width="350" height="145" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="1202" y="1078" class="heading">AUTHORIZATION_UNAVAILABLE</text>
+<text x="1202" y="1110" class="body">Required dependency /</text>
+<text x="1202" y="1138" class="body">handoff failure; no fallback.</text>
+</g>
+<g>
+<rect x="70" y="1250" width="1460" height="155" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="1283" class="heading">Separate engine capabilities from current composition</text>
+<text x="92" y="1315" class="body">Default resolveScopeAccess(): none for missing active scope / tenant mismatch; writable otherwise.</text>
+<text x="92" y="1343" class="body">No per-file or per-record ACL query here; inspect the resolver for ResourceRef granularity.</text>
+<text x="92" y="1371" class="body">An executor without authorization can return authorized directly; Registry composition supplies configuration.</text>
+</g>
+<text x="70" y="1450" class="small">Reading: Sections 1-5. Source-based engine map; no cross-tenant or deployment verification was run.</text>
+<path d="M 920 700 H 980 V 500 H 1040" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/><text x="1040" y="570" class="label">No authority / ownership support</text><text x="515" y="825" class="label">Checks pass</text></svg>

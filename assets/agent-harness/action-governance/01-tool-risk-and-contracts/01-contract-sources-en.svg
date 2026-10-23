@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1210" width="1600" height="1210" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Action contracts: each field has its own source</title><desc id="desc">Tool names and arguments describe an operation; trusted sources supply identity, policy, and execution conditions.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1210" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 01</text>
+<text x="70" y="105" class="title">Action contracts: each field has its own source</text>
+<text x="70" y="146" class="small">Tool names and arguments describe an operation; trusted sources supply identity, policy, and execution conditions.</text>
+<g>
+<rect x="70" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="243" class="heading">Model proposal / code route</text>
+<text x="92" y="275" class="body">Tool name + input</text>
+<text x="92" y="303" class="body">Tool call ID</text>
+<text x="92" y="331" class="body">Describe the operation.</text>
+<text x="92" y="359" class="body">Do not establish identity.</text>
+</g>
+<g>
+<rect x="440" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="462" y="243" class="heading">Trusted execution entry</text>
+<text x="462" y="275" class="body">Principal + Tenant + Scope</text>
+<text x="462" y="303" class="body">Canonical execution Context.</text>
+<text x="462" y="331" class="body">Who acts within which scope.</text>
+<text x="462" y="359" class="body">Entry owns the trust boundary.</text>
+</g>
+<g>
+<rect x="810" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="832" y="243" class="heading">Policy / resource resolution</text>
+<text x="832" y="275" class="body">Actions + risk policy</text>
+<text x="832" y="303" class="body">resourceRefResolver</text>
+<text x="832" y="331" class="body">Build ResourceRef.</text>
+<text x="832" y="359" class="body">Map operation to policy.</text>
+</g>
+<g>
+<rect x="1180" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="1202" y="243" class="heading">Runtime descriptor</text>
+<text x="1202" y="275" class="body">Tool version + profile</text>
+<text x="1202" y="303" class="body">Input / output Schemas.</text>
+<text x="1202" y="331" class="body">Read-only, concurrency, timeout.</text>
+<text x="1202" y="359" class="body">Retry policy</text>
+</g>
+<path d="M 245 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 615 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 985 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1355 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="550" width="1460" height="170" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="583" class="heading">Assemble and inspect the action contract at execution</text>
+<text x="92" y="615" class="body">The Registry resolves implementation; Schemas check shape; policy and resolvers form authorization inputs.</text>
+<text x="92" y="643" class="body">Call identity correlates proposal and result; trusted Context establishes actor and scope.</text>
+<text x="92" y="671" class="body">This maps contract sources, not fields all emitted by the model or one shared type across entry points.</text>
+</g>
+<path d="M 420 720 V 790" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1170 720 V 790" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="790" width="700" height="155" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="823" class="heading">Input validity: Schema / value checks</text>
+<text x="92" y="855" class="body">A valid string does not authorize a file or URL.</text>
+<text x="92" y="883" class="body">Trace consumers such as validateInput() for preconditions.</text>
+<text x="92" y="911" class="body">Input failure does not establish business authorization.</text>
+</g>
+<g>
+<rect x="810" y="790" width="720" height="155" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="832" y="823" class="heading">Operation authority: policy / resource / execution</text>
+<text x="832" y="855" class="body">Risk classification, authorization, and confirmation differ.</text>
+<text x="832" y="883" class="body">ResourceRef granularity depends on its resolver.</text>
+<text x="832" y="911" class="body">Check implementation, profiles, and required dependencies.</text>
+</g>
+<g>
+<rect x="70" y="1010" width="1460" height="125" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="92" y="1043" class="heading">External text cannot rewrite trusted identity</text>
+<text x="92" y="1075" class="body">For example, text asking for administrator identity cannot replace Principal, Tenant, or Scope.</text>
+<text x="92" y="1103" class="body">The model describing an operation as safe cannot replace its trusted risk policy.</text>
+</g>
+<text x="70" y="1170" class="small">Reading: Section 1. This maps data sources and responsibilities, not a record of an executed tool call.</text>
+</svg>
