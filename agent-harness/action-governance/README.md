@@ -4,44 +4,26 @@
 
 This section follows [Behavior and Capabilities](../behavior-and-capabilities/README.md). The preceding section explains how capabilities enter a task and whether the model or code proposes a call. This section starts with a concrete tool name, arguments, and trusted execution conditions, then traces whether execution is allowed, when confirmation is required, and how results are accounted for after dispatch.
 
-Six Traditional Chinese article drafts are complete, covering contracts, authorization, confirmation, dispatch, and side effects for concrete calls. The scope, inspection requirements, and diagram candidates for each article remain below. English article bodies have not been written; their filenames will keep the same numbers and stems without `-zh-TW`.
+Six article drafts are available in English and Traditional Chinese, covering contracts, authorization, confirmation, dispatch, and side effects for concrete calls. The scope, inspection requirements, and diagram candidates for each article remain below. English filenames keep the same numbers and stems without `-zh-TW`.
 
 ## Reading order
 
-| Number | Article | Question | Traditional Chinese filename |
+| Number | Article | Question | English filename |
 |---|---|---|---|
-| 01 | [Tool risk and action contracts](./01-tool-risk-and-contracts-zh-TW.md) | What inspectable conditions must different operations of the same tool supply? | `01-tool-risk-and-contracts-zh-TW.md` |
-| 02 | [Authorization and resource scope](./02-authorization-and-scope-zh-TW.md) | Who may perform this operation on this resource? | `02-authorization-and-scope-zh-TW.md` |
-| 03 | [Human confirmation and approval validity](./03-human-confirmation-zh-TW.md) | What exactly does one user approval authorize? | `03-human-confirmation-zh-TW.md` |
-| 04 | [Governed dispatch and execution isolation](./04-governed-dispatch-and-isolation-zh-TW.md) | After authorization, what restricts what a tool can actually do? | `04-governed-dispatch-and-isolation-zh-TW.md` |
-| 05 | [Retries and side effects](./05-retry-and-side-effects-zh-TW.md) | Can a call be tried again after failure, timeout, or an uncertain result? | `05-retry-and-side-effects-zh-TW.md` |
-| 06 | [A governed tool call](./06-case-governed-tool-call-zh-TW.md) | How do proposal, authorization, confirmation, dispatch, and results connect to the same task? | `06-case-governed-tool-call-zh-TW.md` |
+| 01 | [Tool risk and action contracts](./01-tool-risk-and-contracts.md) | What inspectable conditions must different operations of the same tool supply? | `01-tool-risk-and-contracts.md` |
+| 02 | [Authorization and resource scope](./02-authorization-and-scope.md) | Who may perform this operation on this resource? | `02-authorization-and-scope.md` |
+| 03 | [Human confirmation and approval validity](./03-human-confirmation.md) | What exactly does one user approval authorize? | `03-human-confirmation.md` |
+| 04 | [Governed dispatch and execution isolation](./04-governed-dispatch-and-isolation.md) | After authorization, what restricts what a tool can actually do? | `04-governed-dispatch-and-isolation.md` |
+| 05 | [Retries and side effects](./05-retry-and-side-effects.md) | Can a call be tried again after failure, timeout, or an uncertain result? | `05-retry-and-side-effects.md` |
+| 06 | [A governed tool call](./06-case-governed-tool-call.md) | How do proposal, authorization, confirmation, dispatch, and results connect to the same task? | `06-case-governed-tool-call.md` |
 
 ## Architecture and responsibilities
 
 The diagram is the conceptual model used by the articles. Its boxes are neither shared types in the two repositories nor a complete execution sequence. Each article must check the actual consumer for check ordering, early returns, and feature flags.
 
-```mermaid
-flowchart LR
-    Call[Concrete call and trusted execution Context] --> Contract[Check tool contract and risk]
-    Contract --> Auth[Evaluate identity, resource, and policy]
-    Auth -->|Denied or required condition unavailable| Block[Do not dispatch; retain reason]
-    Auth -->|Confirmation required| Pending[Save pending confirmation]
-    Pending --> Approval[Check approval binding and validity]
-    Approval -->|Denied, expired, or mismatched| Block
-    Approval -->|Valid approval| Controls[Enforce limits before dispatch]
-    Auth -->|Allowed| Controls
-    Controls --> Dispatch[Governed tool execution]
-    Dispatch --> Outcome[Classify success, non-commit, uncertainty, or cancellation]
-    Outcome -->|Explicitly retryable within budget| Controls
-    Outcome -->|Uncertain external effect| Reconcile[Query, reconcile, or request manual handling]
-    Outcome --> Result[Tool result and completion statement]
-    Reconcile --> Result
-    Auth -.-> Evidence[Correlate decision, attempt, and effect evidence]
-    Approval -.-> Evidence
-    Dispatch -.-> Evidence
-    Outcome -.-> Evidence
-```
+![Action governance: from a concrete call to evidence](../../assets/agent-harness/action-governance/00-action-governance-overview-en.svg)
+
+[Open the HTML diagram](../../assets/agent-harness/action-governance/00-action-governance-overview-en.html)
 
 Responsibilities across sections:
 
