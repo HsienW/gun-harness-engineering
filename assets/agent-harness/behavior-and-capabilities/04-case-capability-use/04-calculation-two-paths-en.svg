@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1330" width="1440" height="1330" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">One expression, two capability paths</title><desc id="desc">A teaching scenario compares the MCP Agent model proposal and authorization Graph with Math Agent expression extraction and direct invocation. With the Math pipeline disabled, the original calculator is used; when enabled, Runtime tools are used. The expected value 1680 is not a measured result.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d" /></marker></defs>
+<style>text{font-family:'Segoe UI',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600}</style>
+<rect width="1440" height="1330" fill="#f5f8fc" />
+<rect x="32" y="28" width="1376" height="1274" rx="14" fill="#fafdff" stroke="#b9cce3" stroke-dasharray="6 6" />
+
+<text x="64" y="64" class="kicker">BEHAVIOR &amp; CAPABILITIES / 04</text>
+<text x="64" y="113" class="title">One expression, two capability paths</text>
+<text x="64" y="151" class="small">Input: (1250 + 350) * 1.05. Explain the expression and result. Expected value: 1680.</text>
+<rect x="64" y="183" width="640" height="907" rx="9" fill="#f1f6fc" stroke="#b9cce3" />
+<rect x="728" y="183" width="648" height="907" rx="9" fill="#f1f6fc" stroke="#b9cce3" />
+<text x="88" y="222" class="heading">MCP Agent / model proposes a tool</text>
+<text x="752" y="222" class="heading">Math Agent / code extracts an expression</text>
+<g data-node="Rules, messages, and tool descriptions">
+<rect x="88" y="249" width="592" height="95" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="106" y="280" class="heading">Rules, messages, and tool descriptions</text>
+<text x="106" y="309" class="body">bindTools(tools).invoke(modelInput)</text>
+</g>
+<path d="M 384 344 V 366" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Model response">
+<rect x="88" y="374" width="332" height="110" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="106" y="405" class="heading">Model response</text>
+<text x="106" y="434" class="body">tool_calls → enter the gate.</text>
+<text x="106" y="460" class="body">No calls → reply and end.</text>
+</g>
+<path d="M 420 427 H 450" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="429" y="363" class="label">No calls</text>
+<g data-node="Direct reply">
+<rect x="458" y="374" width="222" height="110" rx="9" fill="#eef4fb" stroke="#b9cce3" />
+<text x="476" y="405" class="heading">Direct reply</text>
+<text x="476" y="434" class="body">No tool use evidence</text>
+<text x="476" y="460" class="body">for this request.</text>
+</g>
+<path d="M 254 484 V 510" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="267" y="505" class="label">With calls</text>
+<g data-node="authorization_gate">
+<rect x="88" y="518" width="332" height="137" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="106" y="549" class="heading">authorization_gate</text>
+<text x="106" y="578" class="body">Find the governance executor.</text>
+<text x="106" y="604" class="body">Check this name, arguments,</text>
+<text x="106" y="630" class="body">and trusted execution Context.</text>
+</g>
+<path d="M 420 585 H 450" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Other decisions">
+<rect x="458" y="518" width="222" height="192" rx="9" fill="#fff5e5" stroke="#dcac61" />
+<text x="476" y="549" class="heading">Other decisions</text>
+<text x="476" y="578" class="body">Denied / unavailable:</text>
+<text x="476" y="604" class="body">produce a tool result.</text>
+<text x="476" y="630" class="body">Confirmation needed:</text>
+<text x="476" y="656" class="body">save state; interrupt.</text>
+</g>
+<path d="M 254 655 V 701" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="267" y="686" class="label">Dispatch allowed</text>
+<g data-node="physical_dispatch">
+<rect x="88" y="709" width="332" height="127" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="106" y="740" class="heading">physical_dispatch</text>
+<text x="106" y="769" class="body">executeAuthorizedTyped()</text>
+<text x="106" y="795" class="body">Return a result or error.</text>
+</g>
+<path d="M 254 836 V 863 H 384 V 887" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<path d="M 569 710 V 860 H 384" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="5 5" />
+<text x="445" y="881" class="label">Denied / unavailable result</text>
+<g data-node="ToolMessage → model round">
+<rect x="88" y="895" width="592" height="146" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="106" y="926" class="heading">ToolMessage → model round</text>
+<text x="106" y="955" class="body">Correlate results, then process the queue or return to the model.</text>
+<text x="106" y="981" class="body">Check the tool message content for success.</text>
+<text x="106" y="1007" class="body">The model then produces the final reply.</text>
+</g>
+<g data-node="extractExpressionFromUserMessage()">
+<rect x="752" y="249" width="600" height="95" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="770" y="280" class="heading">extractExpressionFromUserMessage()</text>
+<text x="770" y="309" class="body">Select the longest candidate containing digits.</text>
+</g>
+<path d="M 946 344 V 366" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="960" y="363" class="label">Extracted</text>
+<g data-node="Code selects the calculator">
+<rect x="752" y="374" width="330" height="110" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="770" y="405" class="heading">Code selects the calculator</text>
+<text x="770" y="434" class="body">Use the extracted expression.</text>
+<text x="770" y="460" class="body">No prior model call in this branch.</text>
+</g>
+<path d="M 1208 344 V 366" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="1220" y="364" class="label">No expression</text>
+<g data-node="Math Prompt">
+<rect x="1100" y="374" width="252" height="110" rx="9" fill="#eef4fb" stroke="#b9cce3" />
+<text x="1118" y="405" class="heading">Math Prompt</text>
+<text x="1118" y="434" class="body">Take the model branch.</text>
+</g>
+<path d="M 917 484 V 510" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Use the calculator selected at initialization">
+<rect x="752" y="518" width="600" height="94" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="770" y="549" class="heading">Use the calculator selected at initialization</text>
+<text x="770" y="578" class="body">loadMathCalculatorTool() selects by the pipeline flag.</text>
+</g>
+<path d="M 1052 612 V 635 H 904 V 661" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="918" y="651" class="label">Disabled</text>
+<path d="M 1052 635 H 1220 V 661" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="1233" y="651" class="label">Enabled</text>
+<g data-node="Original calculator">
+<rect x="752" y="669" width="292" height="115" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="770" y="700" class="heading">Original calculator</text>
+<text x="770" y="729" class="body">Invoke directly.</text>
+<text x="770" y="755" class="body">Not the MCP Graph sequence.</text>
+</g>
+<g data-node="Runtime tool">
+<rect x="1060" y="669" width="292" height="115" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="1078" y="700" class="heading">Runtime tool</text>
+<text x="1078" y="725" class="body">Obtain the composed tool.</text>
+<text x="1078" y="748" class="body">Check governance and Context</text>
+<text x="1078" y="771" class="body">for this path.</text></g>
+<path d="M 898 784 V 816 H 1052 V 849" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<path d="M 1206 784 V 816 H 1052" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Tool result → code reply template">
+<rect x="752" y="857" width="600" height="184" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="770" y="888" class="heading">Tool result → code reply template</text>
+<text x="770" y="917" class="body">No model Tool Call is created first.</text>
+<text x="770" y="943" class="body">This direct branch does not ask the model to rewrite the result.</text>
+<text x="770" y="969" class="body">An Error: string can still enter the template;</text>
+<text x="770" y="995" class="body">calculation success needs a separate check.</text>
+</g>
+<rect x="64" y="1121" width="1312" height="105" rx="9" fill="#eef4fb" stroke="#b9cce3" />
+<text x="84" y="1150" class="small">Shared prerequisites: tool initialization and entry conditions must hold. The MCP model path also needs Provider tool binding support.</text>
+<text x="84" y="1177" class="small">On the left, pending confirmation must pass its confirmation flow. Resume, remaining calls, and multiple rounds are not expanded here.</text>
+<text x="84" y="1204" class="small">Teaching scenario and static source trace only: no request was sent or execution record obtained. 1680 is the expected value.</text>
+<text x="64" y="1277" class="small">Static source trace · Chat Gun 92a5673003e4 · Teaching scenario, not an execution record · Inspected 2026-10-23</text>
+</svg>

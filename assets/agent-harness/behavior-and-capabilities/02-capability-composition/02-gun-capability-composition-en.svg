@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1150" width="1440" height="1150" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Chat Gun capability composition</title><desc id="desc">Local tools pass through descriptors, profiles, current_weather SDK staging, the Registry, and governance wrappers. Optional MCP uses stdio discovery or declared tools according to enforcement. Optional MCP failures may return an empty set; outer initialization failures may stop the entire load.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d" /></marker></defs>
+<style>text{font-family:'Segoe UI',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600}</style>
+<rect width="1440" height="1150" fill="#f5f8fc" />
+<rect x="32" y="28" width="1376" height="1094" rx="14" fill="#fafdff" stroke="#b9cce3" stroke-dasharray="6 6" />
+
+<text x="64" y="64" class="kicker">BEHAVIOR &amp; CAPABILITIES / 02-B</text>
+<text x="64" y="113" class="title">Chat Gun capability composition</text>
+<text x="64" y="151" class="small">Tool loading, concrete governance, and execution readiness each have conditions to verify.</text>
+<rect x="64" y="182" width="620" height="555" rx="9" fill="#f1f6fc" stroke="#b9cce3" />
+<rect x="708" y="182" width="668" height="555" rx="9" fill="#f1f6fc" stroke="#b9cce3" />
+<text x="88" y="219" class="heading">Local tool initialization</text>
+<text x="732" y="219" class="heading">Optional MCP loading</text>
+<g data-node="LOCAL_PRODUCTION_TOOLS">
+<rect x="88" y="245" width="572" height="91" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="106" y="276" class="heading">LOCAL_PRODUCTION_TOOLS</text>
+<text x="106" y="305" class="body">Calculator, search, fetch, weather, and other tools.</text>
+</g>
+<path d="M 374 336 V 360" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Descriptors and execution profiles">
+<rect x="88" y="368" width="572" height="112" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="106" y="399" class="heading">Descriptors and execution profiles</text>
+<text x="106" y="428" class="body">current_weather uses SDK staging by default.</text>
+<text x="106" y="454" class="body">Only the legacy option skips this staging.</text>
+</g>
+<path d="M 374 480 V 504" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Runtime Registry and governance wrappers">
+<rect x="88" y="512" width="572" height="107" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="106" y="543" class="heading">Runtime Registry and governance wrappers</text>
+<text x="106" y="572" class="body">Check prerequisites and map tools to implementations.</text>
+<text x="106" y="598" class="body">Local wrappers have their own composition points.</text>
+</g>
+<text x="88" y="662" class="small">Outer initialization errors may stop the entire load.</text>
+<text x="88" y="691" class="small">Staging can affect a request that only needs the calculator.</text>
+<g data-node="Loading conditions / enforcement branches">
+<rect x="732" y="245" width="620" height="91" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="750" y="276" class="heading">Loading conditions / enforcement branches</text>
+<text x="750" y="305" class="body">includeMcp + MCP_LOAD_ON_START + server configuration</text>
+</g>
+<path d="M 1042 336 V 357 H 883 V 379" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="750" y="371" class="label">Disabled</text>
+<path d="M 1042 357 H 1200 V 379" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="1220" y="363" class="label">Enabled</text>
+<g data-node="stdio discovery">
+<rect x="732" y="387" width="302" height="181" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="750" y="418" class="heading">stdio discovery</text>
+<text x="750" y="447" class="body">Connect → listTools</text>
+<text x="750" y="473" class="body">Convert Schema subset.</text>
+<text x="750" y="499" class="body">External execution via callTool.</text>
+<text x="750" y="525" class="body">Skip designated secret servers.</text>
+</g>
+<g data-node="Declared tools">
+<rect x="1050" y="387" width="302" height="181" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="1068" y="418" class="heading">Declared tools</text>
+<text x="1068" y="447" class="body">Build from risk descriptions.</text>
+<text x="1068" y="473" class="body">Register descriptors / profiles.</text>
+<text x="1068" y="499" class="body">Do not start stdio at this stage.</text>
+<text x="1068" y="525" class="body">Needs an isolated runner.</text>
+</g>
+<path d="M 883 568 V 590 H 1042 V 610" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<path d="M 1200 568 V 590 H 1042" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="MCP loading result">
+<rect x="732" y="618" width="620" height="91" rx="9" fill="#eef4fb" stroke="#b9cce3" />
+<text x="750" y="649" class="heading">MCP loading result</text>
+<text x="750" y="678" class="body">Optional load failures can return an empty set; local tools remain.</text>
+</g>
+<path d="M 660 565 H 674 V 770 H 565 V 790" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<path d="M 1042 709 V 770 H 875 V 790" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Tool set supplied to the Agent">
+<rect x="320" y="798" width="800" height="104" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="338" y="829" class="heading">Tool set supplied to the Agent</text>
+<text x="338" y="858" class="body">For model binding or code calls; inclusion does not guarantee execution readiness.</text>
+</g>
+<rect x="64" y="932" width="1312" height="105" rx="9" fill="#eef4fb" stroke="#b9cce3" />
+<text x="84" y="961" class="small">The full dispatch pipeline depends on source Feature Flags; disabling it does not remove every local governance wrapper.</text>
+<text x="84" y="988" class="small">The stdio branch uses Promise.all: one server rejection may fail the entire MCP load, rather than degrade each server independently.</text>
+<text x="84" y="1015" class="small">A declared tool's direct function rejects execution; a loaded description does not prove isolated execution has completed.</text>
+<text x="64" y="1097" class="small">Static source trace · Chat Gun 92a5673003e4 · No external MCP started · Inspected 2026-10-23</text>
+</svg>

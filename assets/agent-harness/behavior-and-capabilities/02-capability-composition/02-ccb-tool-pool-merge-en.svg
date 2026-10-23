@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1040" width="1440" height="1040" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">CCB tool pool: two merge layers</title><desc id="desc">The inner assembleToolPool merges built-in and MCP tools, keeping built-in tools on name collisions. The outer mergeAndFilterTools gives initialTools precedence, then filters by mode and sorts. X is an illustrative tool name.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d" /></marker></defs>
+<style>text{font-family:'Segoe UI',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600}</style>
+<rect width="1440" height="1040" fill="#f5f8fc" />
+<rect x="32" y="28" width="1376" height="984" rx="14" fill="#fafdff" stroke="#b9cce3" stroke-dasharray="6 6" />
+
+<text x="64" y="64" class="kicker">BEHAVIOR &amp; CAPABILITIES / 02-A</text>
+<text x="64" y="113" class="title">CCB tool pool: two merge layers</text>
+<text x="64" y="151" class="small">Name precedence depends on the merge layer. X is an illustrative name used to track its source.</text>
+<rect x="64" y="179" width="1312" height="338" rx="9" fill="#f1f6fc" stroke="#b9cce3" />
+<text x="88" y="216" class="heading">Inner layer / assembleToolPool()</text>
+<g data-node="Built-in candidates">
+<rect x="88" y="243" width="375" height="108" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="106" y="274" class="heading">Built-in candidates</text>
+<text x="106" y="303" class="body">getAllBaseTools() → getTools()</text>
+<text x="106" y="329" class="body">Apply mode, deny, and other conditions.</text>
+</g>
+<g data-node="MCP candidates">
+<rect x="88" y="375" width="375" height="100" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="106" y="406" class="heading">MCP candidates</text>
+<text x="106" y="435" class="body">Apply MCP deny filtering.</text>
+</g>
+<path d="M 463 297 H 520 V 344 H 563" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<path d="M 463 425 H 520 V 344" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Sort groups, deduplicate names">
+<rect x="571" y="277" width="350" height="154" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="589" y="308" class="heading">Sort groups, deduplicate names</text>
+<text x="589" y="337" class="body">Built-in wins a name collision.</text>
+<text x="589" y="363" class="body">Built-in X + MCP X</text>
+<text x="589" y="389" class="body">→ Built-in X</text>
+</g>
+<path d="M 921 351 H 985" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Inner result">
+<rect x="993" y="286" width="354" height="128" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="1011" y="317" class="heading">Inner result</text>
+<text x="1011" y="346" class="body">Keep built-in / MCP partitions.</text>
+<text x="1011" y="372" class="body">Continue to the outer merge.</text>
+</g>
+<text x="1000" y="549" class="label">Inner result</text>
+<rect x="64" y="579" width="1312" height="269" rx="9" fill="#f1f6fc" stroke="#b9cce3" />
+<text x="88" y="616" class="heading">Outer layer / useMergedTools() → mergeAndFilterTools()</text>
+<g data-node="initialTools">
+<rect x="88" y="650" width="375" height="117" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="106" y="681" class="heading">initialTools</text>
+<text x="106" y="710" class="body">Initial set supplied by the caller.</text>
+<text x="106" y="736" class="body">Example: also includes an X.</text>
+</g>
+<path d="M 463 709 H 563" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Merge and deduplicate again">
+<rect x="571" y="650" width="350" height="149" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="589" y="681" class="heading">Merge and deduplicate again</text>
+<text x="589" y="710" class="body">initialTools wins a name collision.</text>
+<text x="589" y="736" class="body">Initial X + built-in X</text>
+<text x="589" y="762" class="body">→ Initial X</text>
+</g>
+<path d="M 921 719 H 985" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="Mode filtering and sorting">
+<rect x="993" y="650" width="354" height="149" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="1011" y="681" class="heading">Mode filtering and sorting</text>
+<text x="1011" y="710" class="body">Coordinator and other conditions</text>
+<text x="1011" y="736" class="body">may further narrow the set.</text>
+<text x="1011" y="762" class="body">Keep tool partitions sorted.</text>
+</g>
+<path d="M 1170 414 V 555 H 965 V 630 H 747 V 642" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="64" y="876" width="1312" height="78" rx="9" fill="#eef4fb" stroke="#b9cce3" />
+<text x="84" y="905" class="small">Some getTools() mode branches return early; general-branch steps such as isEnabled do not apply to every mode.</text>
+<text x="84" y="932" class="small">Stable sorting supports tool description order and the Prompt cache; actual model visibility still needs the request itself.</text>
+<text x="64" y="987" class="small">Static source trace · CCB 77a7934e15d6 · X is illustrative · Inspected 2026-10-23</text>
+</svg>

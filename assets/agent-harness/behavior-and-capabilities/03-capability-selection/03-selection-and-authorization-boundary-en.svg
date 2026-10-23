@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1010" width="1440" height="1010" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">From capability sets to concrete calls</title><desc id="desc">A conceptual map separates registration, entry-point availability, model visibility, model proposals or code routing, and concrete execution decisions. Each point requires different evidence. The diagram does not claim that both projects share a complete pipeline.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d" /></marker></defs>
+<style>text{font-family:'Segoe UI',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600}</style>
+<rect width="1440" height="1010" fill="#f5f8fc" />
+<rect x="32" y="28" width="1376" height="954" rx="14" fill="#fafdff" stroke="#b9cce3" stroke-dasharray="6 6" />
+
+<text x="64" y="64" class="kicker">BEHAVIOR &amp; CAPABILITIES / 03</text>
+<text x="64" y="113" class="title">From capability sets to concrete calls</text>
+<text x="64" y="151" class="small">Reading the architecture: one module may handle several points, and Context changes may trigger recomposition.</text>
+<g data-node="1  Registered">
+<rect x="80" y="198" width="380" height="120" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="98" y="229" class="heading">1  Registered</text>
+<text x="98" y="258" class="body">Capability definitions in the Registry</text>
+<text x="98" y="284" class="body">Evidence: source, name, version</text>
+</g>
+<g data-node="2  Available at entry">
+<rect x="530" y="198" width="380" height="120" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="548" y="229" class="heading">2  Available at entry</text>
+<text x="548" y="258" class="body">By Agent, mode, and loading conditions</text>
+<text x="548" y="284" class="body">Evidence: filters and resulting list</text>
+</g>
+<g data-node="3  Visible to the model">
+<rect x="980" y="198" width="380" height="120" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="998" y="229" class="heading">3  Visible to the model</text>
+<text x="998" y="258" class="body">Descriptions in this actual request</text>
+<text x="998" y="284" class="body">Evidence: request tool Schemas</text>
+</g>
+<path d="M 460 258 H 522" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<path d="M 910 258 H 972" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<path d="M 1170 318 V 365 H 1000 V 401" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="1060" y="356" class="label">Model path</text>
+<path d="M 720 318 V 365 H 302 V 401" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="338" y="356" class="label">Code can route directly, without model exposure</text>
+<g data-node="4-B  Code selects the call">
+<rect x="80" y="409" width="550" height="141" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="98" y="440" class="heading">4-B  Code selects the call</text>
+<text x="98" y="469" class="body">Select tools and arguments via input, rules, or code.</text>
+<text x="98" y="495" class="body">Evidence: selected route and extraction result.</text>
+<text x="98" y="521" class="body">A tool may execute without a model Tool Call.</text>
+</g>
+<g data-node="4-A  Model proposes the call">
+<rect x="810" y="409" width="550" height="141" rx="9" fill="#fff" stroke="#b9cce3" />
+<text x="828" y="440" class="heading">4-A  Model proposes the call</text>
+<text x="828" y="469" class="body">Return a tool name, arguments, and call identity.</text>
+<text x="828" y="495" class="body">Evidence: actual Provider response and decoded result.</text>
+<text x="828" y="521" class="body">A direct answer may contain no tool call.</text>
+</g>
+<path d="M 355 550 V 593 H 575 V 632" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<path d="M 1085 550 V 593 H 865 V 632" fill="none" stroke="#52657d" stroke-width="1.7" marker-end="url(#arrow)" />
+<g data-node="5  Verify the execution decision for this call">
+<rect x="320" y="640" width="800" height="133" rx="9" fill="#e7f2ff" stroke="#80baff" />
+<text x="338" y="671" class="heading">5  Verify the execution decision for this call</text>
+<text x="338" y="700" class="body">Check the actual consumer, trusted identity, resources, policy, and approval.</text>
+<text x="338" y="726" class="body">Evidence: allowed, denied, pending confirmation, or unavailable.</text>
+<text x="338" y="752" class="body">Concrete checks depend on the product and execution path.</text>
+</g>
+<rect x="64" y="809" width="1312" height="105" rx="9" fill="#eef4fb" stroke="#b9cce3" />
+<text x="84" y="838" class="small">Schema validation checks input shape; resource access still requires checking the authorization consumer for the concrete call.</text>
+<text x="84" y="865" class="small">This map identifies observation points; it does not claim that CCB and Chat Gun implement the same five-stage pipeline.</text>
+<text x="84" y="892" class="small">Previously exposed descriptions do not vanish when hidden later; current conditions still need checking at execution.</text>
+<text x="64" y="957" class="small">Conceptual diagram · Based on the pinned CCB / Chat Gun versions in the article · Not an execution sequence record</text>
+</svg>
