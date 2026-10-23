@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1190" width="1600" height="1190" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Commit state determines the retry path</title><desc id="desc">A timeout ends a wait. Retry decisions still require commit state, policy, and budget.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs>
+<style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1190" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 05</text>
+<text x="70" y="105" class="title">Commit state determines the retry path</text>
+<text x="70" y="146" class="small">A timeout ends a wait. Retry decisions still require commit state, policy, and budget.</text>
+<g>
+<rect x="70" y="185" width="1460" height="115" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="218" class="heading">First classify this operation</text>
+<text x="92" y="250" class="body">This map focuses on two post-dispatch outcomes; rejection and cancellation have separate semantics.</text>
+</g>
+<path d="M 390 300 V 350" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1160 300 V 350" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="350" width="620" height="115" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="383" class="heading">failed_not_committed</text>
+<text x="92" y="415" class="body">The execution contract reports no commit.</text>
+</g>
+<g>
+<rect x="840" y="350" width="690" height="115" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="862" y="383" class="heading">ambiguous_after_dispatch</text>
+<text x="862" y="415" class="body">Dispatch occurred; external commit is uncertain.</text>
+</g>
+<path d="M 380 465 V 520" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1185 465 V 520" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="520" width="620" height="160" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="553" class="heading">A  Evaluate the retry gate</text>
+<text x="92" y="585" class="body">Retryable error + policy allows + remaining budget.</text>
+<text x="92" y="613" class="body">Check cancellation and the call path attempt limit.</text>
+<text x="92" y="641" class="body">If conditions fail: stop retrying; retain failure.</text>
+</g>
+<g>
+<rect x="840" y="520" width="690" height="115" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="862" y="553" class="heading">Reconcile external state first</text>
+<text x="862" y="585" class="body">A reconciler needs an available query for this operation.</text>
+</g>
+<path d="M 380 680 V 745" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="400" y="722" class="label">All conditions pass</text>
+<g>
+<rect x="70" y="745" width="620" height="130" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="92" y="778" class="heading">Backoff → next attempt</text>
+<text x="92" y="810" class="body">Handle cancellation during backoff; classify the next result.</text>
+<text x="92" y="838" class="body">Coordinate retries across model, runner, and recovery.</text>
+</g>
+<path d="M 1185 635 V 665 H 950 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1185 635 V 665 H 1185 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1185 635 V 665 H 1420 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="840" y="715" width="220" height="160" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="862" y="748" class="heading">committed</text>
+<text x="862" y="780" class="body">Handle committed</text>
+<text x="862" y="808" class="body">results; check</text>
+<text x="862" y="836" class="body">availability / reuse.</text>
+</g>
+<g>
+<rect x="1075" y="715" width="220" height="160" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="1097" y="748" class="heading">not_committed</text>
+<text x="1097" y="780" class="body">If retry is allowed,</text>
+<text x="1097" y="808" class="body">return to gate A.</text>
+<text x="1097" y="836" class="body">No direct redispatch.</text>
+</g>
+<g>
+<rect x="1310" y="715" width="220" height="160" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="1332" y="748" class="heading">unknown / other</text>
+<text x="1332" y="780" class="body">Defer; keep unknown.</text>
+<text x="1332" y="808" class="body">Handle manually</text>
+<text x="1332" y="836" class="body">when necessary.</text>
+</g>
+<g>
+<rect x="70" y="935" width="1460" height="170" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="968" class="heading">Limits to retain for the pinned version</text>
+<text x="92" y="1000" class="body">The default MCP reconciler returns unknown: MCP_RECONCILIATION_QUERY_UNAVAILABLE.</text>
+<text x="92" y="1028" class="body">The pipeline sets maxAttempts to 1 for authorizationAlreadyEvaluated, non-read-only calls.</text>
+<text x="92" y="1056" class="body">A local Ledger does not guarantee external exactly-once; do not rerun just to recover a success message.</text>
+</g>
+<text x="70" y="1150" class="small">Reading: Sections 5-6. Source-based explanation; no external commits or failure drills were performed.</text>
+</svg>

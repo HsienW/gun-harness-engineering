@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1190" width="1600" height="1190" lang="zh-TW" role="img" aria-labelledby="title desc">
+<title id="title">提交狀態決定重試路徑</title><desc id="desc">逾時只表示等待結束；能否重試，還要核對提交狀態、政策與預算。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs>
+<style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1190" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 05</text>
+<text x="70" y="105" class="title">提交狀態決定重試路徑</text>
+<text x="70" y="146" class="small">逾時只表示等待結束；能否重試，還要核對提交狀態、政策與預算。</text>
+<g>
+<rect x="70" y="185" width="1460" height="115" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="218" class="heading">先分清這一次操作的結果</text>
+<text x="92" y="250" class="body">以下聚焦派送後的兩類結果；派送前拒絕與取消仍需依 outcome／dispatchState 分開處理。</text>
+</g>
+<path d="M 390 300 V 350" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1160 300 V 350" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="350" width="620" height="115" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="383" class="heading">failed_not_committed</text>
+<text x="92" y="415" class="body">執行契約明確回報尚未提交。</text>
+</g>
+<g>
+<rect x="840" y="350" width="690" height="115" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="862" y="383" class="heading">ambiguous_after_dispatch</text>
+<text x="862" y="415" class="body">已派送，但無法確定外部是否已提交。</text>
+</g>
+<path d="M 380 465 V 520" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1185 465 V 520" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="520" width="620" height="160" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="553" class="heading">A  核對重試條件</text>
+<text x="92" y="585" class="body">錯誤可重試 ＋ policy 允許 ＋ budget 足夠。</text>
+<text x="92" y="613" class="body">核對取消與當前呼叫方式的嘗試上限。</text>
+<text x="92" y="641" class="body">條件不符：停止本次重試，保留失敗結果。</text>
+</g>
+<g>
+<rect x="840" y="520" width="690" height="115" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="862" y="553" class="heading">先回查外部狀態</text>
+<text x="862" y="585" class="body">reconciler 必須具備該操作可用的回查能力。</text>
+</g>
+<path d="M 380 680 V 745" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="400" y="722" class="label">全部條件成立</text>
+<g>
+<rect x="70" y="745" width="620" height="130" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="92" y="778" class="heading">Backoff → 下一次 attempt</text>
+<text x="92" y="810" class="body">等待期間處理取消，下一次結果仍須重新分類。</text>
+<text x="92" y="838" class="body">避免模型迴圈、runner、恢復流程各自無限重做。</text>
+</g>
+<path d="M 1185 635 V 665 H 950 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1185 635 V 665 H 1185 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1185 635 V 665 H 1420 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="840" y="715" width="220" height="160" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="862" y="748" class="heading">committed</text>
+<text x="862" y="780" class="body">處理已提交結果。</text>
+<text x="862" y="808" class="body">核對結果可取得</text>
+<text x="862" y="836" class="body">與重用條件。</text>
+</g>
+<g>
+<rect x="1075" y="715" width="220" height="160" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="1097" y="748" class="heading">not_committed</text>
+<text x="1097" y="780" class="body">若允許重試，</text>
+<text x="1097" y="808" class="body">回到 A 核對。</text>
+<text x="1097" y="836" class="body">不直接再次派送。</text>
+</g>
+<g>
+<rect x="1310" y="715" width="220" height="160" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="1332" y="748" class="heading">unknown / other</text>
+<text x="1332" y="780" class="body">defer，保留未知。</text>
+<text x="1332" y="808" class="body">必要時人工處理。</text>
+<text x="1332" y="836" class="body">不猜測尚未提交。</text>
+</g>
+<g>
+<rect x="70" y="935" width="1460" height="170" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="968" class="heading">固定版本中要保留的限制</text>
+<text x="92" y="1000" class="body">MCP 預設 reconciler 回傳 unknown：MCP_RECONCILIATION_QUERY_UNAVAILABLE。</text>
+<text x="92" y="1028" class="body">authorizationAlreadyEvaluated 且非唯讀的 pipeline 分支，將 maxAttempts 設為 1。</text>
+<text x="92" y="1056" class="body">本地 Ledger 紀錄不會自動保證外部 exactly-once；不能只為補回成功文字而重新執行。</text>
+</g>
+<text x="70" y="1150" class="small">閱讀位置：第 5、6 節。此圖依原始碼語意整理，未執行外部提交或故障演練。</text>
+</svg>
