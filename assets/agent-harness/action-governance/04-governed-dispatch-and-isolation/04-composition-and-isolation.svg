@@ -1,65 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1420" width="1600" height="1420" lang="zh-TW" role="img" aria-labelledby="title desc">
-<title id="title">組裝、派送與隔離各有成立條件</title><desc id="desc">下圖呈現組裝關係與設定，不表示每個 Agent 都沿同一條執行時序。</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
-<rect width="1600" height="1420" fill="#f5f8fc"/>
-<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 04</text>
-<text x="70" y="105" class="title">組裝、派送與隔離各有成立條件</text>
-<text x="70" y="146" class="small">下圖呈現組裝關係與設定，不表示每個 Agent 都沿同一條執行時序。</text>
-<g>
-<rect x="70" y="190" width="1460" height="125" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="92" y="223" class="heading">Registry: loadAgentToolRuntime()</text>
-<text x="92" y="255" class="body">建立 authorization、confirmation Store、Runtime descriptor、execution profile 與 enforcer。</text>
-<text x="92" y="283" class="body">治理包裝與可選 pipeline 分開組裝；需沿實際 consumer 核對。</text>
-</g>
-<path d="M 420 315 V 380" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="440" y="355" class="label">套用治理</text>
-<path d="M 1170 315 V 380" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="1190" y="355" class="label">來源開關控制</text>
-<g>
-<rect x="70" y="380" width="700" height="190" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="92" y="413" class="heading">Governance wrapper</text>
-<text x="92" y="445" class="body">工具啟用、輸入大小、授權與 audit。</text>
-<text x="92" y="473" class="body">Timeout、取消與結果處理。</text>
-<text x="92" y="501" class="body">Wrapper 存在不代表完整 pipeline 已啟用。</text>
-</g>
-<g>
-<rect x="810" y="380" width="720" height="190" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="832" y="413" class="heading">Optional dispatch pipeline</text>
-<text x="832" y="445" class="body">Descriptor、canonical Context、排程與限流。</text>
-<text x="832" y="473" class="body">Step lock、runner、結構化結果。</text>
-<text x="832" y="501" class="body">MATH／DEEP_RESEARCHER／MCP 來源各有開關。</text>
-</g>
-<text x="70" y="625" class="small">以下展開 profile enforcement 的設定與能力；不是兩個方塊之後共用的必經時序。</text>
-<g>
-<rect x="70" y="660" width="1460" height="155" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="92" y="693" class="heading">ExecutionProfileEnforcer</text>
-<text x="92" y="725" class="body">必須核對 enforcer 注入與 TOOL_EXECUTION_PROFILE_ENFORCEMENT_ENABLED。</text>
-<text x="92" y="753" class="body">關閉：仍處理必要 secret 解析，回傳 disabled。啟用：核對 profile 參照、版本與 runner 能力。</text>
-<text x="92" y="781" class="body">這個開關與完整 dispatch pipeline 的來源開關分開。</text>
-</g>
-<path d="M 420 815 V 875" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 1170 815 V 875" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<g>
-<rect x="70" y="875" width="700" height="155" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="92" y="908" class="heading">trusted_in_process</text>
-<text x="92" y="940" class="body">Capability matching 直接允許對應 mode。</text>
-<text x="92" y="968" class="body">不能推論所有 CPU／記憶體／檔案條件都有 OS 隔離。</text>
-<text x="92" y="996" class="body">需分開核對工具實作與實際執行條件。</text>
-</g>
-<g>
-<rect x="810" y="875" width="720" height="155" rx="10" fill="#fff7e5" stroke="#d8b866"/>
-<text x="832" y="908" class="heading">isolated_process</text>
-<text x="832" y="940" class="body">需要 runner 與符合 profile 的隔離能力。</text>
-<text x="832" y="968" class="body">缺少 runner 或能力不足 → typed deny。</text>
-<text x="832" y="996" class="body">一般 subprocess 不等於已滿足隔離契約。</text>
-</g>
-<g>
-<rect x="70" y="1100" width="1460" height="215" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="92" y="1133" class="heading">固定版本的限制與不同入口</text>
-<text x="92" y="1165" class="body">安全文件指出：沒有 production SandboxRunnerPort 實作，不能把測試替身畫成部署保證。</text>
-<text x="92" y="1193" class="body">Math 的 loadMathCalculatorTool()：pipeline 關閉時直接回傳原 calculator；啟用時從 Runtime 工具取得。</text>
-<text x="92" y="1221" class="body">Pipeline 關閉不會移除 Registry 套用的所有 wrapper；Math 的直接匯入分支則須另外看待。</text>
-<text x="92" y="1249" class="body">MCP 能否執行，需同時核對來源開關、註冊、profile、runner 與必要依賴。</text>
-</g>
-<text x="70" y="1370" class="small">閱讀位置：第 1～4 節。圖示不宣稱隔離、網路或多實例測試已通過。</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" lang="zh-TW" role="img" aria-labelledby="04-composition-and-isolation-title 04-composition-and-isolation-desc" id="d-04-composition-and-isolation-root">
+<title id="04-composition-and-isolation-title">組裝、派送與隔離的條件</title><desc id="04-composition-and-isolation-desc">Registry 組裝包裝與可選管線，profile enforcement 再依設定與 runner 能力判斷。</desc>
+<defs>
+      <style>#d-04-composition-and-isolation-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #d-04-composition-and-isolation-root nav, #d-04-composition-and-isolation-root p, #d-04-composition-and-isolation-root li { font-size:14px;line-height:1.8 }
+      #d-04-composition-and-isolation-root a { color:#0066d6 }
+      #d-04-composition-and-isolation-root .diagram-container { width:100%;overflow-x:auto }
+      #d-04-composition-and-isolation-root details { margin-top:24px;border-top:1px solid #b9cce3;padding-top:16px }
+      #d-04-composition-and-isolation-root summary { cursor:pointer;font-weight:600 }
+      #d-04-composition-and-isolation-root .notes { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px }
+      #d-04-composition-and-isolation-root ul { padding-left:20px }
+      #d-04-composition-and-isolation-root nav, #d-04-composition-and-isolation-root details { display:none }
+      #d-04-composition-and-isolation-root .diagram-container { overflow-x:visible }</style><marker id="d-04-composition-and-isolation-04-composition-and-isolation-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker><marker id="d-04-composition-and-isolation-04-composition-and-isolation-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker></defs><rect width="1280" height="720" fill="#f5f8fc"/><rect x="56" y="72" width="1168" height="608" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/><rect x="88" y="60" width="208" height="24" fill="#f5f8fc"/><text x="96" y="77" font-size="12" fill="#102743" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">COMPOSITION / ISOLATION</text><text x="1184" y="108" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif" text-anchor="end">概念圖 · 原始碼查讀</text><rect x="96" y="116" width="64" height="4" fill="#0078fc"/><path d="M248 276 L248 324" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-04-composition-and-isolation-04-composition-and-isolation-arrow)"/><path d="M624 276 L624 324" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-04-composition-and-isolation-04-composition-and-isolation-arrow)"/><path d="M1016 276 L1016 324" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-04-composition-and-isolation-04-composition-and-isolation-arrow)"/><path d="M960 452 L960 468 Q960 476 952 476 L632 476 Q624 476 624 484 L624 500" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-04-composition-and-isolation-04-composition-and-isolation-arrow)"/><path d="M1096 452 L1096 500" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-04-composition-and-isolation-04-composition-and-isolation-arrow)"/><g data-node="true"><rect x="96" y="164" width="1088" height="112" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="112" y="176" width="58" height="18" rx="2" fill="#eef4fb"/><text x="120" y="189" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">COMPOSE</text><text x="112" y="215" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Registry: loadAgentToolRuntime()</text><text x="112" y="238" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">組裝 authorization、confirmation Store、Runtime descriptor、execution profile 與 enforcer</text><text x="112" y="256" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">以下是設定與能力關係，並非每個 Agent 都依序通過同一條管線</text></g><g data-node="true"><rect x="96" y="324" width="304" height="128" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="112" y="336" width="58" height="18" rx="2" fill="#eef4fb"/><text x="120" y="349" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">WRAPPER</text><text x="112" y="375" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Governance wrapper</text><text x="112" y="398" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">啟用條件、輸入、授權與 audit</text><text x="112" y="416" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Timeout、取消與結果處理</text></g><g data-node="true"><rect x="456" y="324" width="336" height="128" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="472" y="336" width="88" height="18" rx="2" fill="#eef4fb"/><text x="480" y="349" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">SOURCE FLAGS</text><text x="472" y="375" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">可選 dispatch pipeline</text><text x="472" y="398" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Descriptor、Context、排程、鎖與 runner</text><text x="472" y="416" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">MATH／DEEP_RESEARCHER／MCP 開關</text></g><g data-node="true"><rect x="848" y="324" width="336" height="128" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/><rect x="864" y="336" width="130" height="18" rx="2" fill="#1c78e4"/><text x="872" y="349" font-size="9" fill="#ffffff" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">PROFILE ENFORCEMENT</text><text x="864" y="375" font-size="14" fill="#ffffff" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">ExecutionProfileEnforcer</text><text x="864" y="398" font-size="12" fill="#e2efff" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">獨立的 enforcement 開關與注入</text><text x="864" y="416" font-size="12" fill="#e2efff" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">啟用後核對 profile、版本與 runner</text></g><g data-node="true"><rect x="96" y="500" width="304" height="96" rx="8" fill="#eef4fb" stroke="#b9cce3" stroke-width="1.2"/><rect x="112" y="512" width="112" height="18" rx="2" fill="#eef4fb"/><text x="120" y="525" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">ENTRY DIFFERENCE</text><text x="112" y="551" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Math 入口另有直接匯入分支</text><text x="112" y="574" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Pipeline 關：原始 calculator</text></g><g data-node="true"><rect x="456" y="500" width="336" height="96" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="472" y="512" width="76" height="18" rx="2" fill="#eef4fb"/><text x="480" y="525" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">IN-PROCESS</text><text x="472" y="551" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">trusted_in_process</text><text x="472" y="574" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">能力匹配可允許；不代表 OS 隔離</text></g><g data-node="true"><rect x="848" y="500" width="336" height="96" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="864" y="512" width="106" height="18" rx="2" fill="#eef4fb"/><text x="872" y="525" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">ISOLATED RUNNER</text><text x="864" y="551" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">isolated_process</text><text x="864" y="574" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">需匹配 runner；缺少或能力不足則 typed deny</text></g><path d="M96 612 H1184" stroke="#d5e1ee" stroke-width="1"/><text x="96" y="638" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">固定版本未提供 production SandboxRunnerPort 實作；一般 subprocess 或測試替身不構成部署隔離保證。</text><text x="96" y="658" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Enforcement 關閉仍解析必要 secrets；pipeline 關閉不會移除所有本地治理 wrapper。</text>
 </svg>
