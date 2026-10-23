@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="memory-en-title memory-en-desc" id="input-context-04-memory-en">
+  <title id="memory-en-title">Memory recall and Context budget tradeoffs</title>
+  <desc id="memory-en-desc">Chat Gun issues a recall only when conditions such as a canonical execution context and a Memory provider are available. Without a recall there is no Memory block; when a recall is issued but times out or fails, Memory is skipped and the manifest records a reason code; a successful recall and authorization produces a P3 candidate block that still goes through Context budget selection. Default compression mainly shortens or removes P5 and P4 and does not generate a history summary.</desc>
+  <defs>
+    <style>
+      #input-context-04-memory-en { font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #input-context-04-memory-en .ink { fill: #102743; }
+      #input-context-04-memory-en .muted { fill: #52657d; }
+      #input-context-04-memory-en .blue { fill: #0066d6; }
+      #input-context-04-memory-en .small { font-size: 12px; }
+      #input-context-04-memory-en .body { font-size: 14px; }
+      #input-context-04-memory-en .label { font-size: 15px; font-weight: 600; }
+      #input-context-04-memory-en .mono { font-family: 'Geist Mono', Consolas, monospace; }
+    </style>
+    <marker id="memory-en-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0 0 L9 3.5 L0 7 Z" fill="#52657d"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f8fc"/>
+  <rect x="56" y="72" width="1168" height="576" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <rect x="88" y="60" width="292" height="24" fill="#f5f8fc"/>
+  <text x="96" y="77" class="blue mono small" letter-spacing=".10em">INPUT &amp; CONTEXT / 04</text>
+  <text x="96" y="133" class="ink" font-size="26" font-weight="600">Recall Memory first, then make Context tradeoffs</text>
+  <text x="96" y="164" class="muted body">"No Memory" has different causes; a recalled record is still only a candidate block for budget selection.</text>
+
+  <rect x="96" y="201" width="348" height="127" rx="8" fill="#ffffff" stroke="#80baff" stroke-width="1.4"/>
+  <text x="117" y="231" class="blue label">Recall prerequisites</text>
+  <text x="117" y="261" class="ink body">canonical execution context</text>
+  <text x="117" y="286" class="ink body">Principal, Scope, and Memory provider</text>
+  <text x="117" y="310" class="muted small">Provider optional; default Store is in-memory</text>
+  <path d="M453 265 H483" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#memory-en-arrow)"/>
+  <rect x="492" y="201" width="343" height="127" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="513" y="231" class="ink label">Memory recall</text>
+  <text x="513" y="260" class="ink body">Scoped lookup; governance authorizes</text>
+  <text x="513" y="287" class="muted small">Returns provenance, revision metadata</text>
+  <text x="513" y="310" class="muted small">Check config and call path for recall</text>
+
+  <path d="M844 265 H873" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#memory-en-arrow)"/>
+  <rect x="882" y="201" width="302" height="127" rx="8" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="903" y="231" class="blue label">Recalled</text>
+  <text x="903" y="260" class="ink body">P3 Memory candidate block</text>
+  <text x="903" y="286" class="muted small">Still bound by the effective limit</text>
+  <text x="903" y="310" class="muted small">Not a guaranteed model input</text>
+
+  <rect x="96" y="351" width="524" height="99" rx="8" fill="#f6f8fb" stroke="#b9cce3"/>
+  <text x="117" y="380" class="ink label">Conditions missing: no recall issued</text>
+  <text x="117" y="408" class="muted body">No provider or execution context → no Memory block</text>
+  <text x="117" y="432" class="muted small">No Memory in the manifest alone cannot identify this path.</text>
+
+  <rect x="635" y="351" width="430" height="99" rx="8" fill="#fff1f2" stroke="#d7a0aa"/>
+  <text x="656" y="380" fill="#8d5260" class="label">Recall issued: timeout or error</text>
+  <text x="656" y="408" class="ink body">Skip Memory; the manifest records the cause</text>
+  <text x="656" y="432" class="muted mono small">memory_timeout / memory_unavailable</text>
+
+  <path d="M1130 337 V462" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#memory-en-arrow)"/>
+  <rect x="96" y="471" width="1088" height="111" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/>
+  <text x="117" y="501" class="ink label">Budget tradeoffs (default strategy)</text>
+  <rect x="117" y="515" width="326" height="43" rx="5" fill="#eef4fb" stroke="#b9cce3"/>
+  <text x="133" y="542" class="ink small">P5 ≤2,000 characters; P4 ≤500 characters</text>
+  <path d="M451 536 H481" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#memory-en-arrow)"/>
+  <rect x="490" y="515" width="298" height="43" rx="5" fill="#eef4fb" stroke="#b9cce3"/>
+  <text x="505" y="542" class="ink small">Still over: remove P5 → P2 blocks</text>
+  <path d="M796 536 H825" fill="none" stroke="#52657d" stroke-width="1.5" marker-end="url(#memory-en-arrow)"/>
+  <rect x="834" y="515" width="329" height="43" rx="5" fill="#e7f2ff" stroke="#80baff"/>
+  <text x="849" y="542" class="blue small">Retained blocks form the visible Context</text>
+
+  <text x="96" y="617" class="ink small">Chat Gun's default compression truncates and removes, with no automatic history summary; P0 or P0+P1 over the limit stops normal assembly.</text>
+  <text x="96" y="682" class="muted small">Drawn from Chat Gun Memory and Context code paths; check provider, feature flag, and model limits for each deployment.</text>
+</svg>
