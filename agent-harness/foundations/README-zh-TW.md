@@ -14,8 +14,8 @@
 2. [Harness 的控制層](./02-control-surfaces-zh-TW.md)：把定義拆成輸入、Context、行為與能力、行動治理、互動與回饋五個可檢查的決策面。
 3. [Harness 與 Runtime 的邊界](./03-harness-runtime-boundary-zh-TW.md)：追蹤 Harness 交付哪些執行條件、Runtime 何時回來請求決策，以及狀態與失敗由誰負責。
 4. [Agent Harness 設計原則](./04-design-principles-zh-TW.md)：從前述邊界整理工程取捨，包括依任務選取 Context、區分指令與資料權威、檢查行動，以及從正式入口驗證規則。
-5. [一次任務的完整走法](./05-one-turn-walkthrough.md)：用檔案修改情境串起輸入、Context、工具結果、授權、失敗與完成證據，檢查前四篇的責任分工如何運作。
-6. 接著可讀 [Input and Context](../input-and-context/README-zh-TW.md) 的文章規劃，進一步展開輸入正規化、模型可見材料、來源權威與 Memory。
+5. [一次任務的完整走法](./05-one-turn-walkthrough-zh-TW.md)：用檔案修改情境串起輸入、Context、工具結果、授權、失敗與完成證據，檢查前四篇的責任分工如何運作。
+6. 接著可讀 [Input and Context](../input-and-context/README-zh-TW.md)，進一步展開輸入正規化、模型可見材料、來源權威與 Memory。
 
 
 
