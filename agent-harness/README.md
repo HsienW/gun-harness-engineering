@@ -8,6 +8,6 @@ This section covers how an agent's behavior is controlled: how user input enters
 
 1. [Foundations](./foundations/README.md): Read from the definition, control surfaces, and Harness/Runtime boundary through design principles and one complete task walkthrough.
 2. [Input and Context](./input-and-context/README.md): Article plans for input normalization, Context assembly, trust boundaries, Memory, and a case study.
-3. Behavior and Capabilities: Behavior rules and capability configuration (planned).
-4. Action Governance: Tool risk, authorization, and human confirmation (planned).
+3. [Behavior and Capabilities](./behavior-and-capabilities/README.md): Four article drafts in English and Traditional Chinese covering instructions, capability composition, capability selection, and a use case.
+4. [Action Governance](./action-governance/README.md): Six Traditional Chinese article drafts covering tool risk, authorization, human confirmation, governed dispatch, and side effects.
 5. Interaction and Feedback: Interaction during execution and behavior evaluation (planned).
