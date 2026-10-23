@@ -1,9 +1,10 @@
 # Capability composition
 
-1. CCR is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
-2. Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
-
 [English](./02-capability-composition.md) | [繁體中文](./02-capability-composition-zh-TW.md)
+
+> In the following content:
+> CCR is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
 [Back to overview](./README.md) · Previous: [Instructions and behavior](./01-instructions-and-behavior.md) · Next: [Capability selection](./03-capability-selection.md)
 
