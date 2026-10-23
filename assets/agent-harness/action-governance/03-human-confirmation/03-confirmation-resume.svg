@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1490" width="1600" height="1490" lang="zh-TW" role="img" aria-labelledby="title desc">
+<title id="title">確認恢復：批准綁定與執行交接</title><desc id="desc">先保存等待，再消費指定批准；批准成功後沿用已評估的授權結果。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs>
+<style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1490" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 03</text>
+<text x="70" y="105" class="title">確認恢復：批准綁定與執行交接</text>
+<text x="70" y="146" class="small">先保存等待，再消費指定批准；批准成功後沿用已評估的授權結果。</text>
+<rect x="105" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="127" y="220" class="heading">呼叫端／使用者</text>
+<path d="M 250 244 V 1050" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="505" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="527" y="220" class="heading">Graph</text>
+<path d="M 650 244 V 1050" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="885" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="907" y="220" class="heading">Store／manifest</text>
+<path d="M 1030 244 V 1050" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="1255" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="1277" y="220" class="heading">治理執行器</text>
+<path d="M 1400 244 V 1050" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<path d="M 650 290 H 1400" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="277" class="label">authorizeTyped()</text>
+<path d="M 1400 380 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="367" class="label">需要確認 → 建立 descriptor</text>
+<path d="M 650 470 H 1030" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="457" class="label">保存 pending 與 manifest</text>
+<path d="M 650 560 H 250" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="547" class="label">interrupt(): 等待批准</text>
+<path d="M 250 680 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="667" class="label">resume：批准／拒絕與識別</text>
+<path d="M 650 770 H 1030" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="757" class="label">核對可信 Context → consume()</text>
+<path d="M 1030 860 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="847" class="label">有效批准：回傳 approved</text>
+<path d="M 650 950 H 1400" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="937" class="label">physicalDispatch() → executeAuthorizedTyped()</text>
+<text x="280" y="620" class="label">等待區間：恢復資料須對回同一個指定呼叫。</text>
+<g>
+<rect x="70" y="1090" width="700" height="225" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="1123" class="heading">現有檢查與阻擋位置</text>
+<text x="92" y="1155" class="body">批准識別、可信身分、Run／Scope／Tenant、期限。</text>
+<text x="92" y="1183" class="body">儲存的資源與 policy version 綁定。</text>
+<text x="92" y="1211" class="body">保存失敗或 manifest 不相容，不退回直接派送。</text>
+<text x="92" y="1239" class="body">拒絕、過期或綁定不符，不走有效批准的派送路徑。</text>
+</g>
+<g>
+<rect x="810" y="1090" width="720" height="225" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="832" y="1123" class="heading">仍需另外設計或驗證的保證</text>
+<text x="832" y="1155" class="body">Descriptor 未包含完整工具參數雜湊。</text>
+<text x="832" y="1183" class="body">Store 不會自行完成最新政策的全套重新查詢。</text>
+<text x="832" y="1211" class="body">批准後不無條件重跑整個授權引擎。</text>
+<text x="832" y="1239" class="body">跨程序持久化與部署恢復，需要實際環境證據。</text>
+</g>
+<text x="70" y="1380" class="small">圖中成功路徑沿用授權結果；後續執行檢查仍依 wrapper、pipeline 與 enforcer 設定成立。</text>
+<text x="70" y="1420" class="small">閱讀位置：第 2～4 節。這是固定版本的原始碼追蹤，未代表本輪已執行測試。</text>
+</svg>
