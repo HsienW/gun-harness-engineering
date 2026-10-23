@@ -10,7 +10,7 @@
 
 The user asks, "Read the data before explaining the result; do not claim success without executing the operation." A product can put this sentence in a Prompt or check tool results before replying. Both affect behavior, but they provide different evidence: the former shows what the model was asked to do, while the latter offers a way to check whether the answer matches operations that actually occurred.
 
-This article follows rules from their sources to model input, then compares the places where code checks them. The implementation discussion uses the pinned versions of Chat Gun and Claude Code Best (CCB) inspected on 2026-10-23; see the [section overview](./README.md#sources-and-evidence) for versions and scope. CCB is a third-party project, and this article describes behavior observable in its source.
+This article follows rules from their sources to model input, then compares the places where code checks them. The implementation discussion uses the pinned versions of Chat Gun and Claude Code Best (CCB); see the [section overview](./README.md#sources-and-evidence) for versions and scope. CCB is a third-party project, and this article describes behavior observable in its source.
 
 ## 1. Rules need a source and a consumer
 
