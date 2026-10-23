@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1570" width="1600" height="1570" lang="zh-TW" role="img" aria-labelledby="title desc">
+<title id="title">案例泳道：確認前 0 次，恢復後 1 次</title><desc id="desc">confirmation-graph.test.ts 的預定斷言；mock 工具只回傳文字，沒有實際寫檔。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs>
+<style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1570" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 06</text>
+<text x="70" y="105" class="title">案例泳道：確認前 0 次，恢復後 1 次</text>
+<text x="70" y="146" class="small">confirmation-graph.test.ts 的預定斷言；mock 工具只回傳文字，沒有實際寫檔。</text>
+<rect x="105" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="127" y="220" class="heading">測試呼叫端</text>
+<path d="M 250 244 V 1220" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="505" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="527" y="220" class="heading">Graph</text>
+<path d="M 650 244 V 1220" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="885" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="907" y="220" class="heading">Mock Store／manifest</text>
+<path d="M 1030 244 V 1220" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="1255" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="1277" y="220" class="heading">Mock 工具</text>
+<path d="M 1400 244 V 1220" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<path d="M 250 290 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="277" class="label">放入 write_file queue</text>
+<path d="M 650 390 H 1030" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="377" class="label">upsertPending() + manifest</text>
+<path d="M 650 500 H 250" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="487" class="label">interrupt()</text>
+<path d="M 250 650 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="637" class="label">Command(resume): approve + IDs</text>
+<path d="M 650 750 H 1030" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="737" class="label">consume()</text>
+<path d="M 1030 840 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="827" class="label">固定回傳 approved</text>
+<path d="M 650 940 H 1400" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="927" class="label">executeAuthorizedTyped() → invoked</text>
+<path d="M 1400 1030 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="1017" class="label">wrote:${path}</text>
+<path d="M 650 1130 H 250" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="1117" class="label">關聯原呼叫的 ToolMessage</text>
+<g>
+<rect x="1170" y="455" width="360" height="115" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="1192" y="488" class="heading">斷言：invoked = 0</text>
+<text x="1192" y="520" class="body">等待時尚未執行工具。</text>
+</g>
+<g>
+<rect x="1170" y="1100" width="360" height="115" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="1192" y="1133" class="heading">斷言：invoked = 1</text>
+<text x="1192" y="1165" class="body">同一 thread 恢復後一次。</text>
+</g>
+<text x="280" y="585" class="label">同一份 config：thread_id = &quot;thread-1&quot;</text>
+<text x="680" y="895" class="label">Manifest：waiting → resumed</text>
+<g>
+<rect x="70" y="1280" width="700" height="185" rx="10" fill="#fff0f0" stroke="#d99696"/>
+<text x="92" y="1313" class="heading">另一個分支：pending 保存失敗</text>
+<text x="92" y="1345" class="body">後來的 upsertPending() 拒絕，錯誤向外拋出。</text>
+<text x="92" y="1373" class="body">工具總次數維持 1：先前成功呼叫的一次。</text>
+<text x="92" y="1401" class="body">失敗呼叫沒有增加執行次數。</text>
+</g>
+<g>
+<rect x="810" y="1280" width="720" height="185" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="832" y="1313" class="heading">此測試不能替代的證據</text>
+<text x="832" y="1345" class="body">真實寫檔、PostgreSQL 競態、正式隔離 runner。</text>
+<text x="832" y="1373" class="body">跨部署恢復、外部冪等、取消即還原。</text>
+<text x="832" y="1401" class="body">Graph 結束於工具結果，沒有模型完成回覆。</text>
+</g>
+<text x="70" y="1520" class="small">閱讀位置：第 2～5 節。本輪僅查讀測試原始碼，未執行測試或產生新的通過報告。</text>
+</svg>

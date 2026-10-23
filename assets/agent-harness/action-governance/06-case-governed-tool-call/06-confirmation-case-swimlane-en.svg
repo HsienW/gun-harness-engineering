@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1570" width="1600" height="1570" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Test case: zero calls before approval, one after resume</title><desc id="desc">Assertions in confirmation-graph.test.ts. The mock returns text; it does not write a file.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs>
+<style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1570" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 06</text>
+<text x="70" y="105" class="title">Test case: zero calls before approval, one after resume</text>
+<text x="70" y="146" class="small">Assertions in confirmation-graph.test.ts. The mock returns text; it does not write a file.</text>
+<rect x="105" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="127" y="220" class="heading">Test caller</text>
+<path d="M 250 244 V 1220" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="505" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="527" y="220" class="heading">Graph</text>
+<path d="M 650 244 V 1220" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="885" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="907" y="220" class="heading">Mock Store / manifest</text>
+<path d="M 1030 244 V 1220" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<rect x="1255" y="182" width="290" height="62" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="1277" y="220" class="heading">Mock tool</text>
+<path d="M 1400 244 V 1220" fill="none" stroke="#b9cce3" stroke-width="1.5" stroke-dasharray="6 6"/>
+<path d="M 250 290 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="277" class="label">Queue write_file directly</text>
+<path d="M 650 390 H 1030" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="377" class="label">upsertPending() + manifest</text>
+<path d="M 650 500 H 250" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="487" class="label">interrupt()</text>
+<path d="M 250 650 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="637" class="label">Command(resume): approve + IDs</text>
+<path d="M 650 750 H 1030" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="737" class="label">consume()</text>
+<path d="M 1030 840 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="827" class="label">Always returns approved</text>
+<path d="M 650 940 H 1400" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="927" class="label">executeAuthorizedTyped() → invoked</text>
+<path d="M 1400 1030 H 650" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="662" y="1017" class="label">wrote:${path}</text>
+<path d="M 650 1130 H 250" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="262" y="1117" class="label">ToolMessage for the original call</text>
+<g>
+<rect x="1170" y="455" width="360" height="115" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="1192" y="488" class="heading">Assert: invoked = 0</text>
+<text x="1192" y="520" class="body">No tool call while waiting.</text>
+</g>
+<g>
+<rect x="1170" y="1100" width="360" height="115" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="1192" y="1133" class="heading">Assert: invoked = 1</text>
+<text x="1192" y="1165" class="body">Once after same-thread resume.</text>
+</g>
+<text x="280" y="585" class="label">Same config: thread_id = &quot;thread-1&quot;</text>
+<text x="680" y="895" class="label">Manifest: waiting → resumed</text>
+<g>
+<rect x="70" y="1280" width="700" height="185" rx="10" fill="#fff0f0" stroke="#d99696"/>
+<text x="92" y="1313" class="heading">Separate branch: pending save fails</text>
+<text x="92" y="1345" class="body">A later upsertPending() rejects; the error propagates.</text>
+<text x="92" y="1373" class="body">Total calls remain 1, from the earlier approved call.</text>
+<text x="92" y="1401" class="body">The failed call adds no execution.</text>
+</g>
+<g>
+<rect x="810" y="1280" width="720" height="185" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="832" y="1313" class="heading">Evidence this test does not supply</text>
+<text x="832" y="1345" class="body">Real file writes, PostgreSQL races, production isolation.</text>
+<text x="832" y="1373" class="body">Cross-deployment recovery, external idempotency, undo.</text>
+<text x="832" y="1401" class="body">The Graph ends at tool results, without a model reply.</text>
+</g>
+<text x="70" y="1520" class="small">Reading: Sections 2-5. Tests were read, not run; this is not a new passing test report.</text>
+</svg>
