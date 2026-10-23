@@ -12,7 +12,7 @@ A tool in a codebase still needs discovery, validation, composition, and exposur
 
 This article traces how capabilities enter a task and identifies the conditions between successful loading and execution readiness.
 
-The implementation discussion uses the pinned versions of Chat Gun and CCB inspected on 2026-10-23; see [Sources and evidence](./README.md#sources-and-evidence). This work inspected source code without starting external MCP servers or running integration tests.
+The implementation discussion uses the pinned versions of Chat Gun and CCB; see [Sources and evidence](./README.md#sources-and-evidence). This work inspected source code without starting external MCP servers or running integration tests.
 
 ## 1. Different capabilities deliver different artifacts
 
