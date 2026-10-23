@@ -1,74 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1210" width="1600" height="1210" lang="en" role="img" aria-labelledby="title desc">
-<title id="title">Action contracts: each field has its own source</title><desc id="desc">Tool names and arguments describe an operation; trusted sources supply identity, policy, and execution conditions.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
-<rect width="1600" height="1210" fill="#f5f8fc"/>
-<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 01</text>
-<text x="70" y="105" class="title">Action contracts: each field has its own source</text>
-<text x="70" y="146" class="small">Tool names and arguments describe an operation; trusted sources supply identity, policy, and execution conditions.</text>
-<g>
-<rect x="70" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="92" y="243" class="heading">Model proposal / code route</text>
-<text x="92" y="275" class="body">Tool name + input</text>
-<text x="92" y="303" class="body">Tool call ID</text>
-<text x="92" y="331" class="body">Describe the operation.</text>
-<text x="92" y="359" class="body">Do not establish identity.</text>
-</g>
-<g>
-<rect x="440" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="462" y="243" class="heading">Trusted execution entry</text>
-<text x="462" y="275" class="body">Principal + Tenant + Scope</text>
-<text x="462" y="303" class="body">Canonical execution Context.</text>
-<text x="462" y="331" class="body">Who acts within which scope.</text>
-<text x="462" y="359" class="body">Entry owns the trust boundary.</text>
-</g>
-<g>
-<rect x="810" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="832" y="243" class="heading">Policy / resource resolution</text>
-<text x="832" y="275" class="body">Actions + risk policy</text>
-<text x="832" y="303" class="body">resourceRefResolver</text>
-<text x="832" y="331" class="body">Build ResourceRef.</text>
-<text x="832" y="359" class="body">Map operation to policy.</text>
-</g>
-<g>
-<rect x="1180" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="1202" y="243" class="heading">Runtime descriptor</text>
-<text x="1202" y="275" class="body">Tool version + profile</text>
-<text x="1202" y="303" class="body">Input / output Schemas.</text>
-<text x="1202" y="331" class="body">Read-only, concurrency, timeout.</text>
-<text x="1202" y="359" class="body">Retry policy</text>
-</g>
-<path d="M 245 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 615 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 985 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 1355 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<g>
-<rect x="70" y="550" width="1460" height="170" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="92" y="583" class="heading">Assemble and inspect the action contract at execution</text>
-<text x="92" y="615" class="body">The Registry resolves implementation; Schemas check shape; policy and resolvers form authorization inputs.</text>
-<text x="92" y="643" class="body">Call identity correlates proposal and result; trusted Context establishes actor and scope.</text>
-<text x="92" y="671" class="body">This maps contract sources, not fields all emitted by the model or one shared type across entry points.</text>
-</g>
-<path d="M 420 720 V 790" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 1170 720 V 790" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<g>
-<rect x="70" y="790" width="700" height="155" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="92" y="823" class="heading">Input validity: Schema / value checks</text>
-<text x="92" y="855" class="body">A valid string does not authorize a file or URL.</text>
-<text x="92" y="883" class="body">Trace consumers such as validateInput() for preconditions.</text>
-<text x="92" y="911" class="body">Input failure does not establish business authorization.</text>
-</g>
-<g>
-<rect x="810" y="790" width="720" height="155" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
-<text x="832" y="823" class="heading">Operation authority: policy / resource / execution</text>
-<text x="832" y="855" class="body">Risk classification, authorization, and confirmation differ.</text>
-<text x="832" y="883" class="body">ResourceRef granularity depends on its resolver.</text>
-<text x="832" y="911" class="body">Check implementation, profiles, and required dependencies.</text>
-</g>
-<g>
-<rect x="70" y="1010" width="1460" height="125" rx="10" fill="#fff7e5" stroke="#d8b866"/>
-<text x="92" y="1043" class="heading">External text cannot rewrite trusted identity</text>
-<text x="92" y="1075" class="body">For example, text asking for administrator identity cannot replace Principal, Tenant, or Scope.</text>
-<text x="92" y="1103" class="body">The model describing an operation as safe cannot replace its trusted risk policy.</text>
-</g>
-<text x="70" y="1170" class="small">Reading: Section 1. This maps data sources and responsibilities, not a record of an executed tool call.</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" lang="en" role="img" aria-labelledby="01-contract-sources-en-title 01-contract-sources-en-desc" id="d-01-contract-sources-en-root">
+<title id="01-contract-sources-en-title">Action contracts: each field has its own source</title><desc id="01-contract-sources-en-desc">Operation proposals, trusted identity, policy resources, and Runtime descriptors supply distinct contract data.</desc>
+<defs>
+      <style>#d-01-contract-sources-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #d-01-contract-sources-en-root nav, #d-01-contract-sources-en-root p, #d-01-contract-sources-en-root li { font-size:14px;line-height:1.8 }
+      #d-01-contract-sources-en-root a { color:#0066d6 }
+      #d-01-contract-sources-en-root .diagram-container { width:100%;overflow-x:auto }
+      #d-01-contract-sources-en-root details { margin-top:24px;border-top:1px solid #b9cce3;padding-top:16px }
+      #d-01-contract-sources-en-root summary { cursor:pointer;font-weight:600 }
+      #d-01-contract-sources-en-root .notes { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px }
+      #d-01-contract-sources-en-root ul { padding-left:20px }
+      #d-01-contract-sources-en-root nav, #d-01-contract-sources-en-root details { display:none }
+      #d-01-contract-sources-en-root .diagram-container { overflow-x:visible }</style><marker id="d-01-contract-sources-en-01-contract-sources-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker><marker id="d-01-contract-sources-en-01-contract-sources-en-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker></defs><rect width="1280" height="720" fill="#f5f8fc"/><rect x="56" y="72" width="1168" height="608" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/><rect x="88" y="60" width="208" height="24" fill="#f5f8fc"/><text x="96" y="77" font-size="12" fill="#102743" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">ACTION CONTRACT SOURCES</text><text x="1184" y="108" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif" text-anchor="end">CONCEPTUAL / SOURCE INSPECTION</text><rect x="96" y="116" width="64" height="4" fill="#0078fc"/><path d="M216 308 L216 360 Q216 368 224 368 L408 368 Q416 368 416 376 L416 432" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-01-contract-sources-en-01-contract-sources-en-arrow)"/><path d="M500 308 L500 336 Q500 344 508 344 L552 344 Q560 344 560 352 L560 432" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-01-contract-sources-en-01-contract-sources-en-arrow)"/><path d="M788 308 L788 336 Q788 344 780 344 L712 344 Q704 344 704 352 L704 432" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-01-contract-sources-en-01-contract-sources-en-arrow)"/><path d="M1068 308 L1068 360 Q1068 368 1060 368 L856 368 Q848 368 848 376 L848 432" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-01-contract-sources-en-01-contract-sources-en-arrow)"/><g data-node="true"><rect x="96" y="180" width="240" height="128" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="112" y="192" width="70" height="18" rx="2" fill="#eef4fb"/><text x="120" y="205" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">OPERATION</text><text x="112" y="231" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Model proposal / code route</text><text x="112" y="254" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Tool name + input</text><text x="112" y="272" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Tool call ID</text></g><g data-node="true"><rect x="376" y="180" width="248" height="128" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="392" y="192" width="64" height="18" rx="2" fill="#eef4fb"/><text x="400" y="205" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">IDENTITY</text><text x="392" y="231" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Trusted execution entry</text><text x="392" y="254" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Principal / Tenant / Scope</text><text x="392" y="272" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Canonical execution Context</text></g><g data-node="true"><rect x="664" y="180" width="248" height="128" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="680" y="192" width="70" height="18" rx="2" fill="#eef4fb"/><text x="688" y="205" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">AUTHORITY</text><text x="680" y="231" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Policy and resource resolution</text><text x="680" y="254" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Actions + risk policy</text><text x="680" y="272" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">resourceRefResolver → ResourceRef</text></g><g data-node="true"><rect x="952" y="180" width="232" height="128" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="968" y="192" width="70" height="18" rx="2" fill="#eef4fb"/><text x="976" y="205" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">EXECUTION</text><text x="968" y="231" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Runtime descriptor</text><text x="968" y="254" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Version / profile / Schemas</text><text x="968" y="272" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Read-only, concurrency, timeout, retry</text></g><g data-node="true"><rect x="280" y="432" width="728" height="136" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/><rect x="296" y="444" width="160" height="18" rx="2" fill="#1c78e4"/><text x="304" y="457" font-size="9" fill="#ffffff" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">CONCRETE ACTION CONTRACT</text><text x="296" y="483" font-size="14" fill="#ffffff" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Assemble and inspect the contract for the concrete call</text><text x="296" y="506" font-size="12" fill="#e2efff" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Registry maps implementation; Schemas check shape; policy and resolvers form authorization inputs</text><text x="296" y="524" font-size="12" fill="#e2efff" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Call ID correlates proposal and result; trusted Context establishes actor and scope</text></g><path d="M96 612 H1184" stroke="#d5e1ee" stroke-width="1"/><text x="96" y="638" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">A valid string does not authorize file or URL access; check input validity, risk, and operation authority separately.</text><text x="96" y="658" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">External text cannot replace Principal / Tenant / Scope; a model&#x27;s safety claim cannot replace trusted risk policy.</text>
 </svg>
