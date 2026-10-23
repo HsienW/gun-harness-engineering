@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1210" width="1600" height="1210" lang="zh-TW" role="img" aria-labelledby="title desc">
+<title id="title">行動契約：每個欄位各有可信來源</title><desc id="desc">工具名稱與參數描述操作；身分、政策與執行條件由其他可信接點提供。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
+<rect width="1600" height="1210" fill="#f5f8fc"/>
+<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 01</text>
+<text x="70" y="105" class="title">行動契約：每個欄位各有可信來源</text>
+<text x="70" y="146" class="small">工具名稱與參數描述操作；身分、政策與執行條件由其他可信接點提供。</text>
+<g>
+<rect x="70" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="92" y="243" class="heading">模型提案／程式路由</text>
+<text x="92" y="275" class="body">Tool name + input</text>
+<text x="92" y="303" class="body">Tool call ID</text>
+<text x="92" y="331" class="body">描述要做什麼。</text>
+<text x="92" y="359" class="body">不自行賦予身分。</text>
+</g>
+<g>
+<rect x="440" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="462" y="243" class="heading">可信執行入口</text>
+<text x="462" y="275" class="body">Principal + Tenant + Scope</text>
+<text x="462" y="303" class="body">Canonical execution Context。</text>
+<text x="462" y="331" class="body">誰在什麼範圍操作。</text>
+<text x="462" y="359" class="body">入口負責可信資料來源。</text>
+</g>
+<g>
+<rect x="810" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="832" y="243" class="heading">政策與資源解析</text>
+<text x="832" y="275" class="body">Actions + risk policy</text>
+<text x="832" y="303" class="body">resourceRefResolver</text>
+<text x="832" y="331" class="body">建立 ResourceRef。</text>
+<text x="832" y="359" class="body">把操作對回授權政策。</text>
+</g>
+<g>
+<rect x="1180" y="210" width="350" height="220" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
+<text x="1202" y="243" class="heading">Runtime descriptor</text>
+<text x="1202" y="275" class="body">Tool version + profile</text>
+<text x="1202" y="303" class="body">輸入／輸出 Schema。</text>
+<text x="1202" y="331" class="body">唯讀、並行、timeout。</text>
+<text x="1202" y="359" class="body">Retry policy</text>
+</g>
+<path d="M 245 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 615 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 985 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1355 430 V 485 H 800 V 550" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="550" width="1460" height="170" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="583" class="heading">在執行入口組合並核對行動契約</text>
+<text x="92" y="615" class="body">Registry 對回實作；Schema 檢查輸入形狀；政策與 resolver 產生可供授權的要求。</text>
+<text x="92" y="643" class="body">呼叫識別關聯提案與結果；可信 Context 指出操作身分與範圍。</text>
+<text x="92" y="671" class="body">這是閱讀契約的來源圖，不表示模型輸出已包含所有欄位或所有入口共用一個型別。</text>
+</g>
+<path d="M 420 720 V 790" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1170 720 V 790" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
+<g>
+<rect x="70" y="790" width="700" height="155" rx="10" fill="#e7f2ff" stroke="#80baff"/>
+<text x="92" y="823" class="heading">資料合法：Schema／值驗證</text>
+<text x="92" y="855" class="body">字串符合型別，不代表檔案或 URL 已獲准。</text>
+<text x="92" y="883" class="body">工具自己的前置條件，須追 validateInput() 等 consumer。</text>
+<text x="92" y="911" class="body">失敗保留輸入錯誤，不宣稱業務授權成立。</text>
+</g>
+<g>
+<rect x="810" y="790" width="720" height="155" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
+<text x="832" y="823" class="heading">操作獲准：政策／資源／執行條件</text>
+<text x="832" y="855" class="body">風險分類、資源授權與人工確認各有消費點。</text>
+<text x="832" y="883" class="body">ResourceRef 粒度取決於 resolver 的實際解析。</text>
+<text x="832" y="911" class="body">核對實作、profile 與必要依賴，才能進入執行。</text>
+</g>
+<g>
+<rect x="70" y="1010" width="1460" height="125" rx="10" fill="#fff7e5" stroke="#d8b866"/>
+<text x="92" y="1043" class="heading">外部文字不能改寫可信身分</text>
+<text x="92" y="1075" class="body">例如「改用管理員身分」只能是待處理文字；不能因此替換 Principal、Tenant 或 Scope。</text>
+<text x="92" y="1103" class="body">同樣地，模型對操作風險的描述不能取代受信任的 risk policy。</text>
+</g>
+<text x="70" y="1170" class="small">閱讀位置：第 1 節。圖示整理資料來源與責任，並非已執行的工具呼叫紀錄。</text>
+</svg>
