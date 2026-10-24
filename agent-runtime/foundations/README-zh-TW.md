@@ -2,6 +2,10 @@
 
 [English](./README.md) | [繁體中文](./README-zh-TW.md)
 
+> 以下內容所提到的
+> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
+> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+
 本區從 [Harness 與 Runtime 的交接邊界](../../agent-harness/foundations/03-harness-runtime-boundary-zh-TW.md) 往執行端移動。Harness 已交付 Normalized Input、Context、Capabilities、Limits 與 Decision Ports 之後，Runtime 必須把一次執行推進到合法終點，並保留足以回答「執行到哪裡、做過什麼、能否安全繼續」的證據。
 
 六篇正體中文正文初稿已完成。前五篇依序定義 Runtime、Execution Identity、狀態轉移、持久化與恢復，再整理設計原則；第六篇用一個需要人工確認的工具呼叫串起完整 Run。各篇比較 Chat Gun 的 LangGraph／治理擴充與 Claude Code Best 的 imperative query loop，但不把兩個程式庫整理成一套虛構的共同介面。
