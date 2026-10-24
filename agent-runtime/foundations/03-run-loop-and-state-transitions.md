@@ -2,6 +2,10 @@
 
 [English](./03-run-loop-and-state-transitions.md) | [繁體中文](./03-run-loop-and-state-transitions-zh-TW.md)
 
+> In the following content:
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
+
 After a model returns text, the Runtime may still be processing tools or saving state; after the model proposes a Tool Call, authorization and dispatch may still be pending. The Run Loop processes these intermediate results in order until execution reaches completion, failure, cancellation, rejection, or a recoverable waiting state.
 
 If a system represents the entire process with `isLoading`, model streaming, tool scheduling, and human waiting all share one boolean. The Runtime needs more explicit states to determine whether the next step is valid and whether external operations are still in progress.

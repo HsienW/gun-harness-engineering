@@ -2,6 +2,10 @@
 
 [English](./03-run-loop-and-state-transitions.md) | [繁體中文](./03-run-loop-and-state-transitions-zh-TW.md)
 
+> 以下內容所提到的
+> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
+> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+
 模型回傳一段文字後，Runtime 可能還在處理工具或保存狀態；模型提出 Tool Call 後，也要等待授權與派送。Run Loop 依序處理這些中間結果，直到執行進入完成、失敗、取消、拒絕或可恢復的等待狀態。
 
 若系統只用 `isLoading` 表示全部過程，模型串流、工具排程與人工等待都會共用同一個布林值。Runtime 需要更明確的狀態，才能判斷下一步是否合法，以及外部操作是否仍在進行。
