@@ -2,6 +2,10 @@
 
 [English](./04-persistence-interrupt-and-resume.md) | [繁體中文](./04-persistence-interrupt-and-resume-zh-TW.md)
 
+> 以下內容所提到的
+> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
+> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+
 Runtime 等待確認時暫停執行，過一段時間再收到回覆；另一種情況是工具已呼叫外部系統，程序在保存結果前崩潰。兩者都需要恢復，但核對的資料各有側重：前者要知道在等誰、等什麼；後者還要查明外部操作是否已經生效。
 
 只保存對話歷史，無法回答這些問題。可恢復的 Runtime 必須分清 transcript、checkpoint、ownership、interrupt manifest 與 side-effect evidence 各自證明什麼。

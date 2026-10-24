@@ -2,6 +2,10 @@
 
 [English](./04-persistence-interrupt-and-resume.md) | [繁體中文](./04-persistence-interrupt-and-resume-zh-TW.md)
 
+> In the following content:
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
+
 A Runtime pauses for confirmation and receives a response later; in another case, a tool has called an external system when the process crashes before saving the result. Both require recovery, but their checks emphasize different data: the former needs to know who and what it awaits, while the latter must also determine whether an external operation has taken effect.
 
 Conversation history alone cannot answer these questions. A recoverable Runtime must distinguish what transcripts, checkpoints, ownership, interrupt manifests, and side-effect evidence each prove.
