@@ -2,6 +2,10 @@
 
 [English](./02-execution-identity-and-state-authority.md) | [繁體中文](./02-execution-identity-and-state-authority-zh-TW.md)
 
+> 以下內容所提到的
+> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
+> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+
 使用者在同一個對話裡補了一句話，產品建立了新 Run；舊 Run 隨後才送回一個 progress event。若前端只看 Thread ID，它可能把舊進度畫到新任務上；若 finalizer 只知道「任務結束」，它甚至可能清掉新 Run 剛取得的 ownership。
 
 這類錯誤出在系統沒有分清楚「同一個對話」「同一個目標」與「同一次執行」。Execution Identity 把這些關係變成可驗證欄位，讓 Runtime 在恢復、重試與接收晚到輸出時，能判斷資料的歸屬。

@@ -2,6 +2,10 @@
 
 [English](./02-execution-identity-and-state-authority.md) | [繁體中文](./02-execution-identity-and-state-authority-zh-TW.md)
 
+> In the following content:
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
+
 A user adds a sentence in the same conversation, and the product creates a new Run; a progress event from the old Run arrives afterward. If the frontend checks only the Thread ID, it may display old progress on the new task; if the finalizer knows only that "the task ended," it may even clear the ownership the new Run just acquired.
 
 These errors arise when the system fails to distinguish the same conversation, the same goal, and the same execution. Execution Identity makes these relationships verifiable fields so the Runtime can determine where data belongs during recovery, retries, and the arrival of late output.
