@@ -2,6 +2,10 @@
 
 [English](./05-runtime-design-principles.md) | [繁體中文](./05-runtime-design-principles-zh-TW.md)
 
+> In the following content:
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
+
 A tool call succeeds, but the Runtime crashes before saving its Tool Result; after restart, the program sees no result in the Checkpoint and calls the tool again. For a file read, the cost is duplicate work; for a refund or email, the same recovery logic produces a second external effect.
 
 This scenario requires the Runtime to record unknown effects explicitly and verify them before retrying. Design principles must place these decisions in states, contracts, and handlers so the system has a defined next action after failure.

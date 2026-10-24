@@ -2,6 +2,10 @@
 
 [English](./05-runtime-design-principles.md) | [繁體中文](./05-runtime-design-principles-zh-TW.md)
 
+> 以下內容所提到的
+> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
+> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+
 工具呼叫已經成功，Runtime 卻在保存 Tool Result 前崩潰；重新啟動後，程式只看到 Checkpoint 沒有結果，於是再呼叫一次。若這個工具是讀檔，代價只是多做一次；若它是退款或寄信，同一套恢復邏輯便會製造第二個外部效果。
 
 這個情境需要 Runtime 明確保存「效果不明」，並在重試前查證。設計原則要把這類判斷落到狀態、契約與處理程式，讓系統遇到故障時有明確的後續動作。
