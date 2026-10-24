@@ -2,6 +2,10 @@
 
 [English](./06-one-run-walkthrough.md) | [繁體中文](./06-one-run-walkthrough-zh-TW.md)
 
+> 以下內容所提到的
+> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
+> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+
 使用者要求把一份報告寫入工作區。模型先讀取現有檔案，再提出 `write_file`；產品規則要求這類修改先經人工確認。畫面上只會看到一個確認問題和最後回覆，Runtime 內部則要保存 Tool Call、停止派送、恢復指定等待，最後才能判斷這次 Run 是否完成。
 
 本篇沿著一個教學案例，串起前五篇的執行責任。各段參照來源如下：

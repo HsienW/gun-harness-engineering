@@ -2,6 +2,10 @@
 
 [English](./06-one-run-walkthrough.md) | [繁體中文](./06-one-run-walkthrough-zh-TW.md)
 
+> In the following content:
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
+
 A user asks to write a report into the workspace. The model first reads existing files, then proposes `write_file`; product policy requires human confirmation before this kind of change. The screen shows only a confirmation question and a final response, while the Runtime must save the Tool Call, stop dispatch, resume the specified wait, and finally determine whether the Run is complete.
 
 This article follows a teaching example through the execution responsibilities introduced in the first five articles. Each segment draws on these sources:
