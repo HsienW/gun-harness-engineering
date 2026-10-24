@@ -2,6 +2,10 @@
 
 [English](./01-what-is-agent-runtime.md) | [繁體中文](./01-what-is-agent-runtime-zh-TW.md)
 
+> In the following content:
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
+
 - I view an Agent Runtime as the execution core that accepts a governed execution request and advances it toward a result the system can interpret.
   - It creates or retrieves the identity of this Run.
   - It maintains execution state and valid transitions.

@@ -2,6 +2,10 @@
 
 [English](./01-what-is-agent-runtime.md) | [繁體中文](./01-what-is-agent-runtime-zh-TW.md)
 
+> 以下內容所提到的
+> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
+> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+
 - 我認為 Agent Runtime 是接住一次受治理的執行要求，並把它推進到可判讀結果的執行核心。
   - 它建立或取得這次 Run 的識別。
   - 維護執行狀態與合法轉移。
