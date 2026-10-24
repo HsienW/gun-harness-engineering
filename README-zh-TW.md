@@ -109,16 +109,16 @@ gun-harness-engineering/
 ├─ README-zh-TW.md
 ├─ agent-harness/
 │  ├─ foundations/
-│  ├─ input-and-context/          # 規劃中
-│  ├─ behavior-and-capabilities/  # 規劃中
-│  ├─ action-governance/          # 規劃中
-│  └─ interaction-and-feedback/   # 規劃中
-└─ agent-runtime/                 # 規劃中
+│  ├─ input-and-context/
+│  ├─ behavior-and-capabilities/
+│  ├─ action-governance/
+│  └─ interaction-and-feedback/
+└─ agent-runtime/
    ├─ foundations/
-   ├─ execution-lifecycle/
-   ├─ model-and-tool-execution/
-   ├─ effects-and-recovery/
-   └─ events-and-operations/
+   ├─ execution-lifecycle/  # 規劃中
+   ├─ model-and-tool-execution/  # 規劃中
+   ├─ effects-and-recovery/  # 規劃中
+   └─ events-and-operations/  # 規劃中
 ~~~
 
 ### Agent Harness
@@ -131,6 +131,7 @@ gun-harness-engineering/
 
 - Runtime 是 Harness 使用的運行時核心，負責把一次 Agent Run 推進到合法的終止狀態。
 - 預計涵蓋 Execution Identity、模型串流、工具排程、重試、錯誤回灌、Checkpoint、Interrupt、Resume、對話修復、Idempotency、Side-effect Ledger、Reconciliation、Compensation、Runtime Event、Tracing、Metrics 與上線門檻。
+- 閱讀可從 [Agent Runtime 總覽](./agent-runtime/README-zh-TW.md)開始；Foundations 的六篇正體中文初稿已完成。
 
 ## 完整的 Harness 與 Runtime 交接流程
 
