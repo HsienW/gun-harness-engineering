@@ -1,80 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1190" width="1600" height="1190" lang="zh-TW" role="img" aria-labelledby="title desc">
-<title id="title">提交狀態決定重試路徑</title><desc id="desc">逾時只表示等待結束；能否重試，還要核對提交狀態、政策與預算。</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs>
-<style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
-<rect width="1600" height="1190" fill="#f5f8fc"/>
-<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 05</text>
-<text x="70" y="105" class="title">提交狀態決定重試路徑</text>
-<text x="70" y="146" class="small">逾時只表示等待結束；能否重試，還要核對提交狀態、政策與預算。</text>
-<g>
-<rect x="70" y="185" width="1460" height="115" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="92" y="218" class="heading">先分清這一次操作的結果</text>
-<text x="92" y="250" class="body">以下聚焦派送後的兩類結果；派送前拒絕與取消仍需依 outcome／dispatchState 分開處理。</text>
-</g>
-<path d="M 390 300 V 350" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 1160 300 V 350" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<g>
-<rect x="70" y="350" width="620" height="115" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="92" y="383" class="heading">failed_not_committed</text>
-<text x="92" y="415" class="body">執行契約明確回報尚未提交。</text>
-</g>
-<g>
-<rect x="840" y="350" width="690" height="115" rx="10" fill="#fff7e5" stroke="#d8b866"/>
-<text x="862" y="383" class="heading">ambiguous_after_dispatch</text>
-<text x="862" y="415" class="body">已派送，但無法確定外部是否已提交。</text>
-</g>
-<path d="M 380 465 V 520" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 1185 465 V 520" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<g>
-<rect x="70" y="520" width="620" height="160" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="92" y="553" class="heading">A  核對重試條件</text>
-<text x="92" y="585" class="body">錯誤可重試 ＋ policy 允許 ＋ budget 足夠。</text>
-<text x="92" y="613" class="body">核對取消與當前呼叫方式的嘗試上限。</text>
-<text x="92" y="641" class="body">條件不符：停止本次重試，保留失敗結果。</text>
-</g>
-<g>
-<rect x="840" y="520" width="690" height="115" rx="10" fill="#fff7e5" stroke="#d8b866"/>
-<text x="862" y="553" class="heading">先回查外部狀態</text>
-<text x="862" y="585" class="body">reconciler 必須具備該操作可用的回查能力。</text>
-</g>
-<path d="M 380 680 V 745" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="400" y="722" class="label">全部條件成立</text>
-<g>
-<rect x="70" y="745" width="620" height="130" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
-<text x="92" y="778" class="heading">Backoff → 下一次 attempt</text>
-<text x="92" y="810" class="body">等待期間處理取消，下一次結果仍須重新分類。</text>
-<text x="92" y="838" class="body">避免模型迴圈、runner、恢復流程各自無限重做。</text>
-</g>
-<path d="M 1185 635 V 665 H 950 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 1185 635 V 665 H 1185 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 1185 635 V 665 H 1420 V 715" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<g>
-<rect x="840" y="715" width="220" height="160" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
-<text x="862" y="748" class="heading">committed</text>
-<text x="862" y="780" class="body">處理已提交結果。</text>
-<text x="862" y="808" class="body">核對結果可取得</text>
-<text x="862" y="836" class="body">與重用條件。</text>
-</g>
-<g>
-<rect x="1075" y="715" width="220" height="160" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="1097" y="748" class="heading">not_committed</text>
-<text x="1097" y="780" class="body">若允許重試，</text>
-<text x="1097" y="808" class="body">回到 A 核對。</text>
-<text x="1097" y="836" class="body">不直接再次派送。</text>
-</g>
-<g>
-<rect x="1310" y="715" width="220" height="160" rx="10" fill="#fff7e5" stroke="#d8b866"/>
-<text x="1332" y="748" class="heading">unknown / other</text>
-<text x="1332" y="780" class="body">defer，保留未知。</text>
-<text x="1332" y="808" class="body">必要時人工處理。</text>
-<text x="1332" y="836" class="body">不猜測尚未提交。</text>
-</g>
-<g>
-<rect x="70" y="935" width="1460" height="170" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="92" y="968" class="heading">固定版本中要保留的限制</text>
-<text x="92" y="1000" class="body">MCP 預設 reconciler 回傳 unknown：MCP_RECONCILIATION_QUERY_UNAVAILABLE。</text>
-<text x="92" y="1028" class="body">authorizationAlreadyEvaluated 且非唯讀的 pipeline 分支，將 maxAttempts 設為 1。</text>
-<text x="92" y="1056" class="body">本地 Ledger 紀錄不會自動保證外部 exactly-once；不能只為補回成功文字而重新執行。</text>
-</g>
-<text x="70" y="1150" class="small">閱讀位置：第 5、6 節。此圖依原始碼語意整理，未執行外部提交或故障演練。</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" lang="zh-TW" role="img" aria-labelledby="05-commit-and-retry-title 05-commit-and-retry-desc" id="d-05-commit-and-retry-root">
+<title id="05-commit-and-retry-title">提交狀態決定重試路徑</title><desc id="05-commit-and-retry-desc">未提交的失敗需通過重試 gate；派送後效果不明則先回查。</desc>
+<defs>
+      <style>#d-05-commit-and-retry-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #d-05-commit-and-retry-root nav, #d-05-commit-and-retry-root p, #d-05-commit-and-retry-root li { font-size:14px;line-height:1.8 }
+      #d-05-commit-and-retry-root a { color:#0066d6 }
+      #d-05-commit-and-retry-root .diagram-container { width:100%;overflow-x:auto }
+      #d-05-commit-and-retry-root details { margin-top:24px;border-top:1px solid #b9cce3;padding-top:16px }
+      #d-05-commit-and-retry-root summary { cursor:pointer;font-weight:600 }
+      #d-05-commit-and-retry-root .notes { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px }
+      #d-05-commit-and-retry-root ul { padding-left:20px }
+      #d-05-commit-and-retry-root nav, #d-05-commit-and-retry-root details { display:none }
+      #d-05-commit-and-retry-root .diagram-container { overflow-x:visible }</style><marker id="d-05-commit-and-retry-05-commit-and-retry-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker><marker id="d-05-commit-and-retry-05-commit-and-retry-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker></defs><rect width="1280" height="720" fill="#f5f8fc"/><rect x="56" y="72" width="1168" height="608" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/><rect x="88" y="60" width="184" height="24" fill="#f5f8fc"/><text x="96" y="77" font-size="12" fill="#102743" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">COMMIT STATE / RETRY</text><text x="1184" y="108" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif" text-anchor="end">概念圖 · 原始碼查讀</text><rect x="96" y="116" width="64" height="4" fill="#0078fc"/><path d="M292 292 L292 356" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-05-commit-and-retry-05-commit-and-retry-arrow)"/><path d="M936 292 L936 356" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-05-commit-and-retry-05-commit-and-retry-arrow)"/><path d="M292 484 L292 524" fill="none" stroke="#0078fc" stroke-width="1.2" marker-end="url(#d-05-commit-and-retry-05-commit-and-retry-arrow-accent)"/><path d="M812 484 L812 492 Q812 500 804 500 L656 500 Q648 500 648 508 L648 524" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-05-commit-and-retry-05-commit-and-retry-arrow)"/><path d="M936 484 L936 504 Q936 512 928 512 L876 512 Q868 512 868 520 L868 524" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-05-commit-and-retry-05-commit-and-retry-arrow)"/><path d="M1060 484 L1060 492 Q1060 500 1068 500 L1084 500 Q1092 500 1092 508 L1092 524" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-05-commit-and-retry-05-commit-and-retry-arrow)"/><g data-node="true"><rect x="96" y="180" width="392" height="112" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="112" y="192" width="70" height="18" rx="2" fill="#eef4fb"/><text x="120" y="205" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">NO COMMIT</text><text x="112" y="231" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">failed_not_committed</text><text x="112" y="254" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">執行契約回報未提交的失敗</text><text x="112" y="272" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">不是只看 timeout 或錯誤文字</text></g><g data-node="true"><rect x="688" y="180" width="496" height="112" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="704" y="192" width="112" height="18" rx="2" fill="#eef4fb"/><text x="712" y="205" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">UNCERTAIN EFFECT</text><text x="704" y="231" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">ambiguous_after_dispatch</text><text x="704" y="254" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">已派送，但外部提交狀態不確定</text><text x="704" y="272" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">不可直接當作未提交再派送</text></g><g data-node="true"><rect x="96" y="356" width="392" height="128" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/><rect x="112" y="368" width="76" height="18" rx="2" fill="#1c78e4"/><text x="120" y="381" font-size="9" fill="#ffffff" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">RETRY GATE</text><text x="112" y="407" font-size="14" fill="#ffffff" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">A. 核對重試條件</text><text x="112" y="430" font-size="12" fill="#e2efff" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">錯誤可重試 ＋ policy 允許 ＋ budget 可繼續</text><text x="112" y="448" font-size="12" fill="#e2efff" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">另查取消與 attempt 上限；不符就停止</text></g><g data-node="true"><rect x="688" y="356" width="496" height="128" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="704" y="368" width="100" height="18" rx="2" fill="#eef4fb"/><text x="712" y="381" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">RECONCILIATION</text><text x="704" y="407" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">先 reconcile 外部狀態</text><text x="704" y="430" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">該操作必須有可用的回查能力</text><text x="704" y="448" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">回查結果決定結果處理、重試資格或 defer</text></g><g data-node="true"><rect x="96" y="524" width="392" height="72" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="112" y="536" width="130" height="18" rx="2" fill="#eef4fb"/><text x="120" y="549" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">PASS ALL CONDITIONS</text><text x="112" y="575" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Backoff → 下一次 attempt，再分類結果</text></g><g data-node="true"><rect x="552" y="524" width="184" height="72" rx="8" fill="#eef4fb" stroke="#b9cce3" stroke-width="1.2"/><rect x="568" y="536" width="70" height="18" rx="2" fill="#eef4fb"/><text x="576" y="549" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">COMMITTED</text><text x="568" y="575" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">處理提交結果</text></g><g data-node="true"><rect x="776" y="524" width="184" height="72" rx="8" fill="#eef4fb" stroke="#b9cce3" stroke-width="1.2"/><rect x="792" y="536" width="94" height="18" rx="2" fill="#eef4fb"/><text x="800" y="549" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">NOT COMMITTED</text><text x="792" y="575" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">回到重試 gate A</text></g><g data-node="true"><rect x="1000" y="524" width="184" height="72" rx="8" fill="#eef4fb" stroke="#b9cce3" stroke-width="1.2"/><rect x="1016" y="536" width="58" height="18" rx="2" fill="#eef4fb"/><text x="1024" y="549" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">UNKNOWN</text><text x="1016" y="575" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">保留未知／人工</text></g><path d="M96 612 H1184" stroke="#d5e1ee" stroke-width="1"/><text x="96" y="638" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">預設 MCP reconciler 回 unknown：MCP_RECONCILIATION_QUERY_UNAVAILABLE；未提交也要再符合重試條件。</text><text x="96" y="658" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">已授權的非唯讀 pipeline 呼叫 maxAttempts=1；本地 Ledger 不保證外部 exactly-once。</text>
 </svg>

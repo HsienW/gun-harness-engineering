@@ -1,54 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1290" width="1600" height="1290" lang="en" role="img" aria-labelledby="title desc">
-<title id="title">Result envelopes: outer success still needs an inner outcome check</title><desc id="desc">The pipeline can deliver an envelope successfully while retaining an uncertain post-dispatch outcome inside.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#52657d"/></marker></defs><style>text{font-family:'Segoe UI','Microsoft JhengHei',Arial,sans-serif;fill:#102743}.title{font-size:32px;font-weight:700}.heading{font-size:20px;font-weight:600}.body{font-size:19px}.small{font-size:17px;fill:#52657d}.kicker{font-size:15px;fill:#0078d4;letter-spacing:2px}.label{font-size:16px;fill:#0078d4;font-weight:600;paint-order:stroke;stroke:#f5f8fc;stroke-width:5;stroke-linejoin:round}</style>
-<rect width="1600" height="1290" fill="#f5f8fc"/>
-<text x="70" y="55" class="kicker">ACTION GOVERNANCE / 05</text>
-<text x="70" y="105" class="title">Result envelopes: outer success still needs an inner outcome check</text>
-<text x="70" y="146" class="small">The pipeline can deliver an envelope successfully while retaining an uncertain post-dispatch outcome inside.</text>
-<g>
-<rect x="70" y="210" width="1460" height="575" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="100" y="253" class="heading">Outer GovernedToolOutcome: succeeded</text>
-<text x="100" y="300" class="body">This layer successfully returns a StructuredToolResultEnvelope.</text>
-<text x="100" y="338" class="body">This label alone does not establish tool completion for the user.</text>
-<g>
-<rect x="140" y="395" width="1320" height="230" rx="10" fill="#fff7e5" stroke="#d8b866"/>
-<text x="162" y="428" class="heading">StructuredToolResultEnvelope</text>
-<text x="162" y="460" class="body">envelope.outcome: ambiguous_after_dispatch in this example.</text>
-<text x="162" y="488" class="body">For example, Task/Step persistence fails after dispatch, retaining uncertainty inside.</text>
-<text x="162" y="516" class="body">Do not rewrite uncertainty as confirmed non-commit or successful completion.</text>
-<text x="162" y="544" class="body">Continue interpreting the outcome, result references, and external state.</text>
-</g>
-<text x="100" y="690" class="body">toLegacyToolResult() converts the inner envelope result to text.</text>
-<text x="100" y="735" class="body">Promise resolution, outer success, tool success, and business completion require separate checks.</text>
-</g>
-<path d="M 800 785 V 835 H 300 V 890" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 800 785 V 835 H 800 V 890" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 800 785 V 835 H 1300 V 890" fill="none" stroke="#52657d" stroke-width="2" marker-end="url(#arrow)"/>
-<g>
-<rect x="70" y="890" width="460" height="180" rx="10" fill="#e7f2ff" stroke="#80baff"/>
-<text x="92" y="923" class="heading">1  Was the envelope delivered?</text>
-<text x="92" y="955" class="body">Inspect the outer result.</text>
-<text x="92" y="983" class="body">This answers only envelope delivery.</text>
-<text x="92" y="1011" class="body">Do not skip the inner outcome.</text>
-</g>
-<g>
-<rect x="570" y="890" width="460" height="180" rx="10" fill="#fff7e5" stroke="#d8b866"/>
-<text x="592" y="923" class="heading">2  What is the tool outcome?</text>
-<text x="592" y="955" class="body">Read envelope.outcome.</text>
-<text x="592" y="983" class="body">Separate success, non-commit,</text>
-<text x="592" y="1011" class="body">and uncertainty; handle effects.</text>
-</g>
-<g>
-<rect x="1070" y="890" width="460" height="180" rx="10" fill="#eaf6ee" stroke="#92bda0"/>
-<text x="1092" y="923" class="heading">3  What supports completion?</text>
-<text x="1092" y="955" class="body">Check tool results / resource state.</text>
-<text x="1092" y="983" class="body">Verify claimed business effects.</text>
-<text x="1092" y="1011" class="body">Success text cannot replace evidence.</text>
-</g>
-<g>
-<rect x="70" y="1130" width="1460" height="100" rx="10" fill="#f0f3f7" stroke="#b9cce3"/>
-<text x="92" y="1163" class="heading">Scope of this diagram</text>
-<text x="92" y="1195" class="body">This illustrates nested pipeline results, not uncertainty in every success or a failure drill performed here.</text>
-</g>
-<text x="70" y="1260" class="small">Reading: Section 8. Retain the inner outcome when deciding reconciliation, retries, and the user reply.</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" lang="en" role="img" aria-labelledby="05-result-envelope-en-title 05-result-envelope-en-desc" id="d-05-result-envelope-en-root">
+<title id="05-result-envelope-en-title">Outer success still needs an inner outcome check</title><desc id="05-result-envelope-en-desc">The outer layer may deliver an envelope successfully while the inner outcome remains uncertain after dispatch.</desc>
+<defs>
+      <style>#d-05-result-envelope-en-root { color: #102743; font-family: 'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+      #d-05-result-envelope-en-root nav, #d-05-result-envelope-en-root p, #d-05-result-envelope-en-root li { font-size:14px;line-height:1.8 }
+      #d-05-result-envelope-en-root a { color:#0066d6 }
+      #d-05-result-envelope-en-root .diagram-container { width:100%;overflow-x:auto }
+      #d-05-result-envelope-en-root details { margin-top:24px;border-top:1px solid #b9cce3;padding-top:16px }
+      #d-05-result-envelope-en-root summary { cursor:pointer;font-weight:600 }
+      #d-05-result-envelope-en-root .notes { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px }
+      #d-05-result-envelope-en-root ul { padding-left:20px }
+      #d-05-result-envelope-en-root nav, #d-05-result-envelope-en-root details { display:none }
+      #d-05-result-envelope-en-root .diagram-container { overflow-x:visible }</style><marker id="d-05-result-envelope-en-05-result-envelope-en-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52657d"/></marker><marker id="d-05-result-envelope-en-05-result-envelope-en-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0078fc"/></marker></defs><rect width="1280" height="720" fill="#f5f8fc"/><rect x="56" y="72" width="1168" height="608" rx="8" fill="#fafdff" stroke="#b9cce3" stroke-width="1.2" stroke-dasharray="6 6"/><rect x="88" y="60" width="144" height="24" fill="#f5f8fc"/><text x="96" y="77" font-size="12" fill="#102743" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">RESULT ENVELOPE</text><text x="1184" y="108" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif" text-anchor="end">CONCEPTUAL / SOURCE INSPECTION</text><rect x="96" y="116" width="64" height="4" fill="#0078fc"/><path d="M400 536 L456 536" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-05-result-envelope-en-05-result-envelope-en-arrow)"/><path d="M792 536 L848 536" fill="none" stroke="#52657d" stroke-width="1.2" marker-end="url(#d-05-result-envelope-en-05-result-envelope-en-arrow)"/><g data-node="true"><rect x="96" y="164" width="1088" height="280" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="112" y="176" width="118" height="18" rx="2" fill="#eef4fb"/><text x="120" y="189" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">ENVELOPE DELIVERY</text><text x="112" y="215" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Outer GovernedToolOutcome: succeeded</text><text x="112" y="238" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Successfully delivering StructuredToolResultEnvelope does not establish tool or business completion</text></g><g data-node="true"><rect x="144" y="280" width="992" height="112" rx="8" fill="#0066d6" stroke="#0066d6" stroke-width="1.2"/><rect x="160" y="292" width="94" height="18" rx="2" fill="#1c78e4"/><text x="168" y="305" font-size="9" fill="#ffffff" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">INNER OUTCOME</text><text x="160" y="331" font-size="14" fill="#ffffff" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">envelope.outcome: ambiguous_after_dispatch</text><text x="160" y="354" font-size="12" fill="#e2efff" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">For example, Task / Step persistence fails after dispatch, retaining uncertainty inside</text><text x="160" y="372" font-size="12" fill="#e2efff" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Do not rewrite this as confirmed non-commit or successful completion</text></g><text x="160" y="420" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">toLegacyToolResult() → convert the inner result to text</text><g data-node="true"><rect x="96" y="480" width="304" height="112" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="112" y="492" width="64" height="18" rx="2" fill="#eef4fb"/><text x="120" y="505" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">DELIVERY</text><text x="112" y="531" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">1. Was the envelope delivered?</text><text x="112" y="554" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Inspect the outer result</text><text x="112" y="572" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">This answers envelope delivery only</text></g><g data-node="true"><rect x="456" y="480" width="336" height="112" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="472" y="492" width="82" height="18" rx="2" fill="#eef4fb"/><text x="480" y="505" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">TOOL RESULT</text><text x="472" y="531" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">2. What is the tool outcome?</text><text x="472" y="554" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Read outcome and result references</text><text x="472" y="572" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Success / no commit / uncertainty</text></g><g data-node="true"><rect x="848" y="480" width="336" height="112" rx="8" fill="#ffffff" stroke="#b9cce3" stroke-width="1.2"/><rect x="864" y="492" width="106" height="18" rx="2" fill="#eef4fb"/><text x="872" y="505" font-size="9" fill="#0066d6" font-weight="500" font-family="'Geist Mono', 'Consolas', 'Microsoft JhengHei', monospace">BUSINESS EFFECT</text><text x="864" y="531" font-size="14" fill="#102743" font-weight="600" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">3. What supports completion?</text><text x="864" y="554" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Check tool results and external resource state</text><text x="864" y="572" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Success text cannot replace effect evidence</text></g><path d="M96 612 H1184" stroke="#d5e1ee" stroke-width="1"/><text x="96" y="638" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">This illustrates nested outcomes; not every succeeded result is uncertain, and no failure drill was performed here.</text><text x="96" y="658" font-size="12" fill="#52657d" font-weight="400" font-family="'Geist', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif">Check Promise resolution, envelope delivery, tool success, and business completion separately; use the inner outcome for reconciliation or retry.</text>
 </svg>

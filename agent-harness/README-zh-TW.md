@@ -10,4 +10,4 @@
 2. [Input and Context](./input-and-context/README-zh-TW.md)：輸入正規化、Context 組裝、信任邊界、Memory 與案例。
 3. [Behavior and Capabilities](./behavior-and-capabilities/README-zh-TW.md)：行為指令、能力組裝、能力選擇與使用等四篇說明。
 4. [Action Governance](./action-governance/README-zh-TW.md)：工具風險、授權、人工確認、受控派送與副作用處理的六篇說明。
-5. Interaction and Feedback：執行中互動與行為評估（規劃中）。
+5. [Interaction and Feedback](./interaction-and-feedback/README-zh-TW.md)：執行中新輸入、Run 歸屬、釐清恢復、取消修正與回饋評估的六篇中英文初稿。
