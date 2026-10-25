@@ -111,16 +111,16 @@ gun-harness-engineering/
 ├─ README-zh-TW.md
 ├─ agent-harness/
 │  ├─ foundations/
-│  ├─ input-and-context/          # planned
-│  ├─ behavior-and-capabilities/  # planned
-│  ├─ action-governance/          # planned
-│  └─ interaction-and-feedback/   # planned
-└─ agent-runtime/                 # planned
+│  ├─ input-and-context/
+│  ├─ behavior-and-capabilities/
+│  ├─ action-governance/
+│  └─ interaction-and-feedback/
+└─ agent-runtime/
    ├─ foundations/
-   ├─ execution-lifecycle/
-   ├─ model-and-tool-execution/
-   ├─ effects-and-recovery/
-   └─ events-and-operations/
+   ├─ execution-lifecycle/  # planned
+   ├─ model-and-tool-execution/  # planned
+   ├─ effects-and-recovery/  # planned
+   └─ events-and-operations/  # planned
 ~~~
 
 ### Agent Harness
