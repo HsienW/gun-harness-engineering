@@ -6,13 +6,11 @@
 > CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
 > Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
 
-本區從 [Harness 與 Runtime 的交接邊界](../../agent-harness/foundations/03-harness-runtime-boundary-zh-TW.md) 往執行端移動。Harness 已交付 Normalized Input、Context、Capabilities、Limits 與 Decision Ports 之後，Runtime 必須把一次執行推進到合法終點，並保留足以回答「執行到哪裡、做過什麼、能否安全繼續」的證據。
-
-六篇正體中文正文初稿已完成。前五篇依序定義 Runtime、Execution Identity、狀態轉移、持久化與恢復，再整理設計原則；第六篇用一個需要人工確認的工具呼叫串起完整 Run。各篇比較 Chat Gun 的 LangGraph／治理擴充與 Claude Code Best 的 imperative query loop，但不把兩個程式庫整理成一套虛構的共同介面。
+本篇章從 [Harness 與 Runtime 的交接邊界](../../agent-harness/foundations/03-harness-runtime-boundary-zh-TW.md) 往執行端移動。Harness 已交付 Normalized Input、Context、Capabilities、Limits 與 Decision Ports 之後，Runtime 必須把一次執行推進到合法終點，並保留足以回答「執行到哪裡、做過什麼、能否安全繼續」的證據。
 
 ## 閱讀順序
 
-| 篇次 | 文章 | 要回答的問題 | 正體中文檔名 |
+| 篇次 | 文章 | 要回答的問題 | 檔名 |
 |---|---|---|---|
 | 01 | [實際落地的 Agent Runtime 是什麼](./01-what-is-agent-runtime-zh-TW.md) | Runtime 從哪一刻接手，又應交付什麼結果？ | `01-what-is-agent-runtime-zh-TW.md` |
 | 02 | [Execution Identity 與狀態權威](./02-execution-identity-and-state-authority-zh-TW.md) | Request、Thread、Task、Run、Step 與 Tool Call 如何保持可追蹤，又由誰持有真實狀態？ | `02-execution-identity-and-state-authority-zh-TW.md` |

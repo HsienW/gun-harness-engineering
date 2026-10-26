@@ -8,11 +8,11 @@
 
 同一個 Task 的舊 Run 還沒結束，新 Run 已取得 ownership；舊 finalizer 隨後回來清理，使用者又在此時送回先前的批准。Runtime 需要逐項核對這些動作的身分、狀態與版本，才能決定哪一次執行可以繼續，哪一筆回覆已經失效。
 
-[Foundations](../foundations/README-zh-TW.md) 已建立 Run、Task、Thread、generation、Waiting 與 Terminal 的基本概念。本區往下追到接納、保留、派送、等待、恢復及清理的實際邊界，六篇正體中文正文初稿已完成。以下保留各篇主題、圖解候選與查證清單，並列出正文採用的來源範圍。
+[Foundations](../foundations/README-zh-TW.md) 已建立 Run、Task、Thread、generation、Waiting 與 Terminal 的基本概念。本區往下追到接納、保留、派送、等待、恢復及清理的實際邊界。以下保留各篇主題、圖解候選與查證清單，並列出正文採用的來源範圍。
 
 ## 閱讀順序
 
-| 篇次 | 文章 | 要回答的問題 | 正體中文檔名 |
+| 篇次 | 文章 | 要回答的問題 | 檔名 |
 |---|---|---|---|
 | 01 | [Run 接納與建立](./01-run-admission-and-creation-zh-TW.md) · [English](./01-run-admission-and-creation.md) | 收到請求後，何時才算接手執行，接納失敗又該留下什麼？ | `01-run-admission-and-creation-zh-TW.md` |
 | 02 | [執行歸屬與替換](./02-run-ownership-and-supersede-zh-TW.md) · [English](./02-run-ownership-and-supersede.md) | Thread、Task 與 Run 如何關聯，舊執行為何不能清掉新 owner？ | `02-run-ownership-and-supersede-zh-TW.md` |

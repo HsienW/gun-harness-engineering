@@ -2,13 +2,11 @@
 
 [English](./README.md) | [繁體中文](./README-zh-TW.md)
 
-本區接在 [Behavior and Capabilities](../behavior-and-capabilities/README-zh-TW.md) 之後。前區說明能力如何進入任務，以及由模型還是程式提出呼叫；本區從具體工具名稱、參數與可信執行條件開始，追蹤能否執行、何時需要確認，以及派送後如何交代結果。
-
-六篇中英文正文初稿已完成，涵蓋具體呼叫的契約、授權、確認、派送與副作用處理。以下保留各篇範圍、查讀要求與圖解候選；英文版沿用相同編號與檔名主幹，移除 `-zh-TW`。各篇提供語言切換連結，[英文導覽](./README.md)連到對應英文版。
+本篇章接在 [Behavior and Capabilities](../behavior-and-capabilities/README-zh-TW.md) 之後。前區說明能力如何進入任務，以及由模型還是程式提出呼叫；本篇章從具體工具名稱、參數與可信執行條件開始，追蹤能否執行、何時需要確認，以及派送後如何交代結果。
 
 ## 閱讀順序
 
-| 篇次 | 文章 | 要回答的問題 | 正體中文檔名 |
+| 篇次 | 文章 | 要回答的問題 | 檔名 |
 |---|---|---|---|
 | 01 | [工具風險與行動契約](./01-tool-risk-and-contracts-zh-TW.md) | 同一個工具的不同操作，要交付哪些可檢查的條件？ | `01-tool-risk-and-contracts-zh-TW.md` |
 | 02 | [授權身分與資源範圍](./02-authorization-and-scope-zh-TW.md) | 誰能對哪個資源執行這一次操作？ | `02-authorization-and-scope-zh-TW.md` |
@@ -43,12 +41,12 @@ flowchart LR
     Outcome -.-> Evidence
 ```
 
-本區與其他分類的分工如下：
+本篇章與其他分類的分工如下：
 
-- **Foundations** 提供 Harness／Runtime 責任與一般設計原則；本區展開具體呼叫的決策、派送及效果證據。
+- **Foundations** 提供 Harness／Runtime 責任與一般設計原則；本篇章展開具體呼叫的決策、派送及效果證據。
 - **Input and Context** 處理材料來源與指令權威；外部文字即使誘導模型提出呼叫，也不能提供可信授權身分。
-- **Behavior and Capabilities** 處理能力組裝與候選範圍；本區不重講 loader、工具池合併或模型選工具的流程。
-- **Interaction and Feedback** 將處理一般 Run ownership、generation、新輸入、取消與回覆評估。本區只保留批准交接，以及取消對單次工具效果的影響。
+- **Behavior and Capabilities** 處理能力組裝與候選範圍；本篇章不重講 loader、工具池合併或模型選工具的流程。
+- **Interaction and Feedback** 將處理一般 Run ownership、generation、新輸入、取消與回覆評估。本篇章只保留批准交接，以及取消對單次工具效果的影響。
 
 ## 01. 工具風險與行動契約
 
@@ -202,14 +200,14 @@ flowchart LR
 
 ## 來源與查證狀態
 
-GUN-ATLAS v1.0（2026-10-12）提供定位；本區沿用前區的固定版本，避免混入浮動分支的新行為。規劃與正文於 2026-10-23 透過 GitHub 查讀所列程式與文件。使用者指定的 session 檔案未能定位，因此不將其內容列為已讀證據；附件中的面試回答規則也不作為本區文章格式。
+GUN-ATLAS v1.0（2026-10-12）提供定位；本篇章沿用前區的固定版本，避免混入浮動分支的新行為。規劃與正文於 2026-10-23 透過 GitHub 查讀所列程式與文件。使用者指定的 session 檔案未能定位，因此不將其內容列為已讀證據；附件中的面試回答規則也不作為本篇章文章格式。
 
 | 來源 | 固定版本 | 使用範圍 |
 |---|---|---|
 | [Chat Gun](https://github.com/HsienW/chat-gun) | `92a5673003e4ac4ec09be8b1b350f42dbf4a5e69` | 行動契約、授權、確認、派送、隔離與副作用。 |
 | [Claude Code Best](https://github.com/claude-code-best/claude-code) | `77a7934e15d69da13879112ed7db695c9ee7a52a` | 第三方 Coding Agent 的 Tool、Permission consumer、互動確認與工具排程。 |
 
-本區的 CCB 指 Claude Code Best，不把它當成 Anthropic 官方現行實作。已讀測試代表知道案例內容，未代表本輪執行通過；本輪沒有執行 unit、integration、E2E、外部 MCP、真實 Provider、資料庫競態或部署故障演練。
+本篇章的 CCB 指 Claude Code Best，不把它當成 Anthropic 官方現行實作。已讀測試代表知道案例內容，未代表本輪執行通過；本輪沒有執行 unit、integration、E2E、外部 MCP、真實 Provider、資料庫競態或部署故障演練。
 
 ### 主要來源索引
 

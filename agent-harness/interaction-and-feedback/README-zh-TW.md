@@ -2,13 +2,11 @@
 
 [English](./README.md) | [繁體中文](./README-zh-TW.md)
 
-本區接在 [Action Governance](../action-governance/README-zh-TW.md) 之後。前區追蹤單次工具呼叫的授權、批准、派送與效果；本區處理任務尚未結束時的新輸入、等待與恢復、取消及可見狀態，再把可查證的失敗整理成後續評估材料。
-
-六篇正體中文與英文正文初稿已完成，保留相同段落、清單、表格與技術名稱，並附八張中英文 SVG／HTML 圖解。英文版沿用相同編號與檔名主幹，移除 `-zh-TW`，可由各篇語言連結切換。以下保留各篇主題、圖解候選與查證邊界。來源採前區相同的固定 commit；本輪補查前端、BFF、釐清 Graph 與評估 runner，沒有執行測試或部署驗證。
+本篇章接在 [Action Governance](../action-governance/README-zh-TW.md) 之後。前區追蹤單次工具呼叫的授權、批准、派送與效果；本篇章處理任務尚未結束時的新輸入、等待與恢復、取消及可見狀態，再把可查證的失敗整理成後續評估材料。
 
 ## 閱讀順序
 
-| 篇次 | 文章 | 要回答的問題 | 正體中文檔名 |
+| 篇次 | 文章 | 要回答的問題 | 檔名 |
 |---|---|---|---|
 | 01 | [執行中新輸入與互動策略](./01-in-flight-input-policy-zh-TW.md) | 新訊息是補充、改意、取消、重複輸入，還是另一項任務？ | `01-in-flight-input-policy-zh-TW.md` |
 | 02 | [Run 歸屬與可見狀態](./02-run-ownership-and-visible-state-zh-TW.md) | 哪一次執行有權更新目前畫面，舊回呼何時必須停止清理？ | `02-run-ownership-and-visible-state-zh-TW.md` |
@@ -40,11 +38,11 @@ flowchart TD
     Evaluate -.-> Change[依證據提出並驗證修改]
 ```
 
-- **Foundations** 已說明使用者介入、晚到輸出與完成證據；本區追到實際 consumer、設定與失敗分支。
-- **Input and Context** 負責輸入形狀、來源、指令權威與容量；本區從已正規化輸入開始，追蹤它在活動任務中的歸屬與處置。
+- **Foundations** 已說明使用者介入、晚到輸出與完成證據；本篇章追到實際 consumer、設定與失敗分支。
+- **Input and Context** 負責輸入形狀、來源、指令權威與容量；本篇章從已正規化輸入開始，追蹤它在活動任務中的歸屬與處置。
 - **Behavior and Capabilities** 負責有效指令、工具組裝與候選範圍；這裡只說明新輸入何時影響既有任務，不重講 loader 與工具選擇。
-- **Action Governance** 負責工具批准與副作用契約；本區引用其提交狀態與補償條件，聚焦整項互動的取消及修正決策。釐清回答與工具批准必須分開。
-- **Agent Runtime** 後續處理執行核心、checkpoint、恢復及事件傳遞細節；本區保留政策與可見狀態責任，不另建一套通用 Run queue 或 worker runtime。
+- **Action Governance** 負責工具批准與副作用契約；本篇章引用其提交狀態與補償條件，聚焦整項互動的取消及修正決策。釐清回答與工具批准必須分開。
+- **Agent Runtime** 後續處理執行核心、checkpoint、恢復及事件傳遞細節；本篇章保留政策與可見狀態責任，不另建一套通用 Run queue 或 worker runtime。
 
 ## 01. 執行中新輸入與互動策略
 
@@ -221,7 +219,7 @@ flowchart TD
 
 ## 來源與查證狀態
 
-GUN-ATLAS v1.0 提供程式庫定位與起始索引。指定 session 檔案在原路徑及修正為使用者目錄下 `.codex` 的路徑均未找到，不列為已讀證據；附件中的面試回答規則不作為本區寫作格式。使用者提及的 claude-code-base，依附件所指的 Claude Code Best 程式庫處理。
+GUN-ATLAS v1.0 提供程式庫定位與起始索引。指定 session 檔案在原路徑及修正為使用者目錄下 `.codex` 的路徑均未找到，不列為已讀證據；附件中的面試回答規則不作為本篇章寫作格式。使用者提及的 claude-code-base，依附件所指的 Claude Code Best 程式庫處理。
 
 | 來源 | 固定 commit | 用途 |
 |---|---|---|
