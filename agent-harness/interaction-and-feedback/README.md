@@ -4,18 +4,16 @@
 
 This section follows [Action Governance](../action-governance/README.md). It covers how the Harness handles new input during an active task, controls visible Run ownership, resumes clarification, makes cancellation decisions, and turns inspected failures into regression material.
 
-Six article drafts are available in both English and Traditional Chinese, with eight diagrams supplied as separate SVG and HTML files in each language. The article links below open the English drafts; the final column lists their filenames. The [Traditional Chinese guide](./README-zh-TW.md) retains the article topics, verification boundaries, diagram candidates, and pinned source index.
-
 ## Reading order
 
-| Number | Article | Question | English filename |
-|---|---|---|---|
-| 01 | [In-flight input and interaction policy](./01-in-flight-input-policy.md) | Is new input a clarification answer, intent revision, cancellation, duplicate, or independent task? | `01-in-flight-input-policy.md` |
+| Number | Article | Question | Filename                                |
+|---|---|---|-----------------------------------------|
+| 01 | [In-flight input and interaction policy](./01-in-flight-input-policy.md) | Is new input a clarification answer, intent revision, cancellation, duplicate, or independent task? | `01-in-flight-input-policy.md`          |
 | 02 | [Run ownership and visible state](./02-run-ownership-and-visible-state.md) | Which execution may update the current view, and when must stale cleanup do nothing? | `02-run-ownership-and-visible-state.md` |
-| 03 | [Clarification and task resumption](./03-clarification-and-resume.md) | Which wait receives an answer, and what must be checked before resuming? | `03-clarification-and-resume.md` |
-| 04 | [Cancellation, correction, and committed effects](./04-cancellation-and-correction.md) | What can still be stopped, and which effects require separate handling? | `04-cancellation-and-correction.md` |
-| 05 | [Feedback, evaluation, and regression cases](./05-feedback-and-evaluation.md) | How does a failure become reproducible, comparable evaluation material with appropriate data handling? | `05-feedback-and-evaluation.md` |
-| 06 | [Control flow from a follow-up to feedback](./06-case-interaction-to-feedback.md) | Can input ownership, resumption, stale output, and regression evidence be traced through one scenario? | `06-case-interaction-to-feedback.md` |
+| 03 | [Clarification and task resumption](./03-clarification-and-resume.md) | Which wait receives an answer, and what must be checked before resuming? | `03-clarification-and-resume.md`        |
+| 04 | [Cancellation, correction, and committed effects](./04-cancellation-and-correction.md) | What can still be stopped, and which effects require separate handling? | `04-cancellation-and-correction.md`     |
+| 05 | [Feedback, evaluation, and regression cases](./05-feedback-and-evaluation.md) | How does a failure become reproducible, comparable evaluation material with appropriate data handling? | `05-feedback-and-evaluation.md`         |
+| 06 | [Control flow from a follow-up to feedback](./06-case-interaction-to-feedback.md) | Can input ownership, resumption, stale output, and regression evidence be traced through one scenario? | `06-case-interaction-to-feedback.md`    |
 
 ## Scope and implementation boundaries
 

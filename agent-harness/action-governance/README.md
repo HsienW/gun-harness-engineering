@@ -4,18 +4,16 @@
 
 This section follows [Behavior and Capabilities](../behavior-and-capabilities/README.md). The preceding section explains how capabilities enter a task and whether the model or code proposes a call. This section starts with a concrete tool name, arguments, and trusted execution conditions, then traces whether execution is allowed, when confirmation is required, and how results are accounted for after dispatch.
 
-Six article drafts are available in English and Traditional Chinese, covering contracts, authorization, confirmation, dispatch, and side effects for concrete calls. The scope, inspection requirements, and diagram candidates for each article remain below. English filenames keep the same numbers and stems without `-zh-TW`.
-
 ## Reading order
 
-| Number | Article | Question | English filename |
-|---|---|---|---|
-| 01 | [Tool risk and action contracts](./01-tool-risk-and-contracts.md) | What inspectable conditions must different operations of the same tool supply? | `01-tool-risk-and-contracts.md` |
-| 02 | [Authorization and resource scope](./02-authorization-and-scope.md) | Who may perform this operation on this resource? | `02-authorization-and-scope.md` |
-| 03 | [Human confirmation and approval validity](./03-human-confirmation.md) | What exactly does one user approval authorize? | `03-human-confirmation.md` |
+| Number | Article | Question | Filename                                |
+|---|---|---|-----------------------------------------|
+| 01 | [Tool risk and action contracts](./01-tool-risk-and-contracts.md) | What inspectable conditions must different operations of the same tool supply? | `01-tool-risk-and-contracts.md`         |
+| 02 | [Authorization and resource scope](./02-authorization-and-scope.md) | Who may perform this operation on this resource? | `02-authorization-and-scope.md`         |
+| 03 | [Human confirmation and approval validity](./03-human-confirmation.md) | What exactly does one user approval authorize? | `03-human-confirmation.md`              |
 | 04 | [Governed dispatch and execution isolation](./04-governed-dispatch-and-isolation.md) | After authorization, what restricts what a tool can actually do? | `04-governed-dispatch-and-isolation.md` |
-| 05 | [Retries and side effects](./05-retry-and-side-effects.md) | Can a call be tried again after failure, timeout, or an uncertain result? | `05-retry-and-side-effects.md` |
-| 06 | [A governed tool call](./06-case-governed-tool-call.md) | How do proposal, authorization, confirmation, dispatch, and results connect to the same task? | `06-case-governed-tool-call.md` |
+| 05 | [Retries and side effects](./05-retry-and-side-effects.md) | Can a call be tried again after failure, timeout, or an uncertain result? | `05-retry-and-side-effects.md`          |
+| 06 | [A governed tool call](./06-case-governed-tool-call.md) | How do proposal, authorization, confirmation, dispatch, and results connect to the same task? | `06-case-governed-tool-call.md`         |
 
 ## Architecture and responsibilities
 
