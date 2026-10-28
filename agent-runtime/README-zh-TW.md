@@ -13,7 +13,7 @@ Runtime 接收 [Agent Harness](../agent-harness/README-zh-TW.md) 準備好的輸
 | [Foundations](./foundations/README-zh-TW.md) | Runtime 定義、Execution Identity、狀態轉移、持久化與恢復、設計原則及一次完整 Run。 | 中文版本已完成  |
 | [Execution Lifecycle](./execution-lifecycle/README-zh-TW.md) | Admission、Run／Task／Thread、期限、取消、等待、終止與生命週期競態。 | 中文版本已完成 |
 | `model-and-tool-execution/` | 模型串流、Tool Call 迴圈、排程、並行、錯誤回灌、資源與成本預算。 | 規劃中      |
-| `effects-and-recovery/` | Checkpoint、Interrupt、Resume、Idempotency、Side-effect Ledger、Reconciliation 與 Compensation。 | 規劃中      |
+| [Effects and Recovery](./effects-and-recovery/README-zh-TW.md) | Checkpoint、恢復資料、冪等與重放、效果帳本、回查重試及補償。 | 六篇中文初稿完成 |
 | `events-and-operations/` | Runtime Event、Tracing、Metrics、Audit、故障演練與上線門檻。 | 規劃中      |
 
 ## Runtime 的責任位置
