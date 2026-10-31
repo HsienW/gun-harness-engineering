@@ -1,6 +1,6 @@
 # 能力使用案例
 
-[English](./04-case-capability-use.md) | [繁體中文](./04-case-capability-use-zh-TW.md)
+[English](./04-case-capability-use.md) | [繁體中文](./04-case-capability-use-zh-TW.md) | [简体中文](./04-case-capability-use-zh-CN.md)
 
 > 以下內容所提到的
 > CCR 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。

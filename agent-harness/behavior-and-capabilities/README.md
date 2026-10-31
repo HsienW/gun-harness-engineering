@@ -1,6 +1,6 @@
 # Behavior and Capabilities
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 This section follows [Input and Context](../input-and-context/README.md). It explains how the Harness assembles effective behavior instructions, builds a capability set, and hands candidates to the model or code routing. Four article drafts are available in English and Traditional Chinese. The final article traces a calculation task through source code and identifies the model and tool execution behavior that remains unverified.
 

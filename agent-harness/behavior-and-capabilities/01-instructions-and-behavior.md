@@ -1,6 +1,6 @@
 # Instructions and behavior
 
-[English](./01-instructions-and-behavior.md) | [繁體中文](./01-instructions-and-behavior-zh-TW.md)
+[English](./01-instructions-and-behavior.md) | [繁體中文](./01-instructions-and-behavior-zh-TW.md) | [简体中文](./01-instructions-and-behavior-zh-CN.md)
 
 > In the following content:
 > CCR is short for [claude-code-best](https://github.com/claude-code-best/claude-code).

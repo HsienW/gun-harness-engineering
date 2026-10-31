@@ -1,6 +1,6 @@
 # Capability composition
 
-[English](./02-capability-composition.md) | [繁體中文](./02-capability-composition-zh-TW.md)
+[English](./02-capability-composition.md) | [繁體中文](./02-capability-composition-zh-TW.md) | [简体中文](./02-capability-composition-zh-CN.md)
 
 > In the following content:
 > CCR is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
