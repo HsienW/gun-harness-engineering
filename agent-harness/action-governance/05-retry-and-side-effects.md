@@ -1,6 +1,6 @@
 # Retries and side effects
 
-[English](./05-retry-and-side-effects.md) | [繁體中文](./05-retry-and-side-effects-zh-TW.md)
+[English](./05-retry-and-side-effects.md) | [繁體中文](./05-retry-and-side-effects-zh-TW.md) | [简体中文](./05-retry-and-side-effects-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Governed dispatch and execution isolation](./04-governed-dispatch-and-isolation.md) · Next: [A governed tool call](./06-case-governed-tool-call.md)
 

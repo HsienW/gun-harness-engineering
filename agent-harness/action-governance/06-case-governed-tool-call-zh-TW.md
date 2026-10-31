@@ -1,6 +1,6 @@
 # 一次工具呼叫的治理流程
 
-[English](./06-case-governed-tool-call.md) | [繁體中文](./06-case-governed-tool-call-zh-TW.md)
+[English](./06-case-governed-tool-call.md) | [繁體中文](./06-case-governed-tool-call-zh-TW.md) | [简体中文](./06-case-governed-tool-call-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[重試與副作用處理](./05-retry-and-side-effects-zh-TW.md)
 

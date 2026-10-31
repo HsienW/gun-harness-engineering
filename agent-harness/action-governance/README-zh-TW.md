@@ -1,6 +1,6 @@
 # Action Governance
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 本篇章接在 [Behavior and Capabilities](../behavior-and-capabilities/README-zh-TW.md) 之後。前區說明能力如何進入任務，以及由模型還是程式提出呼叫；本篇章從具體工具名稱、參數與可信執行條件開始，追蹤能否執行、何時需要確認，以及派送後如何交代結果。
 

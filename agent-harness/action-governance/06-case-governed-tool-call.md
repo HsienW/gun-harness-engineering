@@ -1,6 +1,6 @@
 # A governed tool call
 
-[English](./06-case-governed-tool-call.md) | [繁體中文](./06-case-governed-tool-call-zh-TW.md)
+[English](./06-case-governed-tool-call.md) | [繁體中文](./06-case-governed-tool-call-zh-TW.md) | [简体中文](./06-case-governed-tool-call-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Retries and side effects](./05-retry-and-side-effects.md)
 

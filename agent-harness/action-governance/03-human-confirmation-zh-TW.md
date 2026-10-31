@@ -1,6 +1,6 @@
 # 人工確認與批准有效性
 
-[English](./03-human-confirmation.md) | [繁體中文](./03-human-confirmation-zh-TW.md)
+[English](./03-human-confirmation.md) | [繁體中文](./03-human-confirmation-zh-TW.md) | [简体中文](./03-human-confirmation-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[授權身分與資源範圍](./02-authorization-and-scope-zh-TW.md) · 下一篇：[受控派送與執行隔離](./04-governed-dispatch-and-isolation-zh-TW.md)
 

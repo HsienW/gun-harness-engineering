@@ -1,6 +1,6 @@
 # Authorization and resource scope
 
-[English](./02-authorization-and-scope.md) | [繁體中文](./02-authorization-and-scope-zh-TW.md)
+[English](./02-authorization-and-scope.md) | [繁體中文](./02-authorization-and-scope-zh-TW.md) | [简体中文](./02-authorization-and-scope-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Tool risk and action contracts](./01-tool-risk-and-contracts.md) · Next: [Human confirmation and approval validity](./03-human-confirmation.md)
 
