@@ -1,6 +1,6 @@
 # A complete walkthrough of one task
 
-[English](./05-one-turn-walkthrough.md) | [繁體中文](./05-one-turn-walkthrough-zh-TW.md)
+[English](./05-one-turn-walkthrough.md) | [繁體中文](./05-one-turn-walkthrough-zh-TW.md) | [简体中文](./05-one-turn-walkthrough-zh-CN.md)
 
 A user asks to modify a file, but the screen may show only an instruction and a completion reply. At least these steps take place between them:
 

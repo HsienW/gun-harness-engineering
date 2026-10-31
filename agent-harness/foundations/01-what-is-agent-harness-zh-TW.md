@@ -1,6 +1,6 @@
 # 實際落地的 Agent Harness 是什麼?
 
-[English](./01-what-is-agent-harness.md) | [繁體中文](./01-what-is-agent-harness-zh-TW.md)
+[English](./01-what-is-agent-harness.md) | [繁體中文](./01-what-is-agent-harness-zh-TW.md) | [简体中文](./01-what-is-agent-harness-zh-CN.md)
 
 - 我認為 Agent Harness 是產品放在模型與真實世界之間的控制層
   - 它整理使用者輸入

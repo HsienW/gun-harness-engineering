@@ -1,6 +1,6 @@
 # Agent Harness foundations
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 These five articles first define what the Harness is responsible for, then examine how decisions enter execution, and finally check the full path through a file-editing task. Read them in order: each article develops the question left by the preceding one into a concrete flow.
 

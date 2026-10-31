@@ -1,6 +1,6 @@
 # Agent Harness design principles
 
-[English](./04-design-principles.md) | [繁體中文](./04-design-principles-zh-TW.md)
+[English](./04-design-principles.md) | [繁體中文](./04-design-principles-zh-TW.md) | [简体中文](./04-design-principles-zh-CN.md)
 
 > You may have encountered this scenario: a user asks the Agent to "modify only the README," but it also adjusts a configuration file. You check the Prompt, which clearly says to stay within scope; you check the tool, and its file-writing function works as expected.
 
