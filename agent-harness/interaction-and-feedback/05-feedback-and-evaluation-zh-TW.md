@@ -1,6 +1,6 @@
 # 回饋、評估與回歸案例
 
-[English](./05-feedback-and-evaluation.md) | [繁體中文](./05-feedback-and-evaluation-zh-TW.md)
+[English](./05-feedback-and-evaluation.md) | [繁體中文](./05-feedback-and-evaluation-zh-TW.md) | [简体中文](./05-feedback-and-evaluation-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[取消、修正與已生效操作](./04-cancellation-and-correction-zh-TW.md) · 下一篇：[一次追問到回饋的控制流程](./06-case-interaction-to-feedback-zh-TW.md)
 

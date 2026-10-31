@@ -1,6 +1,6 @@
 # Interaction and Feedback
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 This section follows [Action Governance](../action-governance/README.md). It covers how the Harness handles new input during an active task, controls visible Run ownership, resumes clarification, makes cancellation decisions, and turns inspected failures into regression material.
 

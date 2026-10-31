@@ -1,6 +1,6 @@
 # 一次追問到回饋的控制流程
 
-[English](./06-case-interaction-to-feedback.md) | [繁體中文](./06-case-interaction-to-feedback-zh-TW.md)
+[English](./06-case-interaction-to-feedback.md) | [繁體中文](./06-case-interaction-to-feedback-zh-TW.md) | [简体中文](./06-case-interaction-to-feedback-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[回饋、評估與回歸案例](./05-feedback-and-evaluation-zh-TW.md)
 

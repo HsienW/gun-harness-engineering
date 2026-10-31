@@ -1,6 +1,6 @@
 # Clarification and task resumption
 
-[English](./03-clarification-and-resume.md) | [繁體中文](./03-clarification-and-resume-zh-TW.md)
+[English](./03-clarification-and-resume.md) | [繁體中文](./03-clarification-and-resume-zh-TW.md) | [简体中文](./03-clarification-and-resume-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Run ownership and visible state](./02-run-ownership-and-visible-state.md) · Next: [Cancellation, correction, and committed effects](./04-cancellation-and-correction.md)
 

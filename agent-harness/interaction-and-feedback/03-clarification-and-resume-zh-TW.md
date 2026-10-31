@@ -1,6 +1,6 @@
 # 釐清提問與任務恢復
 
-[English](./03-clarification-and-resume.md) | [繁體中文](./03-clarification-and-resume-zh-TW.md)
+[English](./03-clarification-and-resume.md) | [繁體中文](./03-clarification-and-resume-zh-TW.md) | [简体中文](./03-clarification-and-resume-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[Run 歸屬與可見狀態](./02-run-ownership-and-visible-state-zh-TW.md) · 下一篇：[取消、修正與已生效操作](./04-cancellation-and-correction-zh-TW.md)
 

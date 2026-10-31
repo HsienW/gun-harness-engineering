@@ -1,6 +1,6 @@
 # Run ownership and visible state
 
-[English](./02-run-ownership-and-visible-state.md) | [繁體中文](./02-run-ownership-and-visible-state-zh-TW.md)
+[English](./02-run-ownership-and-visible-state.md) | [繁體中文](./02-run-ownership-and-visible-state-zh-TW.md) | [简体中文](./02-run-ownership-and-visible-state-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [In-flight input and interaction policy](./01-in-flight-input-policy.md) · Next: [Clarification and task resumption](./03-clarification-and-resume.md)
 

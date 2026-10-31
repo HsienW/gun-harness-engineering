@@ -1,6 +1,6 @@
 # In-flight input and interaction policy
 
-[English](./01-in-flight-input-policy.md) | [繁體中文](./01-in-flight-input-policy-zh-TW.md)
+[English](./01-in-flight-input-policy.md) | [繁體中文](./01-in-flight-input-policy-zh-TW.md) | [简体中文](./01-in-flight-input-policy-zh-CN.md)
 
 [Back to overview](./README.md) · Next: [Run ownership and visible state](./02-run-ownership-and-visible-state.md)
 

@@ -1,6 +1,6 @@
 # Feedback, evaluation, and regression cases
 
-[English](./05-feedback-and-evaluation.md) | [繁體中文](./05-feedback-and-evaluation-zh-TW.md)
+[English](./05-feedback-and-evaluation.md) | [繁體中文](./05-feedback-and-evaluation-zh-TW.md) | [简体中文](./05-feedback-and-evaluation-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Cancellation, correction, and committed effects](./04-cancellation-and-correction.md) · Next: [Control flow from a follow-up to feedback](./06-case-interaction-to-feedback.md)
 
