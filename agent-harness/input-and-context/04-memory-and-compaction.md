@@ -1,6 +1,6 @@
 # Memory and compaction
 
-[English](./04-memory-and-compaction.md) | [繁體中文](./04-memory-and-compaction-zh-TW.md)
+[English](./04-memory-and-compaction.md) | [繁體中文](./04-memory-and-compaction-zh-TW.md) | [简体中文](./04-memory-and-compaction-zh-CN.md)
 
 > Once a conversation grows long, "something said earlier" can refer to at least four things: recent messages in the Graph, the active state of a running execution, Memory recalled across tasks, or a summary generated to save space.
 

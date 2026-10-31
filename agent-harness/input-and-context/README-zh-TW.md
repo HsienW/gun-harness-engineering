@@ -1,6 +1,6 @@
 # Input and Context
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 本區接在[基礎篇](../foundations/README-zh-TW.md)之後，追蹤 Harness 如何接收任務、決定模型能看見的材料，並保留指令與資料的界線。五篇請依序閱讀；各篇區分已讀到的程式路徑、已接入正式入口的能力與作者的設計判斷，尚需實際執行證據的部分，也在文中標明。
 

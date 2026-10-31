@@ -1,6 +1,6 @@
 # Context 組裝
 
-[English](./02-context-assembly.md) | [繁體中文](./02-context-assembly-zh-TW.md)
+[English](./02-context-assembly.md) | [繁體中文](./02-context-assembly-zh-TW.md) | [简体中文](./02-context-assembly-zh-CN.md)
 
 > 同一項任務不會只呼叫模型一次。使用者補充要求、工具回傳資料或長對話擠滿視窗時，模型下一次看到的內容可能已經不同。
 

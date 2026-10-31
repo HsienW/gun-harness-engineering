@@ -1,6 +1,6 @@
 # Context assembly
 
-[English](./02-context-assembly.md) | [繁體中文](./02-context-assembly-zh-TW.md)
+[English](./02-context-assembly.md) | [繁體中文](./02-context-assembly-zh-TW.md) | [简体中文](./02-context-assembly-zh-CN.md)
 
 > One task does not call the model only once. When the user adds a requirement, a tool returns data, or a long conversation fills the window, the model may see different material on the next call.
 

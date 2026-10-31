@@ -1,6 +1,6 @@
 # Input normalization
 
-[English](./01-input-normalization.md) | [繁體中文](./01-input-normalization-zh-TW.md)
+[English](./01-input-normalization.md) | [繁體中文](./01-input-normalization-zh-TW.md) | [简体中文](./01-input-normalization-zh-CN.md)
 
 > A user says, "modify only the installation section of the README," but the system may receive a block of text, a set of messages, attachment references, or a request that carries an intent to cancel.
 

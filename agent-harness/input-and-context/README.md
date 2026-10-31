@@ -1,6 +1,6 @@
 # Input and Context
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 This section follows the [foundations](../foundations/README.md): it traces how the Harness receives a task, decides which material the model may see, and preserves the boundary between instructions and data. Read the five articles in order. Each one distinguishes the code paths that have been read, the capabilities integrated into a production entry point, and the author's design judgment, and marks the claims that still need execution evidence.
 
