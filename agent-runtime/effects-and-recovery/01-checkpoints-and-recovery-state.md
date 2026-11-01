@@ -1,6 +1,6 @@
 # Checkpoints and recovery state
 
-[English](./01-checkpoints-and-recovery-state.md) | [繁體中文](./01-checkpoints-and-recovery-state-zh-TW.md)
+[English](./01-checkpoints-and-recovery-state.md) | [繁體中文](./01-checkpoints-and-recovery-state-zh-TW.md) | [简体中文](./01-checkpoints-and-recovery-state-zh-CN.md)
 
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
