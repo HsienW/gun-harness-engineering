@@ -1,6 +1,6 @@
 # 一次 Run 的完整走法
 
-[English](./06-one-run-walkthrough.md) | [繁體中文](./06-one-run-walkthrough-zh-TW.md)
+[English](./06-one-run-walkthrough.md) | [繁體中文](./06-one-run-walkthrough-zh-TW.md) | [简体中文](./06-one-run-walkthrough-zh-CN.md)
 
 > 以下內容所提到的
 > CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。

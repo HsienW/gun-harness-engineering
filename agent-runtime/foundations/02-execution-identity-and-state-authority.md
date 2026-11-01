@@ -1,6 +1,6 @@
 # Execution Identity and state authority
 
-[English](./02-execution-identity-and-state-authority.md) | [繁體中文](./02-execution-identity-and-state-authority-zh-TW.md)
+[English](./02-execution-identity-and-state-authority.md) | [繁體中文](./02-execution-identity-and-state-authority-zh-TW.md) | [简体中文](./02-execution-identity-and-state-authority-zh-CN.md)
 
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).

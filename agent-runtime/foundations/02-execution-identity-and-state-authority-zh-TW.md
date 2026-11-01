@@ -1,6 +1,6 @@
 # Execution Identity 與狀態權威
 
-[English](./02-execution-identity-and-state-authority.md) | [繁體中文](./02-execution-identity-and-state-authority-zh-TW.md)
+[English](./02-execution-identity-and-state-authority.md) | [繁體中文](./02-execution-identity-and-state-authority-zh-TW.md) | [简体中文](./02-execution-identity-and-state-authority-zh-CN.md)
 
 > 以下內容所提到的
 > CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。

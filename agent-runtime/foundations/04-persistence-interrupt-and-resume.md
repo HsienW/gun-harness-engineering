@@ -1,6 +1,6 @@
 # Persistence, Interrupt, and Resume
 
-[English](./04-persistence-interrupt-and-resume.md) | [繁體中文](./04-persistence-interrupt-and-resume-zh-TW.md)
+[English](./04-persistence-interrupt-and-resume.md) | [繁體中文](./04-persistence-interrupt-and-resume-zh-TW.md) | [简体中文](./04-persistence-interrupt-and-resume-zh-CN.md)
 
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).

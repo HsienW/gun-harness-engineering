@@ -1,6 +1,6 @@
 # Run Loop and state transitions
 
-[English](./03-run-loop-and-state-transitions.md) | [繁體中文](./03-run-loop-and-state-transitions-zh-TW.md)
+[English](./03-run-loop-and-state-transitions.md) | [繁體中文](./03-run-loop-and-state-transitions-zh-TW.md) | [简体中文](./03-run-loop-and-state-transitions-zh-CN.md)
 
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
