@@ -1,6 +1,6 @@
 # Action Governance
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 This section follows [Behavior and Capabilities](../behavior-and-capabilities/README.md). The preceding section explains how capabilities enter a task and whether the model or code proposes a call. This section starts with a concrete tool name, arguments, and trusted execution conditions, then traces whether execution is allowed, when confirmation is required, and how results are accounted for after dispatch.
 

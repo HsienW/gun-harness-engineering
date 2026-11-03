@@ -1,6 +1,6 @@
 # 重試與副作用處理
 
-[English](./05-retry-and-side-effects.md) | [繁體中文](./05-retry-and-side-effects-zh-TW.md)
+[English](./05-retry-and-side-effects.md) | [繁體中文](./05-retry-and-side-effects-zh-TW.md) | [简体中文](./05-retry-and-side-effects-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[受控派送與執行隔離](./04-governed-dispatch-and-isolation-zh-TW.md) · 下一篇：[一次工具呼叫的治理流程](./06-case-governed-tool-call-zh-TW.md)
 

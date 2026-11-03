@@ -1,6 +1,6 @@
 # 授權身分與資源範圍
 
-[English](./02-authorization-and-scope.md) | [繁體中文](./02-authorization-and-scope-zh-TW.md)
+[English](./02-authorization-and-scope.md) | [繁體中文](./02-authorization-and-scope-zh-TW.md) | [简体中文](./02-authorization-and-scope-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[工具風險與行動契約](./01-tool-risk-and-contracts-zh-TW.md) · 下一篇：[人工確認與批准有效性](./03-human-confirmation-zh-TW.md)
 

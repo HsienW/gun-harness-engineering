@@ -1,6 +1,6 @@
 # Tool risk and action contracts
 
-[English](./01-tool-risk-and-contracts.md) | [繁體中文](./01-tool-risk-and-contracts-zh-TW.md)
+[English](./01-tool-risk-and-contracts.md) | [繁體中文](./01-tool-risk-and-contracts-zh-TW.md) | [简体中文](./01-tool-risk-and-contracts-zh-CN.md)
 
 [Back to overview](./README.md) · Next: [Authorization and resource scope](./02-authorization-and-scope.md)
 

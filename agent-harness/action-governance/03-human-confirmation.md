@@ -1,6 +1,6 @@
 # Human confirmation and approval validity
 
-[English](./03-human-confirmation.md) | [繁體中文](./03-human-confirmation-zh-TW.md)
+[English](./03-human-confirmation.md) | [繁體中文](./03-human-confirmation-zh-TW.md) | [简体中文](./03-human-confirmation-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Authorization and resource scope](./02-authorization-and-scope.md) · Next: [Governed dispatch and execution isolation](./04-governed-dispatch-and-isolation.md)
 

@@ -1,6 +1,6 @@
 # 工具風險與行動契約
 
-[English](./01-tool-risk-and-contracts.md) | [繁體中文](./01-tool-risk-and-contracts-zh-TW.md)
+[English](./01-tool-risk-and-contracts.md) | [繁體中文](./01-tool-risk-and-contracts-zh-TW.md) | [简体中文](./01-tool-risk-and-contracts-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 下一篇：[授權身分與資源範圍](./02-authorization-and-scope-zh-TW.md)
 

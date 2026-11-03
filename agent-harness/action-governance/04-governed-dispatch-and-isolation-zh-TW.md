@@ -1,6 +1,6 @@
 # 受控派送與執行隔離
 
-[English](./04-governed-dispatch-and-isolation.md) | [繁體中文](./04-governed-dispatch-and-isolation-zh-TW.md)
+[English](./04-governed-dispatch-and-isolation.md) | [繁體中文](./04-governed-dispatch-and-isolation-zh-TW.md) | [简体中文](./04-governed-dispatch-and-isolation-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[人工確認與批准有效性](./03-human-confirmation-zh-TW.md) · 下一篇：[重試與副作用處理](./05-retry-and-side-effects-zh-TW.md)
 

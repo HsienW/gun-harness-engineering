@@ -1,6 +1,6 @@
 # Governed dispatch and execution isolation
 
-[English](./04-governed-dispatch-and-isolation.md) | [繁體中文](./04-governed-dispatch-and-isolation-zh-TW.md)
+[English](./04-governed-dispatch-and-isolation.md) | [繁體中文](./04-governed-dispatch-and-isolation-zh-TW.md) | [简体中文](./04-governed-dispatch-and-isolation-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Human confirmation and approval validity](./03-human-confirmation.md) · Next: [Retries and side effects](./05-retry-and-side-effects.md)
 
