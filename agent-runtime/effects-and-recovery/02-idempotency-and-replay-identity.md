@@ -1,6 +1,6 @@
 # Idempotency and replay identity
 
-[English](./02-idempotency-and-replay-identity.md) | [繁體中文](./02-idempotency-and-replay-identity-zh-TW.md)
+[English](./02-idempotency-and-replay-identity.md) | [繁體中文](./02-idempotency-and-replay-identity-zh-TW.md) | [简体中文](./02-idempotency-and-replay-identity-zh-CN.md)
 
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
