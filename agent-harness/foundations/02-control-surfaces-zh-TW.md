@@ -1,6 +1,6 @@
 # Harness 的控制層
 
-[English](./02-control-surfaces.md) | [繁體中文](./02-control-surfaces-zh-TW.md)
+[English](./02-control-surfaces.md) | [繁體中文](./02-control-surfaces-zh-TW.md) | [简体中文](./02-control-surfaces-zh-CN.md)
 
 > 控制層的價值在於把【產品意圖】放到明確的決策點。每個決策都應有輸入、有執行位置、有失敗處理，也有事後可以查驗的結果。
 

@@ -1,6 +1,6 @@
 # Harness 與 Runtime 的邊界
 
-[English](./03-harness-runtime-boundary.md) | [繁體中文](./03-harness-runtime-boundary-zh-TW.md)
+[English](./03-harness-runtime-boundary.md) | [繁體中文](./03-harness-runtime-boundary-zh-TW.md) | [简体中文](./03-harness-runtime-boundary-zh-CN.md)
 
 > 邊界範圍：決策如何交給執行、執行如何向外請求決策，以及狀態與故障由誰負責
 

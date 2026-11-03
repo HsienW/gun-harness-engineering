@@ -1,6 +1,6 @@
 # Agent Harness 設計原則
 
-[English](./04-design-principles.md) | [繁體中文](./04-design-principles-zh-TW.md)
+[English](./04-design-principles.md) | [繁體中文](./04-design-principles-zh-TW.md) | [简体中文](./04-design-principles-zh-CN.md)
 
 > 你也許遇過這場景，使用者要求「只修改 README」，Agent 卻順手調整了設定檔。檢查 Prompt，裡面明明寫著遵守範圍；檢查工具，寫檔功能也正常。
 

@@ -1,6 +1,6 @@
 # 一次任務的完整走法
 
-[English](./05-one-turn-walkthrough.md) | [繁體中文](./05-one-turn-walkthrough-zh-TW.md)
+[English](./05-one-turn-walkthrough.md) | [繁體中文](./05-one-turn-walkthrough-zh-TW.md) | [简体中文](./05-one-turn-walkthrough-zh-CN.md)
 
 使用者要求修改一個檔案，畫面上可能只有一段指令和一則完成回覆。兩者之間只少有這幾步驟：
 

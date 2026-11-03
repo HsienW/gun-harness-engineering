@@ -1,6 +1,6 @@
 # What Is an Agent Harness in Practice?
 
-[English](./01-what-is-agent-harness.md) | [繁體中文](./01-what-is-agent-harness-zh-TW.md)
+[English](./01-what-is-agent-harness.md) | [繁體中文](./01-what-is-agent-harness-zh-TW.md) | [简体中文](./01-what-is-agent-harness-zh-CN.md)
 
 - I see an Agent Harness as the control layer a product places between the model and the real world.
   - It organizes user input.

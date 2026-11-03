@@ -1,6 +1,6 @@
 # The Harness-Runtime boundary
 
-[English](./03-harness-runtime-boundary.md) | [繁體中文](./03-harness-runtime-boundary-zh-TW.md)
+[English](./03-harness-runtime-boundary.md) | [繁體中文](./03-harness-runtime-boundary-zh-TW.md) | [简体中文](./03-harness-runtime-boundary-zh-CN.md)
 
 > Scope: how decisions pass into execution, how execution asks for decisions, and who owns state and failure
 
