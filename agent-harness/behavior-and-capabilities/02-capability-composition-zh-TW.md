@@ -1,6 +1,6 @@
 # 能力組裝
 
-[English](./02-capability-composition.md) | [繁體中文](./02-capability-composition-zh-TW.md)
+[English](./02-capability-composition.md) | [繁體中文](./02-capability-composition-zh-TW.md) | [简体中文](./02-capability-composition-zh-CN.md)
 
 > 以下內容所提到的
 > CCR 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。

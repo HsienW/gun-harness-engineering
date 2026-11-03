@@ -1,6 +1,6 @@
 # 能力選擇
 
-[English](./03-capability-selection.md) | [繁體中文](./03-capability-selection-zh-TW.md)
+[English](./03-capability-selection.md) | [繁體中文](./03-capability-selection-zh-TW.md) | [简体中文](./03-capability-selection-zh-CN.md)
 
 > 以下內容所提到的
 > CCR 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。

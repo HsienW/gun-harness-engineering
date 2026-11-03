@@ -1,6 +1,6 @@
 # A capability use case
 
-[English](./04-case-capability-use.md) | [繁體中文](./04-case-capability-use-zh-TW.md)
+[English](./04-case-capability-use.md) | [繁體中文](./04-case-capability-use-zh-TW.md) | [简体中文](./04-case-capability-use-zh-CN.md)
 
 > In the following content:
 > CCR is short for [claude-code-best](https://github.com/claude-code-best/claude-code).

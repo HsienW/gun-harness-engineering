@@ -1,6 +1,6 @@
 # Behavior and Capabilities
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 本區接在 [Input and Context](../input-and-context/README-zh-TW.md) 之後，說明 Harness 如何組裝有效行為指令、建立能力集合，以及如何把候選能力交給模型或程式路由。四篇中英文正文初稿已完成；最後一篇以原始碼追蹤計算任務，保留模型與工具執行尚未驗證的範圍。
 

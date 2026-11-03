@@ -1,6 +1,6 @@
 # Capability selection
 
-[English](./03-capability-selection.md) | [繁體中文](./03-capability-selection-zh-TW.md)
+[English](./03-capability-selection.md) | [繁體中文](./03-capability-selection-zh-TW.md) | [简体中文](./03-capability-selection-zh-CN.md)
 
 > In the following content:
 > CCR is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
