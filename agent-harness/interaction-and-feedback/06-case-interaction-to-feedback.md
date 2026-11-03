@@ -1,6 +1,6 @@
 # Control flow from a follow-up to feedback
 
-[English](./06-case-interaction-to-feedback.md) | [繁體中文](./06-case-interaction-to-feedback-zh-TW.md)
+[English](./06-case-interaction-to-feedback.md) | [繁體中文](./06-case-interaction-to-feedback-zh-TW.md) | [简体中文](./06-case-interaction-to-feedback-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Feedback, evaluation, and regression cases](./05-feedback-and-evaluation.md)
 

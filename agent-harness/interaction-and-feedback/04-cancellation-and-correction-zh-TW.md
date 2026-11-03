@@ -1,6 +1,6 @@
 # 取消、修正與已生效操作
 
-[English](./04-cancellation-and-correction.md) | [繁體中文](./04-cancellation-and-correction-zh-TW.md)
+[English](./04-cancellation-and-correction.md) | [繁體中文](./04-cancellation-and-correction-zh-TW.md) | [简体中文](./04-cancellation-and-correction-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[釐清提問與任務恢復](./03-clarification-and-resume-zh-TW.md) · 下一篇：[回饋、評估與回歸案例](./05-feedback-and-evaluation-zh-TW.md)
 

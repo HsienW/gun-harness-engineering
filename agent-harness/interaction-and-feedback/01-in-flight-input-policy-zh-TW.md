@@ -1,6 +1,6 @@
 # 執行中新輸入與互動策略
 
-[English](./01-in-flight-input-policy.md) | [繁體中文](./01-in-flight-input-policy-zh-TW.md)
+[English](./01-in-flight-input-policy.md) | [繁體中文](./01-in-flight-input-policy-zh-TW.md) | [简体中文](./01-in-flight-input-policy-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 下一篇：[Run 歸屬與可見狀態](./02-run-ownership-and-visible-state-zh-TW.md)
 

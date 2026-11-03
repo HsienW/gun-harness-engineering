@@ -1,6 +1,6 @@
 # Interaction and Feedback
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 本篇章接在 [Action Governance](../action-governance/README-zh-TW.md) 之後。前區追蹤單次工具呼叫的授權、批准、派送與效果；本篇章處理任務尚未結束時的新輸入、等待與恢復、取消及可見狀態，再把可查證的失敗整理成後續評估材料。
 

@@ -1,6 +1,6 @@
 # Cancellation, correction, and committed effects
 
-[English](./04-cancellation-and-correction.md) | [繁體中文](./04-cancellation-and-correction-zh-TW.md)
+[English](./04-cancellation-and-correction.md) | [繁體中文](./04-cancellation-and-correction-zh-TW.md) | [简体中文](./04-cancellation-and-correction-zh-CN.md)
 
 [Back to overview](./README.md) · Previous: [Clarification and task resumption](./03-clarification-and-resume.md) · Next: [Feedback, evaluation, and regression cases](./05-feedback-and-evaluation.md)
 

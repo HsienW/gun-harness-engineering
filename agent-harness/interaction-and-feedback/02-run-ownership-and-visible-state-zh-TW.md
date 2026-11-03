@@ -1,6 +1,6 @@
 # Run 歸屬與可見狀態
 
-[English](./02-run-ownership-and-visible-state.md) | [繁體中文](./02-run-ownership-and-visible-state-zh-TW.md)
+[English](./02-run-ownership-and-visible-state.md) | [繁體中文](./02-run-ownership-and-visible-state-zh-TW.md) | [简体中文](./02-run-ownership-and-visible-state-zh-CN.md)
 
 [回到導覽](./README-zh-TW.md) · 上一篇：[執行中新輸入與互動策略](./01-in-flight-input-policy-zh-TW.md) · 下一篇：[釐清提問與任務恢復](./03-clarification-and-resume-zh-TW.md)
 
