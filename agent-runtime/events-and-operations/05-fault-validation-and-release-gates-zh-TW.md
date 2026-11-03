@@ -1,6 +1,6 @@
 # 故障驗證與上線門檻
 
-[English](./05-fault-validation-and-release-gates.md) | [繁體中文](./05-fault-validation-and-release-gates-zh-TW.md)
+[English](./05-fault-validation-and-release-gates.md) | [繁體中文](./05-fault-validation-and-release-gates-zh-TW.md) | [简体中文](./05-fault-validation-and-release-gates-zh-CN.md)
 
 > 以下內容所提到的
 > CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。

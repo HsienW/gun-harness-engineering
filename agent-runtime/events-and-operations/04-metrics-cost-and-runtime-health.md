@@ -1,6 +1,6 @@
 # Metrics, cost, and runtime health
 
-[English](./04-metrics-cost-and-runtime-health.md) | [繁體中文](./04-metrics-cost-and-runtime-health-zh-TW.md)
+[English](./04-metrics-cost-and-runtime-health.md) | [繁體中文](./04-metrics-cost-and-runtime-health-zh-TW.md) | [简体中文](./04-metrics-cost-and-runtime-health-zh-CN.md)
 
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).

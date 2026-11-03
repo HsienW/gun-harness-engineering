@@ -1,5 +1,7 @@
 # Events and Operations
 
+[繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+
 [回到 Runtime 總覽](../README-zh-TW.md) · [Foundations 導覽](../foundations/README-zh-TW.md) · [Effects and Recovery](../effects-and-recovery/README-zh-TW.md)
 
 > 以下內容所提到的

@@ -1,6 +1,6 @@
 # 追蹤、稽核與資料邊界
 
-[English](./03-tracing-audit-and-data-boundaries.md) | [繁體中文](./03-tracing-audit-and-data-boundaries-zh-TW.md)
+[English](./03-tracing-audit-and-data-boundaries.md) | [繁體中文](./03-tracing-audit-and-data-boundaries-zh-TW.md) | [简体中文](./03-tracing-audit-and-data-boundaries-zh-CN.md)
 
 > 以下內容所提到的
 > CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
