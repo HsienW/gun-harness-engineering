@@ -1,6 +1,6 @@
 # 輸入正規化
 
-[English](./01-input-normalization.md) | [繁體中文](./01-input-normalization-zh-TW.md)
+[English](./01-input-normalization.md) | [繁體中文](./01-input-normalization-zh-TW.md) | [简体中文](./01-input-normalization-zh-CN.md)
 
 > 使用者說「只修改 README 的安裝段落」，系統收到的卻可能是一段文字、一組訊息、附件參照，或帶有取消意圖的請求。
 

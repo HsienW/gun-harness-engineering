@@ -1,6 +1,6 @@
 # 從輸入到 Context：一次請求的走法
 
-[English](./05-case-input-to-context.md) | [繁體中文](./05-case-input-to-context-zh-TW.md)
+[English](./05-case-input-to-context.md) | [繁體中文](./05-case-input-to-context-zh-TW.md) | [简体中文](./05-case-input-to-context-zh-CN.md)
 
 > 假設使用者先前說過「回答請簡短」，這次對 Chat Gun chatbot 說：「請完整說明這個設計的限制，這次不要省略細節。」
 

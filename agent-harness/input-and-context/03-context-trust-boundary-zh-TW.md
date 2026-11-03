@@ -1,6 +1,6 @@
 # Context 信任邊界
 
-[English](./03-context-trust-boundary.md) | [繁體中文](./03-context-trust-boundary-zh-TW.md)
+[English](./03-context-trust-boundary.md) | [繁體中文](./03-context-trust-boundary-zh-TW.md) | [简体中文](./03-context-trust-boundary-zh-CN.md)
 
 > 模型會同時讀到產品政策、這次的使用者要求、以前的偏好、檢索資料與工具結果。它們都可能是有用的文字，卻沒有相同的權威。
 

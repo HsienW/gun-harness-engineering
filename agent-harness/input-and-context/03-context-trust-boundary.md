@@ -1,6 +1,6 @@
 # Context trust boundary
 
-[English](./03-context-trust-boundary.md) | [繁體中文](./03-context-trust-boundary-zh-TW.md)
+[English](./03-context-trust-boundary.md) | [繁體中文](./03-context-trust-boundary-zh-TW.md) | [简体中文](./03-context-trust-boundary-zh-CN.md)
 
 > The model reads product policy, the current user request, earlier preferences, retrieved data, and tool results at the same time. All of them may be useful text, but they do not carry the same authority.
 

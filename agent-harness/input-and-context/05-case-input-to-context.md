@@ -1,6 +1,6 @@
 # Input to Context: one request end to end
 
-[English](./05-case-input-to-context.md) | [繁體中文](./05-case-input-to-context-zh-TW.md)
+[English](./05-case-input-to-context.md) | [繁體中文](./05-case-input-to-context-zh-TW.md) | [简体中文](./05-case-input-to-context-zh-CN.md)
 
 > Suppose the user once said "please keep answers short," and now tells the Chat Gun chatbot: "Explain the limitations of this design in full, and do not leave out details this time."
 

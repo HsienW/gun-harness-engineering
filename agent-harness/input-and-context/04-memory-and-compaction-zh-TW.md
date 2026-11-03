@@ -1,6 +1,6 @@
 # Memory 與壓縮
 
-[English](./04-memory-and-compaction.md) | [繁體中文](./04-memory-and-compaction-zh-TW.md)
+[English](./04-memory-and-compaction.md) | [繁體中文](./04-memory-and-compaction-zh-TW.md) | [简体中文](./04-memory-and-compaction-zh-CN.md)
 
 > 對話長了以後，「以前說過」至少可能指四種東西：Graph 裡近期的訊息、執行中的 active state、跨任務提取的 Memory，或為了節省容量而生成的摘要。
 
