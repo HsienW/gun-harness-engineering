@@ -1,6 +1,6 @@
 # Model calls and Provider fallback
 
-[English](./01-model-calls-and-provider-fallback.md) | [繁體中文](./01-model-calls-and-provider-fallback-zh-TW.md)
+[English](./01-model-calls-and-provider-fallback.md) | [繁體中文](./01-model-calls-and-provider-fallback-zh-TW.md) | [简体中文](./01-model-calls-and-provider-fallback-zh-CN.md)
 
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
