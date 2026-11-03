@@ -1,6 +1,6 @@
 # Agent Runtime design principles
 
-[English](./05-runtime-design-principles.md) | [繁體中文](./05-runtime-design-principles-zh-TW.md)
+[English](./05-runtime-design-principles.md) | [繁體中文](./05-runtime-design-principles-zh-TW.md) | [简体中文](./05-runtime-design-principles-zh-CN.md)
 
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).

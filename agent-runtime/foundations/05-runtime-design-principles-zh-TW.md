@@ -1,6 +1,6 @@
 # Agent Runtime 設計原則
 
-[English](./05-runtime-design-principles.md) | [繁體中文](./05-runtime-design-principles-zh-TW.md)
+[English](./05-runtime-design-principles.md) | [繁體中文](./05-runtime-design-principles-zh-TW.md) | [简体中文](./05-runtime-design-principles-zh-CN.md)
 
 > 以下內容所提到的
 > CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
