@@ -115,23 +115,39 @@ gun-harness-engineering/
 │  └─ interaction-and-feedback/
 └─ agent-runtime/
    ├─ foundations/
-   ├─ execution-lifecycle/  # 規劃中
-   ├─ model-and-tool-execution/  # 規劃中
-   ├─ effects-and-recovery/  # 規劃中
-   └─ events-and-operations/  # 規劃中
+   ├─ execution-lifecycle/
+   ├─ model-and-tool-execution/
+   ├─ effects-and-recovery/
+   └─ events-and-operations/
 ~~~
 
 ### Agent Harness
 
 - Harness 是產品、模型、工具與 Runtime 之間的控制層。它規定 Agent 在什麼條件下理解任務、選擇能力並採取行動。
 - 核心題目包括輸入正規化、Context 組裝、指令與能力配置、信任邊界、工具風險、Permission、Human Approval、執行中輸入、取消、追問與回饋。
-- 閱讀可從 [Agent Harness 總覽](./agent-harness/README.md)開始。
+- 閱讀可從 [Agent Harness 總覽](./agent-harness/README-zh-TW.md)開始；五個分類共 26 篇正文，均提供正體中文與英文版本。
+
+| 分類 | 閱讀入口 |
+|---|---|
+| Foundations | [分類導覽](./agent-harness/foundations/README-zh-TW.md) |
+| Input and Context | [分類導覽](./agent-harness/input-and-context/README-zh-TW.md) |
+| Behavior and Capabilities | [分類導覽](./agent-harness/behavior-and-capabilities/README-zh-TW.md) |
+| Action Governance | [分類導覽](./agent-harness/action-governance/README-zh-TW.md) |
+| Interaction and Feedback | [分類導覽](./agent-harness/interaction-and-feedback/README-zh-TW.md) |
 
 ### Agent Runtime
 
 - Runtime 是 Harness 使用的運行時核心，負責把一次 Agent Run 推進到合法的終止狀態。
-- 預計涵蓋 Execution Identity、模型串流、工具排程、重試、錯誤回灌、Checkpoint、Interrupt、Resume、對話修復、Idempotency、Side-effect Ledger、Reconciliation、Compensation、Runtime Event、Tracing、Metrics 與上線門檻。
-- 閱讀可從 [Agent Runtime 總覽](./agent-runtime/README-zh-TW.md)開始；Foundations 的六篇正體中文初稿已完成。
+- 目前涵蓋 Execution Identity、模型串流、工具排程、重試、錯誤回灌、Checkpoint、Interrupt、Resume、對話修復、Idempotency、Side-effect Ledger、Reconciliation、Compensation、Runtime Event、Tracing、Metrics 與上線門檻。
+- 閱讀可從 [Agent Runtime 總覽](./agent-runtime/README-zh-TW.md)開始；五個分類各有六篇正文，均提供正體中文、英文與簡體中文版本。
+
+| 分類 | 閱讀入口 |
+|---|---|
+| Foundations | [分類導覽](./agent-runtime/foundations/README-zh-TW.md) |
+| Execution Lifecycle | [分類導覽](./agent-runtime/execution-lifecycle/README-zh-TW.md) |
+| Model and Tool Execution | [分類導覽](./agent-runtime/model-and-tool-execution/README-zh-TW.md) |
+| Effects and Recovery | [分類導覽](./agent-runtime/effects-and-recovery/README-zh-TW.md) |
+| Events and Operations | [分類導覽](./agent-runtime/events-and-operations/README-zh-TW.md) |
 
 ## 完整的 Harness 與 Runtime 交接流程
 

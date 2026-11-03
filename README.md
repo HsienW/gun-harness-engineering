@@ -117,22 +117,39 @@ gun-harness-engineering/
 │  └─ interaction-and-feedback/
 └─ agent-runtime/
    ├─ foundations/
-   ├─ execution-lifecycle/  # planned
-   ├─ model-and-tool-execution/  # planned
-   ├─ effects-and-recovery/  # planned
-   └─ events-and-operations/  # planned
+   ├─ execution-lifecycle/
+   ├─ model-and-tool-execution/
+   ├─ effects-and-recovery/
+   └─ events-and-operations/
 ~~~
 
 ### Agent Harness
 
 - The Harness is the control layer between the product, the model, the tools, and the Runtime. It defines the conditions under which the Agent understands a task, chooses capabilities, and takes action.
 - Core topics include input normalization, Context assembly, instruction and capability configuration, trust boundaries, tool risk, Permission, Human Approval, mid-run input, cancellation, follow-up questions, and feedback.
-- Start with the [Agent Harness overview](./agent-harness/README.md).
+- Start with the [Agent Harness overview](./agent-harness/README.md). The five categories contain 26 articles, each available in Traditional Chinese and English.
+
+| Category | Reading entry |
+|---|---|
+| Foundations | [Category guide](./agent-harness/foundations/README.md) |
+| Input and Context | [Category guide](./agent-harness/input-and-context/README.md) |
+| Behavior and Capabilities | [Category guide](./agent-harness/behavior-and-capabilities/README.md) |
+| Action Governance | [Category guide](./agent-harness/action-governance/README.md) |
+| Interaction and Feedback | [Category guide](./agent-harness/interaction-and-feedback/README.md) |
 
 ### Agent Runtime
 
 - The Runtime is the execution core the Harness relies on. It is responsible for moving an Agent Run to a valid terminal state.
-- Planned coverage: Execution Identity, model streaming, tool scheduling, retry, error feedback to the model, Checkpoint, Interrupt, Resume, conversation repair, Idempotency, Side-effect Ledger, Reconciliation, Compensation, Runtime Event, Tracing, Metrics, and launch criteria.
+- Current coverage: Execution Identity, model streaming, tool scheduling, retry, error feedback to the model, Checkpoint, Interrupt, Resume, conversation repair, Idempotency, Side-effect Ledger, Reconciliation, Compensation, Runtime Event, Tracing, Metrics, and launch criteria.
+- Start with the [Agent Runtime overview (Traditional Chinese)](./agent-runtime/README-zh-TW.md). All five categories contain six articles, each available in Traditional Chinese, English, and Simplified Chinese.
+
+| Category | Reading entry |
+|---|---|
+| Foundations | [Category guide (Traditional Chinese)](./agent-runtime/foundations/README-zh-TW.md) |
+| Execution Lifecycle | [Category guide (Traditional Chinese)](./agent-runtime/execution-lifecycle/README-zh-TW.md) |
+| Model and Tool Execution | [Category guide (Traditional Chinese)](./agent-runtime/model-and-tool-execution/README-zh-TW.md) |
+| Effects and Recovery | [Category guide (Traditional Chinese)](./agent-runtime/effects-and-recovery/README-zh-TW.md) |
+| Events and Operations | [Category guide (Traditional Chinese)](./agent-runtime/events-and-operations/README-zh-TW.md) |
 
 ## The Full Harness and Runtime Handoff Flow
 
