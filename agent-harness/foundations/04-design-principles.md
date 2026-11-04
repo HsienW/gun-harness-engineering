@@ -2,6 +2,8 @@
 
 [English](./04-design-principles.md) | [繁體中文](./04-design-principles-zh-TW.md) | [简体中文](./04-design-principles-zh-CN.md)
 
+[Previous article](./03-harness-runtime-boundary.md) explains how the Harness and Runtime hand off responsibility.
+
 > In the following content:
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [Chat Gun](https://github.com/HsienW/chat-gun).
@@ -9,8 +11,6 @@
 > You may have encountered this scenario: a user asks the Agent to "modify only the README," but it also adjusts a configuration file. You check the Prompt, which clearly says to stay within scope; you check the tool, and its file-writing function works as expected.
 
 **The problem is that the system has not turned the scope of this task into a condition that must pass before tool execution. There is still engineering work between a model reading a rule and a product being able to block an out-of-scope operation.**
-
-[The previous article](./03-harness-runtime-boundary-zh-TW.md) explains how the Harness and Runtime hand off responsibility.
 
 **This article examines the design tradeoffs: which decisions to leave to the model, which conditions code should check, and how user intervention should change execution.**
 
