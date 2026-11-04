@@ -2,6 +2,8 @@
 
 [English](./05-one-turn-walkthrough.md) | [繁體中文](./05-one-turn-walkthrough-zh-TW.md) | [简体中文](./05-one-turn-walkthrough-zh-CN.md)
 
+[前篇](./04-design-principles-zh-TW.md) 說明任務範圍、授權、使用者介入與故障處理的設計取捨。
+
 使用者要求修改一個檔案，畫面上可能只有一段指令和一則完成回覆。兩者之間只少有這幾步驟：
 
 1. 系統需要辨識輸入
