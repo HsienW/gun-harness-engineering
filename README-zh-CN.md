@@ -1,17 +1,23 @@
-# Gun Harness Engineering
-
-[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+<p align="center">
+  <img src="./assets/00-gun-harness-engineering-logo.webp" alt="chat-gun" width="1024"/>
+</p>
 
 <p align="center">
-  <img src="./assets/00-gun-harness-engineering-logo.webp" alt="chat-gun" width="768"/>
+  <a href="./README.md">English</a> |
+  <a href="./README-zh-TW.md">繁體中文</a> |
+  <a href="./README-zh-CN.md">简体中文</a>
 </p>
+
+---
+
+## Gun Harness 是什么?
 
 这是一套讨论 AI Agent 在真实产品中受到约束、完成执行、故障恢复的知识库
 
 - 这些内容起源自个人对于 [chat-gun](https://github.com/HsienW/chat-gun) 的实战加上对 [claude-code-best/claude-code](https://github.com/claude-code-best/claude-code) 的研究与思考。
 - 本库不讨论各种以 Agent Infra 为出发点的 Harness 论文，而是聚焦 Harness 在业务落地中的两个核心问题
-  - 1. 从产品实践视角如何定位 Harness 的责任与能力
-  - 2. 业务落地时 Harness 跟 Runtime 的边界，以及各自负责什么任务
+  - 从产品实践视角如何定位 Harness 的责任与能力
+  - 业务落地时 Harness 跟 Runtime 的边界，以及各自负责什么任务
 
 ## 首先！不用技术名词，你能说清楚 Harness 跟 Runtime 是什么吗?
 
@@ -129,7 +135,7 @@ gun-harness-engineering/
 - 核心题目包括输入规范化、Context 组装、指令与能力配置、信任边界、工具风险、Permission、Human Approval、执行中输入、取消、追问与反馈。
 - 阅读可从 [Agent Harness 总览](./agent-harness/README-zh-TW.md)开始。
 
-| 分类 | 阅读入口 |
+| 分类 | 去阅读 |
 |---|---|
 | Foundations | [传送门](./agent-harness/foundations/README-zh-CN.md) |
 | Input and Context | [传送门](./agent-harness/input-and-context/README-zh-CN.md) |
@@ -143,7 +149,7 @@ gun-harness-engineering/
 - 目前涵盖 Execution Identity、模型流式传输、工具调度、重试、错误回灌、Checkpoint、Interrupt、Resume、对话修复、Idempotency、Side-effect Ledger、Reconciliation、Compensation、Runtime Event、Tracing、Metrics 与上线门槛。
 - 阅读可从 [Agent Runtime 总览](./agent-runtime/README-zh-TW.md)开始。
 
-| 分类 | 阅读入口 |
+| 分类 | 去阅读 |
 |---|---|
 | Foundations | [传送门](./agent-runtime/foundations/README-zh-CN.md) |
 | Execution Lifecycle | [传送门](./agent-runtime/execution-lifecycle/README-zh-CN.md) |
