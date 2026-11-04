@@ -2,6 +2,8 @@
 
 [English](./03-harness-runtime-boundary.md) | [繁體中文](./03-harness-runtime-boundary-zh-TW.md) | [简体中文](./03-harness-runtime-boundary-zh-CN.md)
 
+[前篇](./02-control-surfaces-zh-CN.md) 说明 Harness 如何通过控制层整理输入、配置能力与约束行动。
+
 > 边界范围：决策如何交给执行、执行如何向外请求决策，以及状态与故障由谁负责
 
 - Harness 与 Runtime 的分界，出现在「产品已经决定任务应在什麽条件下执行」之后，以及「执行核心开始推进状态」之前。

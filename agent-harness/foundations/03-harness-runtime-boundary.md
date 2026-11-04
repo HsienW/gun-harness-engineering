@@ -2,6 +2,8 @@
 
 [English](./03-harness-runtime-boundary.md) | [繁體中文](./03-harness-runtime-boundary-zh-TW.md) | [简体中文](./03-harness-runtime-boundary-zh-CN.md)
 
+[Previous article](./02-control-surfaces.md) explains how Harness control surfaces organize input, configure capabilities, and govern actions.
+
 > Scope: how decisions pass into execution, how execution asks for decisions, and who owns state and failure
 
 - The boundary between the Harness and Runtime sits after the product has decided the conditions under which a task may run, and before the execution core starts advancing state.
