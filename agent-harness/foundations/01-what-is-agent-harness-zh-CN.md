@@ -2,6 +2,8 @@
 
 [English](./01-what-is-agent-harness.md) | [繁體中文](./01-what-is-agent-harness-zh-TW.md) | [简体中文](./01-what-is-agent-harness-zh-CN.md)
 
+[分类导览](./README-zh-CN.md) 整理本分类的阅读顺序与各篇主题。
+
 > 以下内容所提到的
 > CCB 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
 > Chat Gun 为 [chat-gun](https://github.com/HsienW/chat-gun)。
