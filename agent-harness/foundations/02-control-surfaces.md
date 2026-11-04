@@ -2,6 +2,8 @@
 
 [English](./02-control-surfaces.md) | [繁體中文](./02-control-surfaces-zh-TW.md) | [简体中文](./02-control-surfaces-zh-CN.md)
 
+[Previous article](./01-what-is-agent-harness.md) explains the role and responsibilities of an Agent Harness.
+
 > The value of a control surface is placing product intent at explicit decision points. Each decision should have inputs, an enforcement location, failure handling, and a result that can be inspected afterward.
 
 - Control surfaces exist because an Agent's actual behavior can change substantially due to peripheral factors even after model weights are fixed. For example:

@@ -2,6 +2,8 @@
 
 [English](./02-control-surfaces.md) | [繁體中文](./02-control-surfaces-zh-TW.md) | [简体中文](./02-control-surfaces-zh-CN.md)
 
+[前篇](./01-what-is-agent-harness-zh-TW.md) 說明 Agent Harness 的定位與責任。
+
 > 控制層的價值在於把【產品意圖】放到明確的決策點。每個決策都應有輸入、有執行位置、有失敗處理，也有事後可以查驗的結果。
 
 - Harness 的控制層之所以存在，是因為模型權重固定之後，Agent 的實際行為仍會因外圍因素而大幅改變。例如:
