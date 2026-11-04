@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/00-gun-harness-engineering-logo.webp" alt="chat-gun" width="1024"/>
+  <img src="./assets/00-gun-harness-engineering-logo.png" alt="chat-gun" width="1024"/>
 </p>
 
 <p align="center">
