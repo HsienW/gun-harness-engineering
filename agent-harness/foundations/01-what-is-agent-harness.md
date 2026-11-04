@@ -2,6 +2,10 @@
 
 [English](./01-what-is-agent-harness.md) | [繁體中文](./01-what-is-agent-harness-zh-TW.md) | [简体中文](./01-what-is-agent-harness-zh-CN.md)
 
+> In the following content:
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
+
 - I see an Agent Harness as the control layer a product places between the model and the real world.
   - It organizes user input.
   - It decides what data the model can see at a given moment.
@@ -10,7 +14,7 @@
   - It defines how users can add information, cancel, or approve an operation while it runs.
 
 > This definition concerns responsibility. It does not require a class, package, or directory named Harness in the project.
-> In Claude Code, these responsibilities are spread across startup assembly, REPL, QueryEngine, input handling, Prompt, the Tool registry, and Permission.
+> In CCB, these responsibilities are spread across startup assembly, REPL, QueryEngine, input handling, Prompt, the Tool registry, and Permission.
 > The display layer is involved as well. Listing these files only gives you a component inventory. To see the Harness, trace who makes each decision during a task.
 
 ## Where the Harness Sits
@@ -64,7 +68,7 @@ When the task ends, the Harness must also turn Runtime events into progress, err
 
 ## Seeing the Responsibility Boundary in Claude Code
 
-In the Claude Code replica analyzed here, Interactive and Headless/SDK do not share the same outer orchestrator:
+In Claude Code Best (CCB), as analyzed here, Interactive and Headless/SDK do not share the same outer orchestrator:
 
 ![Claude Code Interactive and Headless/SDK assemble execution conditions separately, pass them to the shared query Runtime, and handle output and authorization requests through their own paths](../../assets/agent-harness/foundations/01-what-is-agent-harness/01-claude-code-boundary-en.svg)
 
