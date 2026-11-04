@@ -1,9 +1,9 @@
 # Gun Harness Engineering
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 <p align="center">
-  <img src="./assets/00-gun-harness-engineering-logo.webp" alt="chat-gun"/>
+  <img src="./assets/00-gun-harness-engineering-logo.webp" alt="chat-gun" width="768"/>
 </p>
 
 
