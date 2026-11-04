@@ -9,7 +9,9 @@
 这是一套讨论 AI Agent 在真实产品中受到约束、完成执行、故障恢复的知识库
 
 - 这些内容起源自个人对于 [chat-gun](https://github.com/HsienW/chat-gun) 的实战加上对 [claude-code-best/claude-code](https://github.com/claude-code-best/claude-code) 的研究与思考。
-- 本库不会从 Agent Infra 的角度出发阐述介绍各种 Harness 论文，而是从产品实践的视角看 Harness 的定位与能力，因为这才是业务落地的核心。
+- 本库不讨论各种以 Agent Infra 为出发点的 Harness 论文，而是聚焦 Harness 在业务落地中的两个核心问题
+  - 1. 从产品实践视角如何定位 Harness 的责任与能力
+  - 2. 业务落地时 Harness 跟 Runtime 的边界，以及各自负责什么任务
 
 ## 首先！不用技术名词，你能说清楚 Harness 跟 Runtime 是什么吗?
 
@@ -125,29 +127,29 @@ gun-harness-engineering/
 
 - Harness 是产品、模型、工具与 Runtime 之间的控制层。它规定 Agent 在什么条件下理解任务、选择能力并采取行动。
 - 核心题目包括输入规范化、Context 组装、指令与能力配置、信任边界、工具风险、Permission、Human Approval、执行中输入、取消、追问与反馈。
-- 阅读可从 [Agent Harness 总览](./agent-harness/README-zh-TW.md)开始；五个分类共 26 篇正文，均提供繁体中文与英文版本。
+- 阅读可从 [Agent Harness 总览](./agent-harness/README-zh-TW.md)开始。
 
 | 分类 | 阅读入口 |
 |---|---|
-| Foundations | [分类导览](./agent-harness/foundations/README-zh-CN.md) |
-| Input and Context | [分类导览](./agent-harness/input-and-context/README-zh-CN.md) |
-| Behavior and Capabilities | [分类导览](./agent-harness/behavior-and-capabilities/README-zh-CN.md) |
-| Action Governance | [分类导览](./agent-harness/action-governance/README-zh-CN.md) |
-| Interaction and Feedback | [分类导览](./agent-harness/interaction-and-feedback/README-zh-CN.md) |
+| Foundations | [传送门](./agent-harness/foundations/README-zh-CN.md) |
+| Input and Context | [传送门](./agent-harness/input-and-context/README-zh-CN.md) |
+| Behavior and Capabilities | [传送门](./agent-harness/behavior-and-capabilities/README-zh-CN.md) |
+| Action Governance | [传送门](./agent-harness/action-governance/README-zh-CN.md) |
+| Interaction and Feedback | [传送门](./agent-harness/interaction-and-feedback/README-zh-CN.md) |
 
 ### Agent Runtime
 
 - Runtime 是 Harness 使用的运行时核心，负责把一次 Agent Run 推进到合法的终止状态。
 - 目前涵盖 Execution Identity、模型流式传输、工具调度、重试、错误回灌、Checkpoint、Interrupt、Resume、对话修复、Idempotency、Side-effect Ledger、Reconciliation、Compensation、Runtime Event、Tracing、Metrics 与上线门槛。
-- 阅读可从 [Agent Runtime 总览](./agent-runtime/README-zh-TW.md)开始；五个分类各有六篇正文，均提供繁体中文、英文与简体中文版本。
+- 阅读可从 [Agent Runtime 总览](./agent-runtime/README-zh-TW.md)开始。
 
 | 分类 | 阅读入口 |
 |---|---|
-| Foundations | [分类导览](./agent-runtime/foundations/README-zh-CN.md) |
-| Execution Lifecycle | [分类导览](./agent-runtime/execution-lifecycle/README-zh-CN.md) |
-| Model and Tool Execution | [分类导览](./agent-runtime/model-and-tool-execution/README-zh-CN.md) |
-| Effects and Recovery | [分类导览](./agent-runtime/effects-and-recovery/README-zh-CN.md) |
-| Events and Operations | [分类导览](./agent-runtime/events-and-operations/README-zh-CN.md) |
+| Foundations | [传送门](./agent-runtime/foundations/README-zh-CN.md) |
+| Execution Lifecycle | [传送门](./agent-runtime/execution-lifecycle/README-zh-CN.md) |
+| Model and Tool Execution | [传送门](./agent-runtime/model-and-tool-execution/README-zh-CN.md) |
+| Effects and Recovery | [传送门](./agent-runtime/effects-and-recovery/README-zh-CN.md) |
+| Events and Operations | [传送门](./agent-runtime/events-and-operations/README-zh-CN.md) |
 
 ## 完整的 Harness 与 Runtime 交接流程
 
