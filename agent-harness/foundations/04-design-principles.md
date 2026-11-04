@@ -2,6 +2,10 @@
 
 [English](./04-design-principles.md) | [繁體中文](./04-design-principles-zh-TW.md) | [简体中文](./04-design-principles-zh-CN.md)
 
+> In the following content:
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> Chat Gun refers to [Chat Gun](https://github.com/HsienW/chat-gun).
+
 > You may have encountered this scenario: a user asks the Agent to "modify only the README," but it also adjusts a configuration file. You check the Prompt, which clearly says to stay within scope; you check the tool, and its file-writing function works as expected.
 
 **The problem is that the system has not turned the scope of this task into a condition that must pass before tool execution. There is still engineering work between a model reading a rule and a product being able to block an out-of-scope operation.**
@@ -10,7 +14,7 @@
 
 **This article examines the design tradeoffs: which decisions to leave to the model, which conditions code should check, and how user intervention should change execution.**
 
-- These judgments draw on an analysis of claude-code-best and the experience of integrating related capabilities into chat-gun;
+- These judgments draw on an analysis of CCB and the experience of integrating related capabilities into Chat Gun;
 - The file-editing, refund, and other scenarios explain the design. They do not imply that both projects have implemented every scenario.
 
 ## Give each rule a place in execution
@@ -31,7 +35,7 @@ The following five principles follow this path. Each includes its rationale, imp
 
 - In the reference repositories
   - The outer layer of claude-code-best prepares the Prompt, Context, and tool conditions before passing them to `query()`.
-  - In chat-gun, `context-integration.ts` connects Context assembly to different Agents while retaining each Agent's Feature Flag.
+  - In Chat Gun, `context-integration.ts` connects Context assembly to different Agents while retaining each Agent's Feature Flag.
 
 These implementations provide concrete integration points for selecting what the model can see, which can be checked against the code path.
 
@@ -46,7 +50,7 @@ These implementations provide concrete integration points for selecting what the
 - Context assembly should label each source and its purpose. Placing text in a message with higher authority must not grant it the power to change permissions or task scope.
 - If the product recognizes project instructions as a source of rules, those instructions must still pass through loading and trust policies. A filename alone must not confer authority.
 
-chat-gun handles the current task, historical messages, memory, and tool output separately during Context assembly, providing an implementation point for this governance. Identity and resource scope also require a trusted Execution Context; an account name read from a document, model parameter, or ordinary request content cannot serve directly as the identity used for authorization.
+Chat Gun handles the current task, historical messages, memory, and tool output separately during Context assembly, providing an implementation point for this governance. Identity and resource scope also require a trusted Execution Context; an account name read from a document, model parameter, or ordinary request content cannot serve directly as the identity used for authorization.
 
 Source labels help the model interpret content, but cannot guarantee that malicious content will never influence it. Authorization checks must therefore use trusted fields. The system cannot ask the model whether it has been affected by prompt injection and use its answer to decide whether execution may proceed. The cost is maintaining source metadata and trust rules; once that information is omitted, adding more Prompt text usually cannot reconstruct the original authority relationships.
 
@@ -65,7 +69,7 @@ Apply authorization before the call reaches the executor, and require human conf
 
 - In the reference repositories
   - The outer layer of claude-code-best supplies `canUseTool`, and the tool execution path obtains a Permission decision before the call. Interactive and Headless/SDK entry points can obtain that decision in different ways.
-  - chat-gun assembles authorization in its tool Registry and places authorization, confirmation, and dispatch nodes in the MCP Agent's Graph.
+  - Chat Gun assembles authorization in its tool Registry and places authorization, confirmation, and dispatch nodes in the MCP Agent's Graph.
 
 These points allow reviewers to check whether governance applies between the model's proposal and actual execution.
 
@@ -89,7 +93,7 @@ Start by tracing one execution path from beginning to end:
 - Shared integration points handle policy and contracts, while each Agent retains its task-specific behavior. When adding an entry point or tool, verify that it passes through the same required gates to avoid assembling another flow with slight differences.
 
 - In the reference repositories
-  - chat-gun's `tools/registry.ts` illustrates this distinction. The Registry applies tool governance, but whether it builds the full Tool Dispatch Pipeline depends on the Feature Flag for the corresponding source; Context assembly also has switches for each Agent. Thus, "the module exists," "the entry point is wired," and "it is enabled in deployment" each need separate evidence. A default value in the code is also insufficient to prove the actual configuration of a particular environment.
+  - Chat Gun's `tools/registry.ts` illustrates this distinction. The Registry applies tool governance, but whether it builds the full Tool Dispatch Pipeline depends on the Feature Flag for the corresponding source; Context assembly also has switches for each Agent. Thus, "the module exists," "the entry point is wired," and "it is enabled in deployment" each need separate evidence. A default value in the code is also insufficient to prove the actual configuration of a particular environment.
 
 **Choose a concrete bypass risk to verify. For example, submit a call requiring approval through the MCP Agent and confirm that the underlying tool is not called before approval; then run the same case through the Headless entry point and check that the semantics agree. These tests are more likely to uncover problems than checks that only match function names. A shared governance path adds integration cost and may constrain scheduling for specialized tools, so it still needs clear extension interfaces.**
 
@@ -105,9 +109,9 @@ Start by tracing one execution path from beginning to end:
 **The Harness should first determine whether the input is a new task, additional information, cancellation, or a response to a particular waiting interaction, then decide whether to queue, replace, reject, or resume.** This decision requires Run identity, ownership, and a generation or equivalent version that distinguishes old execution from new execution. The original Run's history can remain, but old events must not gain control of the new Run; evidence received after termination should also be appended to the record without returning the Run to the running state.
 
 - In the reference repositories
-  - chat-gun's Interaction Runtime and Query Guard provide integration points for ownership, generation, cancellation, and resumption after clarification. Queuing requires a separate distinction: the `enqueue` branch examined here rejects local dispatch and reports that native queue ownership is required. It does not establish that a usable local persistent queue exists.
+  - Chat Gun's Interaction Runtime and Query Guard provide integration points for ownership, generation, cancellation, and resumption after clarification. Queuing requires a separate distinction: the `enqueue` branch examined here rejects local dispatch and reports that native queue ownership is required. It does not establish that a usable local persistent queue exists.
 
-- A control scheme like chat-gun's incurs the cost of state persistence, race handling, and additional interactions.
+- A control scheme like Chat Gun's incurs the cost of state persistence, race handling, and additional interactions.
 - A product limited to question answering can adopt the simpler policy of rejecting new input while busy
 - An Agent that can modify external resources must specify the stage at which cancellation takes effect. For files already written or transactions already committed, the system must separately determine whether correction or compensation is possible; the cancellation signal itself does not undo those effects.
 
@@ -117,7 +121,7 @@ Start by tracing one execution path from beginning to end:
 
 - In the reference repositories
   - claude-code-best converts several categories of tool errors into `tool_result` and feeds them back to the model so it can revise its proposal. This provides a way to resume conversational reasoning, but any new model proposal must still pass authorization; it also supports inferring that every tool has automatic retries, idempotency, or external state queries.
-  - chat-gun's Tool Dispatch, retry budget, and side-effect ledger provide integration points for incorporating these concerns into the execution contract.
+  - Chat Gun's Tool Dispatch, retry budget, and side-effect ledger provide integration points for incorporating these concerns into the execution contract.
 
 **Set separate budgets for the model loop and tool retries, and specify which layer owns retries. Otherwise, revised model proposals, resubmissions by the Tool Adapter, and automatic Runtime recovery may compound and exceed the intended number of attempts. If external effects are uncertain, query their status first or refer the case to a human; operations requiring compensation must also pass through compensation policy and authorization.**
 
@@ -141,7 +145,7 @@ The most direct test of the design position in this article is whether, after th
 
 ## Implementation references and scope
 
-[claude-code-best](https://github.com/claude-code-best/claude-code) discussion draws on a reconstructed code sample used for analysis. It helps examine responsibilities and control flow, and does not represent the complete behavior of the current official version.
+This article uses [Claude Code Best (CCB)](https://github.com/claude-code-best/claude-code) as a sample for examining responsibilities and control flow. It does not represent the complete behavior of the current official version.
 
 | Reference | Implementation points to inspect |
 |---|---|
@@ -150,7 +154,7 @@ The most direct test of the design position in this article is whether, after th
 | Tool authorization and error return | `src/services/tools/toolExecution.ts`, `src/services/tools/toolOrchestration.ts` |
 | Preflight checks for file edits | `packages/builtin-tools/src/tools/FileEditTool/FileEditTool.ts` |
 
-[chat-gun](https://github.com/HsienW/chat-gun) discussion is limited to the code integration points checked for this article. Actual enablement conditions and deployment results still require evidence from the corresponding environment.
+[Chat Gun](https://github.com/HsienW/chat-gun) discussion is limited to the code integration points checked for this article. Actual enablement conditions and deployment results still require evidence from the corresponding environment.
 
 | Reference | Implementation points to inspect |
 |---|---|
