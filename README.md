@@ -1,16 +1,23 @@
-# Gun Harness Engineering
-
-[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
-
 <p align="center">
-  <img src="./assets/00-gun-harness-engineering-logo.webp" alt="chat-gun" width="768"/>
+  <img src="./assets/00-gun-harness-engineering-logo.webp" alt="chat-gun" width="1024"/>
 </p>
 
+<p align="center">
+  <a href="./README.md">English</a> |
+  <a href="./README-zh-TW.md">繁體中文</a> |
+  <a href="./README-zh-CN.md">简体中文</a>
+</p>
+
+---
+
+## What Is Gun Harness?
 
 This is a knowledge base about how AI agents are constrained, carried through execution, and recovered from failure in real products.
 
 - The content grew out of my hands-on work on [chat-gun](https://github.com/HsienW/chat-gun), together with my study of and reflection on [claude-code-best/claude-code](https://github.com/claude-code-best/claude-code).
-- This repo does not start from the Agent Infra side or survey Harness papers. It looks at the role and capabilities of the Harness from the product-practice side, because that is what matters when shipping to real business use.
+- This repo does not survey Harness papers that take Agent Infra as their starting point. It focuses on two aspects of putting Harness into business use:
+  - How product practice defines the responsibilities and capabilities of the Harness
+  - Where the boundary between Harness and Runtime lies in business use, and which tasks each is responsible for
 
 ## First Things First: Without Technical Jargon, Can You Clearly Explain Harness and Runtime?
 
@@ -127,29 +134,29 @@ gun-harness-engineering/
 
 - The Harness is the control layer between the product, the model, the tools, and the Runtime. It defines the conditions under which the Agent understands a task, chooses capabilities, and takes action.
 - Core topics include input normalization, Context assembly, instruction and capability configuration, trust boundaries, tool risk, Permission, Human Approval, mid-run input, cancellation, follow-up questions, and feedback.
-- Start with the [Agent Harness overview](./agent-harness/README.md). The five categories contain 26 articles, each available in Traditional Chinese and English.
+- Start with the [Agent Harness overview](./agent-harness/README.md).
 
-| Category | Reading entry |
+| Category | Read |
 |---|---|
-| Foundations | [Category guide](./agent-harness/foundations/README.md) |
-| Input and Context | [Category guide](./agent-harness/input-and-context/README.md) |
-| Behavior and Capabilities | [Category guide](./agent-harness/behavior-and-capabilities/README.md) |
-| Action Governance | [Category guide](./agent-harness/action-governance/README.md) |
-| Interaction and Feedback | [Category guide](./agent-harness/interaction-and-feedback/README.md) |
+| Foundations | [Portal](./agent-harness/foundations/README.md) |
+| Input and Context | [Portal](./agent-harness/input-and-context/README.md) |
+| Behavior and Capabilities | [Portal](./agent-harness/behavior-and-capabilities/README.md) |
+| Action Governance | [Portal](./agent-harness/action-governance/README.md) |
+| Interaction and Feedback | [Portal](./agent-harness/interaction-and-feedback/README.md) |
 
 ### Agent Runtime
 
 - The Runtime is the execution core the Harness relies on. It is responsible for moving an Agent Run to a valid terminal state.
 - Current coverage: Execution Identity, model streaming, tool scheduling, retry, error feedback to the model, Checkpoint, Interrupt, Resume, conversation repair, Idempotency, Side-effect Ledger, Reconciliation, Compensation, Runtime Event, Tracing, Metrics, and launch criteria.
-- Start with the [Agent Runtime overview (Traditional Chinese)](./agent-runtime/README-zh-TW.md). All five categories contain six articles, each available in Traditional Chinese, English, and Simplified Chinese.
+- Start with the [Agent Runtime overview (Traditional Chinese)](./agent-runtime/README-zh-TW.md).
 
-| Category | Reading entry |
+| Category | Read |
 |---|---|
-| Foundations | [Category guide (Traditional Chinese)](./agent-runtime/foundations/README-zh-TW.md) |
-| Execution Lifecycle | [Category guide (Traditional Chinese)](./agent-runtime/execution-lifecycle/README-zh-TW.md) |
-| Model and Tool Execution | [Category guide (Traditional Chinese)](./agent-runtime/model-and-tool-execution/README-zh-TW.md) |
-| Effects and Recovery | [Category guide (Traditional Chinese)](./agent-runtime/effects-and-recovery/README-zh-TW.md) |
-| Events and Operations | [Category guide (Traditional Chinese)](./agent-runtime/events-and-operations/README-zh-TW.md) |
+| Foundations | [Portal (Traditional Chinese)](./agent-runtime/foundations/README-zh-TW.md) |
+| Execution Lifecycle | [Portal (Traditional Chinese)](./agent-runtime/execution-lifecycle/README-zh-TW.md) |
+| Model and Tool Execution | [Portal (Traditional Chinese)](./agent-runtime/model-and-tool-execution/README-zh-TW.md) |
+| Effects and Recovery | [Portal (Traditional Chinese)](./agent-runtime/effects-and-recovery/README-zh-TW.md) |
+| Events and Operations | [Portal (Traditional Chinese)](./agent-runtime/events-and-operations/README-zh-TW.md) |
 
 ## The Full Harness and Runtime Handoff Flow
 

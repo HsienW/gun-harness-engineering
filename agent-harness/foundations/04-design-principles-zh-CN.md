@@ -2,6 +2,8 @@
 
 [English](./04-design-principles.md) | [繁體中文](./04-design-principles-zh-TW.md) | [简体中文](./04-design-principles-zh-CN.md)
 
+[前篇](./03-harness-runtime-boundary-zh-CN.md) 说明 Harness 与 Runtime 如何交接。
+
 > 以下内容所提到的
 > CCB 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
 > Chat Gun 为 [chat-gun](https://github.com/HsienW/chat-gun)。
@@ -9,8 +11,6 @@
 > 你也许遇过这场景，用户要求「只修改 README」，Agent 却顺手调整了配置文件。检查 Prompt，里面明明写着遵守范围；检查工具，写文件功能也正常。
 
 **其实问题出在系统没有把这次任务的范围，转成执行工具前必须通过的条件。模型读过一句规则，与产品能阻止一次越界操作，两者之间还有一段工程工作。**
-
-[前篇](./03-harness-runtime-boundary-zh-CN.md) 说明 Harness 与 Runtime 如何交接。
 
 **本篇进一步讨论设计时的取舍：哪些事情适合交给模型判断，哪些条件应由程序检查，用户介入之后又该如何改变执行。**
 - 这些判断来自 CCB 的分析，以及 Chat Gun 将相关能力接入应用的经验；
