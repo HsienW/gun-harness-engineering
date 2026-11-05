@@ -2,6 +2,10 @@
 
 [English](./01-what-is-agent-harness.md) | [繁體中文](./01-what-is-agent-harness-zh-TW.md) | [简体中文](./01-what-is-agent-harness-zh-CN.md)
 
+> 以下內容所提到的
+> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
+> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+
 - 我認為 Agent Harness 是產品放在模型與真實世界之間的控制層
   - 它整理使用者輸入
   - 決定模型此刻能看見哪些資料
@@ -10,7 +14,7 @@
   - 也規定使用者如何在執行中補充、取消或批准操作
 
 > 這個定義關心的是「責任」，不要求專案裡一定存在名為 Harness 的 class、package 或目錄。
-> 對比在 Claude Code 的相關責任是分散在啟動組裝、REPL、QueryEngine、輸入處理、Prompt、Tool registry、Permission。
+> 對比在 CCB 的相關責任是分散在啟動組裝、REPL、QueryEngine、輸入處理、Prompt、Tool registry、Permission。
 > 顯示層；把這些檔案逐一列出，只能得到元件表。沿著一次任務追蹤「誰做決定」，才看得到 Harness。
 
 ## Harness 位於哪裡
@@ -64,7 +68,7 @@ Claude Code 會依啟動模式、設定、Feature Gate、身份、目錄信任�
 
 ## 對比在 Claude Code 看見責任邊界
 
-在分析的 Claude Code 復刻版中，Interactive 與 Headless／SDK 並未共用同一個外層編排器：
+在分析的 Claude Code Best（CCB）中，Interactive 與 Headless／SDK 並未共用同一個外層編排器：
 
 ![Claude Code 的 Interactive 與 Headless／SDK 各自組裝執行條件，再交給共同的 query Runtime，並各自處理輸出與授權請求](../../assets/agent-harness/foundations/01-what-is-agent-harness/01-claude-code-boundary.svg)
 
