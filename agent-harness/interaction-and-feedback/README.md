@@ -21,21 +21,21 @@ The diagram is a reading model. Its blocks do not establish that identically nam
 
 ```mermaid
 flowchart TD
-    Input[執行中新輸入與可信 Context] --> Classify[判定輸入種類與關聯]
-    Classify --> Policy[依互動政策決定處置]
-    Owner[權威 ownership 與 generation] --> Policy
-    Policy --> Reject[拒絕或保留待確認原因]
-    Policy --> NativeQueue[排隊需求交給可用的原生排程能力]
-    Policy --> Resume[核對指定等待後恢復 Task]
-    Policy --> Cancel[依提交狀態決定取消與修正路徑]
-    Resume --> Runtime[原有 Runtime 執行與事件]
+    Input[In-flight input and trusted Context] --> Classify[Classify input and correlation]
+    Classify --> Policy[Apply interaction policy]
+    Owner[Authoritative ownership and generation] --> Policy
+    Policy --> Reject[Reject or retain reasons pending confirmation]
+    Policy --> NativeQueue[Delegate queueing to available native scheduling]
+    Policy --> Resume[Validate the specified wait and resume the Task]
+    Policy --> Cancel[Choose cancellation and correction paths by commit state]
+    Resume --> Runtime[Existing Runtime execution and events]
     Cancel --> Runtime
-    Runtime --> Visible[核對事件歸屬、generation 與終止狀態]
-    Visible --> Reply[回報進度、完成、失敗或待處理事項]
-    Reply -.-> Review[人工整理失敗、預期結果與資料處理政策]
-    Review --> Regression[版本化回歸案例]
-    Regression --> Evaluate[固定資料集與評估設定進行比較]
-    Evaluate -.-> Change[依證據提出並驗證修改]
+    Runtime --> Visible[Check event ownership, generation, and terminal state]
+    Visible --> Reply[Report progress, completion, failure, or pending work]
+    Reply -.-> Review[Human review of failures, expected results, and data policy]
+    Review --> Regression[Versioned regression cases]
+    Regression --> Evaluate[Compare with a fixed dataset and evaluation settings]
+    Evaluate -.-> Change[Propose and validate changes from evidence]
 ```
 
 - **Foundations** covers user intervention, late output, and completion evidence. This section traces actual consumers, configuration, and failure branches.

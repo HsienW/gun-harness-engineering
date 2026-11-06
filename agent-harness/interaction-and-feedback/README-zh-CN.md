@@ -21,21 +21,21 @@
 
 ```mermaid
 flowchart TD
-    Input[執行中新輸入與可信 Context] --> Classify[判定輸入種類與關聯]
-    Classify --> Policy[依互動政策決定處置]
-    Owner[權威 ownership 與 generation] --> Policy
-    Policy --> Reject[拒絕或保留待確認原因]
-    Policy --> NativeQueue[排隊需求交給可用的原生排程能力]
-    Policy --> Resume[核對指定等待後恢復 Task]
-    Policy --> Cancel[依提交狀態決定取消與修正路徑]
-    Resume --> Runtime[原有 Runtime 執行與事件]
+    Input[执行中新输入与可信 Context] --> Classify[判定输入种类与关联]
+    Classify --> Policy[依互动政策决定处置]
+    Owner[权威 ownership 与 generation] --> Policy
+    Policy --> Reject[拒绝或保留待确认原因]
+    Policy --> NativeQueue[排队需求交给可用的原生排程能力]
+    Policy --> Resume[核对指定等待後恢复 Task]
+    Policy --> Cancel[依提交状态决定取消与修正路径]
+    Resume --> Runtime[原有 Runtime 执行与事件]
     Cancel --> Runtime
-    Runtime --> Visible[核對事件歸屬、generation 與終止狀態]
-    Visible --> Reply[回報進度、完成、失敗或待處理事項]
-    Reply -.-> Review[人工整理失敗、預期結果與資料處理政策]
-    Review --> Regression[版本化回歸案例]
-    Regression --> Evaluate[固定資料集與評估設定進行比較]
-    Evaluate -.-> Change[依證據提出並驗證修改]
+    Runtime --> Visible[核对事件归属、generation 与终止状态]
+    Visible --> Reply[回报进度、完成、失败或待处理事项]
+    Reply -.-> Review[人工整理失败、预期结果与资料处理政策]
+    Review --> Regression[版本化回归案例]
+    Regression --> Evaluate[固定资料集与评估设定进行比较]
+    Evaluate -.-> Change[依证据提出并验证修改]
 ```
 
 - **Foundations** 已说明用户介入、晚到输出与完成证据；本篇章追到实际 consumer、设置与失败分支。
