@@ -19,63 +19,11 @@
   - 从产品实践视角如何定位 Harness 的责任与能力
   - 业务落地时 Harness 跟 Runtime 的边界，以及各自负责什么任务
 
-## 首先！不用技术名词，你能说清楚 Harness 跟 Runtime 是什么吗?
+### 首先！不用技术名词，你能说清楚 Harness 跟 Runtime 是什么吗?
 
-> 如果你回答不出来或答案有模糊点，这个库可以帮助你更清晰的区分两者
+- 如果你回答不出来或答案有模糊点，先看[这篇](https://github.com/HsienW/ai-agent-coding-solution-kit/blob/master/agent-thoughts/ai-agent-basics/01-AI-Harness-Runtime-Jargon-Free.zh-CN.md) 能帮助你更清晰地区分两者！
 
-### 让我来回答: 我会用比赛来举例，例如: 一场铁人三项的比赛
-
-#### Part1: Harness 跟 Runtime
-
-<p>
-  <img src="./assets/01-harness_runtime.webp" alt="source: hsien-wei" width="768" />
-</p>
-
-- **Harness** = 主办单位负责规划赛事大方向的角色
-  - 例如: 举办日期 / 比赛规则 / 筹借场地 / 资金 / 找赞助 等等有方向性且趋于固定的任务
-
-- **Runtime** = 设备组 / 补给组 / 医疗组 等等是在比赛进行时，真正动态工作、灵活调整的角色
-  - 例如: 比赛进行时，依照天气会调整补给点的多寡和位置 / 医疗组的站点 / 设备组的帐篷 等等这些都是进行时，灵活增删跟机动的
-
-- **Context** = 比赛进行中不断更新的内容，因为内容随着时间一直再更新与增加，所以计分表 / 媒体报道 / 赛况转播 只会抓重点来说明
-  - 例如: 多少人参赛 / 目前进行到哪个项目 / 当下谁领先 / 是否有破纪录 等等
-
-  AI Agent 也相同道理，一旦上下文太长就需要压缩摘要跟记忆相似，对比起来就是在有限的播报时间内，只会报道前几名领先的选手信息而不会把全部参赛者的姓名都念一遍
-
-#### Part2: 其余 Agent 能力
-
-<p>
-  <img src="./assets/02-harness_runtime.webp" alt="source: hsien-wei" width="768" />
-</p>
-
-- **LLM** = 赛事主办单位中，担任本次比赛统筹的团队，负责规划构想，找出需要哪些协力外部单位的角色
-  - 例如: 比赛设备是否要找额外协力单位 / 场地跟谁租借 / 设备怎么获取 / 是否赞助广告商支持
-
-- **MCP** =  主办单位中统一对外的沟通窗口，负责按照统筹团队给出的所需清单联系外部的协力单位
-  - 例如: 联系场地所有者 / 订好租借日期 / 通知采购补给品厂商 / 联系提供医疗设备厂商
-
-- **Tool** = 比赛清单上写的每个外部协力单位
-  - 例如: 补给品厂商 / 赞助商 / 采访媒体
-
-- **Log / Trace** = 比赛举办过程的记录，用来检讨比赛争议或改进下一次比赛举行的材料
-  - 例如: 裁判 / 摄影师 / 计时器
-
-#### Part3: 人类负责的范围
-
-<p>
-  <img src="./assets/03-harness_runtime.webp" alt="source: hsien-wei" width="768" />
-</p>
-
-- **Human** = 主办单位的老板，透过 Log / Trace 来观测跟控制以下角色，让下次比赛举办的更好。
-  - 统筹团队(LLM) + 主办单位 (Harness) + 设备组/补给组/医疗组 (Runtime) + 比赛过程内容 (Context)
-  - 协力单位(Tool)
-  - 替换新的统筹团队(Change Model)
-  - 执行别种类型的比赛(Change Business)
-
-> 所以用白话来说可以理解为 Runtime 是在 Harness 的规划好的范围内运行 + 灵活调整的角色，而 Context 是内容，Tool 是额外能力
-> 而人类使用 Harness + Runtime 来控制 LLM 和 Agent 满足不同的 Business 的操作
-
-## 用技术名词来说，我所认知的 Harness 与 Runtime
+## 业务视角看 Harness 与 Runtime
 
 - **Agent** = Harness + LLM 这是目前业界公认说法，在这基础上往下拆分，如下图:
 
@@ -115,6 +63,7 @@ Agent 架构常被写成一张组件清单：Prompt、Memory、Tool、Workflow�
 gun-harness-engineering/
 ├─ README.md
 ├─ README-zh-TW.md
+├─ README-zh-CN.md
 ├─ agent-harness/
 │  ├─ foundations/
 │  ├─ input-and-context/

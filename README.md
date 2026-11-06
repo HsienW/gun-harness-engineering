@@ -19,64 +19,11 @@ This is a knowledge base about how AI agents are constrained, carried through ex
   - How product practice defines the responsibilities and capabilities of the Harness
   - Where the boundary between Harness and Runtime lies in business use, and which tasks each is responsible for
 
-## First Things First: Without Technical Jargon, Can You Clearly Explain Harness and Runtime?
+### First Things First: Without Technical Jargon, Can You Clearly Explain Harness and Runtime?
 
-> If you cannot answer clearly, or if parts of your answer feel vague, this knowledge base can help you distinguish between the two.
+- If you cannot answer clearly or parts of your answer feel vague, read [this article](https://github.com/HsienW/ai-agent-coding-solution-kit/blob/master/agent-thoughts/ai-agent-basics/01-AI-Harness-Runtime-Jargon-Free.md) to help distinguish the two!
 
-### My Answer: Think of a Race, Such as a Triathlon
-
-#### Part 1: Harness and Runtime
-
-<p>
-  <img src="./assets/01-harness_runtime.webp" alt="source: hsien-wei" width="768" />
-</p>
-
-- **Harness** = The event organizer, which plans the overall direction of the race.
-  - Examples: setting the date / defining the rules / securing the venue / raising funds / finding sponsors. These tasks set the direction and tend to remain fixed.
-
-- **Runtime** = The equipment, aid station, and medical crews that handle live operations and adapt while the race is underway.
-  - Examples: adjusting the number and location of aid stations based on the weather / moving medical stations / adding or removing equipment tents. These decisions happen during the race and need to remain flexible.
-
-- **Context** = The information that keeps changing as the race unfolds. Because it grows over time, scoreboards, media reports, and race broadcasts focus only on the main points.
-  - Examples: how many athletes are competing / which stage is in progress / who is leading / whether anyone has broken a record.
-
-  AI Agents work the same way. When their context grows too long, it needs to be compressed into summaries and memory. In the race analogy, broadcasters have limited airtime, so they report only on the leading athletes instead of reading out every participant's name.
-
-#### Part 2: Other Agent Capabilities
-
-<p>
-  <img src="./assets/02-harness_runtime.webp" alt="source: hsien-wei" width="768" />
-</p>
-
-- **LLM** = The coordination team within the event organization. It plans the race and determines which outside partners are needed.
-  - Examples: deciding whether the race needs another equipment provider / choosing who to rent the venue from / working out how to obtain equipment / deciding whether to seek support from sponsors and advertisers.
-
-- **MCP** = The event organizer's single point of contact for external communication. It contacts outside partners according to the list prepared by the coordination team.
-  - Examples: contacting the venue owner / confirming rental dates / notifying provision suppliers / contacting medical equipment vendors.
-
-- **Tool** = Each outside partner named on the race checklist.
-  - Examples: provision suppliers / sponsors / media outlets covering the event.
-
-- **Log / Trace** = Records from the race that help review disputes and improve the next event.
-  - Examples: referees / photographers / timing systems.
-
-#### Part 3: What Humans Are Responsible For
-
-<p>
-  <img src="./assets/03-harness_runtime.webp" alt="source: hsien-wei" width="768" />
-</p>
-
-- **Human** = The owner of the event organization. The owner uses Log / Trace to observe and control the following roles so the next race can run better.
-  - Coordination team (LLM) + event organizer (Harness) + equipment, aid station, and medical crews (Runtime) + information generated during the race (Context)
-  - Outside partners (Tool)
-  - Replacing the coordination team (Change Model)
-  - Running a different type of race (Change Business)
-
-> In plain language, Runtime operates within the boundaries planned by the Harness and adapts as needed. Context is the information being processed, while Tools provide additional capabilities.
-> Humans use Harness and Runtime to control LLMs and Agents to meet the operational needs of different businesses.
-
-
-## What I Mean by Harness and Runtime in Technical Terms
+## Harness and Runtime from a Business Perspective
 
 - **Agent** = Harness + LLM. This is the commonly accepted view in the industry today. Breaking that down further gives the figure below:
 
@@ -116,6 +63,7 @@ This repo starts from questions closer to how agents actually run:
 gun-harness-engineering/
 ├─ README.md
 ├─ README-zh-TW.md
+├─ README-zh-CN.md
 ├─ agent-harness/
 │  ├─ foundations/
 │  ├─ input-and-context/

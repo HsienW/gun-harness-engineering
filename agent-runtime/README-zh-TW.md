@@ -1,6 +1,6 @@
 # Agent Runtime
 
-[English](./README.md) | [繁體中文](./README-zh-TW.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 本區整理 Agent 的執行核心：一次 Run 如何取得執行身分、推進狀態、呼叫模型與工具、等待外部決策、處理副作用與故障，最後產生可驗證的終止結果。
 
@@ -8,13 +8,13 @@ Runtime 接收 [Agent Harness](../agent-harness/README-zh-TW.md) 準備好的輸
 
 ## 閱讀架構
 
-| 分類 | 範圍 | 狀態       |
-|---|---|----------|
-| [Foundations](./foundations/README-zh-TW.md) | Runtime 定義、Execution Identity、狀態轉移、持久化與恢復、設計原則及一次完整 Run。 | 中文版本已完成  |
-| [Execution Lifecycle](./execution-lifecycle/README-zh-TW.md) | Admission、Run／Task／Thread、期限、取消、等待、終止與生命週期競態。 | 中文版本已完成 |
-| `model-and-tool-execution/` | 模型串流、Tool Call 迴圈、排程、並行、錯誤回灌、資源與成本預算。 | 規劃中      |
-| [Effects and Recovery](./effects-and-recovery/README-zh-TW.md) | Checkpoint、恢復資料、冪等與重放、效果帳本、回查重試及補償。 | 六篇中文初稿完成 |
-| [Events and Operations](./events-and-operations/README-zh-TW.md) | Runtime 事件、保存交付、追蹤稽核、指標健康、故障驗證與上線門檻。 | 六篇中文初稿完成 |
+| 分類 | 範圍 |
+|---|---|
+| [Foundations](./foundations/README-zh-TW.md) | Runtime 定義、Execution Identity 與狀態權威、Run Loop、持久化與恢復、設計原則及一次完整 Run。 |
+| [Execution Lifecycle](./execution-lifecycle/README-zh-TW.md) | Run 接納與建立、執行歸屬與替換、期限與取消、等待恢復、終止清理及生命週期競態。 |
+| [Model and Tool Execution](./model-and-tool-execution/README-zh-TW.md) | 模型呼叫與 Provider 切換、串流組裝、工具派送與並行排程、背壓容量、結果回灌及一次模型與工具往返。 |
+| [Effects and Recovery](./effects-and-recovery/README-zh-TW.md) | Checkpoint 與恢復資料、冪等與重放識別、效果帳本與提交邊界、回查重試、補償及提交不明的恢復案例。 |
+| [Events and Operations](./events-and-operations/README-zh-TW.md) | 事件身分與順序、保存交付、追蹤稽核與資料邊界、指標健康、故障驗證與上線門檻及漏接終止事件的查證。 |
 
 ## Runtime 的責任位置
 
