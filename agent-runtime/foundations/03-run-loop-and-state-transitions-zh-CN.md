@@ -113,7 +113,7 @@ Tool Call 必须保留模型产生的 call ID、工具名称与输入，Runtime 
 
 [开启 HTML 图解](../../assets/agent-runtime/foundations/03-run-loop-and-state-transitions/03-tool-use-result-pairing-en.html)
 
-图中 B 比 A 早完成；Runtime 依 call ID 保留配对，收齐本轮所需的合法结果后，再组装下一次模型请求。结果在请求内的排列仍依 Provider 契约决定。
+图中 B 比 A 早完成；Runtime 依 call ID 保留配对，收齐这一轮所需的合法结果后，再组装下一次模型请求。结果在请求内的排列仍依 Provider 契约决定。
 
 ## CCB 的 imperative query loop
 
@@ -261,7 +261,7 @@ Graph 以 node 与 edge 表达分支，while-loop 则直接呈现控制流。采
 - `backend/src/runtime/side-effect/governed-outcome.ts`
 - `backend/src/platform/agent-runtime-events.ts`
 
-本文以固定版本源代码与既有测试安排说明；表中的状态用来对照责任，具体名称依各来源库而定。本轮没有执行真实 Provider、外部 MCP、跨进程 cancellation 或数据库故障演练。
+本文以固定版本源代码与既有测试安排说明；表中的状态用来对照责任，具体名称依各来源库而定。未执行真实 Provider、外部 MCP、跨程序 cancellation 或数据库故障演练。
 
 ## 接续阅读
 

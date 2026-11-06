@@ -8,7 +8,7 @@
 
 A user asks to write a report into the workspace. The model first reads existing files, then proposes `write_file`; product policy requires human confirmation before this kind of change. The screen shows only a confirmation question and a final response, while the Runtime must save the Tool Call, stop dispatch, resume the specified wait, and finally determine whether the Run is complete.
 
-This article follows a teaching example through the execution responsibilities introduced in the first five articles. Each segment draws on these sources:
+This article follows a teaching example through the execution responsibilities introduced in the preceding sections. Each segment draws on these sources:
 
 - Confirmation flow: Chat Gun `confirmation-graph` tests for `write_file` and MCP Agent wiring.
 - Model and tool loop: CCB query and tool execution paths.

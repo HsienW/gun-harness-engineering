@@ -113,7 +113,7 @@ When multiple tools execute concurrently, completion order may differ from propo
 
 [Open the HTML diagram](../../assets/agent-runtime/foundations/03-run-loop-and-state-transitions/03-tool-use-result-pairing-en.html)
 
-In the diagram, B finishes before A; the Runtime preserves pairing by call ID and assembles the next model request after collecting the valid results required for this round. The Provider contract still determines the arrangement of results within that request.
+In the diagram, B finishes before A; the Runtime preserves pairing by call ID and assembles the next model request after collecting the valid results required for the source review. The Provider contract still determines the arrangement of results within that request.
 
 ## CCB's imperative query loop
 
@@ -261,7 +261,7 @@ A Graph expresses branches through nodes and edges, while a while-loop shows con
 - `backend/src/runtime/side-effect/governed-outcome.ts`
 - `backend/src/platform/agent-runtime-events.ts`
 
-This article uses pinned source versions and existing test arrangements. The states in the table compare responsibilities; their concrete names depend on each source repository. This round did not exercise real Providers, external MCP, cancellation across processes, or database fault drills.
+This article uses pinned source versions and existing test arrangements. The states in the table compare responsibilities; their concrete names depend on each source repository. The source review did not exercise real Providers, external MCP, cancellation across processes, or database fault drills.
 
 ## Further reading
 

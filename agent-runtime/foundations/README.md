@@ -21,7 +21,7 @@ This section moves toward execution from the [Harness–Runtime handoff boundary
 
 ## Architecture and responsibilities
 
-The diagram below is a conceptual model shared by the six articles. It marks responsibilities and evidence flows. It does not claim that Chat Gun and Claude Code Best share these types or that every Runtime has the same nodes.
+The diagram below is a conceptual model shared by the articles. It marks responsibilities and evidence flows. It does not claim that Chat Gun and Claude Code Best share these types or that every Runtime has the same nodes.
 
 ```mermaid
 flowchart LR
@@ -44,7 +44,7 @@ flowchart LR
     Ledger --> Terminal
 ```
 
-These six articles establish the terms and invariants used by later sections. The detailed responsibilities are divided as follows:
+the articles establish the terms and invariants used by later sections. The detailed responsibilities are divided as follows:
 
 - **Foundations** defines Runtime responsibilities, identity, state authority, durability semantics, and the basic failure model.
 - **Execution Lifecycle** expands admission, Run/Task/Thread, deadline, cancel, waiting, terminal, and races.
@@ -75,9 +75,9 @@ These six articles establish the terms and invariants used by later sections. Th
 
 ### Article scope
 
-Execution responsibilities define the Runtime's boundary. A framework name, background Worker, or single `query()` function cannot establish that boundary on its own. The article starts at the Execution Request handoff and follows it through Terminal Results, events, and recovery evidence.
+Execution responsibilities define the Runtime's boundary. A framework name, background Worker, or single `query()` function cannot establish that boundary on its own. Execution Request is the responsibility handoff; Terminal Results, events, and recovery evidence are execution outputs.
 
-Planned sections:
+Key topics:
 
 1. Minimum Runtime responsibilities: accept an execution contract, create a Run, advance Steps, call models and tools, and handle stopping conditions.
 2. Relationships among Agent Loop, Workflow/Graph, Agent Server, and Tool Runtime; they may occupy separate layers or the same process.
@@ -91,7 +91,6 @@ Planned sections:
 - Identify which Chat Gun capabilities belong to the LangGraph native Runtime and which its composition, interaction, tool dispatch, and side-effect modules add.
 - CCB's Interactive and Headless/SDK entry points differ; `QueryEngine` cannot be described as the sole Runtime for every mode.
 - Accepting `canUseTool` or another Decision Port does not give the Runtime ownership of Permission Policy.
-- Diagram candidate: responsibility boundaries among Harness, Runtime, Provider, Tool Adapter, and external systems.
 
 Primary sources: [G1][g-boundary], [G2][g-langgraph], [G3][g-mcp-agent], [G5][g-composition], [C1][c-query], and [C2][c-query-engine].
 
@@ -99,9 +98,9 @@ Primary sources: [G1][g-boundary], [G2][g-langgraph], [G3][g-mcp-agent], [G5][g-
 
 ### Article scope
 
-A user request may span multiple model requests, tool attempts, waits, and resumptions. The article establishes identity relationships and identifies which state may change the result when a Task creates a new Run, old events arrive late, or tool responses replay.
+A user request may span multiple model requests, tool attempts, waits, and resumptions. Identity relationships determine which state may change the result when a Task creates a new Run, old events arrive late, or tool responses replay.
 
-Planned sections:
+Key topics:
 
 1. Uses of Request, Thread, Task, and Run, and the distinction among the same conversation, the same goal, and the same execution.
 2. Relationships among Run Generation, Step, Model Request, Tool Call, Execution Attempt, and External Operation.
@@ -115,7 +114,6 @@ Planned sections:
 - Check stale finalizers, lower-generation events, duplicate tool results, and cross-tenant misbinding alongside normal completion.
 - A new Run for a Task does not establish that the old Run's I/O has stopped; inspect ownership and cancellation separately.
 - Correlation fields alone do not show that every producer and consumer passes them through. Follow the production entry point through each stage.
-- Diagram candidate: an identity tree for Task, Run, Step, Tool Call, Attempt, and Operation, with a side path rejecting an old generation.
 
 Primary sources: [G6][g-ownership], [G7][g-query-guard], [G8][g-runtime-events], [G15][g-effect-identity], [C1][c-query], and [C2][c-query-engine].
 
@@ -125,7 +123,7 @@ Primary sources: [G6][g-ownership], [G7][g-query-guard], [G8][g-runtime-events],
 
 The article follows the Runtime control loop to explain how model output becomes the next Step. Ordinary content can lead to completion, a Tool Call enters dispatch and Tool Result feedback, and a Decision Request or Interrupt puts the Run into an identifiable waiting state. State names form a conceptual model; the two sources are not claimed to share an enum.
 
-Planned sections:
+Key topics:
 
 1. Basic relationships among Admission, Running, Waiting, Cancelling, Reconciling, and Terminal.
 2. Ordering requirements for model streams, complete assistant messages, tool use blocks, and tool results.
@@ -140,7 +138,6 @@ Planned sections:
 - Inspect CCB `queryLoop()` while-loops, tool batching, abort, and message repair separately; for Chat Gun, follow Graph edges, interrupts, tool dispatch, and terminal consumers.
 - A resolved `Promise`, successful tool-wrapper return, completed model output, and successful business effect are separate observations.
 - Keep distinct outcomes for model timeout, tool timeout, cancellation, budget exhaustion, and malformed tool input instead of collapsing them into generic error text.
-- Diagram candidate: a Run state machine showing the Tool Result loop, waiting exits, cancellation, and one-way terminal convergence.
 
 Primary sources: [G3][g-mcp-agent], [G4][g-deep-researcher], [G9][g-pipeline], [G10][g-outcome], [C1][c-query], [C3][c-orchestration], and [C4][c-tool-execution].
 
@@ -148,9 +145,9 @@ Primary sources: [G3][g-mcp-agent], [G4][g-deep-researcher], [G9][g-pipeline], [
 
 ### Article scope
 
-The Runtime recovers an execution with a version, waiting reason, and external-effect state. Chat text alone cannot represent it. The article separates stored records and explains what each can prove after a process crash, a wait for human input, or a compatibility change.
+Runtime recovery requires a version, waiting reason, and external-effect state. Stored records provide different evidence after a process crash, a wait for human input, or a compatibility change.
 
-Planned sections:
+Key topics:
 
 1. Distinct uses of Transcript, Graph Checkpoint, Task/Ownership, Interrupt Manifest, and Side-effect Ledger.
 2. Differences among Memory, Context Compression, and Checkpoint; a summary can help the next sampling step but cannot replace Run recovery state.
@@ -165,7 +162,6 @@ Planned sections:
 - Chat Gun Clarification and Confirmation use different manifests/consumers. A test of one path does not establish a guarantee for all Interrupts.
 - CCB compaction protects the Context budget; it does not establish durable checkpoints or cross-process resume.
 - A Tool Result in a Checkpoint does not necessarily prove external Commit. A missing result does not prove that the external operation never occurred.
-- Diagram candidate: responsibilities of five persisted record types and the crash window after external Commit but before Checkpoint write.
 
 Primary sources: [G1][g-boundary], [G4][g-deep-researcher], [G11][g-ledger], [G13][g-resume], [G14][g-confirmation-graph], [C5][c-auto-compact], and [C6][c-compact].
 
@@ -173,9 +169,9 @@ Primary sources: [G1][g-boundary], [G4][g-deep-researcher], [G11][g-ledger], [G1
 
 ### Article scope
 
-After the first four articles establish the terms, this article turns them into engineering invariants that can be checked. Each principle must map to state, a consumer, or a fault-injection point; adjectives such as reliable or observable cannot substitute for an implementation.
+Runtime responsibilities can be expressed as engineering invariants that can be checked. Each principle must map to state, a consumer, or a fault-injection point; adjectives such as reliable or observable cannot substitute for an implementation.
 
-Planned sections:
+Key topics:
 
 1. Each kind of state has one authority; Projections and Caches cannot rewrite Runtime truth.
 2. Typed Commands, Events, or Decisions drive transitions; reject illegal transitions and unknown versions.
@@ -191,8 +187,7 @@ Planned sections:
 
 - Pair each principle with at least one source consumer, a rejection or stopping branch, and the deployment evidence still missing.
 - Separate framework-native capabilities, product extensions, optional feature flags, and production-entry wiring. A module's presence does not prove that every path enables it.
-- Test definitions establish test arrangements. If tests were not run in this round, describe coverage rather than claiming a pass.
-- Diagram candidate: a Runtime-invariant checklist mapped to admission, running, waiting, recovery, and terminal stages.
+- Test definitions establish test arrangements. Actual execution and passing results require test reports.
 
 Primary sources: [G1][g-boundary], [G5][g-composition], [G6][g-ownership], [G8][g-runtime-events], [G10][g-outcome], [G12][g-runner], [C1][c-query], and [C3][c-orchestration].
 
@@ -202,7 +197,7 @@ Primary sources: [G1][g-boundary], [G5][g-composition], [G6][g-ownership], [G8][
 
 The case follows a model proposing a tool call that requires human confirmation and may produce an external side effect. It combines observed code paths into a teaching trace. It does not claim that existing Chat Gun tests connect every step into one E2E run or combine CCB Permission UI and Chat Gun authorization types into one implementation.
 
-Planned sections:
+Key topics:
 
 1. The Harness delivers an Execution Request; the Runtime validates versions, limits, Decision Ports, and canonical identity.
 2. The Runtime creates or retrieves a Run, emits a started event, calls the model, and receives tool use.
@@ -224,26 +219,20 @@ Planned sections:
 | The Run completed | Terminal Result, authoritative Run state, and sequence. | The final assistant text. |
 | Execution can safely continue after a crash | Durable checkpoint, compatible manifest, effect evidence, and replay policy. | MemorySaver or a unit-test mock Store. |
 
-Diagram candidate: lanes for Product/Harness, Runtime, Model, Tool Runtime, External System, and Persistence. Show normal completion and a crash after Commit as separate paths, so recovery is not presented as a mandatory step in ordinary success.
-
 Primary sources: [G3][g-mcp-agent], [G4][g-deep-researcher], [G9][g-pipeline], [G11][g-ledger], [G12][g-runner], [G13][g-resume], [G14][g-confirmation-graph], [C1][c-query], and [C4][c-tool-execution].
 
 ## Sources and verification status
 
-GUN-ATLAS v1.0 provides the starting index for Chat Gun and Claude Code Best. The specified session file was found at neither its original path nor the corrected `.codex` path under the user directory, so it is not counted as evidence read. The attachment identifies the user's claude-code-base as Claude Code Best.
-
-This plan keeps the versions pinned by existing repository articles so that moving-branch content does not enter the same set of judgments:
+Source links use the pinned versions below to keep moving-branch changes out of the same set of judgments:
 
 | Source | Pinned commit | Use in Foundations |
 |---|---|---|
 | [Chat Gun](https://github.com/HsienW/chat-gun) | `92a5673003e4ac4ec09be8b1b350f42dbf4a5e69` | LangGraph boundaries, execution composition, interaction ownership, tool dispatch, interrupt/resume, side-effect evidence, and events. |
 | [Claude Code Best](https://github.com/claude-code-best/claude-code) | `77a7934e15d69da13879112ed7db695c9ee7a52a` | Comparison with a third-party Coding Agent's query loop, session orchestration, tool execution, concurrent scheduling, abort, and compaction. |
 
-CCB is a third-party project and does not represent the sole implementation of Anthropic's current official product. GUN-ATLAS, existing articles, and source indexes identify reading entry points. Claims in the six articles are bounded by source, consumers, configuration switches, tests, and deployment conditions. This round did not rerun source-repository unit, integration, or E2E tests, real Providers, external MCP, database races, or failure drills.
-
 ### Primary source index
 
-| Index | Path | Planned use |
+| Index | Path | Use |
 |---|---|---|
 | [G1][g-boundary] | `docs/decisions/current-langgraph-runtime-boundary.md` | LangGraph native authority, Chat Gun extensions, and production-deployment evidence gaps. |
 | [G2][g-langgraph] | `backend/langgraph.json` | Graph registration entry point; registration alone does not establish that all governance and recovery capabilities are enabled. |
@@ -266,18 +255,6 @@ CCB is a third-party project and does not represent the sole implementation of A
 | [C4][c-tool-execution] | `src/services/tools/toolExecution.ts` | Tool input, Permission round trips, progress, and actual execution. |
 | [C5][c-auto-compact] | `src/services/compact/autoCompact.ts` | Context thresholds, recursion guards, and consecutive-failure protection. |
 | [C6][c-compact] | `src/services/compact/compact.ts` | Compaction content and session-memory paths; not evidence of durable resume. |
-
-## Article writing and validation
-
-Read the six articles in order, 01 → 02 → 03 → 04 → 05 → 06. Each establishes concepts before following pinned sources and failure branches. The sixth assembles separately inspected evidence into a teaching trace without claiming that the source repositories already contain the same complete E2E run.
-
-1. State responsibility boundaries and implementation status before tracing source to production consumers; type names alone do not establish behavior across every path.
-2. Keep at least one rejection, cancellation, timeout, incompatibility, or ambiguous-effect branch for each success flow.
-3. Distinguish source-code confirmation, defined test cases, tests executed in this round, and verified production deployment.
-4. Use the palette and layout of `agent-harness/foundations`, retain SVG/HTML originals, and use `-en` filenames for English diagrams.
-5. Call the sixth article E2E only when the evidence connects. If it cites independent tests, mark their boundaries rather than presenting them as one executed Run.
-6. After Foundations, move details into the four Runtime categories to avoid repeatedly expanding retry, checkpoint, and event explanations in every article.
-
 [g-boundary]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/docs/decisions/current-langgraph-runtime-boundary.md
 [g-langgraph]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/langgraph.json
 [g-mcp-agent]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/agents/mcp-agent.ts
