@@ -109,7 +109,7 @@ Resume handler 需要读取权威等待，再判断这份回复是否可接受�
 
 另一个要求也可能在 authorizer 读取 active ownership 后改变 owner。后续 supersede 的 expected generation 可以拒绝过期更新，但合法回复可能已先消费；这是需要故障与并发验证的接线窗口。
 
-要让消费与接手可恢复，可以设计持久的 Resume request、待派送记录或 outbox，再让重试查回既有处置。这些是设计选项，本轮没有证明来源已提供涵盖整条路径的实现。
+要让消费与接手可恢复，可以设计持久的 Resume request、待派送纪录或 outbox，再让重试查回既有处置。这些是设计选项，未证明来源已提供涵盖整条路径的实现。
 
 ## 单次消费需要权威条件
 
@@ -148,7 +148,7 @@ CCB 的 Permission 往返可以作进程内等待对照，但它不会因为也�
 - 在 consume 后、supersede 后与 Graph 启动前分别停止程序，查明残留数据。
 - 在读取 owner 与 supersede 间插入另一个替换，检查已消费输入如何恢复。
 
-现有 clarification authorizer 测试安排包含单次消费、replay、错误 correlation 与 payload。本轮未执行这些测试，亦未验证跨进程接手。
+现有 clarification authorizer 测试安排包含单次消费、replay、错误 correlation 与 payload。未执行这些测试，亦未验证跨程序接手。
 
 ## 本篇的工程判断
 
@@ -160,8 +160,8 @@ CCB 的 Permission 往返可以作进程内等待对照，但它不会因为也�
 
 - [Chat Gun clarification authorizer][g-resume]：correlation、status、expiry、compatibility、Schema 与 consume 交接。
 - [Chat Gun interaction consumer][g-runtime]：`resume_same_task`、supersede 与派送前事件。
-- CCB Permission 仅作不同 Runtime 形状的比较；本篇没有宣称共同的 durable waiting 接口。
-- 来源版本与查证范围见[本区导览](./README-zh-CN.md#正文来源与适用范围)。
+- CCB Permission 仅作不同 Runtime 形状的比较；本篇没有宣称共同的 durable waiting 介面。
+- 来源版本与查证范围见[本区导览](./README-zh-CN.md#来源与适用范围)。
 
 ## 接续阅读
 

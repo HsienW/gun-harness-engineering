@@ -10,7 +10,7 @@
 
 同一個 Task 的舊 Run 還沒結束，新 Run 已取得 ownership；舊 finalizer 隨後回來清理，使用者又在此時送回先前的批准。Runtime 需要逐項核對這些動作的身分、狀態與版本，才能決定哪一次執行可以繼續，哪一筆回覆已經失效。
 
-[Foundations](../foundations/README-zh-TW.md) 已建立 Run、Task、Thread、generation、Waiting 與 Terminal 的基本概念。本區往下追到接納、保留、派送、等待、恢復及清理的實際邊界。以下保留各篇主題、圖解候選與查證清單，並列出正文採用的來源範圍。
+[Foundations](../foundations/README-zh-TW.md) 已建立 Run、Task、Thread、generation、Waiting 與 Terminal 的基本概念。本區往下追到接納、保留、派送、等待、恢復及清理的實際邊界。
 
 ## 閱讀順序
 
@@ -22,8 +22,6 @@
 | 04 | [等待與恢復轉移](./04-waiting-and-resume-transitions-zh-TW.md) · [English](./04-waiting-and-resume-transitions.md) | 暫停之後，哪筆輸入可以消費哪次等待，消費後如何銜接執行？ | `04-waiting-and-resume-transitions-zh-TW.md` |
 | 05 | [終止判定與清理](./05-terminal-results-and-finalization-zh-TW.md) · [English](./05-terminal-results-and-finalization.md) | 模型結束、Run 終止、ownership 釋放與事件送達要如何分開提交？ | `05-terminal-results-and-finalization-zh-TW.md` |
 | 06 | [一次替換與晚到結果](./06-case-lifecycle-races-zh-TW.md) · [English](./06-case-lifecycle-races.md) | 能否用交錯時序查出接納、取消、恢復與 finalizer 之間的競態？ | `06-case-lifecycle-races-zh-TW.md` |
-
-六篇英文正文已完成，使用相同檔名主幹並移除 `-zh-TW`，可由上表或各篇語系連結切換。八張圖解均提供中英文 SVG／HTML，涵蓋雙送出、舊清理、期限、取消、等待接手、失敗紀錄、提交通知及完整競態；英文文章已全數改用英文圖解，中文文章保留中文引用。
 
 ## 架構與責任範圍
 
@@ -57,7 +55,7 @@ flowchart TD
 | Effects and Recovery | 取消或恢復遇到效果不明時，保留結果並交付回查。 | Checkpoint 儲存、Ledger、retry、reconciliation 與 compensation 的演算法留給該分類。 |
 | Events and Operations | 說明 Terminal 寫入與事件交付失敗的不同後續。 | Event envelope、投遞、Trace、Metrics、SLO 與部署演練另行展開。 |
 
-### 寫作時分開的三種狀態
+### 三種狀態的責任範圍
 
 - **Native Run／Graph 狀態**：由 Agent Server 或 Graph Runtime 決定執行位置與可接受的 Command。
 - **Task／Ownership 狀態**：記錄目前 owner、generation 與替換關係；需依 repository 的實際欄位核對。
@@ -71,7 +69,7 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 
 從 Harness 交付執行要求開始，追到 Runtime 接受責任、建立關聯與準備第一個 Step。接納需要區分請求已收到、保留已取得、Run 已建立與工作已派送，讓失敗時可以指出執行停在哪個位置。
 
-正文主題：
+重點如下：
 
 1. Request、Thread、Task、Run 的建立位置；Client hint 與可信 canonical identity 的分別。
 2. Manifest、Capability、Decision Port 與必要依賴的接納條件；業務授權仍交由 Harness。
@@ -88,15 +86,13 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 
 主要查讀入口：Chat Gun `interaction-runtime.ts`、`query-guard.ts`、execution composition root；CCB `handlePromptSubmit.ts`、`QueryGuard.ts`、`QueryEngine.ts`。
 
-圖解候選：Request → reservation → Run／owner → dispatch 的提交順序，標出每段失敗後由誰釋放。
-
 ## 02. 執行歸屬與替換
 
 ### 文章範圍
 
 以同一 Thread／Scope 中的新舊執行為主線，展開 ownership 的取得、替換與條件式釋放。Task 可以延續或被替換，Run 代表具體執行；各種 ID 的生命週期需對回建立與清理位置。
 
-正文主題：
+重點如下：
 
 1. Thread 容器、Task 目標、Run 實例與 generation 的實際關聯。
 2. Claim 衝突與 transaction／CAS；唯一約束、隔離級別與多連線行為列為查證項目。
@@ -107,21 +103,19 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 
 ### 查證與失敗分支
 
-- 本輪本機 Chat Gun 的 `markTerminal()` SQL 核對 runId 與 active status；不能將 QueryGuard 的 generation 檢查概括成所有 repository 寫入都帶相同條件。
+- 所列本機版本的 Chat Gun 的 `markTerminal()` SQL 核對 runId 與 active status；不能將 QueryGuard 的 generation 檢查概括成所有 repository 寫入都帶相同條件。
 - 測試安排需涵蓋雙 claim、supersede 衝突、舊 finalizer 晚到及取消後立即重送。Mock transaction 的結果與正式 PostgreSQL 競態驗證分開記錄。
 - Owner lease、心跳與 Worker 接管只在找到實際實作後展開；目前先保留查證入口。
 
 主要查讀入口：Chat Gun `ownership.ts`、`ownership.test.ts`、`query-guard.ts` 及其 consumer；CCB `QueryGuard.ts` 與呼叫它的 submit／cancel 路徑。
 
-圖解候選：Run A generation 4 → Run B generation 5 的替換時序，分開標示舊 I/O、晚到 finalizer 與目前 owner。
-
 ## 03. 執行限制與取消
 
 ### 文章範圍
 
-沿下一次派送前的控制點，整理 Run Deadline、單次呼叫 timeout、Budget 與 Cancel。停止新增工作、傳遞 abort 與判讀已開始操作各有時點，文章需要交代每一步的有效範圍。
+沿下一次派送前的控制點，整理 Run Deadline、單次呼叫 timeout、Budget 與 Cancel。停止新增工作、傳遞 abort 與判讀已開始操作各有時點，每個控制點具有各自的有效範圍。
 
-正文主題：
+重點如下：
 
 1. Run Deadline、Provider／Tool timeout 與等待 expiry 的不同生命週期。
 2. Turn、Token／cost、Task 與 Tool Attempt Budget 的量測單位、扣除位置與不足時的結果。
@@ -138,15 +132,13 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 
 主要查讀入口：CCB `query.ts`、`QueryEngine.ts` 與 API／工具 abort consumer；Chat Gun `cancel-decision.ts`、interaction runtime 與 Tool Dispatch Pipeline。
 
-圖解候選：同一 Run 的 Deadline、呼叫 timeout 與等待 expiry 對照，以及取消在不同 dispatch phase 的承諾範圍。
-
 ## 04. 等待與恢復轉移
 
 ### 文章範圍
 
 從 Running 進入 Waiting，再以指定輸入恢復。聚焦等待的建立、資格核對、單次消費與後續派送；儲存引擎、migration 及 crash recovery 演算法交由 Effects and Recovery 展開。
 
-正文主題：
+重點如下：
 
 1. Clarification、Human Approval 與其他等待原因各自的 manifest 與 consumer。
 2. 保存等待條件與必要恢復位置，再通知產品端；等待時停止哪些工作。
@@ -157,13 +149,11 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 
 ### 查證與失敗分支
 
-- 本輪本機 clarification authorizer 檢查 correlation、waiting status、expiry、compatibility 與 response Schema，再呼叫 consume。Principal 等可信欄位還需追查上游 consumer，不能只看該函式便推論全鏈已驗證。
+- 所列本機版本的 clarification authorizer 檢查 correlation、waiting status、expiry、compatibility 與 response Schema，再呼叫 consume。Principal 等可信欄位還需追查上游 consumer，不能只看該函式便推論全鏈已驗證。
 - Confirmation 與 Clarification 的 payload、授權及 consumer 分開核對；成功消費不代表所有路徑都會重新評估最新 policy。
 - MemorySaver 與正式持久化 Store 的證據分開，過期、錯綁、重送及已 supersede 的輸入均列入拒絕案例。
 
 主要查讀入口：Chat Gun clarification manifest／resume authorizer、confirmation graph、Deep Researcher 與 interaction runtime；CCB Permission 等待僅作其實際生命週期對照。
-
-圖解候選：保存 → 通知 → 驗證 → 消費 → 恢復的時序，將 consume 與後續 dispatch 的故障窗口獨立標出。
 
 ## 05. 終止判定與清理
 
@@ -171,7 +161,7 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 
 將模型回應結束、工具完成、Run Terminal、Task 結果與事件送達分開。Runtime 需要先判斷 pending work 與效果，再提交自己的終止事實；不同 Store 的寫入失敗也要有可追查結果。
 
-正文主題：
+重點如下：
 
 1. Completed、Failed、Cancelled、Rejected 與 Parked 的概念責任，對回各來源實際狀態與返回值。
 2. Pending Tool Call、Interrupt、未知效果與必要寫入對完成判定的影響。
@@ -184,11 +174,9 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 
 - Chat Gun ownership 的 terminal 狀態不等於完整 native Run enum；CCB generator 正常 return、throw 與提前 `.return()` 的收束路徑也需分別追蹤。
 - Run 已結束而通知失敗時，重送與權威狀態讀取不能重新派送工具。
-- 模型最後一句、Promise resolved 或 UI loading 消失各自只能支持局部觀察；正文主張需對到權威寫入與結果契約。
+- 模型最後一句、Promise resolved 或 UI loading 消失各自只能支持局部觀察；完成判定需要權威寫入與結果契約支持。
 
 主要查讀入口：Chat Gun ownership terminal 寫入、interaction consumer、事件與 reducer；CCB query generator、QueryEngine 與 QueryGuard cleanup。必要時再定位 crash terminal policy 及測試。
-
-圖解候選：Terminal、ownership cleanup、event delivery 三份紀錄的提交與失敗窗口。
 
 ## 06. 一次替換與晚到結果
 
@@ -196,7 +184,7 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 
 案例採同一 Thread／Scope 的 Run A 已取得 owner，之後使用者要求替換為 Run B。A 的 I/O、舊批准與 finalizer 可能在 B 開始後抵達；每個交接都要對回當時的 owner 與等待狀態。
 
-正文主題：
+重點如下：
 
 1. A 接納並取得執行權，保存可追查的 identity 與限制。
 2. Harness 決定替換；Runtime 依條件提交 supersede，再銜接 B 的接納與執行。
@@ -215,31 +203,25 @@ CCB 的程序內 QueryGuard 與 Chat Gun 的持久 ownership 具有不同作用�
 | A 的清理不影響 B | Repository runId／status 條件與 QueryGuard generation。 | A 的 `finally` 在 B started 後執行。 |
 | B 的終止不被逆轉 | Terminal 權威、條件式寫入與後續 consumer。 | Deadline、完成與取消交錯，事件重送。 |
 
-每段使用獨立測試或模組時，正文保留證據分界。只有完成同一入口、實際 Store、Worker 與外部資源的整合執行，才能將結果稱為完整 E2E。
-
-圖解候選：A／B、Ownership Store、Resume consumer 與外部 I/O 的交錯時序；正常替換與 consume 後崩潰分開呈現。
+每段使用獨立測試或模組時，各段證據具有各自的適用範圍。只有完成同一入口、實際 Store、Worker 與外部資源的整合執行，才能將結果稱為完整 E2E。
 
 ## 來源與查證狀態
 
-GUN-ATLAS 附件提供 Chat Gun 與 Claude Code Best 的原始碼索引。使用者所稱的 claude-code-base，依附件對應到 Claude Code Best。附件只作資訊來源，其面試回答格式與長期記憶指引不列為本區寫作要求。
+### 版本基準與適用範圍
 
-指定 session 在 `C:\Users\hsien.codex\sessions\2026\10\12\` 及補上分隔符號的 `C:\Users\hsien\.codex\sessions\2026\10\12\` 均未找到，因此不列為本輪已讀記憶。
-
-### 既有版本基準與本輪觀察
-
-| 來源 | 版本或位置 | 本輪使用方式 |
+| 來源 | 版本或位置 | 適用範圍 |
 |---|---|---|
-| Foundations 既有索引 | Chat Gun `92a5673003e4ac4ec09be8b1b350f42dbf4a5e69`；CCB `77a7934e15d69da13879112ed7db695c9ee7a52a`。 | 沿用文章範圍與來源路徑；本輪無法取得這兩個固定版本的遠端內容，亦未在本機找到對應 Git object。 |
+| Foundations 既有索引 | Chat Gun `92a5673003e4ac4ec09be8b1b350f42dbf4a5e69`；CCB `77a7934e15d69da13879112ed7db695c9ee7a52a`。 | 沿用文章範圍與來源路徑；所列版本無法取得這兩個固定版本的遠端內容，亦未在本機找到對應 Git object。 |
 | Chat Gun 本機程式庫 | `C:\D\ai-agent\chat-gun`；HEAD `f83a38fd67a021904e597c60543708ee0c206076`。 | 局部讀取 ownership、取消與 clarification authorizer，定位 interaction consumer；這些檔案的 Git 狀態未顯示工作區修改。觀察僅適用此本機版本。 |
 | CCB 本機副本 | `C:\D\ai-agent\claude-code-research\claude-code-main`。 | 讀取 QueryGuard，局部查閱 query 與 QueryEngine；無可用 Git 版本資訊，不宣稱等同既有固定 commit。 |
 
-本輪完成六篇正文與局部程式碼查讀，沒有執行來源庫測試、Provider 呼叫、正式資料庫競態或部署故障演練。正文採用下列本機來源，不將本輪觀察歸入 Foundations 的舊 commit；後續若改用其他版本，需重新核對相應行為。
+來源採用下列本機版本，與 Foundations 的固定 commit 分開。原始碼查讀不等同於來源庫測試、Provider 呼叫、正式資料庫競態或部署故障演練；不同版本的行為需重新核對。
 
-### 正文來源與適用範圍
+### 來源與適用範圍
 
-Chat Gun 正文觀察固定於本機 HEAD `f83a38fd67a021904e597c60543708ee0c206076`。本輪查讀的 `interaction-runtime.ts`、`query-guard.ts`、`ownership.ts`、`cancel-decision.ts` 與 clarification resume authorizer，Git 狀態未顯示工作區修改。各篇連結使用這個 commit，不沿用 Foundations 的版本作為新行為的證據。
+Chat Gun 本文觀察固定於本機 HEAD `f83a38fd67a021904e597c60543708ee0c206076`。原始碼查讀的 `interaction-runtime.ts`、`query-guard.ts`、`ownership.ts`、`cancel-decision.ts` 與 clarification resume authorizer，Git 狀態未顯示工作區修改。各篇連結使用這個 commit，不沿用 Foundations 的版本作為新行為的證據。
 
-CCB 本機副本缺少 Git 版本資訊，因此保留以下 SHA-256 檔案指紋。副本內容是本區 CCB 觀察的直接來源；它與 Foundations 的固定 commit 是否相同，本輪沒有確認。
+CCB 本機副本缺少 Git 版本資訊，因此保留以下 SHA-256 檔案指紋。副本內容是本區 CCB 觀察的直接來源；它與 Foundations 的固定 commit 是否相同，未確認。
 
 | CCB 副本路徑 | SHA-256 |
 |---|---|
@@ -248,19 +230,19 @@ CCB 本機副本缺少 Git 版本資訊，因此保留以下 SHA-256 檔案指�
 | `src/utils/QueryGuard.ts` | `40c997431eb8b5c301817b0aa2348daad490849df8110b5a9c9d650ae089d67b` |
 | `src/utils/handlePromptSubmit.ts` | `3cd8b139562101de37004693bd4bf59fdb270ad57c4ec17cce79cf2d8d31541e` |
 
-正文保留三項局部觀察：
+本文保留三項局部觀察：
 
 - CCB `QueryEngine.ts` 有累積費用 `maxBudgetUsd` consumer，不能由此推論派送前零超額；`query.ts` 的 turn、task budget 與 feature gate 另行描述。
 - Chat Gun clarification consumer 先 consume，再 supersede、保存決策與準備 Graph 派送；這些步驟的共同原子性與跨程序接手尚未驗證。
 - Chat Gun interaction wrapper 可以在非取消例外時使用 ownership `completed`，同時以 failed flag 記錄 idempotency 失敗；正常結束 stream 也未在該 wrapper 中單獨判讀 Graph Waiting。業務結果與等待需向相應權威查詢。
 
-測試案例名稱用來定位已有的回歸安排，本輪沒有重新執行；文中的接納型別、提交順序、共享 Budget、outbox 與故障矩陣，依上下文標示為概念設計或驗證要求。
+測試案例名稱用來定位已有的回歸安排，未重新執行；文中的接納型別、提交順序、共享 Budget、outbox 與故障矩陣，依上下文標示為概念設計或驗證要求。
 
 ### 主要來源索引
 
-以下保留查讀清單。本輪已讀範圍以前述正文來源與各篇實作參照為準；其餘模組仍是後續入口，測試檔存在與測試已執行分開記錄。歷史版本連結可由 [Foundations 的主要來源索引](../foundations/README-zh-TW.md#主要來源索引) 與 [Harness Interaction 的索引](../../agent-harness/interaction-and-feedback/README-zh-TW.md#來源與查證狀態) 接續定位。
+以下保留查讀清單。所列版本已讀範圍以前述本文來源與各篇實作參照為準；其餘模組仍是後續入口，測試檔存在與測試已執行分開記錄。歷史版本連結可由 [Foundations 的主要來源索引](../foundations/README-zh-TW.md#主要來源索引) 與 [Harness Interaction 的索引](../../agent-harness/interaction-and-feedback/README-zh-TW.md#來源與查證狀態) 接續定位。
 
-| 來源 | 路徑 | 規劃用途 |
+| 來源 | 路徑 | 用途 |
 |---|---|---|
 | Chat Gun | `backend/src/platform/interaction-runtime.ts` | 接納、策略 consumer、恢復與 native queue 邊界。 |
 | Chat Gun | `backend/src/runtime/input/query-guard.ts`、`query-guard.test.ts` | Reservation、owner lookup 與清理。 |
@@ -274,14 +256,3 @@ CCB 本機副本缺少 Git 版本資訊，因此保留以下 SHA-256 檔案指�
 | CCB | `src/utils/handlePromptSubmit.ts`、`src/utils/QueryGuard.ts` | 入口保留、程序內 generation 與清理。 |
 | CCB | `src/query.ts`、`src/QueryEngine.ts` | Query 生命周期、限制、Abort 與 generator 終止。 |
 | CCB | `src/services/tools/toolExecution.ts`、`src/services/tools/toolOrchestration.ts` | 派送前控制點及 in-flight 工具交接。 |
-
-## 正文寫作與驗證方式
-
-六篇依 01 → 02 → 03 → 04 → 05 → 06 閱讀。每篇保留一組狀態權威、Command／Decision、前置條件、結果、失敗分支與待補證據；不以單一通用狀態機取代兩個來源庫的實際契約。
-
-1. 依正文來源所記錄的版本與副本追 source 到 consumer，再描述已觀察的執行行為；部署啟用狀態另行查證。
-2. 分開寫明 Run、Task ownership、waiting manifest 與效果紀錄的更新，跨 Store 一致性列出故障窗口。
-3. Deadline、Budget、Lease、durable queue 與 exactly-once 等主張都要有對應 consumer；尚未找到時標為設計要求或待查證。
-4. 每篇至少保留拒絕、取消、過期、重送、版本衝突或晚到結果的一種可驗證案例。
-5. 第六篇逐段說明證據來源；獨立單元測試不合稱已執行的完整 E2E。
-6. 後續圖解沿用 Foundations 的淺底、藍色焦點、虛線分區與圓角節點，保留 SVG／HTML，預定放在 `assets/agent-runtime/execution-lifecycle/`。

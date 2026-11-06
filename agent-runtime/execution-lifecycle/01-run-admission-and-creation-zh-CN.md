@@ -96,7 +96,7 @@ Chat Gun 的 `beforeRun()` 先读取 Context 与 normalized input，对 invalid 
 | 原生 Run 已建立、回应遗失 | 可查询的 Request／Run 关联。 | 先查是否已存在，再决定重新建立。 |
 | 派送成功、started event 失败 | 已存在的 Run 与投递状态。 | 重送或查询，避免重复启动。 |
 
-表格是设计检查框架。本轮未证明来源库对所有原生 API timeout 都已有跨 Store 原子接纳，因此正文只依各接点的证据说明。
+表格是设计检查框架。未证明来源库对所有原生 API timeout 都已有跨 Store 原子接纳，因此本文只依各接点的证据说明。
 
 ## 重复要求与结果重用
 
@@ -126,7 +126,7 @@ Chat Gun 的 `beforeRun()` 先读取 Context 与 normalized input，对 invalid 
 - 用不同 Scope 重送相似内容，确认不会取得另一项任务的结果。
 - 移除必要 Store 或 Decision Port，确认拒绝发生在对应模型或工具派送前。
 
-来源库的 QueryGuard 测试已有 dispatch gap、durable owner 与旧 finalizer 情境。本轮只查读测试安排，没有执行正式多 Worker 或数据库故障测试。
+来源库的 QueryGuard 测试已有 dispatch gap、durable owner 与旧 finalizer 情境。仅查读测试安排，没有执行正式多 Worker 或数据库故障测试。
 
 ## 本篇的工程判断
 
@@ -138,7 +138,7 @@ Runtime 接纳之后，工程人员应能指出本次 Run 是谁、目前 owner 
 
 - Chat Gun：`backend/src/platform/interaction-runtime.ts` 的 `beforeRun()`、拒绝与清理路径；`backend/src/runtime/input/query-guard.ts` 的 reservation；`backend/src/runtime/interaction/ownership.ts` 的 claim。
 - CCB：`src/utils/QueryGuard.ts` 与 `src/utils/handlePromptSubmit.ts` 的入口协调。
-- [Chat Gun QueryGuard 源代码][g-guard]、[互动 consumer][g-runtime]；本区版本与 CCB 副本指纹见[来源与适用范围](./README-zh-CN.md#正文来源与适用范围)。
+- [Chat Gun QueryGuard 源代码][g-guard]、[互动 consumer][g-runtime]；本区版本与 CCB 副本指纹见[来源与适用范围](./README-zh-CN.md#来源与适用范围)。
 
 本篇的接纳结果类型与跨 Store 失败表属概念设计。源代码观察依本区所列版本，未执行 Provider、数据库竞态或端到端验证。
 

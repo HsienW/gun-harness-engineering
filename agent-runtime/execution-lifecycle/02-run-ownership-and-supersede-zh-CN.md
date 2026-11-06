@@ -132,7 +132,7 @@ Owner 可以持久保存，也可能因 Worker 消失而永远停在 active。�
 - 取消 A、启动 B，再让 A 的 Promise 进入 `finally`。
 - 记录外部 I/O 在 supersede 后仍返回的结果，确认不会取得 B 的控制权。
 
-现有 ownership 与 QueryGuard 测试安排包含 racing CAS、下一代 claim 与 stale finalizer。本轮未执行测试，也未将 mock database 的案例视为正式多连接压测。
+现有 ownership 与 QueryGuard 测试安排包含 racing CAS、下一代 claim 与 stale finalizer。未执行测试，也未将 mock database 的案例视为正式多连线压测。
 
 ## 本篇的工程判断
 
@@ -145,7 +145,7 @@ Owner 可以持久保存，也可能因 Worker 消失而永远停在 active。�
 - [Chat Gun ownership repository][g-owner]：claim、transactional supersede 与条件式 terminal 更新。
 - [Chat Gun QueryGuard][g-guard]：本地保留、adopt 与 runId／generation release。
 - CCB `src/utils/QueryGuard.ts`：`reserve()`、`tryStart()`、`end()` 与 `forceEnd()`。
-- 来源版本、CCB 副本指纹与测试限制见[本区导览](./README-zh-CN.md#正文来源与适用范围)。
+- 来源版本、CCB 副本指纹与测试限制见[本区导览](./README-zh-CN.md#来源与适用范围)。
 
 ## 接续阅读
 
