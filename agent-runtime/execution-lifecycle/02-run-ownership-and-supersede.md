@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Run admission and creation](./01-run-admission-and-creation.md) · Next: [Execution limits and cancellation](./03-deadlines-budgets-and-cancellation.md)
+[Back to guide](./README.md) · Previous: [Run admission and creation](./01-run-admission-and-creation.md) · Next: [Execution limits and cancellation](./03-deadlines-budgets-and-cancellation.md)
 
 > After Run A is cancelled, the user immediately submits Run B. B has already started when A's Promise finally enters `finally`. If cleanup simply writes "now idle," the old callback can clear B's execution ownership.
 
@@ -59,10 +59,10 @@ If native Run creation happens in another service, the repository transaction ca
 Updating ownership changes eligibility for subsequent commands. A Provider request, file write, or external HTTP call already sent still needs its own cancellation mechanism, or must be interpreted when its result returns.
 
 ~~~text
-A 持有 generation 4，外部 I/O 已送出
-  → 條件式 supersede 成功
-  → B 持有 generation 5
-  → A 的 I/O 與 finally 可能晚到
+A holds generation 4; external I/O has been sent
+  → Conditional supersede succeeds
+  → B holds generation 5
+  → A's I/O and finally may arrive late
 ~~~
 
 Generation therefore needs to be traced to each consumer: the display layer uses it to reject stale activity, and QueryGuard uses it to constrain cleanup. Tool dispatch and downstream writes need corresponding checks if they are to reject stale executors.
@@ -145,7 +145,7 @@ I would inspect the conditions for claim, supersede, terminal, and release indiv
 - [Chat Gun ownership repository][g-owner]: claim, transactional supersede, and conditional terminal updates.
 - [Chat Gun QueryGuard][g-guard]: local reservation, adopt, and runId/generation release.
 - CCB `src/utils/QueryGuard.ts`: `reserve()`, `tryStart()`, `end()`, and `forceEnd()`.
-- See the [section guide](./README-zh-TW.md#正文來源與適用範圍) for source versions, CCB copy fingerprints, and test limitations.
+- See the [section guide](./README.md#article-sources-and-scope) for source versions, CCB copy fingerprints, and test limitations.
 
 ## Further reading
 

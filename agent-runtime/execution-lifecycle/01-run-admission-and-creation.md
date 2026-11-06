@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Next: [Run ownership and replacement](./02-run-ownership-and-supersede.md)
+[Back to guide](./README.md) · Next: [Run ownership and replacement](./02-run-ownership-and-supersede.md)
 
 > A user clicks Submit twice. The first request has already read "no current Run" but is still waiting on the database; the second request reads the same result. Both call the model. The screen shows only one execution, while tools may run twice.
 
@@ -138,7 +138,7 @@ I would first inspect reservations around await points and the window where owne
 
 - Chat Gun: `beforeRun()`, rejection, and cleanup paths in `backend/src/platform/interaction-runtime.ts`; reservation in `backend/src/runtime/input/query-guard.ts`; claim in `backend/src/runtime/interaction/ownership.ts`.
 - CCB: entry coordination in `src/utils/QueryGuard.ts` and `src/utils/handlePromptSubmit.ts`.
-- [Chat Gun QueryGuard source][g-guard] and [interaction consumer][g-runtime]; see [sources and scope](./README-zh-TW.md#正文來源與適用範圍) for this section's version and CCB copy fingerprints.
+- [Chat Gun QueryGuard source][g-guard] and [interaction consumer][g-runtime]; see [sources and scope](./README.md#article-sources-and-scope) for this section's version and CCB copy fingerprints.
 
 The admission result type and cross-Store failure table are conceptual designs. Source observations apply to the versions listed for this section. Provider, database race, and end-to-end verification were not performed.
 

@@ -1,8 +1,8 @@
 # Execution Lifecycle
 
-[繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
-[回到 Runtime 总览](../README-zh-TW.md) · [Foundations 导览](../foundations/README-zh-CN.md)
+[回到 Runtime 总览](../README-zh-CN.md) · [Foundations 导览](../foundations/README-zh-CN.md)
 
 > 以下内容所提到的
 > CCB 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
@@ -31,19 +31,19 @@
 
 ```mermaid
 flowchart TD
-    Request[Harness 交付執行要求] --> Admission[01 驗證契約並接納]
-    Admission --> Reject[拒絕並保存原因]
-    Admission --> Owner[02 取得或核對 ownership]
-    Owner --> Stop[衝突時拒絕或交還策略處理]
-    Owner --> Running[推進本次 Run]
+    Request[Harness 交付执行要求] --> Admission[01 验证契约并接纳]
+    Admission --> Reject[拒绝并保存原因]
+    Admission --> Owner[02 取得或核对 ownership]
+    Owner --> Stop[冲突时拒绝或交还策略处理]
+    Owner --> Running[推进本次 Run]
     Limits[03 Deadline / Budget / Cancel] --> Running
     Running --> Wait[04 保存指定等待]
-    Wait --> Resume[核對並消費 Resume]
+    Wait --> Resume[核对并消费 Resume]
     Resume --> Owner
-    Running --> Final[05 判定並提交 Terminal]
-    Final --> Cleanup[條件式清理與結果交付]
-    Old[06 舊 Run 的晚到結果] --> Guard[核對 owner / version / terminal]
-    Guard --> Evidence[保留證據或拒絕更新]
+    Running --> Final[05 判定并提交 Terminal]
+    Final --> Cleanup[条件式清理与结果交付]
+    Old[06 旧 Run 的晚到结果] --> Guard[核对 owner / version / terminal]
+    Guard --> Evidence[保留证据或拒绝更新]
 ```
 
 ### 与其他分类的分工

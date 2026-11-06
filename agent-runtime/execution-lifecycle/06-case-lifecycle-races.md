@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Terminal decisions and cleanup](./05-terminal-results-and-finalization.md)
+[Back to guide](./README.md) · Previous: [Terminal decisions and cleanup](./05-terminal-results-and-finalization.md)
 
 > Run A is still streaming when the user requests a different report format. Run B takes over before A's error and finalizer arrive. Meanwhile, the browser resends an old clarification response. The screen may show only one update, while the backend needs separate decisions for three different actions.
 
@@ -63,10 +63,10 @@ The normal replacement path does not include unresolved external writes from A. 
 The consumer requests supersede using A's generation 4 as the expected generation. If the conditions hold, the old row becomes superseded and the new row records B with generation 5.
 
 ~~~text
-替換前：active owner = run-a / generation 4
-  → 以 expected generation 4 提交 supersede
-替換後：active owner = run-b / generation 5
-  → 本地 guard 採用 B
+Before supersede: active owner = run-a / generation 4
+  → Commit supersede with expected generation 4
+After supersede: active owner = run-b / generation 5
+  → The local guard adopts B
 ~~~
 
 If another request changes the owner first, this supersede should report a conflict. The consumer needs to reevaluate from current authoritative state, rather than force an overwrite based on an old read.
@@ -180,11 +180,11 @@ I would inspect both authoritative Stores and actual dispatch counts. A correct 
 
 - [Chat Gun ownership][g-owner], [QueryGuard][g-guard], and their test arrangements.
 - Consumers and wrappers in the [Clarification Resume authorizer][g-resume] and [interaction runtime][g-runtime].
-- The process-local comparison in CCB `src/utils/QueryGuard.ts`; see the [section guide](./README-zh-TW.md#正文來源與適用範圍) for the source copy and inspection scope.
+- The process-local comparison in CCB `src/utils/QueryGuard.ts`; see the [section guide](./README.md#article-sources-and-scope) for the source copy and inspection scope.
 
 ## Further reading
 
-- [Execution Lifecycle guide](./README-zh-TW.md)
+- [Execution Lifecycle guide](./README.md)
 - [A complete Run walkthrough](../foundations/06-one-run-walkthrough.md)
 - Upcoming sections: Model and Tool Execution, Effects and Recovery, Events and Operations.
 

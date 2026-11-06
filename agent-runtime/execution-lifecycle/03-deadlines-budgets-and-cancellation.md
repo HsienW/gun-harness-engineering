@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Run ownership and replacement](./02-run-ownership-and-supersede.md) · Next: [Waiting and resume transitions](./04-waiting-and-resume-transitions.md)
+[Back to guide](./README.md) · Previous: [Run ownership and replacement](./02-run-ownership-and-supersede.md) · Next: [Waiting and resume transitions](./04-waiting-and-resume-transitions.md)
 
 > A user clicks Stop, and the text stream immediately disappears from the screen. A refund request has already been sent at the other end. A few seconds later, the downstream system completes the refund before the Runtime receives the cancellation signal. If the product only says "cancelled," the user may believe the operation never happened.
 
@@ -150,7 +150,7 @@ I would inspect Cancelled separately from external effects. Subsequent work stop
 - [Chat Gun cancellation decision][g-cancel]: phase, reconciliation, and corrective/compensation handoffs.
 - [Chat Gun interaction runtime][g-runtime]: cancellation paths permitting supersede and rejection exits.
 - CCB `src/query.ts`: turns, task budget, Abort, and return reasons; `src/QueryEngine.ts`: the `maxBudgetUsd` consumer.
-- See [sources and scope](./README-zh-TW.md#正文來源與適用範圍) for versions and copy fingerprints.
+- See [sources and scope](./README.md#article-sources-and-scope) for versions and copy fingerprints.
 
 ## Further reading
 
