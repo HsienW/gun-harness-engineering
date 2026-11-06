@@ -54,7 +54,7 @@ flowchart LR
 
 从一个具体工具调用开始，区分名称、输入 Schema、执行函数，以及治理需要的 action、resource、风险与执行条件。能力描述提供模型选择依据；行动契约还要让程序能检查这次操作。
 
-预定段落：
+重点如下：
 
 1. Tool Call 交付哪些数据，哪些可信字段必须另由执行入口提供。
 2. Chat Gun 的 `ToolRiskPolicy`：`riskTier`、`actions`、`requireConfirmation` 与 `resourceRefResolver`。
@@ -62,11 +62,10 @@ flowchart LR
 4. CCB `Tool` 的 Schema、`validateInput()`、`checkPermissions()`、`call()` 与并行安全判断，分别在哪里使用。
 5. 未注册工具、未宣告 action、参数不合法及分类失败的返回方式。
 
-### 写作与查证要求
+### 实现条件与限制
 
-- `ToolRiskRegistry` 支持未注册工具默认为 `read` 或 `deny`；不能把类别的可配置能力写成所有入口一律默认拒绝。正文须继续追到 Registry 的实际建构设置。
-- 风险分类、输入合法与资源授权分开说明；`read` 不等于无风险，Schema 通过也不等于获准。
-- 图解候选：同一工具描述如何对回输入契约、风险政策与执行接口。
+- `ToolRiskRegistry` 支援未注册工具默认为 `read` 或 `deny`；不能把类别的可配置能力写成所有入口一律默认拒绝。实际默认值取决於 Registry 的建构配置。
+- 风险分类、输入合法与资源授权分开说明；`read` 不等於无风险，Schema 通过也不等於获准。
 
 主要来源：[G1][g-risk]、[G2][g-governance]、[C1][c-tool]、[C2][c-execution]。
 
@@ -76,7 +75,7 @@ flowchart LR
 
 从可信 Principal、Tenant、Scope 与 ResourceRef 组成授权要求，追踪 policy、grant、资源归属及 Context 条件如何形成决策。CCB 用来对照 Coding Agent 的 Permission consumer，不套用 Chat Gun 的身份类型。
 
-预定段落：
+重点如下：
 
 1. 身份来自哪个可信入口；模型参数与外部内容不能自行宣告身份。
 2. Chat Gun 的租户、账号、active scope 与读写范围检查。
@@ -85,11 +84,10 @@ flowchart LR
 5. CCB 的 `hasPermissionsToUseTool()`、`useCanUseTool()` 与工具执行路径如何交接。
 6. 决策与调用的关联：decision、policy version、resource 与执行识别。
 
-### 写作与查证要求
+### 实现条件与限制
 
 - 比较跨租户、缺少 scope、过期或撤销 grant、必要授权依赖失败等分支；不把所有拒绝合并成一种工具错误。
 - `GovernanceExecutor.authorizeTyped()` 在未配置 authorization 时有直接允许分支；必要政策是否存在，须由组装与入口证据确认。
-- 图解候选：可信身份、资源与政策进入决策，和模型提供工具参数的不同来源。
 
 主要来源：[G3][g-authorization]、[G2][g-governance]、[C3][c-permissions]、[C4][c-can-use-tool]。
 
@@ -99,7 +97,7 @@ flowchart LR
 
 说明需要确认的调用如何保存、呈现与恢复，以及如何核对批准者、Run、Scope、决策识别及有效期限。一般对话中的「同意」与可被消费的批准数据应分开处理。
 
-预定段落：
+重点如下：
 
 1. 何时进入 `confirmation_required`；确认不能扩大原有授权边界。
 2. `ConfirmationRequiredDescriptor`、待确认数据与 interrupt manifest 的交接。
@@ -108,12 +106,11 @@ flowchart LR
 5. 批准后如何到达 `executeAuthorizedTyped()`；哪些检查会重做，哪些沿用前次决策。
 6. CCB 的互动确认、用户调整输入与 Permission 更新，和 Chat Gun 的差异。
 
-### 写作与查证要求
+### 实现条件与限制
 
 - `confirmation.ts` 的数据绑定与原子消费，可以作为实现追踪；参数杂凑、资源版本与最新政策的重新核对，须另外找 consumer，不能因 descriptor 有 `policyVersion` 就宣称全部成立。
 - `executeAuthorizedTyped()` 有沿用授权结果的路径；将「等待后应重新判定」的设计建议与实际调用顺序分开。
-- 不从内存 checkpointer 或 mock Store 推论跨进程持久化、正式数据库竞态或跨部署恢复已验证。
-- 图解候选：待确认、有效批准、拒绝、过期与重播的状态及执行次数。
+- 不从记忆体 checkpointer 或 mock Store 推论跨程序持久化、正式数据库竞态或跨部署恢复已验证。
 
 主要来源：[G4][g-confirmation]、[G5][g-confirmation-graph]、[G6][g-confirmation-test]、[G7][g-graph-test]、[C5][c-interactive]。
 
@@ -123,7 +120,7 @@ flowchart LR
 
 从已获准的调用追到实际工具执行，分开说明治理包装、完整 dispatch pipeline 与 ExecutionProfile enforcement。获准使用工具，仍需核对工具可访问哪些程序、文件、网络与 secret。
 
-预定段落：
+重点如下：
 
 1. Agent → Registry → governance wrapper → 可选 dispatch pipeline 的实际接线。
 2. Descriptor、输入验证、必要依赖与 canonical execution Context。
@@ -133,14 +130,13 @@ flowchart LR
 6. Timeout、AbortSignal、派送前取消与已开始外部 I/O 的差别。
 7. CCB 依 `isConcurrencySafe()` 分批的对照，以及它不能单独提供的跨进程保证。
 
-### 写作与查证要求
+### 实现条件与限制
 
 - 沿来源开关与实际 consumer 说明覆盖范围；不能把 pipeline 关闭写成所有治理都消失，也不能把 wrapper 存在写成隔离已启用。
-- 固定版本的安全文件注明没有 production `SandboxRunnerPort`；正文需区分接口、测试 runner、部署 runner 与 enforcement 启用条件。
-- 将只读、可并行与资源锁分开；单程序排序不等于多实例的资源互斥。
-- 图解候选：授权、profile、secret／egress 与工具执行的交接，并标出拒绝出口。
+- 固定版本的安全文件注明没有 production `SandboxRunnerPort`；介面、测试 runner、部署 runner 与 enforcement 启用条件具有不同的证据范围。
+- 将唯读、可并发与资源锁分开；单程序排序不等於多实例的资源互斥。
 
-主要来源：[G2][g-governance]、[G8][g-pipeline]、[G9][g-profile]、[G10][g-isolation-doc]、[C6][c-orchestration]。Registry 建构、scheduler、lock、egress 与 secret consumer 的补查结果已纳入第四篇。
+主要来源：[G2][g-governance]、[G8][g-pipeline]、[G9][g-profile]、[G10][g-isolation-doc]、[C6][c-orchestration]。Registry 建构、scheduler、lock、egress 与 secret consumer 各有独立接点。
 
 ## 05. 重试与副作用处理
 
@@ -148,7 +144,7 @@ flowchart LR
 
 从「工具调用失败」拆出派送前拒绝、明确未提交、派送后效果不明及取消。再说明哪些证据允许重试，哪些情况需要回查、对账、补偿或人工介入。
 
-预定段落：
+重点如下：
 
 1. 模型重新提案、工具重试与 Runtime 恢复的不同责任及预算。
 2. `GovernedToolOutcome` 的成功、拒绝、未提交、效果不明与取消语义。
@@ -158,13 +154,12 @@ flowchart LR
 6. 补偿与人工介入；取消或重新执行不能自行还原已发生的效果。
 7. Structured result envelope 与外层成功返回，为何还要检查内层 outcome。
 
-### 写作与查证要求
+### 实现条件与限制
 
 - 不把 Ledger、锁或 replay key 的存在写成端到端 exactly-once；外部系统的幂等及查询能力仍须查证。
 - `ambiguous_after_dispatch` 不直接导向重新派送；要指出可用的 reconcile consumer、其结果与预算。
-- 核对已授权的非只读派送限制尝试次数的分支，不概括所有工具都使用相同 retry policy。
-- 第五篇已补查 identity、retry budget、reconciler 与 compensation 的 host consumer；部分函数委派给固定版本的 `@gun-ai/harness-kernel`，套件内部演算法尚未进一步审计。
-- 图解候选：外部已提交但回应遗失时，执行纪录、业务效果与回复如何分离。
+- 核对已授权的非唯读派送限制尝试次数的分支，不概括所有工具都使用相同 retry policy。
+- Identity、retry budget、reconciler 与 compensation 各有 host consumer；部分函式委派给固定版本的 `@gun-ai/harness-kernel`，套件内部演算法尚未进一步审计。
 
 主要来源：[G11][g-outcome]、[G12][g-runner]、[G13][g-ledger]、[G8][g-pipeline]、[G14][g-retry]。
 
@@ -174,7 +169,7 @@ flowchart LR
 
 采用 Chat Gun `confirmation-graph.test.ts` 的 `write_file` 测试情境，追踪可信 execution Context、敏感工具政策、待确认状态、同一 thread 恢复与底层工具调用次数。这是测试程序定义的工具与环境；不将它写成 Chat Gun 正式入口已提供的文件写入能力。
 
-预定段落：
+重点如下：
 
 1. 列出固定版本、测试工具、Schema、policy、Store、checkpointer 与 mock 的范围。
 2. 从具体调用进入 gate；在确认前核对底层工具尚未执行。
@@ -194,49 +189,45 @@ flowchart LR
 | 工具实际产生效果 | 工具执行纪录与资源状态；mock 返回不能替代。 |
 | 正式入口维持同样条件 | MCP Agent 接线、设置、数据库／runner 及相应整合或 E2E 证据。 |
 
-图解候选：同一调用在 gate、等待、恢复、派送与结果之间的泳道图。若后续制图，沿用 SVG／HTML 及英文 `-en` 分档方式；目前只规划图意。
-
-主要来源：[G7][g-graph-test]、[G6][g-confirmation-test]、[G5][g-confirmation-graph]，以及 [Foundations 任务案例](../foundations/05-one-turn-walkthrough-zh-CN.md)。第六篇已对照正式 MCP Agent、mock Store 与测试使用的 `MemorySaver`，并分开记录证据范围。
+主要来源：[G7][g-graph-test]、[G6][g-confirmation-test]、[G5][g-confirmation-graph]，以及 [Foundations 任务案例](../foundations/05-one-turn-walkthrough-zh-CN.md)。正式 MCP Agent、mock Store 与测试使用的 `MemorySaver` 提供不同层级的证据。
 
 ## 来源与查证状态
-
-GUN-ATLAS v1.0（2026-10-12）提供定位；本篇章沿用前区的固定版本，避免混入浮动分支的新行为。规划与正文于 2026-10-23 透过 GitHub 查读所列程序与文件。用户指定的 session 文件未能定位，因此不将其内容列为已读证据；附件中的面试回答规则也不作为本篇章文章格式。
 
 | 来源 | 固定版本 | 使用范围 |
 |---|---|---|
 | [Chat Gun](https://github.com/HsienW/chat-gun) | `92a5673003e4ac4ec09be8b1b350f42dbf4a5e69` | 行动契约、授权、确认、派送、隔离与副作用。 |
 | [Claude Code Best](https://github.com/claude-code-best/claude-code) | `77a7934e15d69da13879112ed7db695c9ee7a52a` | 第三方 Coding Agent 的 Tool、Permission consumer、互动确认与工具调度。 |
 
-本篇章的 CCB 指 Claude Code Best，不把它当成 Anthropic 官方现行实现。已读测试代表知道案例内容，未代表本轮执行通过；本轮没有执行 unit、integration、E2E、外部 MCP、真实 Provider、数据库竞态或部署故障演练。
+本篇章的 CCB 指 Claude Code Best，不把它当成 Anthropic 官方现行实现。已读测试代表知道案例内容，未代表所列版本执行通过；未执行 unit、integration、E2E、外部 MCP、真实 Provider、数据库竞态或部署故障演练。
 
 ### 主要来源索引
 
-以下连结固定到上述 commit；正文新增的 consumer 另列于后方，各篇也提供直接来源连结。
+以下连结固定到上述 commit；本文新增的 consumer 另列於后方，各篇也提供直接来源连结。
 
-| 索引 | 路径 | 本轮查读用途 |
+| 索引 | 路径 | 用途 |
 |---|---|---|
-| [G1][g-risk] | `backend/src/runtime/authorization/tool-risk.ts` | 风险、action 与未注册工具设置。 |
+| [G1][g-risk] | `backend/src/runtime/authorization/tool-risk.ts` | 风险、action 与未注册工具配置。 |
 | [G2][g-governance] | `backend/src/platform/tool-governance.ts` | Authorization 组装、治理包装与 typed 执行交接。 |
 | [G3][g-authorization] | `backend/src/runtime/authorization/authorization.ts` | 租户、Scope、grant 与决策条件。 |
 | [G4][g-confirmation] | `backend/src/runtime/authorization/confirmation.ts` | Descriptor、批准绑定、期限与消费。 |
 | [G5][g-confirmation-graph] | `backend/src/runtime/authorization/confirmation-graph.ts` | Gate、interrupt、恢复与派送。 |
 | [G6][g-confirmation-test] | `backend/src/runtime/authorization/confirmation.test.ts` | Descriptor 与确认 Store 的测试案例。 |
 | [G7][g-graph-test] | `backend/src/runtime/authorization/confirmation-graph.test.ts` | 测试工具、确认恢复与执行计数。 |
-| [G8][g-pipeline] | `backend/src/runtime/tool-dispatch/pipeline.ts` | 派送前置条件、调度交接与结果 envelope。 |
+| [G8][g-pipeline] | `backend/src/runtime/tool-dispatch/pipeline.ts` | 派送前置条件、排程交接与结果 envelope。 |
 | [G9][g-profile] | `backend/src/runtime/tool-dispatch/execution-profile.ts` | Profile、runner capability 与 secret 解析接点。 |
 | [G10][g-isolation-doc] | `docs/tool-security-isolation.md` | 隔离与 egress 的文件范围及部署限制。 |
-| [G11][g-outcome] | `backend/src/runtime/side-effect/governed-outcome.ts` | 失败、取消与派送状态的类型。 |
+| [G11][g-outcome] | `backend/src/runtime/side-effect/governed-outcome.ts` | 失败、取消与派送状态的型别。 |
 | [G12][g-runner] | `backend/src/runtime/side-effect/tool-execution-runner.ts` | 重试、结果重用与 reconciliation 交接。 |
-| [G13][g-ledger] | `backend/src/runtime/side-effect/business-effect-ledger.ts` | 执行与业务效果状态、提交及补偿接口。 |
+| [G13][g-ledger] | `backend/src/runtime/side-effect/business-effect-ledger.ts` | 执行与业务效果状态、提交及补偿介面。 |
 | [G14][g-retry] | `backend/src/runtime/retry/retry-policy.ts` | Retry policy 转接；预算与错误分类已追到 host consumer，套件内部实现未展开。 |
-| [C1][c-tool] | `src/Tool.ts` | Tool 与 Permission 执行接口。 |
+| [C1][c-tool] | `src/Tool.ts` | Tool 与 Permission 执行介面。 |
 | [C2][c-execution] | `src/services/tools/toolExecution.ts` | 输入验证、Permission 决策与实际调用。 |
 | [C3][c-permissions] | `src/utils/permissions/permissions.ts` | Permission 规则与决策入口。 |
-| [C4][c-can-use-tool] | `src/hooks/useCanUseTool.tsx` | 可用工具的授权 consumer；副文件名为 `.tsx`。 |
+| [C4][c-can-use-tool] | `src/hooks/useCanUseTool.tsx` | 可用工具的授权 consumer；副档名为 `.tsx`。 |
 | [C5][c-interactive] | `src/hooks/toolPermission/handlers/interactiveHandler.ts` | 确认、调整输入与 Permission 更新。 |
-| [C6][c-orchestration] | `src/services/tools/toolOrchestration.ts` | 安全分类、批次并行与 Context 更新。 |
+| [C6][c-orchestration] | `src/services/tools/toolOrchestration.ts` | 安全分类、批次并发与 Context 更新。 |
 
-### 正文补查的 consumer
+### Consumer 接点
 
 | 接点 | 查读重点 |
 |---|---|
@@ -251,17 +242,6 @@ GUN-ATLAS v1.0（2026-10-12）提供定位；本篇章沿用前区的固定版�
 | [Identity](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/side-effect/identity.ts)、[retry budget](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/retry/retry-budget.ts) | Host 调用；部分实现委派给 harness 套件。 |
 | [Reconciler](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/side-effect/reconciler.ts)、[Saga](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/compensation/saga-orchestrator.ts) | 回查分流、已登记补偿动作与人工介入。 |
 | [结果 envelope](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/tool-dispatch/structured-tool-result.ts) | 内层 outcome、执行关联与 legacy 文字转换。 |
-
-## 文章状态与验证方式
-
-依 01 → 02 → 03 → 04 → 05 → 06 阅读。每篇从可指出的程序路径说明，再补上设计判断与尚未验证的条件；第六篇使用前五篇已交代的契约。
-
-- 开头列出案例与证据范围；正文以短段落、小节及有意义的子项目展开，沿用 Foundations 的阅读方式。
-- 每项实现主张指出来源、consumer、开关与失败返回；未确认的重新授权、持久化或外部提交保证保留为待查项目。
-- 至少保留一个不派送的分支；涉及副作用时，再区分未提交与效果不明。
-- 将源代码、测试案例、测试实际执行与部署证据分开，不用成功回复代替中间控制证据。
-- 英文翻译保留段落、清单、表格与技术名称；图解另保留可编辑的 SVG／HTML 原档。
-
 [g-risk]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/authorization/tool-risk.ts
 [g-governance]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/platform/tool-governance.ts
 [g-authorization]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/authorization/authorization.ts

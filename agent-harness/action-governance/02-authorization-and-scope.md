@@ -71,7 +71,7 @@ Policies created by [tool authorization composition][composition] mainly obtain 
 
 This function does not query ACLs for each file or business object here. Resource resolution for the five local tools also mainly identifies the tool name and current Scope, rather than turning each URL or file path into a separate resource.
 
-The article can therefore describe the engine's checks and composition points, but cannot claim the product already provides complete fine-grained authorization for arbitrary resources. Per-file, per-order, or per-record control requires identifying the corresponding resolver, data source, and actual consumer.
+The engine provides checks and composition points, but these do not establish complete fine-grained authorization for arbitrary resources. Per-file, per-order, or per-record control requires identifying the corresponding resolver, data source, and actual consumer.
 
 ### The effect of optional authorization
 
