@@ -10,20 +10,20 @@ The Runtime receives input, Context, capabilities, and policy conditions prepare
 
 | Category | Scope |
 |---|---|
-| [Foundations](./foundations/README-zh-TW.md) | Runtime definition, Execution Identity and state authority, Run Loop, persistence and recovery, design principles, and a complete Run. |
-| [Execution Lifecycle](./execution-lifecycle/README-zh-TW.md) | Run admission and creation, execution ownership and replacement, deadlines and cancellation, waiting and resumption, terminal cleanup, and lifecycle races. |
-| [Model and Tool Execution](./model-and-tool-execution/README-zh-TW.md) | Model calls and Provider fallback, stream assembly, tool dispatch and concurrent scheduling, backpressure and capacity, result feedback, and a model and tool round trip. |
-| [Effects and Recovery](./effects-and-recovery/README-zh-TW.md) | Checkpoints and recovery data, idempotency and replay identity, effect ledgers and commit boundaries, reconciliation and retry, compensation, and an ambiguous commit recovery case. |
-| [Events and Operations](./events-and-operations/README-zh-TW.md) | Event identity and ordering, persistence and delivery, tracing, audit and data boundaries, metrics and health, fault validation and release gates, and investigating a missed terminal event. |
+| [Foundations](./foundations/README.md) | Runtime definition, Execution Identity and state authority, Run Loop, persistence and recovery, design principles, and a complete Run. |
+| [Execution Lifecycle](./execution-lifecycle/README.md) | Run admission and creation, execution ownership and replacement, deadlines and cancellation, waiting and resumption, terminal cleanup, and lifecycle races. |
+| [Model and Tool Execution](./model-and-tool-execution/README.md) | Model calls and Provider fallback, stream assembly, tool dispatch and concurrent scheduling, backpressure and capacity, result feedback, and a model and tool round trip. |
+| [Effects and Recovery](./effects-and-recovery/README.md) | Checkpoints and recovery data, idempotency and replay identity, effect ledgers and commit boundaries, reconciliation and retry, compensation, and an ambiguous commit recovery case. |
+| [Events and Operations](./events-and-operations/README.md) | Event identity and ordering, persistence and delivery, tracing, audit and data boundaries, metrics and health, fault validation and release gates, and investigating a missed terminal event. |
 
 ## The Runtime's Responsibility
 
 ~~~text
-Harness 交付 Execution Request
-  → Runtime 驗證執行契約並建立 Run Identity
-  → Runtime 推進模型、工具、等待與恢復狀態
-  → Runtime 回報事件、證據與 Terminal Result
-  → Harness 將結果轉成產品互動
+Harness delivers the Execution Request
+  → Runtime validates the execution contract and establishes Run Identity
+  → Runtime advances model, tool, waiting, and recovery states
+  → Runtime reports events, evidence, and the Terminal Result
+  → Harness turns results into product interactions
 ~~~
 
 Implementations can use different classes and state enumerations for this flow. An imperative query loop, StateGraph, or remote Agent Server can serve as the Runtime. To identify its responsibilities, trace who owns execution state, valid transitions, stopping conditions, and recovery evidence.
