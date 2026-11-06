@@ -2,7 +2,7 @@
 
 [English](./01-instructions-and-behavior.md) | [繁體中文](./01-instructions-and-behavior-zh-TW.md) | [简体中文](./01-instructions-and-behavior-zh-CN.md)
 
-> 以下內容所提到的 
+> 以下內容所提到的
 > CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
 > Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
 
@@ -70,7 +70,7 @@ CCB 的 [Skill frontmatter parser][ccb-loader] 會解析說明、`allowed-tools`
 
 ## 5. 一條要求可以有多個生效位置
 
-以「只修改 README」為例，可以沿下表檢查設計。表中的安排是作者建議，實際產品須提供相應接線與證據。
+以「只修改 README」為例，可以沿下表檢查設計。表中的安排是設計建議，實際產品須提供相應接線與證據。
 
 | 位置 | 可以做的工作 | 能支持的結論 |
 |---|---|---|
@@ -89,7 +89,7 @@ CCB 的 [Skill frontmatter parser][ccb-loader] 會解析說明、`allowed-tools`
 
 CCB 的 `commands.ts` 對部分 Skill 載入錯誤會記錄後繼續使用其他來源；這只能支持它採用選用擴充降級的結論，不能據此推論任何必要行為規則都可以略過。[來源組裝與錯誤處理見此][ccb-commands]。
 
-對必要規則，較容易查證的設計是記錄其來源、適用範圍及組裝分支；如果無法取得，明確決定中止或採用哪份替代政策。這是本文提出的設計要求，並非宣稱 Chat Gun 已有一份完整的行為規則 manifest。
+對必要規則，較容易查證的設計是記錄其來源、適用範圍及組裝分支；如果無法取得，明確決定中止或採用哪份替代政策。這是本節的設計要求，並非宣稱 Chat Gun 已有一份完整的行為規則 manifest。
 
 本篇完成的是從來源到有效指令的靜態追蹤，尚未執行衝突 Prompt 的模型測試。下一篇會把「要求使用什麼方法」接到真正可供任務使用的能力集合。
 

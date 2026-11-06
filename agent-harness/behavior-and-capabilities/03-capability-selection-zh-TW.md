@@ -12,7 +12,7 @@
 
 產品提供候選範圍、程式決定路由、模型提出行動，以及系統允許執行，是可以分別查證的決策。
 
-本篇依[導覽所列的固定版本](./README-zh-TW.md#來源與證據範圍)追蹤 CCB 與 Chat Gun，重點放在候選集合與具體呼叫之間的交接。各段的程式行為來自本輪原始碼查讀，並非 live Provider 驗收結果。
+本篇依[導覽所列的固定版本](./README-zh-TW.md#來源與證據範圍)追蹤 CCB 與 Chat Gun，重點放在候選集合與具體呼叫之間的交接。各段的程式行為來自所列版本原始碼查讀，並非 live Provider 驗收結果。
 
 ## 1. 在不同位置記錄選擇
 
@@ -113,7 +113,7 @@ Prompt 雖要求適時使用工具，程式仍保留模型直接回答的分支�
 
 ### source 與每租戶工具篩選的差別
 
-[Registry][gun-registry] 的 `source` 用來查對應的 dispatch pipeline Feature Flag。本輪函式沒有依每次請求的 Principal 或 Tenant 縮小本地工具集合。
+[Registry][gun-registry] 的 `source` 用來查對應的 dispatch pipeline Feature Flag。此函式沒有依每次請求的 Principal 或 Tenant 縮小本地工具集合。
 
 這不等於整個產品沒有身分治理；它只限定了在此函式能觀察到的能力曝光行為。
 
@@ -157,7 +157,7 @@ Prompt 雖要求適時使用工具，程式仍保留模型直接回答的分支�
 - Agent／模式與來源版本。
 - 模型請求關聯。
 
-這是本文提出的設計建議；本輪未確認 Chat Gun 已匯出包含所有這些欄位的能力快照。
+這是本節的設計建議；未確認 Chat Gun 已匯出包含所有這些欄位的能力快照。
 
 ## 7. 交給行動治理的單位是具體呼叫
 

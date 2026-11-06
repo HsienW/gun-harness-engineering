@@ -89,7 +89,7 @@ The risks of Prompt changes often appear at handoffs: a custom setting replaces 
 
 CCB's `commands.ts` logs some Skill loading errors and continues with other sources. This supports the conclusion that optional extensions can degrade gracefully; it does not imply that any required behavior rule can be skipped. [See source composition and error handling here][ccb-commands].
 
-For required rules, a design that is easier to verify records their source, scope, and assembly branch, and explicitly decides whether to stop or use a replacement policy when a rule is unavailable. This is a design requirement proposed by this article, not a claim that Chat Gun already has a complete behavior rule manifest.
+For required rules, a design that is easier to verify records their source, scope, and assembly branch, and explicitly decides whether to stop or use a replacement policy when a rule is unavailable. This is a design recommendation, not a claim that Chat Gun already has a complete behavior rule manifest.
 
 This article completes a static trace from sources to effective instructions. Model tests with conflicting Prompts have not been run. The next article connects "which method to use" with the capabilities actually available to a task.
 

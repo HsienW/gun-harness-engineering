@@ -12,7 +12,7 @@
 
 产品提供候选范围、程序决定路由、模型提出行动，以及系统允许执行，是可以分别查证的决策。
 
-本篇依[导览所列的固定版本](./README-zh-CN.md#来源与证据范围)追踪 CCB 与 Chat Gun，重点放在候选集合与具体调用之间的交接。各段的程序行为来自本轮源代码查读，并非 live Provider 验收结果。
+本篇依[导览所列的固定版本](./README-zh-CN.md#来源与证据范围)追踪 CCB 与 Chat Gun，重点放在候选集合与具体调用之间的交接。各段的代码行为来自所列版本源代码查读，并非 live Provider 验收结果。
 
 ## 1. 在不同位置记录选择
 
@@ -113,7 +113,7 @@ Prompt 虽要求适时使用工具，程序仍保留模型直接回答的分支�
 
 ### source 与每租户工具筛选的差别
 
-[Registry][gun-registry] 的 `source` 用来查对应的 dispatch pipeline Feature Flag。本轮函数没有依每次请求的 Principal 或 Tenant 缩小本地工具集合。
+[Registry][gun-registry] 的 `source` 用来查对应的 dispatch pipeline Feature Flag。此函式没有依每次请求的 Principal 或 Tenant 缩小本地工具集合。
 
 这不等于整个产品没有身份治理；它只限定了在此函数能观察到的能力曝光行为。
 
@@ -157,13 +157,13 @@ Prompt 虽要求适时使用工具，程序仍保留模型直接回答的分支�
 - Agent／模式与来源版本。
 - 模型请求关联。
 
-这是本文提出的设计建议；本轮未确认 Chat Gun 已汇出包含所有这些字段的能力快照。
+这是本节的设计建议；未确认 Chat Gun 已汇出包含所有这些栏位的能力快照。
 
 ## 7. 交给行动治理的单位是具体调用
 
 [MCP Agent 的授权节点][gun-auth] 会从模型调用中取得工具名称与参数，再找对应工具及治理执行器。若无法取得可授权的执行接口，该路径返回 `AUTHORIZATION_UNAVAILABLE`；它不会只凭模型提出一个名称就派送。
 
-能力选择交付了候选范围与提案，逐次治理则接着核对可信执行身份、资源及批准等条件。下一篇把这些位置放回同一个计算案例，对照模型选工具和程序直接调用的证据。
+能力选择交付了候选范围与提案，逐次治理则接着核对可信执行身份、资源及批准等条件。下一篇把这些位置放回同一个计算案例，对照模型选工具和代码直接调用的证据。
 
 [ccb-tools]: https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/tools.ts
 [ccb-pool]: https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/utils/toolPool.ts

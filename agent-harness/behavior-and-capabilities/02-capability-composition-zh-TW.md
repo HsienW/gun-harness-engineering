@@ -12,7 +12,7 @@
 
 本篇追蹤能力如何進入任務，並指出載入完成與可執行之間還有哪些條件。
 
-實作依 查讀的 Chat Gun 與 CCB 固定版本撰寫，詳見[來源與證據範圍](./README-zh-TW.md#來源與證據範圍)。本輪採原始碼查讀，未啟動外部 MCP 或執行整合測試。
+實作依 查讀的 Chat Gun 與 CCB 固定版本撰寫，詳見[來源與證據範圍](./README-zh-TW.md#來源與證據範圍)。此處採原始碼查讀，未啟動外部 MCP 或執行整合測試。
 
 ## 1. 不同能力交付不同產物
 
@@ -104,7 +104,7 @@ Subagent 需要重新解析能力範圍。CCB 的 [`resolveAgentTools()`][ccb-ag
 
 這個結果仍須由 caller 使用；單看解析函式，不能宣稱所有子任務都會以相同方式拒絕不合法設定。
 
-本輪未在 Chat Gun 所查讀的 Agent／Registry 路徑確認與上述各 loader 對等的通用組裝。正文因而以 CCB 解釋這些能力的實作形式，再以 Chat Gun 的 Tool 與 MCP 路徑做具體對照。
+未在 Chat Gun 所查讀的 Agent／Registry 路徑確認與上述各 loader 對等的通用組裝。CCB 提供這些能力的實作對照；Chat Gun 則以 Tool 與 MCP 路徑呈現具體接點。
 
 ## 5. Chat Gun 從本地工具走到最終清單
 
