@@ -121,7 +121,7 @@ Source fallback test arrangements include 5xx, total attempt limits, timeout, re
 
 ## Engineering judgment
 
-I would first identify which Gateway method the production entry point uses, then inspect the error allowlist and signal propagation. An interface, a test, and deployment enablement provide different evidence. The article needs to relate them to the same call.
+I would first identify which Gateway method the production entry point uses, then inspect the error allowlist and signal propagation. An interface, a test, and deployment enablement provide different evidence. The implementation must relate them to the same call.
 
 The recoverable scope of fallback depends on data and execution already produced. A failed model attempt and a tool that has caused external effects need different follow-up responsibilities.
 

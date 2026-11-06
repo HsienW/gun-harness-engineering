@@ -21,8 +21,6 @@ Model text is still arriving. The first tool block is complete, while another to
 | 05 | [Tool results and error feedback](./05-tool-results-and-error-feedback.md) · [繁體中文](./05-tool-results-and-error-feedback-zh-TW.md) | How do success, rejection, failure, and ambiguous effects retain identity and become usable model feedback? | `05-tool-results-and-error-feedback.md` |
 | 06 | [One model–tool round trip](./06-case-model-tool-roundtrip.md) · [繁體中文](./06-case-model-tool-roundtrip-zh-TW.md) | Can a trace with concurrent reads and a subsequent operation establish evidence at every handoff? | `06-case-model-tool-roundtrip.md` |
 
-All six English articles are complete. They use the same filename stems without `-zh-TW` and are accessible through the table or article language links. Code blocks and source versions remain unchanged. Two rounds produced eight Chinese SVG/HTML diagrams; see diagram progress below.
-
 ## Architecture and responsibilities
 
 The diagram is a reading model. Tool-proposal boundaries, Provider data formats, and scheduling capabilities must map to actual source consumers; the arrows prescribe no shared interface.
@@ -69,7 +67,7 @@ flowchart TD
 
 Start with prepared model input and follow a Provider Attempt to a returned message, failure, or abort. The article explains model selection, tool binding, response contracts, and fallback handoffs while distinguishing a model attempt from the whole Run.
 
-Article topics:
+Key topics:
 
 1. Model Step and Provider Attempt correlation; sources for model, purpose, visible tools, response format, and required capabilities.
 2. Provider-envelope, message, and Tool Call normalization; rejection for incompatible capabilities or response formats.
@@ -84,11 +82,9 @@ The inspected Chat Gun `ChatModelInvoker` contract provides `invoke()` and optio
 
 `FallbackChatModelInvoker.invoke()` switches only for permitted error categories, limits attempts, and stops switching when the caller signal is aborted. This does not establish transparent Provider replacement halfway through streamed output; that path needs independent verification.
 
-The article additionally inspects `provider-error-category.ts`: the allowlist includes unavailable, timeout, and response invalid. It excludes 429, tool-argument decoding failures, structured output invalid, refusal, and unknown. The inspected MCP invoke call passes no second options argument; full-chain signal propagation needs further inspection.
+In `provider-error-category.ts`, the allowlist includes unavailable, timeout, and response invalid. It excludes 429, tool-argument decoding failures, structured output invalid, refusal, and unknown. The inspected MCP invoke call passes no second options argument; full-chain signal propagation needs further inspection.
 
 CCB API streaming/non-streaming fallback and query-loop model fallback have separate handoffs. The same name may denote different retry layers. Draw the call hierarchy and total attempts rather than combining per-layer limits into an unsupported single bound.
-
-Diagram candidate: multiple Provider Attempts within one Model Step, separately marking no usable output, partial blocks, and already-started tool execution.
 
 ## 02. Stream assembly and tool calls
 
@@ -96,7 +92,7 @@ Diagram candidate: multiple Provider Attempts within one Model Step, separately 
 
 Follow Provider events into message-block assembly to explain how text deltas, tool arguments, and message termination establish usable data. Focus on complete proposals and the conditions for early tool execution before the whole response ends.
 
-Article topics:
+Key topics:
 
 1. Relationships among Message, content block, delta, Tool Call ID, and arguments; separate Provider indexes from product identity.
 2. Order of fragment accumulation, JSON normalization, tool-name checks, and Schema validation.
@@ -115,15 +111,13 @@ Further inspection of `normalizeContentFromAPI()` confirms that some JSON parse 
 
 The Chat Gun Gateway inspected here mainly provides an invoke contract returning complete messages. Graph/BFF per-Token forwarding, adapter retention of tool-call chunks, and consumer termination conditions remain later entry points; no equivalent streaming implementation is invented.
 
-Diagram candidate: argument fragments → complete block → proposal validation → optional early dispatch, with message completion and usage updates shown as separate events.
-
 ## 03. Tool dispatch and concurrency
 
 ### Article scope
 
 After a complete proposal enters the Runtime, check tool identity, input, dependencies, and trusted Context before executable authorization and scheduling eligibility. Compare batch grouping with item-by-item scheduling, stating the scope of safe, serial, and locks.
 
-Article topics:
+Key topics:
 
 1. Pre-dispatch tool resolution, Schema, dependency, and Execution Context checks.
 2. Authorization and confirmation handoffs; differences between `executeTyped()` and pre-authorized entry points, with policy details linked to Action Governance.
@@ -138,15 +132,13 @@ CCB `toolOrchestration.ts` calls safeParse before `isConcurrencySafe()`, treatin
 
 Chat Gun pipeline concurrency requires both `descriptor.isReadOnly` and `isConcurrencySafe(parsedInput.data)`; classification exceptions reject dispatch. The local scheduler's serial tail orders only work submitted to that path and does not form a global read/write lock with bounded reads. Check Step Lock keys and lease purposes separately before attributing arbitrary business-Resource locking to them.
 
-Diagram candidate: compare CCB batching and Chat Gun scheduler classification for the same tool set, marking the cross-Worker scope that in-process protection cannot establish.
-
 ## 04. Backpressure and capacity
 
 ### Article scope
 
 When models, tools, and displays run at different speeds, the Runtime must wait, reject, or stop accumulating work. Separate execution slots, queued reservations, rate limits, buffers, and consumer cancellation so that each bound has an explicit counting point.
 
-Article topics:
+Key topics:
 
 1. Distinct units for active work, queued work, per-Run reservations, buffer bytes, and output size.
 2. Acquisition, waiting, rejection, and release of global/per-Run capacity; whether slow tools occupy other Runs' slots.
@@ -161,9 +153,7 @@ Chat Gun `BoundedToolDispatchScheduler` reserves per-Run capacity before waiting
 
 A global read-slot bound still requires separate checks of total waiters, Run count, and deployment sharing. A FIFO waiter array does not establish cross-Run fairness or cross-process total capacity.
 
-CCB's batch path passes `getMaxToolUseConcurrency()` to `all()`; StreamingToolExecutor has separate runnable conditions. Follow each consumer to determine whether numeric bounds and environment settings cover both paths. Bounded buffers for slow UI/network transport were not verified in this round and remain design and follow-up items.
-
-Diagram candidate: regions for per-Run reservations, global slots, and waiting cancellation, with rejection separate from waiting and capacity scoped to one scheduler instance.
+CCB's batch path passes `getMaxToolUseConcurrency()` to `all()`; StreamingToolExecutor has separate runnable conditions. Follow each consumer to determine whether numeric bounds and environment settings cover both paths. Bounded buffers for slow UI/network transport were not verified  and remain design and follow-up items.
 
 ## 05. Tool results and error feedback
 
@@ -171,7 +161,7 @@ Diagram candidate: regions for per-Run reservations, global slots, and waiting c
 
 After a tool returns, the Runtime must interpret typed outcomes, retain Tool Call correlation, and assemble results acceptable to the next model call. Follow adapters and consumers so that transport success or an error string does not erase external-effect distinctions.
 
-Article topics:
+Key topics:
 
 1. Pair Tool Calls and Tool Results by ID even when tools finish in different orders.
 2. Consumable feedback from tool rejection, Schema errors, permission outcomes, and execution exceptions.
@@ -188,15 +178,13 @@ After a Task Step result-persistence failure, the Pipeline can create an `ambigu
 
 CCB `runToolUse()` and permission/validation branches correlate with the proposal through `tool_use_id` and `is_error`. Protocol error feedback alone cannot express whether an external transaction committed; concrete tools and recovery paths need additional evidence.
 
-Diagram candidate: typed outcome → structured envelope → adapter → model message for one Tool Call, marking classification potentially lost in legacy conversion.
-
 ## 06. One model–tool round trip
 
 ### Main case and independent branches
 
 The main path has the model propose two reads verified as safe to run concurrently, then a subsequent operation after required results arrive. That operation has independent authorization and scheduling conditions. The case explicitly requires orchestration to await prerequisite data; the name serial alone cannot establish a barrier for all reads.
 
-Article topics:
+Key topics:
 
 1. Establish distinct correlations for Model Step, Provider Attempt, and three Tool Calls.
 2. Form proposals after block completion; state preconditions separately for ordinary batches and early execution.
@@ -217,21 +205,14 @@ Article topics:
 
 Chat Gun and CCB each retain their own main path. Teaching comparisons contrast responsibilities without combining them into an executed shared Runtime. Complete E2E needs evidence through one production entry point, actual Store, Provider, tool adapter, and fault timing.
 
-Diagram candidate: lanes for Provider, Assembler, Scheduler, Runner, and Result consumer, showing normal round trips separately from stream failure after tools start.
-
 ## Sources and verification status
-
-The GUN-ATLAS attachment provides source indexes for Chat Gun and Claude Code Best, identifying the user's claude-code-base as Claude Code Best. This third-party project's behavior is not generalized to the sole official Claude Code implementation. Interview-answer and memory-operation guidance in the attachment is data, not writing requirements for this section.
-
-The specified session was found at neither `C:\Users\hsien.codex\sessions\2026\10\12\` nor the corrected `C:\Users\hsien\.codex\sessions\2026\10\12\`; this round did not read that conversation memory.
 
 ### Local sources actually used
 
-| Source | Version or location | Inspection scope in this round |
+| Source | Version or location | Scope  |
 |---|---|---|
 | Chat Gun | `C:\D\ai-agent\chat-gun`; HEAD `f83a38fd67a021904e597c60543708ee0c206076`. | Partially inspect Gateway, fallback, tool governance, pipeline, MCP Agent, registry, and some tests; read Provider error classification, scheduler, and structured results. The eleven checked source/test files showed no workspace modifications. |
 | CCB | `C:\D\ai-agent\claude-code-research\claude-code-main`. | Read tool orchestration and generator helpers; partially inspect query, API streaming, message normalization, tool execution, and StreamingToolExecutor. The copy lacks Git version information; file fingerprints follow. |
-| This workspace | `v0.2.15/docs/update-runtime-foundations-guide`. | Runtime Foundations was already present on this branch. Earlier Execution Lifecycle work was not yet on it; this guide carries forward the discussed scope without importing existing commits. |
 
 CCB fingerprints identify the source copy. Listing a file does not claim line-by-line inspection of its entire contents; `QueryEngine.ts` remains an entry point for later session and cost-consumer inspection.
 
@@ -248,9 +229,9 @@ CCB fingerprints identify the source copy. Listing a file does not claim line-by
 
 ### Primary source index
 
-Chat Gun links are pinned to the version inspected in this round. CCB uses local paths and the fingerprints above rather than an unconfirmed historical commit.
+Chat Gun links are pinned to the version inspected. CCB uses local paths and the fingerprints above rather than an unconfirmed historical commit.
 
-| Source | Entry point | Planned use |
+| Source | Entry point | Use |
 |---|---|---|
 | Chat Gun | [llm-gateway.ts][g-gateway], [llm-fallback.ts][g-fallback] | Invoke, tool binding, fallback enablement, error classification, and attempt limits. |
 | Chat Gun | [provider-error-category.ts][g-category], [registry.ts][g-registry] | Fallback allowlist and pipeline source-enablement handoffs. |
@@ -265,33 +246,7 @@ Chat Gun links are pinned to the version inspected in this round. CCB uses local
 | CCB | `src/services/tools/toolExecution.ts` | Tool resolution, Schema, permission, results, and error messages. |
 | CCB | `src/utils/messages.ts`, `src/utils/generators.ts` | Tool-input normalization, JSON parse fallback, and bounded generator consumption. |
 
-This round located source code and some test cases without running source-repository tests, Provider calls, production-database races, slow-consumer load tests, or complete E2E. Feature gates, dependency composition, and deployment enablement still require evidence through production entry points.
-
-## Diagram progress
-
-Two rounds completed eight Chinese diagrams, referenced by their Chinese articles. Eight English diagrams and their English-article references are also complete. The first four rows belong to round one and the remaining four to round two.
-
-| Article | Diagram | Editable HTML | SVG |
-|---|---|---|---|
-| 01 | Provider fallback | [Open Chinese HTML](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort.html) | [View Chinese SVG](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort-en.svg) |
-| 04 | Reservations, waiting, and capacity rejection | [Open Chinese HTML](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation.html) | [View Chinese SVG](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation-en.svg) |
-| 02 | Stale-result cleanup and external effects | [Open Chinese HTML](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects.html) | [View Chinese SVG](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects-en.svg) |
-| 03 | Completion order and Context updates | [Open Chinese HTML](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers.html) | [View Chinese SVG](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers-en.svg) |
-| 02 | Stream blocks and tool readiness | [Open Chinese HTML](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness.html) | [View Chinese SVG](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness-en.svg) |
-| 03 | Batches and scheduling scope | [Open Chinese HTML](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope.html) | [View Chinese SVG](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope-en.svg) |
-| 05 | Result envelopes and outer/inner outcomes | [Open Chinese HTML](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome.html) | [View Chinese SVG](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome-en.svg) |
-| 06 | Complete model–tool round trip | [Open Chinese HTML](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane.html) | [View Chinese SVG](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane-en.svg) |
-
-Each diagram retains source observations, teaching assumptions, and unverified-capability notes. Local geometry checks do not establish completed Runtime fault testing.
-
-## Further article and diagram work
-
-The six articles follow the paragraphs, punctuation, and narrative style of `agent-harness/foundations`, opening with concrete failures and explaining execution conditions, failure exits, and sources. Each separates source observations, conceptual design, and validation requirements, retaining differences between the two repositories rather than hiding them behind a common state machine.
-
-Read 01 → 02 → 03 → 04 → 05 → 06. Six Chinese/English drafts and eight bilingual diagram pairs are complete; review articles, diagrams, and source scope in that order.
-
-Diagrams live under `assets/agent-runtime/model-and-tool-execution/`, retaining Foundations' light background, blue focus, dashed regions, and rounded nodes, with SVG/HTML for later translation. SVG text remains editable, and HTML adds interpretation, sources, and scope.
-
+Source code and test definitions do not provide execution results for source-repository tests, Provider calls, production-database races, slow-consumer load tests, or complete E2E. Feature gates, dependency composition, and deployment enablement still require evidence through production entry points.
 [g-gateway]: https://github.com/HsienW/chat-gun/blob/f83a38fd67a021904e597c60543708ee0c206076/backend/src/platform/llm-gateway.ts
 [g-fallback]: https://github.com/HsienW/chat-gun/blob/f83a38fd67a021904e597c60543708ee0c206076/backend/src/platform/llm-fallback.ts
 [g-mcp]: https://github.com/HsienW/chat-gun/blob/f83a38fd67a021904e597c60543708ee0c206076/backend/src/agents/mcp-agent.ts
