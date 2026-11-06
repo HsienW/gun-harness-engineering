@@ -83,6 +83,6 @@ The [claude-code-best](https://github.com/claude-code-best/claude-code) discussi
 
 ## Further reading
 
-- [Input to Context: one request end to end](./05-case-input-to-context.md): check the integration points from the previous four articles along one request.
+- [Input to Context: one request end to end](./05-case-input-to-context.md): check the integration points from the previous the articles along one request.
 - [Context trust boundary](./03-context-trust-boundary.md)
 - [Input and Context overview](./README.md)
