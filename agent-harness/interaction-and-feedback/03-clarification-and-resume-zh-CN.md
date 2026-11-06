@@ -98,7 +98,7 @@ Deep Researcher 的 `buildResumingClarificationState()` 也认得 candidateIndex
 
 由于对象是 strict，带 `candidateIndex` 的 payload 不符合这份默认 Schema；normalized reader 也没有先将该字段移除。沿上述配置启用 authorizer 时，这会成为 `CLARIFICATION_RESPONSE_INVALID` 的静态契约缺口。
 
-这个结论限于读到的接口组合，不是本轮执行出的错误报告。App 测试验证送出数据，wrapper 测试则使用返回成功的 mock authorizer，两者都不足以证明候选按钮已通过真实 Schema 与完整恢复。
+这个结论限於读到的介面组合，不是所列版本执行出的错误报告。App 测试验证送出数据，wrapper 测试则使用回传成功的 mock authorizer，两者都不足以证明候选按钮已通过真实 Schema 与完整恢复。
 
 若要修正，需让 UI payload、Schema 与 Graph consumer 共同采用一份契约，再补整合测试；本文不直接修改来源代码库。
 
@@ -118,7 +118,7 @@ Schema 允许的文字长度与节点采用的长度上限也不同。通过外�
 
 Deep Researcher 在固定版本明确以 `MemorySaver` 编译，再包入 execution Context 与 interaction governance。这是源代码组装事实，不能由此推论正式服务器上的 checkpoint 一定写入 PostgreSQL。
 
-[Boundary 文件][g-boundary] 记录过 dev 的正常停止、重启及 resume 观察，并保留正式 Server、强制 kill、manifest 与 checkpoint 联合持久化的未验证范围。本轮没有重跑这些流程。
+[Boundary 文件][g-boundary] 记录过 dev 的正常停止、重启及 resume 观察，并保留正式 Server、强制 kill、manifest 与 checkpoint 联合持久化的未验证范围。未重跑这些流程。
 
 另外，厘清等待是否仍有 active ownership，与 wrapper 在 stream／invoke 收尾时如何标记 terminal，需要结合实际 native 调用方式核对。单独 mock 一笔活动 ownership，不能替代等待跨请求后仍可被查到的证据。
 

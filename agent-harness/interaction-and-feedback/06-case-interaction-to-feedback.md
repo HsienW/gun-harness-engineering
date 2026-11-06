@@ -142,7 +142,7 @@ Turning this teaching scenario into actual acceptance requires retaining:
 5. Commit evidence and cancellation or correction results when tools are involved.
 6. Regression cases after data handling, applicable runners / metrics, and comparison artifacts from actual execution.
 
-This section provides drafts of those responsibilities and source paths. It connects interaction policy, execution ownership, resumption contracts, and feedback material in a reading order that can be checked against evidence. Production execution, resource effects, and the extent of improvement still require the corresponding acceptance evidence.
+This section connects interaction policy, execution ownership, resumption contracts, and feedback material in a reading order that can be checked against evidence. Production execution, resource effects, and the extent of improvement still require the corresponding acceptance evidence.
 
 [g-runtime-test]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/platform/interaction-runtime.test.ts
 [g-resume]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/recovery/clarification-resume-authorization.ts

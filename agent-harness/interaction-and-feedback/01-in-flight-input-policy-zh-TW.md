@@ -6,7 +6,7 @@
 
 使用者在查詢還沒結束時補上一句「只看臺北」，產品可能把它當成原任務的補充，也可能另開任務。兩種選擇都會影響原本的執行、等待中的批准，以及最後顯示哪份結果。先收到訊息，並不等於已決定它屬於哪一次工作。
 
-本篇依[固定版本與證據範圍](./README-zh-TW.md#來源與查證狀態)，追蹤 Chat Gun 的輸入分類與互動 orchestrator，並對照第三方 Claude Code Best（CCB）的提交入口。情境文字用來說明問題；本輪沒有送出模型請求或執行測試。
+本篇依[固定版本與證據範圍](./README-zh-TW.md#來源與查證狀態)，追蹤 Chat Gun 的輸入分類與互動 orchestrator，並對照第三方 Claude Code Best（CCB）的提交入口。情境文字用來說明問題；未送出模型請求或執行測試。
 
 ## 1. 輸入形狀與任務歸屬分開處理
 
@@ -73,7 +73,7 @@ Default policy 內的策略是 `enqueue`，但 `loadInteractionPolicy()` 同時�
 
 Orchestrator 可能從可信 idempotency storage 取得已完成結果，也可能僅在分類為重複輸入時回傳 `duplicate_input` 標記。前者是 cached result，後者未必含有原先答案。
 
-[`interaction-runtime.test.ts`][g-runtime-test] 分別定義已完成 key、locked key、storage 失敗與 unsupported command 的案例。這些是已讀測試安排，本輪沒有重新執行。
+[`interaction-runtime.test.ts`][g-runtime-test] 分別定義已完成 key、locked key、storage 失敗與 unsupported command 的案例。這些是已讀測試安排，未重新執行。
 
 ![執行中新輸入的配置、分類與派送停止點](../../assets/agent-harness/interaction-and-feedback/01-in-flight-input-policy/01-input-disposition.svg)
 

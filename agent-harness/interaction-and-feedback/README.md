@@ -50,7 +50,7 @@ flowchart TD
 
 Start when another input arrives during an active Run, and explain how deterministic signals, semantic classification suggestions, and interaction policy combine. Identify the input first, then trace which dispositions the current entry point supports. The same submit button need not always create a new task.
 
-Article topics:
+Key topics:
 
 1. How `prompt`, `clarification_resume`, `cancel`, and trusted Context enter the interaction entry point. Input normalization details refer back to the preceding section.
 2. The five results of `classifyInteractionInput()`: clarification answer, intent revision, cancellation, new task, and duplicate input.
@@ -63,14 +63,12 @@ Article topics:
 ### Verification and failure branches
 
 - `DEFAULT_INTERACTION_POLICY` contains `enqueue`, but the orchestrator is a no-op when no policy is configured. Type defaults do not establish enabled behavior at every production entry point.
-- The current `enqueue` consumer returns `NATIVE_QUEUE_OWNERSHIP_REQUIRED` and rejects local dispatch. The article must not depict an unverified local persistent queue and automatic dequeue flow.
+- The current `enqueue` consumer returns `NATIVE_QUEUE_OWNERSHIP_REQUIRED` and rejects local dispatch. That return value does not establish a local persistent queue or automatic dequeue flow.
 - Classification helpers provide pending/confirm/timeout functions, but the current orchestrator stops tentative results with `INPUT_CLASSIFICATION_CONFIRMATION_REQUIRED`. The full confirmation UI and return entry point require separate verification.
 - Duplicate classification and reuse of completed results occur at separate integration points. Distinguish the `duplicate_input` label, trusted idempotency storage, and the actual cached result.
 - CCB has its own command queue and synchronous QueryGuard. Chat Gun's native queue boundary and PostgreSQL ownership types do not apply to it.
 
 Main sources: [G1][g-runtime], [G2][g-policy], [G3][g-classify], [G4][g-guard], [C1][c-submit], [C2][c-guard].
-
-Diagram candidate: compare input kinds, classification/disposition, and actual consumer actions. Show incomplete confirmation wiring and native queue prerequisites as stopping exits.
 
 ## 02. Run ownership and visible state
 
@@ -78,7 +76,7 @@ Diagram candidate: compare input kinds, classification/disposition, and actual c
 
 Follow old and new Runs in the same Thread/Scope, separating authoritative ownership, the in-process query guard, event generation, and frontend display state. Readers should identify who may update the view and distinguish termination from business success by their respective evidence sources.
 
-Article topics:
+Key topics:
 
 1. The roles of Request, Thread, Task, Run, generation, and native Run status.
 2. Claims, conditional supersede, and terminal updates in `PgActiveRunOwnershipRepository`.
@@ -98,15 +96,13 @@ Article topics:
 
 Main sources: [G1][g-runtime], [G4][g-guard], [G5][g-ownership], [G6][g-events], [G7][g-ui], [G8][g-reducer], [C2][c-guard], [G18][g-boundary].
 
-Diagram candidate: swimlanes for Run A/generation N and Run B/generation N+1, separating ownership replacement, the old finalizer, late activity, and UI-visible state.
-
 ## 03. Clarification and task resumption
 
 ### Article scope
 
 Start with a specific clarification wait and trace how an answer correlates with its interrupt, Task, Run, and Scope. Tool authorization approval refers back to Action Governance. This article handles missing task information and the contract for resuming with it.
 
-Article topics:
+Key topics:
 
 1. Differences among clarification answers, intent-classification confirmation, and tool approval.
 2. `resume_same_task` and `new_task` in `clarificationReplyMode`.
@@ -126,15 +122,13 @@ Article topics:
 
 Main sources: [G1][g-runtime], [G3][g-classify], [G9][g-resume], [G14][g-resume-test], [G18][g-boundary].
 
-Diagram candidate: waiting data, answer and interrupt ID, correlation/Schema/version checks, consumption, and the handoff to the same Task with a new Run. Label rejection exits with their reasons.
-
 ## 04. Cancellation, correction, and committed effects
 
 ### Article scope
 
 Start with a user asking to stop or revise an existing task, and compare known commit state with interaction decisions. The preceding section covers tool retries, Ledgers, and compensation. This article focuses on whether to replace the active Run and which cancellation result the user should receive.
 
-Article topics:
+Key topics:
 
 1. Conditions required to stop display, cancel a wait, stop a tool, and reverse external effects.
 2. Read-only, reversibly committed, irreversibly committed, and unknown phases in `deriveCancellationPhase()`.
@@ -154,15 +148,13 @@ Article topics:
 
 Main sources: [G10][g-cancel], [G1][g-runtime], [G12][g-runtime-test], [C3][c-query], together with [Retries and side effects](../action-governance/05-retry-and-side-effects.md).
 
-Diagram candidate: compare cancellation requests with four effect phases, then branch into replacement, replacement after compensation, corrective authorization, and manual handling. Separate decisions from actual cancellation/correction execution.
-
 ## 05. Feedback, evaluation, and regression cases
 
 ### Article scope
 
 Start with trace material carrying a failure type and expected behavior, then trace data minimization, versioned datasets, experiment execution, and result comparison. Immediate user corrections, conversational additions, and offline regression data have different purposes and retention conditions.
 
-Article topics:
+Key topics:
 
 1. Distinguish immediate user revisions, product feedback, execution evidence, and evaluation samples.
 2. How `createRedactedRegressionCase()` selects input fields, hashes trace IDs, and retains failure type, build, and data policy version.
@@ -182,15 +174,13 @@ Article topics:
 
 Main sources: [G11][g-feedback], [G15][g-feedback-test], [G16][g-feedback-cli], [G17][g-experiment], [G19][g-toolmetric], [G20][g-qualitymetric].
 
-Diagram candidate: failure evidence, manual review/field handling, pinned dataset, experiments and deterministic/judge metrics, then comparison and change decisions. Mark versions and evidence gaps at each stage.
-
 ## 06. Control flow from a follow-up to feedback
 
 ### Main case and comparisons
 
 Use a teaching scenario that resumes the same Task after the user supplies missing conditions while handling late output from the old Run. Compare the main control path with scoped clarification resume in `interaction-runtime.test.ts`. Cite the separate ownership, stale cleanup, and UI tests for their respective behavior. Finally connect a manually prepared bad case to article five.
 
-Article topics:
+Key topics:
 
 1. List identities for the original Task, old Run/generation, interrupt, Scope, and new request. Mark test data and portions awaiting integration.
 2. Correlate the answer with its specified wait and check the authorizer consumer and manifest.
@@ -211,15 +201,11 @@ Article topics:
 | External effects can be explained after cancellation | Ledger, downstream state, and compensation/reconciliation results. | Decision helpers. No real external operations were executed. |
 | Feedback can form regression material | Processing policy, dataset/build/metric versions, and expected behavior. | Feedback helpers, CLI, and mock/fixed-data tests. |
 
-Multiple tests can support separate explanations. They cannot collectively be described as one executed E2E flow. Resumption, late output, and dataset preparation in this case were not connected into a reproducible production request during this work. The articles must retain the teaching-scenario label.
+Multiple tests can support separate explanations. They cannot collectively be described as one executed E2E flow. Resumption, late output, and dataset preparation in this case were not connected into a reproducible production request during this work. The implementations must retain the teaching-scenario label.
 
 Main sources: [G12][g-runtime-test], [G13][g-guard-test], [G14][g-resume-test], [G21][g-ui-test], [G15][g-feedback-test], compared with [the Foundations task walkthrough](../foundations/05-one-turn-walkthrough.md).
 
-Diagram candidate: swimlanes for the user, interaction entry point, ownership/manifest, Graph, UI, and regression data preparation. Use a dashed connection between resumption and dataset preparation to avoid implying existing automatic wiring.
-
 ## Sources and verification status
-
-GUN-ATLAS v1.0 supplied repository locations and the initial index. The specified session file was found at neither the original path nor the corrected path under the user's `.codex` directory, so it is not listed as inspected evidence. The attachment's interview-answer rules do not determine this section's writing format. The user's reference to claude-code-base is treated as the Claude Code Best repository identified by the attachment.
 
 | Source | Pinned commit | Use |
 |---|---|---|
@@ -259,7 +245,7 @@ CCB is a third-party project and is not treated as mandatory behavior of the cur
 | [C2][c-guard] | `src/utils/QueryGuard.ts` | Synchronous state and generation-aware cleanup. |
 | [C3][c-query] | `src/query.ts` | Query abort and repair of tool result message structure. |
 
-## Additional findings and subsequent verification
+## Implementation conditions and validation scope
 
 1. Deep Researcher's manifest persistence, `interrupt()`, `resumeClarify()`, and MemorySaver assembly were inspected. The combined lifecycle of waiting ownership, checkpoints, and the database in production still requires actual verification.
 2. App, the event parser, and BFF were inspected. The articles separately describe Run checks in versioned envelopes, activity generation filtering, and terminal protection, without extending coverage to every text message and callback.
@@ -267,10 +253,10 @@ CCB is a third-party project and is not treated as mandatory behavior of the cur
 4. The UI candidateIndex payload, normalized reader, and default strict response Schema were compared. Articles three and six explicitly document the incompatible field. Separate mock tests are not presented as a successful complete resume.
 5. The experiment's default Deep Researcher runner, Agent timeout, metrics, local JSON, and hosted state were traced. Articles five and six list limits on cost sources, judge timeout, tool evidence, and the UI regression runner.
 6. Native queue support remains an unwired prerequisite. The inspected enqueue consumer rejects before local dispatch. Claims of usable queuing need separate inspection of actual ownership and dispatch entry points.
-7. Each article retains stopping or rejection branches and separates source code, test definitions, and execution evidence. The six drafts and guide underwent document structure, source, and local link checks. Source-repository tests were not executed.
+7. Each article retains stopping or rejection branches and separates source code, test definitions, and execution evidence. Source-repository tests were not executed.
 8. Eight diagrams have separate Traditional Chinese and English SVG/HTML files under `assets/agent-harness/interaction-and-feedback/`. Each language article references its corresponding version.
 
-### Additional sources for the articles
+### Related sources
 
 | Integration point | Additional inspection purpose |
 |---|---|

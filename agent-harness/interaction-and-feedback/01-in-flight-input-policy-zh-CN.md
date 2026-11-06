@@ -6,7 +6,7 @@
 
 用户在查询还没结束时补上一句「只看台北」，产品可能把它当成原任务的补充，也可能另开任务。两种选择都会影响原本的执行、等待中的批准，以及最后显示哪份结果。先收到消息，并不等于已决定它属于哪一次工作。
 
-本篇依[固定版本与证据范围](./README-zh-CN.md#来源与查证状态)，追踪 Chat Gun 的输入分类与互动 orchestrator，并对照第三方 Claude Code Best（CCB）的提交入口。情境文字用来说明问题；本轮没有送出模型请求或执行测试。
+本篇依[固定版本与证据范围](./README-zh-CN.md#来源与查证状态)，追踪 Chat Gun 的输入分类与互动 orchestrator，并对照第三方 Claude Code Best（CCB）的提交入口。情境文字用来说明问题；未送出模型请求或执行测试。
 
 ## 1. 输入形状与任务归属分开处理
 
@@ -73,7 +73,7 @@ Default policy 内的策略是 `enqueue`，但 `loadInteractionPolicy()` 同时�
 
 Orchestrator 可能从可信 idempotency storage 取得已完成结果，也可能仅在分类为重复输入时返回 `duplicate_input` 标记。前者是 cached result，后者未必含有原先答案。
 
-[`interaction-runtime.test.ts`][g-runtime-test] 分别定义已完成 key、locked key、storage 失败与 unsupported command 的案例。这些是已读测试安排，本轮没有重新执行。
+[`interaction-runtime.test.ts`][g-runtime-test] 分别定义已完成 key、locked key、storage 失败与 unsupported command 的案例。这些是已读测试安排，未重新执行。
 
 ![执行中新输入的配置、分类与派送停止点](../../assets/agent-harness/interaction-and-feedback/01-in-flight-input-policy/01-input-disposition-en.svg)
 
@@ -99,7 +99,7 @@ Chat Gun 的 [App][g-app] 在天气厘清画面存在时阻挡一般提交，改
 4. Disposition 是否有可用 consumer，或在派送前停止。
 5. 用户最后收到的是拒绝、等待、重用结果，还是新执行已开始。
 
-下一篇会沿 ownership 与 generation 说明：即使新 Run 已取得执行权，旧 Run 的回调与输出仍需要自己的归属检查。
+下一篇会沿 ownership 与 generation 说明：即使新 Run 已取得执行权，旧 Run 的回呼与输出仍需要自己的归属检查。
 
 [g-reader]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/input/read-normalized-agent-input.ts
 [g-runtime]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/platform/interaction-runtime.ts

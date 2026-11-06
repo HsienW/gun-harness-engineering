@@ -50,7 +50,7 @@ flowchart TD
 
 從已有活動 Run 時收到另一份輸入開始，說明 deterministic 訊號、語意分類建議與互動政策如何組合。先辨認輸入，再追蹤目前入口能採用哪些處置，避免把同一個送出按鈕理解成永遠建立新任務。
 
-正文主題：
+重點如下：
 
 1. `prompt`、`clarification_resume`、`cancel` 與可信 Context 如何進入互動入口；輸入正規化細節連回前區。
 2. `classifyInteractionInput()` 的五類結果：釐清回答、意圖修訂、取消、新任務與重複輸入。
@@ -63,14 +63,12 @@ flowchart TD
 ### 查證與失敗分支
 
 - `DEFAULT_INTERACTION_POLICY` 有 `enqueue`，但未配置政策時 orchestrator 是 no-op。型別預設值不能當成所有正式入口已啟用的行為。
-- `enqueue` 的現有 consumer 回傳 `NATIVE_QUEUE_OWNERSHIP_REQUIRED` 並拒絕本地派送；正文不得畫出未確認的本地持久排隊與自動取出流程。
+- `enqueue` 的現有 consumer 回傳 `NATIVE_QUEUE_OWNERSHIP_REQUIRED` 並拒絕本地派送；本文不得畫出未確認的本地持久排隊與自動取出流程。
 - 分類 helper 有 pending／confirm／timeout 函式，但目前 orchestrator 對 tentative 結果以 `INPUT_CLASSIFICATION_CONFIRMATION_REQUIRED` 停止；完整分類確認介面及回傳入口須另外查證。
 - 重複輸入的分類與已完成結果重用是不同接點。須區分 `duplicate_input` 標記、可信 idempotency storage 與實際 cached result。
 - CCB 有自己的命令佇列與同步 QueryGuard，不套用 Chat Gun 的原生 queue 邊界或 PostgreSQL ownership 型別。
 
 主要來源：[G1][g-runtime]、[G2][g-policy]、[G3][g-classify]、[G4][g-guard]、[C1][c-submit]、[C2][c-guard]。
-
-圖解候選：輸入種類 → classification／disposition → 實際 consumer 的處置對照，將「需要確認但尚未完整接線」與「原生 queue 前置條件」標成停止出口。
 
 ## 02. Run 歸屬與可見狀態
 
@@ -78,7 +76,7 @@ flowchart TD
 
 以相同 Thread／Scope 中的新舊 Run 為主線，分開說明權威 ownership、程序內 query guard、事件 generation 與前端顯示狀態。讀者要能指出誰可以更新畫面，也能辨認「已終止」與「業務成功」的不同來源。
 
-正文主題：
+重點如下：
 
 1. Request、Thread、Task、Run、generation 與 native Run status 各自的用途。
 2. `PgActiveRunOwnershipRepository` 的 claim、條件式 supersede 與 terminal 更新。
@@ -92,13 +90,11 @@ flowchart TD
 
 - Ownership repository 的 CAS 與 QueryGuard 的 Map 各有責任。Mock 競態測試不是正式 PostgreSQL 多連線壓測。
 - `createGovernedStream()` 先發送互動事件再轉送 chunks，本身未逐個 chunk 重查 ownership；不可寫成 backend 已自動丟棄每個舊輸出。
-- `streamActivityReducer` 的 generation 過濾取決於 action 有提供 generation；terminal action 與沒有 generation 的事件須另追呼叫端。正式寫作前補查 App、事件 parser 與 BFF 透傳，才可主張整段顯示路徑覆蓋。
+- `streamActivityReducer` 的 generation 過濾取決於 action 有提供 generation；terminal action 與沒有 generation 的事件須另追呼叫端。完整顯示路徑的覆蓋範圍取決於 App、事件 parser 與 BFF 是否持續傳遞這些欄位。
 - Task reducer 的終止後忽略與串流活動 reducer 的終止保護分開說明，不將其中一者套到全部訊息顯示。
 - Wrapper 對非取消錯誤也可能以 ownership `completed` 做收尾，再記錄 failed idempotency。這個欄位不能等同工具成功、Task 成功或 native Run success。
 
 主要來源：[G1][g-runtime]、[G4][g-guard]、[G5][g-ownership]、[G6][g-events]、[G7][g-ui]、[G8][g-reducer]、[C2][c-guard]、[G18][g-boundary]。
-
-圖解候選：Run A／generation N 與 Run B／generation N+1 的泳道，分開畫 ownership 替換、舊 finalizer、晚到活動與 UI 可見狀態。
 
 ## 03. 釐清提問與任務恢復
 
@@ -106,7 +102,7 @@ flowchart TD
 
 從一個指定的釐清等待開始，追蹤回答如何對回 interrupt、Task、Run 與 Scope。工具授權批准連回 Action Governance，這篇只處理「還缺什麼任務資訊」及其恢復契約。
 
-正文主題：
+重點如下：
 
 1. 釐清回答、意圖分類確認與工具批准的差異。
 2. `clarificationReplyMode` 的 `resume_same_task` 與 `new_task`。
@@ -121,12 +117,10 @@ flowchart TD
 - 「恢復同一 Task」不表示沿用同一 Run／generation；所讀分支使用新 Run ID 與遞增 generation，Task ID 對回等待中的任務。
 - Manifest 缺少、類型不符、關聯不符、非 waiting、過期、回應不合法、版本不相容與 consume 被拒絕要分別保留原因。
 - Production resolver 在所讀組裝中只解析 Deep Researcher 的 current execution manifest，不能將此釐清 authorizer 宣稱成所有 Graph 的通用恢復能力。
-- 本輪已讀 authorizer 與測試；正式正文仍須續查 Deep Researcher 的 interrupt 產生、manifest 保存與實際 resume payload 消費，才可將完整往返描述為已接線。
-- 已有 boundary 文件記錄 dev 環境的歷史觀察，但不是本輪新跑的證據，也不升格為正式部署 PostgreSQL／Redis、強制 kill 或跨部署恢復保證。
+- 所列版本已讀 authorizer 與測試；正式本文仍須續查 Deep Researcher 的 interrupt 產生、manifest 保存與實際 resume payload 消費，才可將完整往返描述為已接線。
+- 已有 boundary 文件記錄 dev 環境的歷史觀察，但不是所列版本新跑的證據，也不升格為正式部署 PostgreSQL／Redis、強制 kill 或跨部署恢復保證。
 
 主要來源：[G1][g-runtime]、[G3][g-classify]、[G9][g-resume]、[G14][g-resume-test]、[G18][g-boundary]。
-
-圖解候選：等待資料 → 回答與 interrupt ID → 關聯／Schema／版本檢查 → consume → 同 Task、新 Run 的交接；拒絕出口標出對應原因。
 
 ## 04. 取消、修正與已生效操作
 
@@ -134,7 +128,7 @@ flowchart TD
 
 從使用者要求停止或修改既有任務開始，對照已知提交狀態與互動決策。前區已展開工具重試、Ledger 與補償，這篇聚焦是否替換活動 Run，以及使用者應收到什麼取消結果。
 
-正文主題：
+重點如下：
 
 1. 「停止顯示」「取消等待」「停止工具」與「外部效果還原」各自需要的條件。
 2. `deriveCancellationPhase()` 的 read-only、可逆已提交、不可逆已提交與 unknown。
@@ -154,15 +148,13 @@ flowchart TD
 
 主要來源：[G10][g-cancel]、[G1][g-runtime]、[G12][g-runtime-test]、[C3][c-query]，並連回[重試與副作用處理](../action-governance/05-retry-and-side-effects-zh-TW.md)。
 
-圖解候選：取消請求與四種 effect phase 對照，再分成可替換、補償後替換、修正授權與人工處理；將「決策」與「實際執行取消／修正」分兩層。
-
 ## 05. 回饋、評估與回歸案例
 
 ### 文章範圍
 
 從一筆具失敗類型與預期行為的 trace 材料開始，追蹤資料最小化、版本化 dataset、實驗執行及結果比較。使用者修正回答、對話內補充與離線回歸資料，各有不同目的與保留條件。
 
-正文主題：
+重點如下：
 
 1. 區分使用者即時修訂、產品回饋、執行證據與評估樣本。
 2. `createRedactedRegressionCase()` 如何選取 input 欄位、雜湊 trace ID，保留 failure type、build 與資料政策版本。
@@ -182,15 +174,13 @@ flowchart TD
 
 主要來源：[G11][g-feedback]、[G15][g-feedback-test]、[G16][g-feedback-cli]、[G17][g-experiment]、[G19][g-toolmetric]、[G20][g-qualitymetric]。
 
-圖解候選：失敗證據 → 人工審閱／欄位處理 → 固定 dataset → 實驗與 deterministic／judge 指標 → 比較與修改決策，標出每階段的版本與缺口。
-
 ## 06. 一次追問到回饋的控制流程
 
 ### 主案例與對照
 
 採用「等待使用者補充條件後繼續同一 Task，並處理舊 Run 的晚到輸出」作為教學情境。主控制路徑對照 `interaction-runtime.test.ts` 的 scoped clarification resume；ownership、stale cleanup 與 UI 行為再分別引用各自測試。最後以人工整理的 bad case 接回第五篇。
 
-正文主題：
+重點如下：
 
 1. 列出原 Task、舊 Run／generation、interrupt、Scope 與新請求的身分；標明測試資料及尚待整合的部分。
 2. 將回答對回指定等待，核對 authorizer consumer 與 manifest。
@@ -202,7 +192,7 @@ flowchart TD
 
 ### 所需證據
 
-| 主張 | 需要核對的資料 | 本輪已讀範圍 |
+| 主張 | 需要核對的資料 | 所列版本已讀範圍 |
 |---|---|---|
 | 回覆只恢復指定等待 | Interrupt ID、manifest、可信關聯、Schema、consume 結果。 | Authorizer 與 mock 測試；Graph 產生到消費的完整往返待續查。 |
 | 同 Task 可以有新 Run | Orchestrator supersede 參數與 ownership 結果。 | Wrapper 測試對回原 Task、新 Run 及預期 generation。 |
@@ -211,22 +201,18 @@ flowchart TD
 | 取消後外部效果可交代 | Ledger、下游狀態、補償／回查結果。 | 決策 helper；未執行真實外部操作。 |
 | 回饋可形成回歸材料 | 處理政策、dataset／build／metric 版本、expected behavior。 | Feedback helper、CLI 與 mock／固定資料測試。 |
 
-多份測試可以支持分段說明，不能合稱已執行的一次完整 E2E。案例中的恢復、晚到輸出與資料集整理尚未在本輪串成可重現的正式請求，正文須保留教學情境的標示。
+多份測試可以支持分段說明，不能合稱已執行的一次完整 E2E。案例中的恢復、晚到輸出與資料集整理尚未在所列版本串成可重現的正式請求，本文須保留教學情境的標示。
 
 主要來源：[G12][g-runtime-test]、[G13][g-guard-test]、[G14][g-resume-test]、[G21][g-ui-test]、[G15][g-feedback-test]，並對照[基礎篇的一次任務](../foundations/05-one-turn-walkthrough-zh-TW.md)。
 
-圖解候選：使用者、互動入口、ownership／manifest、Graph、UI、回歸資料整理的泳道。恢復與資料集整理之間使用虛線，避免暗示已存在自動接線。
-
 ## 來源與查證狀態
-
-GUN-ATLAS v1.0 提供程式庫定位與起始索引。指定 session 檔案在原路徑及修正為使用者目錄下 `.codex` 的路徑均未找到，不列為已讀證據；附件中的面試回答規則不作為本篇章寫作格式。使用者提及的 claude-code-base，依附件所指的 Claude Code Best 程式庫處理。
 
 | 來源 | 固定 commit | 用途 |
 |---|---|---|
 | [Chat Gun](https://github.com/HsienW/chat-gun) | `92a5673003e4ac4ec09be8b1b350f42dbf4a5e69` | 互動入口、ownership、分類、釐清恢復、取消與回饋評估。 |
 | [Claude Code Best](https://github.com/claude-code-best/claude-code) | `77a7934e15d69da13879112ed7db695c9ee7a52a` | 第三方 Coding Agent 的 QueryGuard、提交／排隊與 query abort 對照。 |
 
-CCB 為第三方專案，不當作 Anthropic 官方現行產品的必然行為。已讀原始碼、測試及 boundary 文件，只代表本輪知道其內容；沒有執行 unit、integration、E2E、真實 Provider、外部 MCP、資料庫競態或部署故障演練。來源文件中的歷史驗收結果也不當成本輪新產生的結果。
+CCB 為第三方專案，不當作 Anthropic 官方現行產品的必然行為。已讀原始碼、測試及 boundary 文件，只代表所列版本知道其內容；沒有執行 unit、integration、E2E、真實 Provider、外部 MCP、資料庫競態或部署故障演練。來源文件中的歷史驗收結果也不當成所列版本新產生的結果。
 
 ### 已查讀來源索引
 
@@ -259,18 +245,18 @@ CCB 為第三方專案，不當作 Anthropic 官方現行產品的必然行為�
 | [C2][c-guard] | `src/utils/QueryGuard.ts` | 同步狀態與 generation-aware cleanup。 |
 | [C3][c-query] | `src/query.ts` | Query abort 與 tool result 訊息結構修復。 |
 
-## 正文補查結果與後續驗證
+## 實作條件與驗證範圍
 
 1. 已查 Deep Researcher 的 manifest 保存、`interrupt()`、`resumeClarify()` 與 MemorySaver 組裝；正式部署中等待 ownership、checkpoint 與資料庫的聯合生命週期仍需實際驗證。
-2. 已查 App、事件 parser 與 BFF。正文分開說明 versioned envelope 的 Run 檢查、活動 generation 過濾及 terminal 保護，未將它擴大成全部文字與回呼皆受保護。
+2. 已查 App、事件 parser 與 BFF。需要分別核對 versioned envelope 的 Run 檢查、活動 generation 過濾及 terminal 保護，未將它擴大成全部文字與回呼皆受保護。
 3. 已確認 App 同時呼叫 `thread.stop()` 與送出 business cancel；預設 production orchestrator 仍沒有注入 `decideCancellation`，也未在 ownership 替換段呼叫 native Run cancel API。
-4. 已對照 UI 的 candidateIndex payload、normalized reader 與預設 strict response Schema。第三、六篇明列欄位不相容，沒有用分開的 mock 測試宣稱完整恢復已通過。
-5. 已追 experiment 的預設 Deep Researcher runner、Agent timeout、metrics、本地 JSON 與 hosted 狀態。成本來源、judge timeout、工具證據與 UI regression runner 的限制列在第五、六篇。
+4. 已對照 UI 的 candidateIndex payload、normalized reader 與預設 strict response Schema。第三、本區文章明列欄位不相容，沒有用分開的 mock 測試宣稱完整恢復已通過。
+5. 已追 experiment 的預設 Deep Researcher runner、Agent timeout、metrics、本地 JSON 與 hosted 狀態。成本來源、judge timeout、工具證據與 UI regression runner 的限制列在第五、本區文章。
 6. Native queue 仍保留為未接通的前置條件；所讀 enqueue consumer 在本地派送前拒絕。若要宣稱排隊可用，需另查實際所有權與派送入口。
-7. 每篇均保留停止或拒絕分支，區分原始碼、測試定義與執行證據。六篇初稿及導覽只做文件結構、來源與本地連結檢查，未執行來源庫的測試。
+7. 原始碼與測試定義可指出停止或拒絕分支，但不能代替實際執行結果。
 8. 八張圖解已提供中英文 SVG／HTML 分檔，資產放在 `assets/agent-harness/interaction-and-feedback/`，並由各語言文章引用對應版本。
 
-### 正文新增來源
+### 相關來源
 
 | 接點 | 補查用途 |
 |---|---|
