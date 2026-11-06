@@ -91,7 +91,7 @@ Frontend 的 `runtimeEnvelopeToAgentRuntimeEvent()` 會把 run.terminal 等標�
 - 對 allocator 執行淘汰、重建與 seed，檢查已用序號不被誤當新事件。
 - 讓兩個 producer 對同一 Run 配號，驗證實際協調策略，而非只測單一 Map。
 
-本輪查讀 Backend 契約、kernel 與 Frontend parser／轉換接點，未執行跨程序配號或版本相容性測試。
+原始碼查讀 Backend 契約、kernel 與 Frontend parser／轉換接點，未執行跨程序配號或版本相容性測試。
 
 ## 本篇的工程判斷
 
@@ -101,7 +101,7 @@ Frontend 的 `runtimeEnvelopeToAgentRuntimeEvent()` 會把 run.terminal 等標�
 
 - Chat Gun Backend：`runtime/event-envelope.ts`、`event-sequence.ts`、`legacy-event-adapter.ts`、`platform/agent-runtime-events.ts`，路徑相對 `backend/src/`。
 - 套件：contracts／kernel 的 `src/events.ts`；Frontend：`frontend/src/lib/runtime-event-envelope.ts`、`agent-runtime-events.ts`。
-- [來源與檔案指紋](./README-zh-TW.md#來源與查證狀態)記錄本輪內容，本文沒有宣稱所有正式入口已切換相同契約。
+- [來源與檔案指紋](./README-zh-TW.md#來源與查證狀態)記錄所列版本內容，本文沒有宣稱所有正式入口已切換相同契約。
 
 ## 接續閱讀
 

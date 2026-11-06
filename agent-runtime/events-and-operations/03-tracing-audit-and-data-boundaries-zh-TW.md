@@ -74,7 +74,7 @@ Trace 的 `sanitizeErrorMessage()` 另有 Bearer 及特定 credential pattern �
 
 Opik redaction 也有自己的 secret、PII、prompt、raw payload 與 correlation 欄位處理，以及深度／集合大小限制。各自的規則要沿真正輸出接點驗證，不能只因專案有 redactor 就宣稱全部 exporter 已涵蓋。
 
-脫敏後應保留足以查證的 reason、opaque correlation 與安全 reference；原始內容若另存，需要自己的存取與保留期限。這些是資料設計責任，本輪沒有執行完整的敏感資料外送或刪除驗收。
+脫敏後應保留足以查證的 reason、opaque correlation 與安全 reference；原始內容若另存，需要自己的存取與保留期限。這些是資料設計責任，未執行完整的敏感資料外送或刪除驗收。
 
 ![同一執行關聯到 Event、Trace、Audit、權威紀錄與內容參照的資料邊界](../../assets/agent-runtime/events-and-operations/03-tracing-audit-and-data-boundaries/03-records-and-data-output-boundaries.svg)
 
@@ -98,7 +98,7 @@ CCB `sessionTracing.ts` 提供 interaction、LLM request、tool、blocked-on-use
 - 以欄位變形、短字串祕密、深層物件與錯誤訊息測試各 redactor 的範圍。
 - 檢查原始內容、脫敏診斷與 reference 各自的存取、保留及外送位置。
 
-本輪只查讀程式，沒有驗證真實 Collector、Audit 資料庫、exporter 或敏感資料刪除流程。
+僅查讀程式，沒有驗證真實 Collector、Audit 資料庫、exporter 或敏感資料刪除流程。
 
 ## 本篇的工程判斷
 

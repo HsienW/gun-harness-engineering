@@ -10,7 +10,7 @@
 
 Run 已保存终止结果，前端却没收到最后一个事件；Trace 刚好没有取样，Metrics endpoint 仍回应成功。运维者需要查明哪笔工作已结束、哪个 consumer 漏接，以及现在能否继续接新工作。这些问题各有证据，不能用单一绿灯或一笔 Log 代替。
 
-本区六篇正体中文与英文正式初稿已完成，沿事件契约、保存交付、诊断关联、健康信号、验证门槛到一次故障判读展开。前四个 Runtime 分类已说明状态与外部效果；本区处理如何把执行事实交给 consumer，并留下足以查证及操作的数据。以下保留各篇规划、来源范围与图解候选；两轮共八张中文图已完成并加入正文；两轮共八张英文图也已完成，六篇英文正文均已改用英文 SVG／HTML。英文文章沿用文件名主干并移除 `-zh-TW`。
+本区说明事件契约、保存交付、诊断关联、健康讯号、验证门槛与故障判读，将执行事实交给 consumer，并保留足以查证及操作的数据。
 
 ## 阅读顺序
 
@@ -70,7 +70,7 @@ flowchart TD
 
 从可信 Execution Context 到 Event Envelope，说明事件身份、语义类型与 Run 内顺序。事件、模型文字与 UI delta 分别处理，让 consumer 能知道自己读到的是哪种数据。
 
-正文主题：
+重点如下：
 
 1. `schemaVersion`、`eventId`、`sequence`、`type`、`emittedAt`、context 与 payload 的责任。
 2. Request、Thread、Run、Task、Step、Tool Call、Attempt 及可信 scope 的投影与关联。
@@ -83,11 +83,9 @@ flowchart TD
 
 Chat Gun `event-envelope.ts` 与 `event-sequence.ts` 已转接 contracts／kernel。已读取安装包中的事件 Schema 与 `RunSequenceAllocator`：sequence 保存在进程内 Map，有 TTL 与容量限制；`seed()` 可接受已保存最大序号，这些方法没有自行提供跨 Worker 的共享配置器。
 
-Contracts 的 envelope Schema 会检查版本格式、ID、正整数 sequence 与 context 结构，payload 仍需依 type 另行解析。正式写稿要逐入口确认验证链，不能由版本字符串符合 semver 就推论已完成版本协商。
+Contracts 的 envelope Schema 会检查版本格式、ID、正整数 sequence 与 context 结构，payload 仍需依 type 另行解析。需要逐入口确认验证链，不能由版本字串符合 semver 就推论已完成版本协商。
 
 `LegacyRuntimeEventAdapter` 受设置影响，未启用时返回原事件；已带 schemaVersion 的数据与一般 legacy 事件走不同处理。`platform/agent-runtime-events.ts` 另有旧事件联集及可选 correlation，应与 Task Event、标准 envelope 分开描述。CCB 的 stream event 与 Session 消息可作语义层次对照，不能直接当成相同持久事件协议。
-
-图解候选：三种事件表示的交接，以及同一 Run 的 sequence、重送 event ID 与重启 seed。
 
 ## 02. 事件保存与结果交付
 
@@ -95,7 +93,7 @@ Contracts 的 envelope Schema 会检查版本格式、ID、正整数 sequence �
 
 沿事件建立、保存、传输与 consumer 套用，标出每个成功返回究竟确认了哪一步。跨进程投递的保证必须对回具体 consumer，不从方法名称补造持续订阅或自动补送。
 
-正文主题：
+重点如下：
 
 1. `emitEnvelope()` 建立与返回 envelope，及事件持久化的可选／必要政策。
 2. Terminal 状态写入、event identity 保存与结果送达的不同交易边界。
@@ -108,11 +106,9 @@ Contracts 的 envelope Schema 会检查版本格式、ID、正整数 sequence �
 
 `emitEnvelope()` 在功能未启用时返回 legacy event。启用时建立 identity、sequence 与 payload；Terminal 默认要求 identity persistence，调用者仍可提供明确政策。必要保存缺少 repository／Task Event，或 append 失败时，不能沿该路径视为 envelope 已正常返回。
 
-Terminal 的 allocator release 放在 finally，保存失败也可能释放进程内序号。正式写稿需将此窗口与重新读取、seed、身份重用分开核对。`stableEventId()` 只有在 caller 提供既有 ID 时才直接重用；新建 ID 的 helper 不会自行查找上次投递记录。
+Terminal 的 allocator release 放在 finally，保存失败也可能释放程序内序号。需要将此窗口与重新读取、seed、身份重用分开核对。`stableEventId()` 只有在 caller 提供既有 ID 时才直接重用；新建 ID 的 helper 不会自行查找上次投递纪录。
 
-`PgEventRepository.append()` 写入 Task Event；`findByTaskId()` 依 created_at、event_id 排序。`streamByTaskId()` 目前只列举一次该查询结果，不能称为持续追踪新事件。正文已续查 Frontend App 的 versioned event 接线、有界重排 buffer 与 mock Task Timeline，并分开描述。Backend 到 consumer 的全程传输、durable Outbox 与跨重连补送仍需逐入口验证，不默认 exactly-once 套用。
-
-图解候选：Terminal 状态、identity 保存、传输与 consumer 套用的故障窗口，以及重连读取／去重责任。
+`PgEventRepository.append()` 写入 Task Event；`findByTaskId()` 依 created_at、event_id 排序。`streamByTaskId()` 目前只列举一次该查询结果，不能称为持续追踪新事件。本文已续查 Frontend App 的 versioned event 接线、有界重排 buffer 与 mock Task Timeline，并分开描述。Backend 到 consumer 的全程传输、durable Outbox 与跨重连补送仍需逐入口验证，不默认 exactly-once 套用。
 
 ## 03. 追踪、审计与数据边界
 
@@ -120,7 +116,7 @@ Terminal 的 allocator release 放在 finally，保存失败也可能释放进�
 
 分开说明 Trace 与 Audit 的用途，沿同一组执行关联追查模型、工具、授权与恢复事件。内容进入 exporter 或持久存储前，要保留可用的识别及诊断信息，也需核对敏感数据处理范围。
 
-正文主题：
+重点如下：
 
 1. Trace／Span 与 Run／Step／Attempt 的关联；parent context 与异步传递。
 2. 取样、exporter 设置、初始化失败、flush／shutdown 与缺失 span 的判读。
@@ -137,15 +133,13 @@ Chat Gun `otel-setup.ts` 依 enabled、exporter endpoint、protocol 与 sample r
 
 Audit redaction 依字段规则省略数据，未分类字符串可被截断；这不能证明所有字符串中的秘密或 PII 都已识别。Opik 有自己的 redaction 接点。CCB `sessionTracing.ts` 有 interaction／LLM／tool 等 span 与进程内 context 管理；功能、exporter 与 beta 路径需续查实际 gate，不能由文件注解推论全部署启用。
 
-图解候选：同一执行分流到 Runtime Event、Trace、Audit 与内容存储，以及各自的脱敏／外送边界。
-
 ## 04. 指标、成本与健康判读
 
 ### 文章范围
 
 从已实际取得的信号建立判读，分清单次执行、保留窗口内汇整与部署健康。指标缺失需要保留缺失状态，成本与延迟也需交代计算及观测范围。
 
-正文主题：
+重点如下：
 
 1. Task、Step、Tool、Token、Cost 与 Event 指标的维度及来源。
 2. 进程内 ring buffer、覆写与 snapshot 的窗口，与部署全量历史的差别。
@@ -156,13 +150,11 @@ Audit redaction 依字段规则省略数据，未分类字符串可被截断；�
 
 ### 已定位的来源与查证要求
 
-Chat Gun `MetricsCollector` 使用有限容量的进程内 ring buffer。`/metrics` 提供 JSON snapshot，Operations HTTP 另有 OpenMetrics 输出入口；不能把路径名称直接写成 Prometheus 格式，也不能由单程序 snapshot 推论全部署统计。正式写稿需续查汇整公式、timestamp 范围与 consumer 的采样方式。
+Chat Gun `MetricsCollector` 使用有限容量的程序内 ring buffer。`/metrics` 提供 JSON snapshot，Operations HTTP 另有 OpenMetrics 输出入口；不能把路径名称直接写成 Prometheus 格式，也不能由单程序 snapshot 推论全部署统计。需要续查汇整公式、timestamp 范围与 consumer 的采样方式。
 
 `projectRuntimeHealth()` 分开计算活着、依赖可达、接新工作及恢复工作条件，并保留 missingSignals。这份投影依 caller 提供的 boolean／Run 信号判断；它本身没有连接探测每个依赖。`multiInstanceSafe` 亦为输入，不是自动完成多实例验收。
 
 `createOperationsHttpApp()` 的默认 probe 只提供部分信号，不能因 live 通过就认定 readiness 或 resume-ready 通过。CCB `cost-tracker.ts` 可对照 Session 用量、含／不含重试的 API duration 与 unknown model cost 接点；数值仍需追到具体更新位置，不能当成供应商最终账单。
-
-图解候选：分层健康信号与 missingSignals，以及一条 Run 中排队、模型、工具、人工等待与保存的延迟拆解。
 
 ## 05. 故障验证与上线门槛
 
@@ -170,7 +162,7 @@ Chat Gun `MetricsCollector` 使用有限容量的进程内 ring buffer。`/metri
 
 从故障情境与可核对证据建立验收条件，区分单元测试、注入故障、环境探测与 release report。每个 passed 都需说明数据来源、版本及适用部署范围。
 
-正文主题：
+重点如下：
 
 1. 事件保存失败、断线重送、Trace exporter 故障、指标遗失与外部结果不明的测试设计。
 2. Deterministic checks、Schema／state invariant、side-effect invariant 与 recovery bound。
@@ -183,11 +175,9 @@ Chat Gun `MetricsCollector` 使用有限容量的进程内 ring buffer。`/metri
 
 `evaluateReleaseGate()` 验证报告 Schema，再依 deterministic regression、business constraint、duplicate side effect、recovery、cost／latency、Manifest 与 hard negative 结果判断。它读取已提供的数值及 boolean，没有自行执行外部测试或验证 policy digest 的来源。查读条件只对 incompatible Manifest 拒绝，不能自行改述为 migratable 一律拒绝。
 
-`release-gate.cli.ts` 读取工作目录内指定 JSON 报告、限制文件大小并返回 exit code。Package script 证明有执行入口，是否成为 CI 或部署的必要步骤仍要查证；本轮没有执行该 CLI。
+`release-gate.cli.ts` 读取工作目录内指定 JSON 报告、限制文件大小并回传 exit code。Package script 证明有执行入口，是否成为 CI 或部署的必要步骤仍要查证；未执行该 CLI。
 
-`createReadinessGate()` 另检查 build／Manifest 关联，依序调用注入的 architecture、canary、deterministic、fault injection 与 correlated SLI checks。各 dependency 如何取得真实证据、抛错如何处理需另追。`quality-gate.ts` 有版本化检查设置与 invariant 类型，规划将它与 Release Report 分开解释，不把类型或 fixture 当成已执行的验收。
-
-图解候选：故障情境 → 原始证据 → Gate 报告 → 审核／部署接点，标示已读实现与需要补查的环境能力。
+`createReadinessGate()` 另检查 build／Manifest 关联，依序调用注入的 architecture、canary、deterministic、fault injection 与 correlated SLI checks。各 dependency 如何取得真实证据、抛错如何处理需另追。`quality-gate.ts` 有版本化检查配置与 invariant 类型，它与 Release Report 具有不同用途，不把型别或 fixture 当成已执行的验收。
 
 ## 06. 一次漏接终止事件的查证
 
@@ -195,7 +185,7 @@ Chat Gun `MetricsCollector` 使用有限容量的进程内 ring buffer。`/metri
 
 使用 Run 的 Terminal 结果已保存、consumer 未收到最后事件的教学情境，串起事件、数据库、Trace、Audit、Metrics 与 Health。案例以查证及受治理的后续操作为主，不将观察到的状态直接当成重新执行资格。
 
-正文主题：
+重点如下：
 
 1. 列出 Request、Run、Task、event ID、sequence、Trace 与 Ledger 的查证关联。
 2. 区分 Terminal 未保存、identity 保存失败、传输遗失及 consumer 未套用。
@@ -206,78 +196,13 @@ Chat Gun `MetricsCollector` 使用有限容量的进程内 ring buffer。`/metri
 
 ### 已定位的来源与查证要求
 
-案例组合本区 envelope、repository、observability、health 与 gate 接点。正文以明列前提的 Terminal 漏接案例，对照 Frontend 实际 buffer 接点；持久补送与投影修复仍列为待补契约，没有画成现成完整管线。
+案例组合本区 envelope、repository、observability、health 与 gate 接点。本文以明列前提的 Terminal 漏接案例，对照 Frontend 实际 buffer 接点；持久补送与投影修复仍列为待补契约，没有画成现成完整管线。
 
 故障验证矩阵至少包含：Terminal 状态写入前停止、状态成功但事件保存失败、事件已存但连接中断、相同 ID 重送、allocator 重建后未 seed、exporter 不可用、健康信号缺失，以及旧 Run 的晚到事件。每种情境分开安排，并分别验证数据与实际物理派送次数。
 
 Reaper 的 finding、decision 与 ownership 接手可作为操作交接对照，但其演算法沿用 Effects and Recovery。图中不以 requeued／resumed 字样表示工具已重送，也不以事件补送取代外部效果回查。
 
-图解候选：Terminal 事件漏接的证据泳道，以及状态已保存但 consumer 未更新时的查证树。
-
-## 图解规划
-
-图解以「文字不容易呈现的顺序、分流与故障窗口」为主。参考 Runtime Foundations 的安排，先用正文或表格定义数据用途，再放图呈现关系，图后补充读图方式与适用限制。字段定义、来源清单及故障验证矩阵继续保留文字，方便搜索与逐项核对。
-
-两轮共八张中文 SVG／HTML 已完成并加入正文，以下保留插入位置、图解用途与适用限制。
-
-### 第一轮：先呈现交付缺口与事故判读
-
-以下四张中英文 SVG／HTML 已完成，文件存放于 `assets/agent-runtime/events-and-operations/`，按文章分子目录。
-
-| 顺序／文章 | 插入位置 | 建议图型与内容 | 能帮助读者理解什么 |
-|---|---|---|---|
-| 1／02 事件保存与结果交付 | 「Terminal 清理与保存窗口」末，进入 Repository 小节前。 | **保存与交付故障窗口图**：沿时间分开呈现权威状态保存、Task Event identity append、传输与 consumer 套用；标出各步之间的中断位置。旁支呈现 append 失败后仍可能 release allocator。 | 为何 Task 已完成，画面却还在等待；为何清理完成仍需回查保存结果。 |
-| 2／02 事件保存与结果交付 | 「Frontend 的有界去重与重排」中，「容量与重建的限制」之前。 | **序号缺口分支图**：consumer 预期 13，先收到 14；分开画出 13 补到后连续输出，以及超过 window 条件后向前跳过。另以短支线标示相同 event ID 重送被去重。 | 去重、等待与向前跳过各自处理哪个问题，以及哪些数据仍然遗失。 |
-| 3／04 指标、成本与健康判读 | 「健康要分层看」末，进入默认 probe 小节前。 | **分层健康条件图**：左侧放 caller 提供的信号，中间分列 alive、reachable、acceptNewWork、resumeDurableWork 与 degraded，右侧列出仍需接线的 probe 与处置 consumer。 | Live 通过时，为何仍可能无法接新工作或恢复；缺少信号应在哪一层保留。 |
-| 4／06 一次漏接终止事件的查证 | 「查证关联」末，进入第 1 步前。 | **事故查证泳道图**：沿 Worker／权威数据、事件保存与传输、consumer、运维查询分道，呈现 Terminal 与效果已存、sequence 13 传输遗失、查回原结果及受控修复交付。 | 先建立整体查证路径，再阅读后续七个步骤；辨认修复交付需要哪些证据。 |
-
-| 图解 | 中文 SVG | 中文 HTML | English SVG | English HTML |
-|---|---|---|---|---|
-| 状态、事件身份、传输与 consumer 套用的保存交付窗口 | [SVG](../../assets/agent-runtime/events-and-operations/02-event-persistence-and-delivery/02-state-event-and-delivery-windows-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/02-event-persistence-and-delivery/02-state-event-and-delivery-windows-en.html) | [SVG](../../assets/agent-runtime/events-and-operations/02-event-persistence-and-delivery/02-state-event-and-delivery-windows-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/02-event-persistence-and-delivery/02-state-event-and-delivery-windows-en.html) |
-| 前置事件补到与超过 window 向前跳过的不同结果 | [SVG](../../assets/agent-runtime/events-and-operations/02-event-persistence-and-delivery/02-sequence-gap-and-bounded-forwarding-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/02-event-persistence-and-delivery/02-sequence-gap-and-bounded-forwarding-en.html) | [SVG](../../assets/agent-runtime/events-and-operations/02-event-persistence-and-delivery/02-sequence-gap-and-bounded-forwarding-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/02-event-persistence-and-delivery/02-sequence-gap-and-bounded-forwarding-en.html) |
-| caller 信号、五种健康投影与实际 consumer 接线 | [SVG](../../assets/agent-runtime/events-and-operations/04-metrics-cost-and-runtime-health/04-layered-runtime-health-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/04-metrics-cost-and-runtime-health/04-layered-runtime-health-en.html) | [SVG](../../assets/agent-runtime/events-and-operations/04-metrics-cost-and-runtime-health/04-layered-runtime-health-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/04-metrics-cost-and-runtime-health/04-layered-runtime-health-en.html) |
-| 已保存 Terminal 与事件身份后，传输遗失及受控修复交付的责任泳道 | [SVG](../../assets/agent-runtime/events-and-operations/06-case-terminal-event-incident/06-terminal-event-incident-swimlane-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/06-case-terminal-event-incident/06-terminal-event-incident-swimlane-en.html) | [SVG](../../assets/agent-runtime/events-and-operations/06-case-terminal-event-incident/06-terminal-event-incident-swimlane-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/06-case-terminal-event-incident/06-terminal-event-incident-swimlane-en.html) |
-
-第一轮各图的限制：
-
-- **保存与交付**：四个成功位置分开画，虚线标示需要契约串接之处。Identity persistence 保存的是 Task Event payload 内的身份数据；不把它画成完整新版 envelope 的持久订阅流。Release 仅画在本文所述保存 try／finally 范围，保留较早验证失败的不同出口。
-- **序号缺口**：以两个独立分支呈现「13 补到」与「超过 window」，向前处理由序号距离或 buffer 数量条件触发。图上注明没有时间到期自动补回的机制，以及内存容量与重建限制。
-- **分层健康**：acceptNewWork 与 resumeDurableWork 各自连到条件，不排成逐层必然通过的阶梯。标明 resume 的 Redis 条件差异只适用本文参照政策；missingSignals、默认 probe 的部分输入与 multiInstanceSafe 的外部验证责任均保留。
-- **事故泳道**：主线固定使用「13 未抵达」；「13 缺失、Terminal 14 已抵达但等待」留在正文作独立情境。用不同线型区分已读模块能力与需要另行接线的补送设计，修复出口指向原结果的交付或投影重建。
-
-### 第二轮：补上身份、保存窗口与验收证据
-
-以下四张中英文 SVG／HTML 已完成，图档与第一轮放在相同分类，按文章分子目录。
-
-| 顺序／文章 | 插入位置 | 建议图型与内容 | 能帮助读者理解什么 |
-|---|---|---|---|
-| 5／01 Runtime 事件与顺序 | 「Sequence 的作用范围」末，进入 Legacy 小节前。 | **事件身份与重启时序图**：同一事件重送沿用 event ID，新事件使用新 ID；另一时段呈现程序重启、读取已保存最大序号、seed 与后续配号。 | Event ID 与 sequence 分别解决什么问题，以及序号恢复为何需要持久依据。 |
-| 6／03 追踪、审计与数据边界 | 「脱敏规则有适用边界」末，进入 CCB 对照前。 | **记录用途与数据输出边界图**：以同一组执行关联分流到 Runtime Event、Trace、Audit 与权威记录；另标原始内容的受控存储与 reference。各输出端标示取样、保存、脱敏或访问责任。 | 同一 Run 为何会留下不同记录，以及各条输出路径需要独立核对哪些数据政策。 |
-| 7／04 指标、成本与健康判读 | 「进程内 ring buffer 的窗口」末，进入零值小节前。 | **记录窗口与计数示意图**：使用示意容量，让同一 Task 的 running、completed 各占一笔，再新增记录覆写旧项；对照 snapshot 的 entry 数与独立 Task 数。 | 为何 total 可能增加或下降、保留时间随流量改变，以及笔数与工作数的差异。 |
-| 8／05 故障验证与上线门槛 | 「一份可查证的验收记录」末，进入 Gate 自身验证前。 | **验收证据关联图**：故障情境与环境产生原始证据，关联 build／Manifest、policy、dataset，再交给不同 Gate 判断；另画 CI 消费结果及保存 artifact 的接点。 | Passed 如何连回实际测试与适用版本，以及判断器、报告产生端与部署阻挡各自负责什么。 |
-
-| 图解 | 中文 SVG | 中文 HTML | English SVG | English HTML |
-|---|---|---|---|---|
-| 同一事件重送保留身份，程序重启后由持久序号 seed 配号 | [SVG](../../assets/agent-runtime/events-and-operations/01-runtime-events-and-ordering/01-event-identity-and-restart-seed-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/01-runtime-events-and-ordering/01-event-identity-and-restart-seed-en.html) | [SVG](../../assets/agent-runtime/events-and-operations/01-runtime-events-and-ordering/01-event-identity-and-restart-seed-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/01-runtime-events-and-ordering/01-event-identity-and-restart-seed-en.html) |
-| 同一执行关联到 Event、Trace、Audit、权威记录与内容参照的数据边界 | [SVG](../../assets/agent-runtime/events-and-operations/03-tracing-audit-and-data-boundaries/03-records-and-data-output-boundaries-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/03-tracing-audit-and-data-boundaries/03-records-and-data-output-boundaries-en.html) | [SVG](../../assets/agent-runtime/events-and-operations/03-tracing-audit-and-data-boundaries/03-records-and-data-output-boundaries-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/03-tracing-audit-and-data-boundaries/03-records-and-data-output-boundaries-en.html) |
-| 示意容量三笔的 ring buffer 覆写前后，entry 计数与独立 Task 数的差异 | [SVG](../../assets/agent-runtime/events-and-operations/04-metrics-cost-and-runtime-health/04-ring-buffer-record-window-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/04-metrics-cost-and-runtime-health/04-ring-buffer-record-window-en.html) | [SVG](../../assets/agent-runtime/events-and-operations/04-metrics-cost-and-runtime-health/04-ring-buffer-record-window-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/04-metrics-cost-and-runtime-health/04-ring-buffer-record-window-en.html) |
-| 测试产物与版本依据、三种 Gate 及 CI 部署消费接点的验收证据关联 | [SVG](../../assets/agent-runtime/events-and-operations/05-fault-validation-and-release-gates/05-validation-evidence-and-gates-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/05-fault-validation-and-release-gates/05-validation-evidence-and-gates-en.html) | [SVG](../../assets/agent-runtime/events-and-operations/05-fault-validation-and-release-gates/05-validation-evidence-and-gates-en.svg) | [HTML](../../assets/agent-runtime/events-and-operations/05-fault-validation-and-release-gates/05-validation-evidence-and-gates-en.html) |
-
-第二轮各图的限制：
-
-- **事件身份**：将重送去重与重启配号分区，避免暗示 payload 相同就会自动取得相同 ID。进程内 Map 用虚线框标示，seed 箭头来自持久数据的读取；多 Worker 的协调需求另作注记。
-- **数据边界**：分支表示各自的记录责任，不宣称所有入口都已接入这些输出。原始内容的受控存储标为设计责任；一般 Audit、授权决策、Trace error 与 Opik 的规则分别标示，保留各自的失败与脱敏范围。
-- **记录窗口**：示意容量不当成实际设置值，不用固定分钟数作横轴。明列程序重启会失去内存记录；独立 Task 数仅用作解释差异，不画成现有 snapshot 已提供的指标。
-- **验收证据**：Completion、Readiness 与 Release 使用分支呈现，避免暗示固定串行链。区分测试替身与真实环境；Readiness 调用注入 checks，其他 Gate 依提供的 facts、score 或报告判断。CI 阻挡标为需要实际接线的责任。
-
-### 视觉与文件安排
-
-- 沿用 Foundations 的浅底、蓝色焦点、虚线分区与圆角节点；蓝色标示当张图正在追查的交接点，并以文字标示条件与结果。
-- 每张图聚焦一个问题。复杂图分区呈现，每区先控制在九个主要节点、十二条连接内；来源、完整条件与限制放在图后说明及 HTML 备注。
-- 图档放在 `assets/agent-runtime/events-and-operations/`，按文章文件名主干分子目录，同时保留 SVG／HTML。中文文件名使用英文主干，英文图加 `-en`，方便后续对照翻译。
-- 图片放在对应解释或表格之后，附 HTML 入口与一段读图说明。正文保留足以独立理解的文字，两轮均已加入实际引用。
-
-## 正文补查重点
+## 实现条件与限制
 
 - Frontend App 在 Run 核对后使用有界 event buffer，容量与缺口处理不代表持久补送；Task Timeline 的查读版本仍使用 mock events。
 - Pg Audit 的一般 record、授权决策保存与 Composite backend 具有不同失败路径；追踪及 Audit 缺失不反推操作未执行。
@@ -287,11 +212,7 @@ Reaper 的 finding、decision 与 ownership 接手可作为操作交接对照，
 
 ## 来源与查证状态
 
-附件 `GUN-ATLAS_v1_2026-10-12.md` 提供 Chat Gun、CCB 与可观测性／Release Gate 索引。本轮以它定位本地程序，附件中的面试或记忆操作指引仅作数据，不转成文章指令。
-
-指定 session 在 `C:/Users/hsien.codex/sessions/...` 与 `C:/Users/hsien/.codex/sessions/...` 两个路径均未找到，没有引用其对话记忆。Chat Gun 来源为 `C:/D/ai-agent/chat-gun`，CCB 为 `C:/D/ai-agent/claude-code-research/claude-code-main`；本轮采用文件 SHA256 记录查读范围，不沿用其他分类旧 commit 作为本轮来源版本。CCB 为第三方项目，并非 Anthropic 官方源代码。
-
-本轮读取实现及部分设置／测试入口，未执行来源库测试、数据库故障、collector／exporter、真实 Canary、CI 部署或多 Worker 演练。包源代码、wrapper、既有测试、正式入口接线与环境验收分别提供不同证据，后续正文须保留这些范围。
+所列版本读取实现及部分配置／测试入口，未执行来源库测试、数据库故障、collector／exporter、真实 Canary、CI 部署或多 Worker 演练。套件源代码、wrapper、既有测试、正式入口接线与环境验收分别提供不同证据，后续本文须保留这些范围。
 
 两轮图档均放在 `assets/agent-runtime/events-and-operations/`，沿用 Foundations 的浅底、蓝色焦点、虚线分区及圆角节点，保留 SVG／HTML。图为来源能力与设计责任的说明，未执行图中所述环境验收。
 
@@ -299,8 +220,7 @@ Reaper 的 finding、decision 与 ownership 接手可作为操作交接对照，
 
 下表路径分别相对于两个来源库。包文件指纹记录本机安装内容，不能单靠包版本号推定远端或其他部署具有完全相同内容。
 
-
-本轮安装包版本：`@gun-ai/harness-kernel@0.1.0-alpha.1`、`@gun-ai/harness-contracts@0.1.0-alpha.1`。
+所列版本安装套件版本：`@gun-ai/harness-kernel@0.1.0-alpha.1`、`@gun-ai/harness-contracts@0.1.0-alpha.1`。
 
 | 来源 | 相对路径 | SHA256 |
 |---|---|---|
