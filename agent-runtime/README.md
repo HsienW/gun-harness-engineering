@@ -41,6 +41,6 @@ Implementations can use different classes and state enumerations for this flow. 
 
 The Runtime enforces rules supplied by the Harness and can stop to request an external decision when one is missing. Trusted identity, authorization, and evidence of external commits must come from authoritative sources. Prompt text, tool parameters, and UI wording cannot establish those facts on their own.
 
-## Writing about Evidence
+## Evidence and scope
 
 This section follows the knowledge base's Engineering markers to distinguish observed source code, capabilities integrated into official entry points, Primitives available only as modules or tests, and designs awaiting implementation or deployment verification. Claims about cross-process recovery, idempotent external side effects, or production availability require evidence beyond the existence of a class, test case, in-memory Checkpointer, or successful response.
