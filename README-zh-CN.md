@@ -82,7 +82,7 @@ gun-harness-engineering/
 
 - Harness 是产品、模型、工具与 Runtime 之间的控制层。它规定 Agent 在什么条件下理解任务、选择能力并采取行动。
 - 核心题目包括输入规范化、Context 组装、指令与能力配置、信任边界、工具风险、Permission、Human Approval、执行中输入、取消、追问与反馈。
-- 阅读可从 [Agent Harness 总览](./agent-harness/README-zh-TW.md)开始。
+- 阅读可从 [Agent Harness 总览](./agent-harness/README-zh-CN.md)开始。
 
 | 分类 | 去阅读 |
 |---|---|
@@ -96,7 +96,7 @@ gun-harness-engineering/
 
 - Runtime 是 Harness 使用的运行时核心，负责把一次 Agent Run 推进到合法的终止状态。
 - 目前涵盖 Execution Identity、模型流式传输、工具调度、重试、错误回灌、Checkpoint、Interrupt、Resume、对话修复、Idempotency、Side-effect Ledger、Reconciliation、Compensation、Runtime Event、Tracing、Metrics 与上线门槛。
-- 阅读可从 [Agent Runtime 总览](./agent-runtime/README-zh-TW.md)开始。
+- 阅读可从 [Agent Runtime 总览](./agent-runtime/README-zh-CN.md)开始。
 
 | 分类 | 去阅读 |
 |---|---|
