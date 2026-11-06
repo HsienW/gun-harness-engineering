@@ -22,12 +22,12 @@
 When an Agent Product is divided into responsibility layers, the Runtime sits after the Harness and before models, tools, and external systems:
 
 ~~~text
-產品入口
-  → Harness：準備輸入、Context、能力、政策與執行限制
-  → Runtime：推進 Run、模型、工具、等待、取消與恢復
+Product entry point
+  → Harness: prepare input, Context, capabilities, policies, and execution limits
+  → Runtime: advance Runs, models, tools, waiting, cancellation, and recovery
   → Model Provider／Tool Adapter／External System
-  → Runtime：整理結果、事件與證據
-  → Harness：轉成使用者可見的互動
+  → Runtime: assemble results, events, and evidence
+  → Harness: produce user-visible interactions
 ~~~
 
 This path includes exchanges in both directions:
@@ -211,5 +211,5 @@ Chat Gun is pinned to `92a5673003e4ac4ec09be8b1b350f42dbf4a5e69`. This article d
 
 ## Further reading
 
-- [Execution Identity and state authority](./02-execution-identity-and-state-authority-zh-TW.md)
-- [The boundary between Harness and Runtime](../../agent-harness/foundations/03-harness-runtime-boundary-zh-TW.md)
+- [Execution Identity and state authority](./02-execution-identity-and-state-authority.md)
+- [The boundary between Harness and Runtime](../../agent-harness/foundations/03-harness-runtime-boundary.md)

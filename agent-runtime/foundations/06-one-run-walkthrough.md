@@ -205,10 +205,10 @@ If terminal event delivery fails, the system should redeliver the event or let t
 Replacing `write_file` with a tool that calls an external system, or assuming the process crashes immediately after a filesystem write, introduces another path:
 
 ~~~text
-Attempt 已派送
-  → 外部操作 Commit
-  → 程序崩潰
-  → Tool Result／Checkpoint 尚未保存
+Attempt dispatched
+  → External operation commits
+  → Process crashes
+  → Tool Result/Checkpoint not yet persisted
 ~~~
 
 After restart, the Graph sees only a Tool Call and cannot infer that the operation never ran. The Runtime first reads the Ledger, then queries using the effect key or external Operation ID:
@@ -303,6 +303,6 @@ This article does not execute the teaching scenario or rerun source repository t
 
 ## Further reading
 
-- [Agent Runtime Foundations guide](./README-zh-TW.md)
-- [A complete Harness task walkthrough](../../agent-harness/foundations/05-one-turn-walkthrough-zh-TW.md)
+- [Agent Runtime Foundations guide](./README.md)
+- [A complete Harness task walkthrough](../../agent-harness/foundations/05-one-turn-walkthrough.md)
 - Upcoming categories: Execution Lifecycle, Model and Tool Execution, Effects and Recovery, Events and Operations.

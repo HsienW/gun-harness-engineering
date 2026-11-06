@@ -10,7 +10,7 @@ A tool call succeeds, but the Runtime crashes before saving its Tool Result; aft
 
 This scenario requires the Runtime to record unknown effects explicitly and verify them before retrying. Design principles must place these decisions in states, contracts, and handlers so the system has a defined next action after failure.
 
-[The previous article](./04-persistence-interrupt-and-resume-zh-TW.md) separated transcripts, checkpoints, ownership, interrupt manifests, and side-effect evidence. This article follows the same execution path to organize the invariants a Runtime should maintain.
+[The previous article](./04-persistence-interrupt-and-resume.md) separated transcripts, checkpoints, ownership, interrupt manifests, and side-effect evidence. This article follows the same execution path to organize the invariants a Runtime should maintain.
 
 ## Place principles at execution points
 
@@ -207,5 +207,5 @@ This article organizes verifiable Runtime principles without claiming that both 
 
 ## Further reading
 
-- [A complete Run walkthrough](./06-one-run-walkthrough-zh-TW.md)
-- [Agent Harness design principles](../../agent-harness/foundations/04-design-principles-zh-TW.md)
+- [A complete Run walkthrough](./06-one-run-walkthrough.md)
+- [Agent Harness design principles](../../agent-harness/foundations/04-design-principles.md)

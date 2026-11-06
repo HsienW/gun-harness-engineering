@@ -1,6 +1,6 @@
 # Agent Runtime Foundations
 
-[繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 > 以下內容所提到的
 > CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。

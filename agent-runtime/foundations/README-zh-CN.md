@@ -1,6 +1,6 @@
 # Agent Runtime Foundations
 
-[繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
 > 以下内容所提到的
 > CCB 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
@@ -25,19 +25,19 @@
 
 ```mermaid
 flowchart LR
-    Request[Execution Request] --> Admission[Admission 與 Identity]
+    Request[Execution Request] --> Admission[Admission 与 Identity]
     Admission --> State[Run State Authority]
-    State --> Model[Model Step 與 Stream]
-    Model -->|一般訊息| State
-    Model -->|Tool Call| Tool[Tool Scheduling 與 Execution]
+    State --> Model[Model Step 与 Stream]
+    Model -->|一般讯息| State
+    Model -->|Tool Call| Tool[Tool Scheduling 与 Execution]
     Tool -->|Tool Result| State
-    State -->|需要產品或人工決策| Decision[Harness Decision Port]
+    State -->|需要产品或人工决策| Decision[Harness Decision Port]
     Decision -->|Allow、Deny、Resume 或 Cancel| State
-    State -->|等待| Persist[Checkpoint 與 Interrupt Evidence]
+    State -->|等待| Persist[Checkpoint 与 Interrupt Evidence]
     Persist -->|相容且有效的 Resume| State
     Tool --> Effect[External Effect]
-    Effect --> Ledger[Operation 與 Side-effect Evidence]
-    State -.-> Events[Runtime Events 與 Trace]
+    Effect --> Ledger[Operation 与 Side-effect Evidence]
+    State -.-> Events[Runtime Events 与 Trace]
     Tool -.-> Events
     Persist -.-> Events
     State --> Terminal[Terminal Result]

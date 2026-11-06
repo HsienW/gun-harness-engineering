@@ -15,7 +15,7 @@ If a system represents the entire process with `isLoading`, model streaming, too
 The Agent Loop is often abbreviated as:
 
 ~~~text
-呼叫模型 → 執行工具 → 把結果送回模型 → 重複
+Call the model → Execute tools → Feed results back to the model → Repeat
 ~~~
 
 This describes the main model and tool cycle. Before each next step, the Runtime must also check:
@@ -265,5 +265,5 @@ This article uses pinned source versions and existing test arrangements. The sta
 
 ## Further reading
 
-- [Persistence, Interrupt, and Resume](./04-persistence-interrupt-and-resume-zh-TW.md)
-- [Retries and side effects](../../agent-harness/action-governance/05-retry-and-side-effects-zh-TW.md)
+- [Persistence, Interrupt, and Resume](./04-persistence-interrupt-and-resume.md)
+- [Retries and side effects](../../agent-harness/action-governance/05-retry-and-side-effects.md)

@@ -207,7 +207,7 @@ Terminal event 投递失败时，系统应重送事件或让 Client 重新读取
 ~~~text
 Attempt 已派送
   → 外部操作 Commit
-  → 程序崩潰
+  → 程序崩溃
   → Tool Result／Checkpoint 尚未保存
 ~~~
 

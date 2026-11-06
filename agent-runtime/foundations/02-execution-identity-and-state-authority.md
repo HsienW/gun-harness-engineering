@@ -240,5 +240,5 @@ Source versions use the pinned commits in this section's README. The identity tr
 
 ## Further reading
 
-- [Run Loop and state transitions](./03-run-loop-and-state-transitions-zh-TW.md)
-- [Run ownership and visible state](../../agent-harness/interaction-and-feedback/02-run-ownership-and-visible-state-zh-TW.md)
+- [Run Loop and state transitions](./03-run-loop-and-state-transitions.md)
+- [Run ownership and visible state](../../agent-harness/interaction-and-feedback/02-run-ownership-and-visible-state.md)

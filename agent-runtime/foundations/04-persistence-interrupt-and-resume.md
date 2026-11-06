@@ -239,5 +239,5 @@ Pinned source versions and evidence limits follow this section's README. This ar
 
 ## Further reading
 
-- [Agent Runtime design principles](./05-runtime-design-principles-zh-TW.md)
-- [Human confirmation and approval validity](../../agent-harness/action-governance/03-human-confirmation-zh-TW.md)
+- [Agent Runtime design principles](./05-runtime-design-principles.md)
+- [Human confirmation and approval validity](../../agent-harness/action-governance/03-human-confirmation.md)
