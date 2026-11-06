@@ -21,17 +21,17 @@
 
 ```mermaid
 flowchart LR
-    Task[任務與可信執行條件] --> Rules[組裝有效指令]
-    Sources[內建能力與擴充來源] --> Compose[發現與組裝]
-    Compose --> Select[選定候選範圍]
+    Task[任务与可信执行条件] --> Rules[组装有效指令]
+    Sources[内建能力与扩充来源] --> Compose[发现与组装]
+    Compose --> Select[选定候选范围]
     Task --> Select
-    Model[模型與 Provider 條件] --> Select
-    Rules --> Input[模型輸入]
+    Model[模型与 Provider 条件] --> Select
+    Rules --> Input[模型输入]
     Select --> Input
-    Select --> Ports[對應執行介面]
+    Select --> Ports[对应执行介面]
     Input --> Proposal[模型提出呼叫]
     Code[程式直接路由] --> Proposal
-    Ports --> Gate[行動治理接點]
+    Ports --> Gate[行动治理接点]
     Proposal --> Gate
 ```
 
