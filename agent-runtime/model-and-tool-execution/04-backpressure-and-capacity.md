@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Tool dispatch and concurrency](./03-tool-dispatch-and-concurrency.md) · Next: [Tool results and error feedback](./05-tool-results-and-error-feedback.md)
+[Back to guide](./README.md) · Previous: [Tool dispatch and concurrency](./03-tool-dispatch-and-concurrency.md) · Next: [Tool results and error feedback](./05-tool-results-and-error-feedback.md)
 
 > Only a few tools can run concurrently, yet memory keeps growing. Queued requests, completed results, and progress accumulate while a slow consumer has not finished earlier data. Limiting execution count handles only one point in this data flow.
 
@@ -40,10 +40,10 @@ The per-Run `active` count increases before global slot acquisition. It therefor
 Suppose an illustrative configuration allows one global read slot and one reservation per Run:
 
 ~~~text
-A1 取得全域槽位並執行
-B1 取得 Run B 保留，等待全域槽位
-B2 再要求 Run B 保留 → 超額拒絕
-A1 結束 → B1 可取得槽位
+A1 acquires a global slot and executes
+B1 acquires a Run B reservation and waits for a global slot
+B2 requests another Run B reservation → Rejected for exceeding capacity
+A1 finishes → B1 can acquire the slot
 ~~~
 
 The numbers explain code order; they are neither source defaults nor measured capacity. If B1 is cancelled, its waiter and Run reservation must both be checked for release.
@@ -56,9 +56,8 @@ One scheduler test uses defers in its name, but its assertions reject the second
 
 ![Reservations, waiting and capacity rejection](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation-en.svg)
 
-B1 holds a per-Run reservation while waiting for a global slot. Cancelling its wait releases that reservation without calling its runner.
-
-[Open the editable HTML diagram](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation-en.html).
+- The numbers are teaching settings for one scheduler; the upper-right view is a snapshot before cancellation. The diagram selects waiting cancellation and does not depict B2 rejection as queueing.
+- [Open the explanation of capacity, reservations, and waiting cancellation](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation-en.html).
 
 ## Cancellation while waiting and cleanup
 
@@ -135,7 +134,7 @@ Bounded backpressure needs a propagation path that can be verified. Local slot c
 
 - [Chat Gun scheduler][g-scheduler], [scheduler test arrangements][g-tests], and [Pipeline][g-pipeline].
 - CCB `src/utils/generators.ts`, `src/services/tools/toolOrchestration.ts`, and `src/services/tools/StreamingToolExecutor.ts`.
-- See [sources and verification status](./README-zh-TW.md#來源與查證狀態) for fixed sources and fingerprints. The numeric example is conceptual and does not represent accepted measured capacity.
+- See [sources and verification status](./README.md#sources-and-verification-status) for fixed sources and fingerprints. The numeric example is conceptual and does not represent accepted measured capacity.
 
 ## Further reading
 

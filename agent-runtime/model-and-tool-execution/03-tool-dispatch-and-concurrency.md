@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Stream assembly and tool calls](./02-stream-assembly-and-tool-calls.md) · Next: [Backpressure and capacity](./04-backpressure-and-capacity.md)
+[Back to guide](./README.md) · Previous: [Stream assembly and tool calls](./02-stream-assembly-and-tool-calls.md) · Next: [Backpressure and capacity](./04-backpressure-and-capacity.md)
 
 > A model proposes two reads and one write together. The code sends reads to a concurrent queue and the write to a serial queue, assuming the write will wait for every read. The queues actually share no barrier, so the write may encounter data that is not ready.
 
@@ -62,9 +62,9 @@ A conceptual classification can look like:
 
 ~~~text
 safe A、safe B、unsafe C、safe D
-  → 批次 1：A 與 B
-  → 批次 2：C
-  → 批次 3：D
+  → Batch 1: A and B
+  → Batch 2: C
+  → Batch 3: D
 ~~~
 
 Batch boundaries preserve the original order. D is not arbitrarily moved forward to run with A and B. Actual tool behavior still depends on each safety classification and permission path.
@@ -77,9 +77,8 @@ This ordering applies to Context within the process. A fixed modifier order does
 
 ![Completion order and Context modifier application](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers-en.svg)
 
-B may return first. After batch collection, Context modifiers apply in the original proposal order A, B.
-
-[Open the editable HTML diagram](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers-en.html).
+- Horizontal position indicates relative order, not measured duration. This is the in-process Context behavior of batch `runTools()`; it does not cover the streaming executor or external transactions.
+- [Open the completion-order and Context-update explanation](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers-en.html).
 
 ## Chat Gun's two local scheduling paths
 
@@ -91,9 +90,8 @@ The upper layer therefore needs to maintain dependencies when proposing two read
 
 ![Batch order and scheduler scope](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope-en.svg)
 
-CCB processes consecutive batches in order. Chat Gun's bounded reads and serial tail have separate waits; orchestration must maintain required dependencies.
-
-[Open the editable HTML diagram](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope-en.html).
+- The two sides represent their respective source implementations, not a shared scheduling contract. Orchestration must explicitly maintain required data dependencies; cross-Worker coordination and Resource exclusion require separate checks.
+- [Open the comparison of batches and separate scheduling paths](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope-en.html).
 
 ## What the Step Lock protects
 
@@ -137,7 +135,7 @@ Scheduler guarantees should name their instance, path, and key. Those limits let
 
 - [Chat Gun Pipeline][g-pipeline], [scheduler][g-scheduler], and [registry composition][g-registry].
 - CCB `src/services/tools/toolOrchestration.ts`, `src/utils/generators.ts`, and `src/services/tools/StreamingToolExecutor.ts`.
-- See the [section guide](./README-zh-TW.md#來源與查證狀態) for source versions, fingerprints, and unverified scope. The batch example is conceptual and does not claim a shared scheduling model across the two sources.
+- See the [section guide](./README.md#sources-and-verification-status) for source versions, fingerprints, and unverified scope. The batch example is conceptual and does not claim a shared scheduling model across the two sources.
 
 ## Further reading
 

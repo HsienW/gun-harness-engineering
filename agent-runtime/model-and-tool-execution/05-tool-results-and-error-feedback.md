@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Backpressure and capacity](./04-backpressure-and-capacity.md) · Next: [A model and tool round trip](./06-case-model-tool-roundtrip.md)
+[Back to guide](./README.md) · Previous: [Backpressure and capacity](./04-backpressure-and-capacity.md) · Next: [A model and tool round trip](./06-case-model-tool-roundtrip.md)
 
 > An external tool returns, but saving the Task Step result fails. The Pipeline successfully delivers an envelope with an unresolved effect to the upper layer. That layer reads only the outer `succeeded` and tells the model the operation completed. The model proposes another write, and a success message conceals state that needed reconciliation.
 
@@ -66,9 +66,8 @@ This omits other envelope fields to show the relationship between layers. Outer 
 
 ![Outer success and inner execution outcome](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome-en.svg)
 
-Successful envelope delivery can carry ambiguous_after_dispatch. Inspect the inner outcome and effect evidence before reporting success or considering redispatch.
-
-[Open the editable HTML diagram](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome-en.html).
+- The diagram selects persistence failure after dispatch. Outer success describes envelope delivery; effect evidence is still required to determine external commit, which persistence failure alone cannot establish.
+- [Open the explanation of result envelopes and outer/inner outcomes](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome-en.html).
 
 ## What the legacy adapter retains
 
@@ -140,7 +139,7 @@ Error feedback lets the model correct proposals, while effect evidence tells the
 
 - [Chat Gun structured result][g-result], [Pipeline][g-pipeline], and [persistence-failure test arrangements][g-tests].
 - CCB `src/services/tools/toolExecution.ts`, `src/services/tools/StreamingToolExecutor.ts`, and `src/query.ts`.
-- See the [section guide](./README-zh-TW.md#來源與查證狀態) for fixed versions, source copies, and verification scope. Truncation and reference requirements here are design checks, not jointly deployed capabilities.
+- See the [section guide](./README.md#sources-and-verification-status) for fixed versions, source copies, and verification scope. Truncation and reference requirements here are design checks, not jointly deployed capabilities.
 
 ## Further reading
 
