@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Metrics, cost, and runtime health](./04-metrics-cost-and-runtime-health.md) · Next: [Investigating a missed terminal event](./06-case-terminal-event-incident.md)
+[Back to the guide](./README.md) · Previous: [Metrics, cost, and runtime health](./04-metrics-cost-and-runtime-health.md) · Next: [Investigating a missed terminal event](./06-case-terminal-event-incident.md)
 
 > A report declares zero duplicate side effects, and Readiness returns passed. Yet the report came from a fixed fixture, the Canary dependency was a test double, and the actual deployment never made an external request. Retaining only the word passed removes the basis for judging validation scope at release time.
 
@@ -120,7 +120,7 @@ I would have Gates retain the basis for each judgment along with missing checks.
 ## Implementation references and scope
 
 - Chat Gun: `backend/src/operations/quality-gate.ts`, `readiness-gate.ts`, `release-gate.ts`, `release-gate.cli.ts`, and `backend/package.json`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) record the reviewed material without presenting fixture or report evaluation as production acceptance testing.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) record the reviewed material without presenting fixture or report evaluation as production acceptance testing.
 
 ## Further reading
 

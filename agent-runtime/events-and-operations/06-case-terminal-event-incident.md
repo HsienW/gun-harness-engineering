@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Fault validation and release gates](./05-fault-validation-and-release-gates.md)
+[Back to the guide](./README.md) · Previous: [Fault validation and release gates](./05-fault-validation-and-release-gates.md)
 
 > The user sees an Agent that keeps running, and the service's live check remains green. Yet the database already holds a Terminal result and the tool effect has a committed record. The frontend simply missed the final completion event. Creating the work again could turn a delivery problem into a second business operation.
 
@@ -134,8 +134,8 @@ I would have incident handling first answer how far the original work is known t
 
 - Chat Gun backend: `runtime/emit-envelope.ts`, `runtime/persistence/event-repository.ts`, `operations/incident-query.ts`, `operations/http-app.ts`, and diagnostic/health integration points from earlier articles, relative to `backend/src/`.
 - Frontend: `frontend/src/App.tsx`, `frontend/src/lib/runtime-event-envelope.ts`, and `frontend/src/components/AgentTaskTimeline/useTaskEvents.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) record the local review scope without presenting the modules as an acceptance-tested, deployment-wide pipeline.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) record the local review scope without presenting the modules as an acceptance-tested, deployment-wide pipeline.
 
 ## Further reading
 
-Return to the [Events and Operations guide](./README-zh-TW.md) for the articles and diagram candidates, or see [Recovering an ambiguous commit](../effects-and-recovery/06-case-ambiguous-commit-recovery.md) to distinguish the next steps for delivery gaps and unknown external effects.
+Return to the [Events and Operations guide](./README.md) for the articles and diagram candidates, or see [Recovering an ambiguous commit](../effects-and-recovery/06-case-ambiguous-commit-recovery.md) to distinguish the next steps for delivery gaps and unknown external effects.

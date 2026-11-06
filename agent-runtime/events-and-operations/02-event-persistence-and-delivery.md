@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Runtime events and ordering](./01-runtime-events-and-ordering.md) · Next: [Tracing, audit, and data boundaries](./03-tracing-audit-and-data-boundaries.md)
+[Back to the guide](./README.md) · Previous: [Runtime events and ordering](./01-runtime-events-and-ordering.md) · Next: [Tracing, audit, and data boundaries](./03-tracing-audit-and-data-boundaries.md)
 
 > A Task has completed and its Terminal identity is in the database, but the connection breaks before the frontend receives it. After reloading, the consumer has only an earlier state. The user clicks retry and triggers a second business operation.
 
@@ -120,7 +120,7 @@ I would list the facts each layer of the delivery path can confirm before design
 
 - Backend: `runtime/emit-envelope.ts`, `runtime/persistence/event-repository.ts`, and `runtime/persistence/migrations/003_create_task_events.sql`, relative to `backend/src/`.
 - Frontend: `frontend/src/App.tsx`, `lib/runtime-event-envelope.ts`, and `components/AgentTaskTimeline/useTaskEvents.ts`; the latter two are relative to `frontend/src/`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) retain the review scope. Production transport and redelivery still need validation along their entry points.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) retain the review scope. Production transport and redelivery still need validation along their entry points.
 
 ## Further reading
 

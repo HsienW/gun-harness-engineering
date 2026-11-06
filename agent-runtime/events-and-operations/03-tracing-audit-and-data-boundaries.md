@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Event persistence and result delivery](./02-event-persistence-and-delivery.md) · Next: [Metrics, cost, and runtime health](./04-metrics-cost-and-runtime-health.md)
+[Back to the guide](./README.md) · Previous: [Event persistence and result delivery](./02-event-persistence-and-delivery.md) · Next: [Metrics, cost, and runtime health](./04-metrics-cost-and-runtime-health.md)
 
 > An incident query finds no tool span, yet the log reports successful execution. An Audit method also returned normally even though its database write failed. Treating these returns as a complete execution history can lead an operator to conclude that the tool never ran or that approval evidence must have been persisted.
 
@@ -108,7 +108,7 @@ I would define which records must be persisted and whether failure blocks an ope
 
 - Chat Gun: `platform/observability.ts`, `platform/tracing/otel-setup.ts`, `span-manager.ts`, `opik/opik-redaction.ts`, `runtime/audit/pg-audit-logger.ts`, and `redaction.ts`, under their respective directories relative to `backend/src/`.
 - CCB: `src/utils/telemetry/sessionTracing.ts` and `src/utils/telemetry/logger.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) retain the implementations reviewed. This article claims no uniform persistence or data governance guarantee across all diagnostics.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) retain the implementations reviewed. This article claims no uniform persistence or data governance guarantee across all diagnostics.
 
 ## Further reading
 
