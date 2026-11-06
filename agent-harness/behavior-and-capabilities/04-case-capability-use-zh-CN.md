@@ -3,7 +3,7 @@
 [English](./04-case-capability-use.md) | [繁體中文](./04-case-capability-use-zh-TW.md) | [简体中文](./04-case-capability-use-zh-CN.md)
 
 > 以下内容所提到的
-> CCR 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
+> CCB 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
 > Chat Gun 为 [chat-gun](https://github.com/HsienW/chat-gun)。
 
 [回到导览](./README-zh-CN.md) · 上一篇：[能力选择](./03-capability-selection-zh-CN.md)
