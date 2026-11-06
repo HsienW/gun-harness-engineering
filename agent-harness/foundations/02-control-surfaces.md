@@ -13,7 +13,6 @@
   - Which actions require approval
   - Whether a user can change a task mid-run or shift intent
 
-
 ## What is a control surface?
 
 Control Surface:

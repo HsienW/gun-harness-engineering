@@ -90,7 +90,7 @@ The model should follow the user's semantic instruction; if a product claims to 
 
 ## 5. Execute the edit, check whether the content is still writable
 
-### Content checks before writing
+### Content checks before execution
 
 Once authorization passes, the Runtime may dispatch the approved operation. The editing tool must still check whether the original text exists, whether it has multiple matches, and whether the file changed after it was read. These conditions determine whether the edit can be applied correctly; authorization cannot replace content checks.
 

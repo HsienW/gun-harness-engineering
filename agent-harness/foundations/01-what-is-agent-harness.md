@@ -42,7 +42,7 @@ Claude Code's processUserInput handles ordinary messages, attachments, and comma
 
 ### 2. Context
 
-**The Harness decides, "What should the model know in this round?":**
+**The Harness decides, "What should the model know ?":**
 
 Context includes more than message history. It may also include the System Prompt, project instructions, the current directory, file contents, memory, Tool Results, and user attachments. The Harness must handle source authority, precedence, the Token budget, and compression strategy.
 This responsibility can change the model's behavior. Given the same model and question, different Context assemblies may lead it to choose different tools, disregard different constraints, or even understand the task differently.
@@ -172,7 +172,6 @@ Follow a real task and ask seven questions:
 - claude-code-best: src/query.ts
 - claude-code-best: src/utils/processUserInput/processUserInput.ts
 - claude-code-best: ARCHITECTURE.md
-
 
 ### How Chat Gun Is Used Here
 
