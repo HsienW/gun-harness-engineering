@@ -54,11 +54,11 @@ Claim 是本地的执行控制。远端服务收到请求后如何处理重复�
 假设一次工具外部操作成功，runner 的后续包含以下保存工作：
 
 ~~~text
-外部工具執行並返回結果
-  → Result Reference Store 保存結果參照
-  → Ledger 同一 transaction 提交 Tool Execution 與 Business Effect
+外部工具执行并返回结果
+  → Result Reference Store 保存结果参照
+  → Ledger 同一 transaction 提交 Tool Execution 与 Business Effect
   → Pipeline 依 outcome 保存 Task Step
-  → 將結果封套交給 consumer
+  → 将结果封套交给 consumer
 ~~~
 
 `commitExecutionAndBusinessEffect()` 可将两份 Ledger 记录放进本地 transaction。外部 API、Result Reference 保存、Task Step 更新及结果交付没有因此全部加入同一交易。
@@ -92,7 +92,7 @@ Pipeline 在 runner 返回后仍要更新 Task Step。相应保存失败时，�
 
 外层可以成功交付这份封套，但其内层要求进一步判读。若 runner 的 Ledger 已 committed，这份 ambiguity 可能来自后续保存；若外部回应本来就遗失，则还需要外部回查。相同 UI 显示无法取代两条来源的证据。
 
-这一层与前分类的[工具结果与错误回灌](../model-and-tool-execution/05-tool-results-and-error-feedback-zh-TW.md)衔接：封套保留需要分流的信息，本区再查明如何补齐提交事实。
+这一层与前分类的[工具结果与错误回灌](../model-and-tool-execution/05-tool-results-and-error-feedback-zh-CN.md)衔接：封套保留需要分流的信息，本区再查明如何补齐提交事实。
 
 ## 从正式入口确认这条路径存在
 

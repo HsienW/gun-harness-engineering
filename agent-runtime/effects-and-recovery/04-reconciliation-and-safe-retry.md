@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Effect Ledger and commit boundaries](./03-effect-ledger-and-commit-boundaries.md) · Next: [Compensation and manual intervention](./05-compensation-and-manual-recovery.md)
+[Back to the guide](./README.md) · Previous: [Effect Ledger and commit boundaries](./03-effect-ledger-and-commit-boundaries.md) · Next: [Compensation and manual intervention](./05-compensation-and-manual-recovery.md)
 
 > After a write times out, a status query reports "record not found." Its query endpoint uses a delayed index, while the original service has already committed. If Runtime treats that empty result as proof of no commit, redispatch can still duplicate the effect.
 
@@ -136,7 +136,7 @@ I would preserve unknown as a result so handlers know which operations cannot ye
 - Chat Gun: `runtime/side-effect/reconciler.ts`, `side-effect-descriptor.ts`, `tool-execution-runner.ts`, `runtime/recovery/conversation-recovery.ts`, `last-execution-point.ts`, and `tools/production-runtime-tool-descriptors.ts`, relative to `backend/src/`.
 - Chat Gun Worker takeover: `backend/src/operations/recovery/worker-recovery.ts` and `reaper.ts`; expected retry behavior also follows assertions in `backend/src/runtime/side-effect/tool-execution-runner.test.ts`.
 - Kernel: classification, budget, and backoff in `@gun-ai/harness-kernel/src/retry.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) preserve implementation versions and unverified scope.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) preserve implementation versions and unverified scope.
 
 ## Further reading
 

@@ -33,7 +33,7 @@ Replay Key 的输入顺序为：
 ~~~text
 runId
 stepId
-logicalToolCallId（缺少時使用 toolCallId）
+logicalToolCallId（缺少时使用 toolCallId）
 callIndex
 toolName
 toolVersion

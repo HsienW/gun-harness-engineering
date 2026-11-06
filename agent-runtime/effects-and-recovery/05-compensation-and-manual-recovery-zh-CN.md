@@ -50,10 +50,10 @@ Pipeline 的 production defaults 可以建立空 Registry。没有登记动作�
 ~~~text
 找到原 committed execution
   → prepare Compensation Execution
-  → 轉成 executing
-  → 執行 Action
-  → 保存 compensated 或人工處理狀態
-  → 保存 Step、Task 與結果事件
+  → 转成 executing
+  → 执行 Action
+  → 保存 compensated 或人工处理状态
+  → 保存 Step、Task 与结果事件
 ~~~
 
 准备或转移补偿记录失败时，查读路径记录失败并略过这次 Action。这可避免在必要记录建立失败后仍沿同一主线执行动作。

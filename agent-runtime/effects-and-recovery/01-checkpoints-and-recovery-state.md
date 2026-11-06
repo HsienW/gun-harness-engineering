@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Next: [Idempotency and replay identity](./02-idempotency-and-replay-identity.md)
+[Back to the guide](./README.md) · Next: [Idempotency and replay identity](./02-idempotency-and-replay-identity.md)
 
 > A tool sent a write before the process stopped, but the Checkpoint loaded after restart still shows its node as pending. Rerunning from that position may send a second operation to the external system. Restoring only the visible conversation can instead lose pending operations and version conditions.
 
@@ -40,12 +40,12 @@ It then reads the Checkpoint. A missing Checkpoint produces a manual-interventio
 The conceptual order below omits individual rejection exits:
 
 ~~~text
-尋找 Manifest 並核對關聯
-  → 讀取 Checkpoint
-  → 核對版本並整理歷史
-  → 載入 Task／Step／Ledger 證據
-  → 分類最後執行位置
-  → 回傳續行、等待、回查或人工處理結果
+Find the Manifest and validate correlation
+  → Read the Checkpoint
+  → Validate versions and sanitize history
+  → Load Task/Step/Ledger evidence
+  → Classify the last execution point
+  → Return continuation, waiting, reconciliation, or manual-handling results
 ~~~
 
 The source establishes this call order. Dependencies supply `loadDurableEvidence` and the actual Reconciler wiring, which require separate verification.
@@ -139,7 +139,7 @@ I would list the facts recovery needs and their authoritative sources before cho
 
 - Chat Gun: `runtime/recovery/conversation-recovery.ts`, `langgraph-checkpoint-adapter.ts`, `last-execution-point.ts`, `execution-manifest.ts`, and `recovery-sanitizer.ts`, relative to `backend/src/`.
 - CCB: `src/QueryEngine.ts`, `src/utils/sessionStorage.ts`, and `src/utils/sessionRestore.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) record the local inspection scope. This article does not claim that a general Recovery entry is enabled in every production Graph.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) record the local inspection scope. This article does not claim that a general Recovery entry is enabled in every production Graph.
 
 ## Further reading
 

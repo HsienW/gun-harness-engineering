@@ -35,12 +35,12 @@ Graph 可以记得下一个节点，Task repository 可以记得工作仍在 run
 概念顺序如下，省略个别拒绝出口：
 
 ~~~text
-尋找 Manifest 並核對關聯
-  → 讀取 Checkpoint
-  → 核對版本並整理歷史
-  → 載入 Task／Step／Ledger 證據
-  → 分類最後執行位置
-  → 回傳續行、等待、回查或人工處理結果
+寻找 Manifest 并核对关联
+  → 读取 Checkpoint
+  → 核对版本并整理历史
+  → 载入 Task／Step／Ledger 证据
+  → 分类最後执行位置
+  → 回传续行、等待、回查或人工处理结果
 ~~~
 
 源代码可确认这些调用顺序；`loadDurableEvidence` 与 Reconciler 的实际接线由 dependencies 提供，必须另外查证。
