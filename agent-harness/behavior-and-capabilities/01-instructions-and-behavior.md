@@ -3,7 +3,7 @@
 [English](./01-instructions-and-behavior.md) | [繁體中文](./01-instructions-and-behavior-zh-TW.md) | [简体中文](./01-instructions-and-behavior-zh-CN.md)
 
 > In the following content:
-> CCR is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
+> CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
 [Back to overview](./README.md) · Next: [Capability composition](./02-capability-composition.md)
