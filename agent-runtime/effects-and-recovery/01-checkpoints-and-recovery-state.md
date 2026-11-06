@@ -139,7 +139,7 @@ I would list the facts recovery needs and their authoritative sources before cho
 
 - Chat Gun: `runtime/recovery/conversation-recovery.ts`, `langgraph-checkpoint-adapter.ts`, `last-execution-point.ts`, `execution-manifest.ts`, and `recovery-sanitizer.ts`, relative to `backend/src/`.
 - CCB: `src/QueryEngine.ts`, `src/utils/sessionStorage.ts`, and `src/utils/sessionRestore.ts`.
-- [Sources and file fingerprints](./README.md#sources-and-verification-status) record the local inspection scope. This article does not claim that a general Recovery entry is enabled in every production Graph.
+- This article does not claim that a general Recovery entry is enabled in every production Graph.
 
 ## Further reading
 

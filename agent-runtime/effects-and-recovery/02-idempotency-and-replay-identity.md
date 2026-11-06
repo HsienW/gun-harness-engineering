@@ -125,7 +125,7 @@ I would define which operations the business permits repeating before designing 
 - Chat Gun: `runtime/side-effect/identity.ts`, `tool-execution-runner.ts`, `business-effect-ledger.ts`, `result-reference-store.ts`, and `runtime/idempotency/idempotency-guard.ts`, relative to `backend/src/`.
 - Chat Gun production MCP: canonical input and business keys in `backend/src/tools/production-runtime-tool-descriptors.ts`; identity construction in `backend/src/runtime/tool-dispatch/pipeline.ts`.
 - Kernel: `src/side-effect.ts`, `dist/side-effect.js`, and `src/idempotency.ts` in `@gun-ai/harness-kernel`.
-- [Sources and file fingerprints](./README.md#sources-and-verification-status) record the package and local files. This article establishes no universal exactly-once guarantee for external services.
+- This article establishes no universal exactly-once guarantee for external services.
 
 ## Further reading
 

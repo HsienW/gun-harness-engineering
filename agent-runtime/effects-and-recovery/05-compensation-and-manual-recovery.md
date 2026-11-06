@@ -128,7 +128,7 @@ I would show manual handlers the original effect, completed compensation, and st
 
 - Chat Gun: `runtime/compensation/saga-orchestrator.ts`, `compensation-action.ts`, `compensation-registry.ts`, `runtime/side-effect/business-effect-ledger.ts`, and `runtime/tool-dispatch/pipeline.ts`, relative to `backend/src/`.
 - CCB: rewind, per-file application, and error handling in `src/utils/fileHistory.ts`.
-- [Sources and file fingerprints](./README.md#sources-and-verification-status) preserve the local implementation scope. Concrete Actions must supply compensation registration, authorization, and external-resubmission contracts.
+- Concrete Actions must supply compensation registration, authorization, and external-resubmission contracts.
 
 ## Further reading
 

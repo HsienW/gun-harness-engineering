@@ -144,11 +144,10 @@ I would use the case to check whether every handoff can identify the original op
 
 ## Implementation references and scope
 
-- Chat Gun: runner, Ledger, Recovery, Result Reference, production descriptor, and Saga modules cited in the preceding five articles.
+- Chat Gun: runner, Ledger, Recovery, Result Reference, production descriptor, and Saga modules cited in the preceding the articles.
 - Chat Gun takeover conditions: generation updates in `backend/src/operations/recovery/reaper.ts`; decision labels are not actual tool redispatch.
 - CCB: `src/QueryEngine.ts`, `src/utils/sessionStorage.ts`, `src/utils/sessionRestore.ts`, and `src/services/tools/StreamingToolExecutor.ts`.
-- [Sources and file fingerprints](./README.md#sources-and-verification-status) record local inspection scope and teaching premises.
 
 ## Further reading
 
-Return to the [Effects and Recovery guide](./README.md) to review the articles and diagram candidates, or see [Terminal results and finalization](../execution-lifecycle/05-terminal-results-and-finalization.md) for lifecycle-result delivery after effect recovery.
+Return to the [Effects and Recovery guide](./README.md) to review the event contracts and delivery conditions, or see [Terminal results and finalization](../execution-lifecycle/05-terminal-results-and-finalization.md) for lifecycle-result delivery after effect recovery.

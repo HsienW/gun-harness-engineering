@@ -26,7 +26,7 @@
 
 ## Chat Gun 的键如何组成
 
-本轮补查安装的 `@gun-ai/harness-kernel`，版本为 `0.1.0-alpha.1`。`identity.ts` 提供哈希与 UUID dependencies，kernel 保存组成规则；查读 `src/side-effect.ts` 与包 export 使用的 `dist/side-effect.js`，可确认以下字段。
+所列版本补查安装的 `@gun-ai/harness-kernel`，版本为 `0.1.0-alpha.1`。`identity.ts` 提供杂凑与 UUID dependencies，kernel 保存组成规则；查读 `src/side-effect.ts` 与套件 export 使用的 `dist/side-effect.js`，可确认以下栏位。
 
 Replay Key 的输入顺序为：
 
@@ -97,7 +97,7 @@ Ledger committed 让 Runtime 知道已有提交记录，模型需要的内容则
 
 ## CCB 的 ID 对照
 
-CCB 的 tool-use／tool-result ID 支持消息配对，StreamingToolExecutor 也以工具关联收集结果。它们适合辨认结果属于哪份提案；本轮没有从这些 ID 找到与 Chat Gun 相同的跨 Run 业务效果唯一约束。
+CCB 的 tool-use／tool-result ID 支援讯息配对，StreamingToolExecutor 也以工具关联收集结果。它们适合辨认结果属於哪份提案；未从这些 ID 找到与 Chat Gun 相同的跨 Run 业务效果唯一约束。
 
 若要替 CCB 中某个工具建立外部幂等，仍需查该工具的 adapter、外部 API 与持久记录。Transcript 中出现一次成功消息，只是可用证据的一部分。
 
@@ -109,7 +109,7 @@ CCB 的 tool-use／tool-result ID 支持消息配对，StreamingToolExecutor 也
 - 在 TTL 回收后交错新旧持有者的完成更新，核对 owner 与外部效果记录。
 - 对外部幂等键测试保存期限及同键不同参数的服务端行为。
 
-本轮读取识别、Guard、Ledger 与 Result Reference 实现，未执行外部 API 或多 Worker 重送测试。
+所列版本读取识别、Guard、Ledger 与 Result Reference 实现，未执行外部 API 或多 Worker 重送测试。
 
 ## 本篇的工程判断
 
@@ -120,8 +120,8 @@ CCB 的 tool-use／tool-result ID 支持消息配对，StreamingToolExecutor 也
 - Chat Gun：`runtime/side-effect/identity.ts`、`tool-execution-runner.ts`、`business-effect-ledger.ts`、`result-reference-store.ts` 与 `runtime/idempotency/idempotency-guard.ts`，路径相对 `backend/src/`。
 - Chat Gun production MCP：`backend/src/tools/production-runtime-tool-descriptors.ts` 的 canonical input 与业务键；`backend/src/runtime/tool-dispatch/pipeline.ts` 的 identity 建立。
 - Kernel：`@gun-ai/harness-kernel` 的 `src/side-effect.ts`、`dist/side-effect.js` 与 `src/idempotency.ts`。
-- [来源与文件指纹](./README-zh-CN.md#来源与查证状态)记录包及本地文件；本文没有建立对所有外部服务通用的 exactly-once 保证。
+- 本文没有建立对所有外部服务通用的 exactly-once 保证。
 
 ## 接续阅读
 
-下一篇[效果账本与提交边界](./03-effect-ledger-and-commit-boundaries-zh-CN.md)沿实际派送顺序，追查外部效果与本地提交之间的故障窗口。
+下一篇[效果帐本与提交边界](./03-effect-ledger-and-commit-boundaries-zh-CN.md)沿实际派送顺序，追查外部效果与本地提交之间的故障窗口。

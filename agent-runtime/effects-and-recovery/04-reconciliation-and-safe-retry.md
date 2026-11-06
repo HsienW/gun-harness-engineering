@@ -136,7 +136,6 @@ I would preserve unknown as a result so handlers know which operations cannot ye
 - Chat Gun: `runtime/side-effect/reconciler.ts`, `side-effect-descriptor.ts`, `tool-execution-runner.ts`, `runtime/recovery/conversation-recovery.ts`, `last-execution-point.ts`, and `tools/production-runtime-tool-descriptors.ts`, relative to `backend/src/`.
 - Chat Gun Worker takeover: `backend/src/operations/recovery/worker-recovery.ts` and `reaper.ts`; expected retry behavior also follows assertions in `backend/src/runtime/side-effect/tool-execution-runner.test.ts`.
 - Kernel: classification, budget, and backoff in `@gun-ai/harness-kernel/src/retry.ts`.
-- [Sources and file fingerprints](./README.md#sources-and-verification-status) preserve implementation versions and unverified scope.
 
 ## Further reading
 
