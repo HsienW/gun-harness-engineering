@@ -15,7 +15,7 @@
 3. [Harness 与 Runtime 的边界](./03-harness-runtime-boundary-zh-CN.md)：追踪 Harness 交付哪些执行条件、Runtime 何时回来请求决策，以及状态与失败由谁负责。
 4. [Agent Harness 设计原则](./04-design-principles-zh-CN.md)：从前述边界整理工程取舍，包括依任务选取 Context、区分指令与数据权威、检查行动，以及从正式入口验证规则。
 5. [一次任务的完整走法](./05-one-turn-walkthrough-zh-CN.md)：用文件修改情境串起输入、Context、工具结果、授权、失败与完成证据，检查前四篇的责任分工如何运作。
-6. 接着可读 [Input and Context](../input-and-context/README-zh-TW.md)，进一步展开输入规范化、模型可见材料、来源权威与 Memory。
+6. 接着可读 [Input and Context](../input-and-context/README-zh-CN.md)，进一步展开输入规范化、模型可见材料、来源权威与 Memory。
 
 
 

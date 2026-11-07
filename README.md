@@ -96,7 +96,7 @@ gun-harness-engineering/
 
 - The Runtime is the execution core the Harness relies on. It is responsible for moving an Agent Run to a valid terminal state.
 - Current coverage: Execution Identity, model streaming, tool scheduling, retry, error feedback to the model, Checkpoint, Interrupt, Resume, conversation repair, Idempotency, Side-effect Ledger, Reconciliation, Compensation, Runtime Event, Tracing, Metrics, and launch criteria.
-- Start with the [Agent Runtime overview (Traditional Chinese)](./agent-runtime/README-zh-TW.md).
+- Start with the [Agent Runtime overview](./agent-runtime/README.md).
 
 | Category | Read |
 |---|---|

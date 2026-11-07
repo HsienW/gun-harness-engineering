@@ -125,7 +125,7 @@ Start by tracing one execution path from beginning to end:
 
 **Set separate budgets for the model loop and tool retries, and specify which layer owns retries. Otherwise, revised model proposals, resubmissions by the Tool Adapter, and automatic Runtime recovery may compound and exceed the intended number of attempts. If external effects are uncertain, query their status first or refer the case to a human; operations requiring compensation must also pass through compensation policy and authorization.**
 
-Runtime state, product task state, and external effects each have their own authoritative source. The Harness can request cancellation, but cannot declare that an external operation did not happen just to keep the display consistent. These responsibilities follow the division in [the Harness/Runtime boundary](./03-harness-runtime-boundary-zh-TW.md), so the product does not maintain a competing set of states outside the execution core.
+Runtime state, product task state, and external effects each have their own authoritative source. The Harness can request cancellation, but cannot declare that an external operation did not happen just to keep the display consistent. These responsibilities follow the division in [the Harness/Runtime boundary](./03-harness-runtime-boundary.md), so the product does not maintain a competing set of states outside the execution core.
 
 ## Use evidence to check design judgments
 
@@ -168,7 +168,7 @@ Source-code wiring, development-environment tests, and fault drills in productio
 
 ## Further reading
 
-- [What an Agent Harness looks like in practice](./01-what-is-agent-harness-zh-TW.md)
-- [Harness control surfaces](./02-control-surfaces-zh-TW.md)
-- [The Harness/Runtime boundary](./03-harness-runtime-boundary-zh-TW.md)
+- [What an Agent Harness looks like in practice](./01-what-is-agent-harness.md)
+- [Harness control surfaces](./02-control-surfaces.md)
+- [The Harness/Runtime boundary](./03-harness-runtime-boundary.md)
 - [A complete task walkthrough](./05-one-turn-walkthrough.md)
