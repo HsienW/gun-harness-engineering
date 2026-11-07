@@ -100,11 +100,11 @@ gun-harness-engineering/
 
 | Category | Read |
 |---|---|
-| Foundations | [Portal (Traditional Chinese)](./agent-runtime/foundations/README-zh-TW.md) |
-| Execution Lifecycle | [Portal (Traditional Chinese)](./agent-runtime/execution-lifecycle/README-zh-TW.md) |
-| Model and Tool Execution | [Portal (Traditional Chinese)](./agent-runtime/model-and-tool-execution/README-zh-TW.md) |
-| Effects and Recovery | [Portal (Traditional Chinese)](./agent-runtime/effects-and-recovery/README-zh-TW.md) |
-| Events and Operations | [Portal (Traditional Chinese)](./agent-runtime/events-and-operations/README-zh-TW.md) |
+| Foundations | [Portal](./agent-runtime/foundations/README.md) |
+| Execution Lifecycle | [Portal](./agent-runtime/execution-lifecycle/README.md) |
+| Model and Tool Execution | [Portal](./agent-runtime/model-and-tool-execution/README.md) |
+| Effects and Recovery | [Portal](./agent-runtime/effects-and-recovery/README.md) |
+| Events and Operations | [Portal](./agent-runtime/events-and-operations/README.md) |
 
 ## The Full Harness and Runtime Handoff Flow
 
