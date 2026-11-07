@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Waiting and resume transitions](./04-waiting-and-resume-transitions.md) · Next: [A replacement and late results](./06-case-lifecycle-races.md)
+[Back to guide](./README.md) · Previous: [Waiting and resume transitions](./04-waiting-and-resume-transitions.md) · Next: [A replacement and late results](./06-case-lifecycle-races.md)
 
 > The model's final text has reached the screen, but the Run result has not been written. In another case, the result was saved long ago, but the terminal event was lost in transit. Both can leave the user staring at a loading indicator, yet require entirely different recovery.
 
@@ -155,7 +155,7 @@ I would follow the error branch through its final await, then check which result
 - [Chat Gun interaction wrapper and afterRun][g-runtime]: invoke, stream, failed flag, and cleanup order.
 - [Chat Gun ownership][g-owner]: terminal fields and conditional updates.
 - CCB `src/query.ts`: query generator, command lifecycle, and return reasons; `src/utils/QueryGuard.ts`: conditional ending.
-- See the [section guide](./README-zh-TW.md#正文來源與適用範圍) for versions and inspection scope.
+- See the [section guide](./README.md#article-sources-and-scope) for versions and inspection scope.
 
 ## Further reading
 

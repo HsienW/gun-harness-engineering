@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Tracing, audit, and data boundaries](./03-tracing-audit-and-data-boundaries.md) · Next: [Fault validation and release gates](./05-fault-validation-and-release-gates.md)
+[Back to the guide](./README.md) · Previous: [Tracing, audit, and data boundaries](./03-tracing-audit-and-data-boundaries.md) · Next: [Fault validation and release gates](./05-fault-validation-and-release-gates.md)
 
 > The metrics endpoint returns successfully, the dashboard shows zero latency, and the service passes its live check. Yet there may be no duration records at all, and the Checkpointer may be unreachable. These signals are insufficient to determine whether the service can accept new work or resume an old Run.
 
@@ -118,7 +118,7 @@ I would attach a window and source to every value before building alerts. Retain
 
 - Chat Gun: `platform/metrics/metrics-collector.ts`, `metrics-endpoint.ts`, `cost-tracker.ts`, `operations/metrics/health.ts`, `export.ts`, and `operations/http-app.ts`, under their respective directories relative to `backend/src/`.
 - CCB: `src/cost-tracker.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) record the local version. Production wiring for SLIs, alerts, and deployment probes still needs validation.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) record the local version. Production wiring for SLIs, alerts, and deployment probes still needs validation.
 
 ## Further reading
 

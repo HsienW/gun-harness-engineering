@@ -34,11 +34,11 @@ Runtime 决定暂停后，应先留下必要 Manifest 与恢复数据，再发�
 概念顺序可以表示为：
 
 ~~~text
-建立指定等待與回覆契約
-  → 保存必要 Manifest／恢復位置
-  → 確認等待已可恢復
-  → 通知 Harness 顯示
-  → 接受對到該等待的 Resume
+建立指定等待与回覆契约
+  → 保存必要 Manifest／恢复位置
+  → 确认等待已可恢复
+  → 通知 Harness 显示
+  → 接受对到该等待的 Resume
 ~~~
 
 这个顺序未指定跨 Store transaction。Manifest 与 Graph Checkpoint 若分开保存，需要处理只完成其中一项的窗口；数据库与部署方式另见 [Foundations 的持久化说明](../foundations/04-persistence-interrupt-and-resume-zh-CN.md)。

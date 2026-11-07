@@ -21,8 +21,8 @@
 
 * 文中的實作參照庫，應分清已觀察的程式路徑、已接入入口的能力、僅有模組與設計提案；教學案例也不能當成正式環境的執行紀錄。
 
-  * \[claude-code-best](https://github.com/claude-code-best/claude-code)
-  * \[chat-gun](https://github.com/HsienW/chat-gun) 
+  * [claude-code-best](https://github.com/claude-code-best/claude-code)
+  * [chat-gun](https://github.com/HsienW/chat-gun)
 
 
 

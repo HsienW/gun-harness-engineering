@@ -60,9 +60,9 @@ WHERE thread_id = $1 AND scope_id = $2
 
 ~~~text
 A 持有 generation 4，外部 I/O 已送出
-  → 條件式 supersede 成功
+  → 条件式 supersede 成功
   → B 持有 generation 5
-  → A 的 I/O 與 finally 可能晚到
+  → A 的 I/O 与 finally 可能晚到
 ~~~
 
 因此，generation 的用途要对回每个 consumer：显示层用它拒绝旧活动；QueryGuard 用它限制清理；工具派送与下游写入若要拒绝过期执行者，还需要相应的检查。

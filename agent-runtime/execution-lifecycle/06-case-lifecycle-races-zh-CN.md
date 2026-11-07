@@ -63,10 +63,10 @@ A 已取得 active ownership，本地 guard 也处于 running。B 的要求进�
 consumer 以 A 的 generation 4 作 expected generation，请 repository 执行 supersede。条件成立后，旧 row 转为 superseded，新 row 保存 B 与 generation 5。
 
 ~~~text
-替換前：active owner = run-a / generation 4
+替换前：active owner = run-a / generation 4
   → 以 expected generation 4 提交 supersede
-替換後：active owner = run-b / generation 5
-  → 本地 guard 採用 B
+替换後：active owner = run-b / generation 5
+  → 本地 guard 采用 B
 ~~~
 
 若另一个要求先改变 owner，这次 supersede 应回报冲突。consumer 需要依最新权威状态重新判断，不能用旧读取结果强行覆写。

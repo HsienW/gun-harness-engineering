@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Effect reconciliation and retry decisions](./04-reconciliation-and-safe-retry.md) · Next: [Recovering an ambiguous commit](./06-case-ambiguous-commit-recovery.md)
+[Back to the guide](./README.md) · Previous: [Effect reconciliation and retry decisions](./04-reconciliation-and-safe-retry.md) · Next: [Recovering an ambiguous commit](./06-case-ambiguous-commit-recovery.md)
 
 > A workflow reserves a resource, but its next notification step fails. Cancelling the Task stops later work while the reservation remains. Even sending a release request can encounter another case: release completes, but its response is lost.
 
@@ -48,12 +48,12 @@ When a Ledger is supplied, the Orchestrator locates a committed Tool Execution b
 The main order is:
 
 ~~~text
-找到原 committed execution
+Find the original committed execution
   → prepare Compensation Execution
-  → 轉成 executing
-  → 執行 Action
-  → 保存 compensated 或人工處理狀態
-  → 保存 Step、Task 與結果事件
+  → Transition to executing
+  → Execute the Action
+  → Save compensated or manual-handling state
+  → Save Step, Task, and result events
 ~~~
 
 When preparing or transitioning a compensation record fails, the inspected path records failure and skips that Action. This prevents action execution along the same path after required record creation fails.
@@ -128,7 +128,7 @@ I would show manual handlers the original effect, completed compensation, and st
 
 - Chat Gun: `runtime/compensation/saga-orchestrator.ts`, `compensation-action.ts`, `compensation-registry.ts`, `runtime/side-effect/business-effect-ledger.ts`, and `runtime/tool-dispatch/pipeline.ts`, relative to `backend/src/`.
 - CCB: rewind, per-file application, and error handling in `src/utils/fileHistory.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) preserve the local implementation scope. Concrete Actions must supply compensation registration, authorization, and external-resubmission contracts.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) preserve the local implementation scope. Concrete Actions must supply compensation registration, authorization, and external-resubmission contracts.
 
 ## Further reading
 

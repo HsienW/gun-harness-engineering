@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Model calls and Provider fallback](./01-model-calls-and-provider-fallback.md) · Next: [Tool dispatch and concurrency](./03-tool-dispatch-and-concurrency.md)
+[Back to guide](./README.md) · Previous: [Model calls and Provider fallback](./01-model-calls-and-provider-fallback.md) · Next: [Tool dispatch and concurrency](./03-tool-dispatch-and-concurrency.md)
 
 > The screen already shows the model preparing to read a file, and the tool name has arrived, but its arguments stop halfway through a path. A consumer that executes as soon as it sees the name may read the wrong location. Requiring the entire connection to close, however, may miss a safe early execution point supported by the source.
 
@@ -35,11 +35,11 @@ At `content_block_stop`, the consumer calls `normalizeContentFromAPI()`, creates
 The conceptual order is:
 
 ~~~text
-開始工具區塊
-  → 累積參數片段
-  → 區塊結束與正規化
-  → 交付工具提案
-  → Schema、授權及排程檢查
+Start the tool block
+  → Accumulate argument fragments
+  → Complete and normalize the block
+  → Deliver the tool proposal
+  → Schema, authorization, and scheduling checks
 ~~~
 
 This reading model omits Provider details and does not equate block completion with tool dispatch.
@@ -80,9 +80,8 @@ Cost and limit consumers also need to account for this gap. Tool execution may s
 
 ![Stream blocks and tool readiness](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness-en.svg)
 
-A complete block still requires input and execution checks. With early execution enabled, a tool may start before usage and stop reason arrive.
-
-[Open the editable HTML diagram](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness-en.html).
+- This example selects the path with the early-execution gate enabled. Block completion does not prove that the original JSON parsed successfully, and restored metadata does not mean an external Store updates automatically.
+- [Open the stream-block, tool-readiness, and late-metadata timeline](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness-en.html).
 
 ## Handling old blocks after stream failure
 
@@ -96,9 +95,8 @@ The flag itself calls no remote reversal API. Whether started tools stop, extern
 
 ![Stale-result cleanup and external effects](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects-en.svg)
 
-Clearing old messages and discarding an executor stops stale-result delivery. The status of I/O already sent still requires separate evidence.
-
-[Open the editable HTML diagram](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects-en.html).
+- The diagram assumes the old tool has already sent I/O. Tombstones and discarded flags handle messages and result delivery; they do not establish external-operation cancellation or rollback.
+- [Open the explanation of stale messages, results, and external effects](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects-en.html).
 
 ## The boundary of the Chat Gun comparison
 
@@ -133,7 +131,7 @@ Early execution gives complete proposals an earlier processing opportunity while
 - CCB `src/services/api/claude.ts` and `src/utils/messages.ts`: block accumulation, normalization, usage, and stop reason.
 - CCB `src/query.ts` and `src/services/tools/StreamingToolExecutor.ts`: gate, early execution, tombstones, and the discarded flag.
 - [Chat Gun Gateway][g-gateway] and [MCP Agent][g-mcp]: comparison of completed messages and tool handoff.
-- See the [section guide](./README-zh-TW.md#來源與查證狀態) for source copies, the fixed version, and verification not performed.
+- See the [section guide](./README.md#sources-and-verification-status) for source copies, the fixed version, and verification not performed.
 
 ## Further reading
 

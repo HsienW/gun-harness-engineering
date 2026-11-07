@@ -1,8 +1,8 @@
 # Events and Operations
 
-[繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
-[回到 Runtime 总览](../README-zh-TW.md) · [Foundations 导览](../foundations/README-zh-CN.md) · [Effects and Recovery](../effects-and-recovery/README-zh-CN.md)
+[回到 Runtime 总览](../README-zh-CN.md) · [Foundations 导览](../foundations/README-zh-CN.md) · [Effects and Recovery](../effects-and-recovery/README-zh-CN.md)
 
 > 以下内容所提到的
 > CCB 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
@@ -29,18 +29,18 @@ Run 已保存终止结果，前端却没收到最后一个事件；Trace 刚好�
 
 ```mermaid
 flowchart TD
-    Execution[Runtime 狀態與效果已發生] --> Event[01 事件型別 / 身分 / 版本 / 順序]
-    Event --> Persist[02 依契約保存事件與 identity]
-    Persist --> Consumer[傳輸 / 重連 / 去重 / Projection]
-    Execution --> Diagnose[03 Trace / Audit / 脫敏與存取範圍]
-    Execution --> Signals[04 指標 / 成本 / 依賴與進度訊號]
-    Signals --> Health[分層健康判讀及缺失訊號]
-    Consumer --> Incident[06 關聯權威狀態與觀察資料]
+    Execution[Runtime 状态与效果已发生] --> Event[01 事件型别 / 身分 / 版本 / 顺序]
+    Event --> Persist[02 依契约保存事件与 identity]
+    Persist --> Consumer[传输 / 重连 / 去重 / Projection]
+    Execution --> Diagnose[03 Trace / Audit / 脱敏与存取范围]
+    Execution --> Signals[04 指标 / 成本 / 依赖与进度讯号]
+    Signals --> Health[分层健康判读及缺失讯号]
+    Consumer --> Incident[06 关联权威状态与观察资料]
     Diagnose --> Incident
     Health --> Incident
-    Incident --> Action[明確且受治理的處置]
-    Faults[05 故障情境 / 回歸 / 證據版本] --> Gate[品質 / Readiness / Release 判斷]
-    Gate --> Review[確認實際部署與驗證範圍]
+    Incident --> Action[明确且受治理的处置]
+    Faults[05 故障情境 / 回归 / 证据版本] --> Gate[品质 / Readiness / Release 判断]
+    Gate --> Review[确认实际部署与验证范围]
 ```
 
 ### 与其他分类的分工

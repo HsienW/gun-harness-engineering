@@ -21,21 +21,21 @@
 
 ```mermaid
 flowchart LR
-    Call[具體呼叫與可信執行 Context] --> Contract[核對工具契約與風險]
-    Contract --> Auth[身分、資源與政策判斷]
-    Auth -->|拒絕或必要條件不可用| Block[不派送並保留原因]
-    Auth -->|需要確認| Pending[保存待確認資料]
-    Pending --> Approval[核對批准綁定與有效性]
-    Approval -->|拒絕、逾時或不相符| Block
-    Approval -->|有效批准| Controls[派送前執行限制]
-    Auth -->|允許| Controls
-    Controls --> Dispatch[受控工具執行]
-    Dispatch --> Outcome[判讀成功、未提交、結果不明或取消]
-    Outcome -->|明確可重試且預算允許| Controls
-    Outcome -->|外部效果不明| Reconcile[回查、對帳或人工處理]
-    Outcome --> Result[工具結果與完成陳述]
+    Call[具体呼叫与可信执行 Context] --> Contract[核对工具契约与风险]
+    Contract --> Auth[身分、资源与政策判断]
+    Auth -->|拒绝或必要条件不可用| Block[不派送并保留原因]
+    Auth -->|需要确认| Pending[保存待确认资料]
+    Pending --> Approval[核对批准绑定与有效性]
+    Approval -->|拒绝、逾时或不相符| Block
+    Approval -->|有效批准| Controls[派送前执行限制]
+    Auth -->|允许| Controls
+    Controls --> Dispatch[受控工具执行]
+    Dispatch --> Outcome[判读成功、未提交、结果不明或取消]
+    Outcome -->|明确可重试且预算允许| Controls
+    Outcome -->|外部效果不明| Reconcile[回查、对帐或人工处理]
+    Outcome --> Result[工具结果与完成陈述]
     Reconcile --> Result
-    Auth -.-> Evidence[關聯決策、嘗試與效果證據]
+    Auth -.-> Evidence[关联决策、尝试与效果证据]
     Approval -.-> Evidence
     Dispatch -.-> Evidence
     Outcome -.-> Evidence

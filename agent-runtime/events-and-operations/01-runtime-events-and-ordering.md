@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Next: [Event persistence and result delivery](./02-event-persistence-and-delivery.md)
+[Back to the guide](./README.md) · Next: [Event persistence and result delivery](./02-event-persistence-and-delivery.md)
 
 > A tool result has returned, but the frontend receives sequence 12 before 11. Redelivery then causes the same result to arrive twice. If the consumer updates the screen by arrival time alone, it may append content twice or replace a completed state with an earlier running state.
 
@@ -101,7 +101,7 @@ I would define each event's semantics, producer, and consumer before assigning i
 
 - Chat Gun backend: `runtime/event-envelope.ts`, `event-sequence.ts`, `legacy-event-adapter.ts`, and `platform/agent-runtime-events.ts`, relative to `backend/src/`.
 - Packages: contracts/kernel `src/events.ts`; frontend: `frontend/src/lib/runtime-event-envelope.ts` and `agent-runtime-events.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) record the reviewed material. This article does not claim that all production entry points have adopted the same contract.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) record the reviewed material. This article does not claim that all production entry points have adopted the same contract.
 
 ## Further reading
 

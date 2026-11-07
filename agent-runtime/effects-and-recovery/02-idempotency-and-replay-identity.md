@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Checkpoints and recovery state](./01-checkpoints-and-recovery-state.md) · Next: [Effect Ledger and commit boundaries](./03-effect-ledger-and-commit-boundaries.md)
+[Back to the guide](./README.md) · Previous: [Checkpoints and recovery state](./01-checkpoints-and-recovery-state.md) · Next: [Effect Ledger and commit boundaries](./03-effect-ledger-and-commit-boundaries.md)
 
 > A user submits an operation, loses the connection, and resubmits. Runtime creates a new Run and the model generates a new Tool Call ID, while the external system sees the same business request. Comparing only Run IDs can repeat the operation; comparing only tool names can merge two legitimate, different operations.
 
@@ -33,7 +33,7 @@ Replay Key inputs are ordered as follows:
 ~~~text
 runId
 stepId
-logicalToolCallId（缺少時使用 toolCallId）
+logicalToolCallId (falls back to toolCallId when absent)
 callIndex
 toolName
 toolVersion
@@ -125,7 +125,7 @@ I would define which operations the business permits repeating before designing 
 - Chat Gun: `runtime/side-effect/identity.ts`, `tool-execution-runner.ts`, `business-effect-ledger.ts`, `result-reference-store.ts`, and `runtime/idempotency/idempotency-guard.ts`, relative to `backend/src/`.
 - Chat Gun production MCP: canonical input and business keys in `backend/src/tools/production-runtime-tool-descriptors.ts`; identity construction in `backend/src/runtime/tool-dispatch/pipeline.ts`.
 - Kernel: `src/side-effect.ts`, `dist/side-effect.js`, and `src/idempotency.ts` in `@gun-ai/harness-kernel`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) record the package and local files. This article establishes no universal exactly-once guarantee for external services.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) record the package and local files. This article establishes no universal exactly-once guarantee for external services.
 
 ## Further reading
 

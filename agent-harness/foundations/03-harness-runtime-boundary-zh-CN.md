@@ -219,10 +219,10 @@ query() 返回 AsyncGenerator。Harness 会持续消费 Messages、Stream Events
 ~~~text
 REPL
   → processUserInput
-  → 組裝 System Prompt、Context、Tools、canUseTool
+  → 组装 System Prompt、Context、Tools、canUseTool
   → query(QueryParams)
   → onQueryEvent(event)
-  → 更新 AppState、畫面與 transcript
+  → 更新 AppState、画面与 transcript
 ~~~
 
 REPL 直接调用 query()，没有经过 QueryEngine。因此，Interactive Harness 负责跨用户互动的 UI 与 Session 编排。
@@ -233,9 +233,9 @@ REPL 直接调用 query()，没有经过 QueryEngine。因此，Interactive Harn
 SDK / stdin
   → QueryEngine.submitMessage()
   → processUserInput
-  → 組裝 QueryParams
+  → 组装 QueryParams
   → query(QueryParams)
-  → 轉成 SDKMessage、usage、permission denial 與 result
+  → 转成 SDKMessage、usage、permission denial 与 result
 ~~~
 
 QueryEngine 持有 Headless Conversation 的 messages、Abort Controller、Usage、Cache 与 Permission Denials。它是 Headless／SDK 的 Harness fa?ade，不是 query loop 本身。
@@ -245,9 +245,9 @@ QueryEngine 持有 Headless Conversation 的 messages、Abort Controller、Usage
 当模型产生 Tool Use 时，query() 把 tool block 交给 runTools，再由 tool execution 调用 canUseTool。这次控制权会暂时回到 Harness：
 
 ~~~text
-Runtime：準備執行 FileEdit
-  → Harness：依設定、Hooks、目錄與使用者選擇作決策
-  → Runtime：依 Allow／Deny 結果繼續
+Runtime：准备执行 FileEdit
+  → Harness：依设定、Hooks、目录与使用者选择作决策
+  → Runtime：依 Allow／Deny 结果继续
 ~~~
 
 Runtime 负责确保未获准的工具不会执行，Harness 则持有决策权与互动来源。

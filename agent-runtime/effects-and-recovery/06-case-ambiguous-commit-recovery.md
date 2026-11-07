@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Compensation and manual intervention](./05-compensation-and-manual-recovery.md)
+[Back to the guide](./README.md) · Previous: [Compensation and manual intervention](./05-compensation-and-manual-recovery.md)
 
 > An external resource reservation exists, but its response is lost on the way to Runtime. The Worker stops. After restart, the model can still read the request to create a reservation, without a trusted completion result. Another consumer must locate the original operation before deciding what happens next.
 
@@ -147,8 +147,8 @@ I would use the case to check whether every handoff can identify the original op
 - Chat Gun: runner, Ledger, Recovery, Result Reference, production descriptor, and Saga modules cited in the preceding five articles.
 - Chat Gun takeover conditions: generation updates in `backend/src/operations/recovery/reaper.ts`; decision labels are not actual tool redispatch.
 - CCB: `src/QueryEngine.ts`, `src/utils/sessionStorage.ts`, `src/utils/sessionRestore.ts`, and `src/services/tools/StreamingToolExecutor.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) record local inspection scope and teaching premises.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) record local inspection scope and teaching premises.
 
 ## Further reading
 
-Return to the [Effects and Recovery guide](./README-zh-TW.md) to review the articles and diagram candidates, or see [Terminal results and finalization](../execution-lifecycle/05-terminal-results-and-finalization.md) for lifecycle-result delivery after effect recovery.
+Return to the [Effects and Recovery guide](./README.md) to review the articles and diagram candidates, or see [Terminal results and finalization](../execution-lifecycle/05-terminal-results-and-finalization.md) for lifecycle-result delivery after effect recovery.

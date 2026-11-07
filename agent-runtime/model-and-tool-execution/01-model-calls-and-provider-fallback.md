@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Next: [Stream assembly and tool calls](./02-stream-assembly-and-tool-calls.md)
+[Back to guide](./README.md) · Next: [Stream assembly and tool calls](./02-stream-assembly-and-tool-calls.md)
 
 > The first Provider times out, and the Runtime switches to a second. The new model can generate text but does not accept the tool binding required by this request. In another case, the model response has already triggered tool execution, and a retried request proposes the same operation again. What appears on screen as "switching models" crosses two different failure boundaries.
 
@@ -82,9 +82,8 @@ If several Providers use their full time allowances in sequence, total waiting i
 
 ![Provider fallback after an invoke error](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort-en.svg)
 
-An aborted caller stops fallback. A next Provider is tried only for an eligible error while candidates and attempt budget remain.
-
-[Open the editable HTML diagram](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort-en.html).
+- The ALT branches in the diagram are mutually exclusive and assume fallback is enabled. A local timeout or abort does not prove remote computation has stopped.
+- [Open the Provider fallback timeline and scope](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort-en.html).
 
 ## Check capabilities before switching
 
@@ -130,7 +129,7 @@ The recoverable scope of fallback depends on data and execution already produced
 
 - [Chat Gun Gateway][g-gateway], [fallback wrapper][g-fallback], [error classification][g-category], and [MCP Agent consumer][g-mcp].
 - CCB `src/query.ts` and `src/services/api/claude.ts`; fallback, message, and tool handoffs are inspected separately.
-- See this section's [sources](./README-zh-TW.md#來源與查證狀態) for the fixed version, CCB copy fingerprints, and verification limits. This article establishes no shared model-fallback interface across the two sources.
+- See this section's [sources](./README.md#sources-and-verification-status) for the fixed version, CCB copy fingerprints, and verification limits. This article establishes no shared model-fallback interface across the two sources.
 
 ## Further reading
 

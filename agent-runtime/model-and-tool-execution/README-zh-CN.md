@@ -1,8 +1,8 @@
 # Model and Tool Execution
 
-[繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
-[回到 Runtime 总览](../README-zh-TW.md) · [Foundations 导览](../foundations/README-zh-CN.md)
+[回到 Runtime 总览](../README-zh-CN.md) · [Foundations 导览](../foundations/README-zh-CN.md)
 
 > 以下内容所提到的
 > CCB 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
@@ -29,19 +29,19 @@
 
 ```mermaid
 flowchart TD
-    Input[Harness 準備的模型輸入與可見工具] --> Model[01 Model Step / Provider Attempt]
-    Model --> Assemble[02 回應與串流區塊組裝]
-    Assemble --> Proposal[完整且可辨認的 Tool Call 提案]
-    Proposal --> Admission[03 Schema / 授權交接 / 執行依賴]
-    Admission --> Schedule[03 並行分類與排程]
-    Capacity[04 容量 / 排隊 / 取消] --> Schedule
+    Input[Harness 准备的模型输入与可见工具] --> Model[01 Model Step / Provider Attempt]
+    Model --> Assemble[02 回应与串流区块组装]
+    Assemble --> Proposal[完整且可辨认的 Tool Call 提案]
+    Proposal --> Admission[03 Schema / 授权交接 / 执行依赖]
+    Admission --> Schedule[03 并行分类与排程]
+    Capacity[04 容量 / 排队 / 取消] --> Schedule
     Schedule --> Runner[Tool Runner]
-    Runner --> Outcome[05 Typed Outcome 與結果關聯]
-    Outcome --> Message[下一輪使用的 Tool Result]
+    Runner --> Outcome[05 Typed Outcome 与结果关联]
+    Outcome --> Message[下一轮使用的 Tool Result]
     Message --> Model
-    Admission --> Stop[拒絕或交還等待決策]
+    Admission --> Stop[拒绝或交还等待决策]
     Outcome --> Recovery[效果不明交付 Effects and Recovery]
-    Assemble --> Output[可見輸出與訊息狀態]
+    Assemble --> Output[可见输出与讯息状态]
 ```
 
 ### 与其他分类的分工

@@ -20,10 +20,10 @@ Runtime 接收 [Agent Harness](../agent-harness/README-zh-CN.md) 准备好的输
 
 ~~~text
 Harness 交付 Execution Request
-  → Runtime 驗證執行契約並建立 Run Identity
-  → Runtime 推進模型、工具、等待與恢復狀態
-  → Runtime 回報事件、證據與 Terminal Result
-  → Harness 將結果轉成產品互動
+  → Runtime 验证执行契约并建立 Run Identity
+  → Runtime 推进模型、工具、等待与恢复状态
+  → Runtime 回报事件、证据与 Terminal Result
+  → Harness 将结果转成产品互动
 ~~~
 
 这条流程描述责任，不代表所有实现都使用相同类别或同一套状态枚举。Imperative query loop、StateGraph 与远端 Agent Server 都可以承担 Runtime，判断依据是谁持有执行状态、合法转移、停止条件与恢复证据。

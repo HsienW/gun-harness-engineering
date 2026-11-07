@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Tool results and error feedback](./05-tool-results-and-error-feedback.md)
+[Back to guide](./README.md) · Previous: [Tool results and error feedback](./05-tool-results-and-error-feedback.md)
 
 > A user asks to read two sources and produce a summary file. The reads return separately before the model proposes a write. If the second read fails, result IDs are mismatched, or persistence fails after writing, the screen may still resemble an ordinary tool round trip while the backend needs different follow-up paths.
 
@@ -90,9 +90,8 @@ This discussion stops at results returning to the model and product. Terminal wr
 
 ![A model and tool round trip](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane-en.svg)
 
-The main path waits for both required reads before proposing a write. Failure, cancellation and ambiguous persistence take separate branches.
-
-[Open the editable HTML diagram](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane-en.html).
+- Numbers indicate reading order. The main path assumes required data, authorization, and successful persistence. Cancellation, failure, and ambiguous effects branch separately; this diagram is not an executed complete E2E run.
+- [Open the complete round-trip lanes and failure-branch notes](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane-en.html).
 
 ## Handoff table for the main path
 
@@ -148,11 +147,11 @@ Breaking a round trip into these handoffs reveals whether a failure belongs to m
 
 - [Chat Gun MCP Graph][g-mcp], [Pipeline][g-pipeline], [scheduler][g-scheduler], and [structured result][g-result].
 - CCB `src/query.ts`, `src/services/api/claude.ts`, `src/services/tools/toolOrchestration.ts`, and `src/services/tools/StreamingToolExecutor.ts`.
-- See the [section guide](./README-zh-TW.md#來源與查證狀態) for fixed sources, CCB copy fingerprints, and verification not performed. The scenario, IDs, and interleaving are illustrative.
+- See the [section guide](./README.md#sources-and-verification-status) for fixed sources, CCB copy fingerprints, and verification not performed. The scenario, IDs, and interleaving are illustrative.
 
 ## Further reading
 
-- [Model and Tool Execution guide](./README-zh-TW.md)
+- [Model and Tool Execution guide](./README.md)
 - [A complete Run walkthrough](../foundations/06-one-run-walkthrough.md)
 - Upcoming sections: Effects and Recovery, Events and Operations.
 

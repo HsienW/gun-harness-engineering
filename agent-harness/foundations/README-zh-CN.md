@@ -21,5 +21,5 @@
 
 * 文中的实现参照库，应分清已观察的程序路径、已接入入口的能力、仅有模组与设计提案；教学案例也不能当成正式环境的执行纪录。
 
-  * \[claude-code-best](https://github.com/claude-code-best/claude-code)
-  * \[chat-gun](https://github.com/HsienW/chat-gun)
+  * [claude-code-best](https://github.com/claude-code-best/claude-code)
+  * [chat-gun](https://github.com/HsienW/chat-gun)

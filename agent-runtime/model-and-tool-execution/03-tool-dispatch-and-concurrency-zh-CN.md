@@ -62,7 +62,7 @@ CCB 批次分类则先找工具、解析输入，再调用工具自己的 `isCon
 
 ~~~text
 safe A、safe B、unsafe C、safe D
-  → 批次 1：A 與 B
+  → 批次 1：A 与 B
   → 批次 2：C
   → 批次 3：D
 ~~~

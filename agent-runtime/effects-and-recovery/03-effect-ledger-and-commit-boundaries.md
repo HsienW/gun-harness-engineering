@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to the guide](./README-zh-TW.md) · Previous: [Idempotency and replay identity](./02-idempotency-and-replay-identity.md) · Next: [Effect reconciliation and retry decisions](./04-reconciliation-and-safe-retry.md)
+[Back to the guide](./README.md) · Previous: [Idempotency and replay identity](./02-idempotency-and-replay-identity.md) · Next: [Effect reconciliation and retry decisions](./04-reconciliation-and-safe-retry.md)
 
 > A tool returns success. Runtime saves its result reference, but the Ledger transaction fails. Another execution encounters the reverse: the Ledger is committed before the Task Step update fails. Both screens may show failure while external operations and local records stand at different points.
 
@@ -54,11 +54,11 @@ This order applies to the inspected runner contract. Tools without a Side-effect
 Assuming a tool's external operation succeeds, the runner's follow-up includes these persistence steps:
 
 ~~~text
-外部工具執行並返回結果
-  → Result Reference Store 保存結果參照
-  → Ledger 同一 transaction 提交 Tool Execution 與 Business Effect
-  → Pipeline 依 outcome 保存 Task Step
-  → 將結果封套交給 consumer
+The external tool executes and returns a result
+  → Result Reference Store saves the result reference
+  → Ledger commits Tool Execution and Business Effect in one transaction
+  → Pipeline saves the Task Step according to the outcome
+  → Deliver the result envelope to the consumer
 ~~~
 
 `commitExecutionAndBusinessEffect()` can place two Ledger records in one local transaction. This does not also place the external API, Result Reference persistence, Task Step update, and result delivery in that transaction.
@@ -131,7 +131,7 @@ At each `await`, I would ask where the next consumer could learn what happened i
 - Chat Gun: `runtime/side-effect/business-effect-ledger.ts`, `tool-execution-runner.ts`, `result-reference-store.ts`, `runtime/tool-dispatch/pipeline.ts`, and `runtime/persistence/migrations/006_create_business_effects.sql`, relative to `backend/src/`.
 - Chat Gun production composition: `backend/src/tools/registry.ts`, including source-specific flags and executor-factory conditions.
 - CCB: fallback / discard points in `src/query.ts` and `src/services/tools/StreamingToolExecutor.ts`.
-- [Sources and file fingerprints](./README-zh-TW.md#來源與查證狀態) preserve the inspection scope. Pool, descriptor, Pipeline flag, and external-adapter deployment must still be verified per entry point.
+- [Sources and file fingerprints](./README.md#sources-and-verification-status) preserve the inspection scope. Pool, descriptor, Pipeline flag, and external-adapter deployment must still be verified per entry point.
 
 ## Further reading
 

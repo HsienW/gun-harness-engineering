@@ -6,7 +6,7 @@
 > CCB is short for [claude-code-best](https://github.com/claude-code-best/claude-code).
 > Chat Gun refers to [chat-gun](https://github.com/HsienW/chat-gun).
 
-[Back to guide](./README-zh-TW.md) · Previous: [Execution limits and cancellation](./03-deadlines-budgets-and-cancellation.md) · Next: [Terminal decisions and cleanup](./05-terminal-results-and-finalization.md)
+[Back to guide](./README.md) · Previous: [Execution limits and cancellation](./03-deadlines-budgets-and-cancellation.md) · Next: [Terminal decisions and cleanup](./05-terminal-results-and-finalization.md)
 
 > A user approves an operation on a phone, and a browser retry sends the same response again. The first request has marked the wait consumed but crashes before redispatch. The second request is rejected because it was "already consumed," leaving the task stuck.
 
@@ -34,11 +34,11 @@ After deciding to pause, the Runtime should retain the required Manifest and rec
 The conceptual order is:
 
 ~~~text
-建立指定等待與回覆契約
-  → 保存必要 Manifest／恢復位置
-  → 確認等待已可恢復
-  → 通知 Harness 顯示
-  → 接受對到該等待的 Resume
+Establish the specified wait and reply contract
+  → Save the required Manifest/recovery position
+  → Confirm the wait is recoverable
+  → Notify the Harness for display
+  → Accept Resume matching that wait
 ~~~
 
 This order does not specify a cross-Store transaction. If the Manifest and Graph Checkpoint are saved separately, the design needs to handle the window where only one succeeds. For storage and deployment, see [persistence in Foundations](../foundations/04-persistence-interrupt-and-resume.md).
@@ -161,7 +161,7 @@ I would inspect the first await after consume. If it creates a new owner, saves 
 - [Chat Gun clarification authorizer][g-resume]: correlation, status, expiry, compatibility, Schema, and consume handoff.
 - [Chat Gun interaction consumer][g-runtime]: `resume_same_task`, supersede, and events before dispatch.
 - CCB Permission is used only to compare different Runtime forms; this article does not claim a shared durable waiting interface.
-- See the [section guide](./README-zh-TW.md#正文來源與適用範圍) for source versions and verification scope.
+- See the [section guide](./README.md#article-sources-and-scope) for source versions and verification scope.
 
 ## Further reading
 

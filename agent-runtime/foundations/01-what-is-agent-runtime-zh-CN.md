@@ -22,12 +22,12 @@
 把 Agent Product 拆成几个责任层后，Runtime 位于 Harness 之后，模型、工具与外部系统之前：
 
 ~~~text
-產品入口
-  → Harness：準備輸入、Context、能力、政策與執行限制
-  → Runtime：推進 Run、模型、工具、等待、取消與恢復
+产品入口
+  → Harness：准备输入、Context、能力、政策与执行限制
+  → Runtime：推进 Run、模型、工具、等待、取消与恢复
   → Model Provider／Tool Adapter／External System
-  → Runtime：整理結果、事件與證據
-  → Harness：轉成使用者可見的互動
+  → Runtime：整理结果、事件与证据
+  → Harness：转成使用者可见的互动
 ~~~
 
 这条路径会往返：

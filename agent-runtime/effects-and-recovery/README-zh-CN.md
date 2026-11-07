@@ -1,8 +1,8 @@
 # Effects and Recovery
 
-[繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
-[回到 Runtime 总览](../README-zh-TW.md) · [Foundations 导览](../foundations/README-zh-CN.md) · [Model and Tool Execution](../model-and-tool-execution/README-zh-TW.md)
+[回到 Runtime 总览](../README-zh-CN.md) · [Foundations 导览](../foundations/README-zh-CN.md) · [Model and Tool Execution](../model-and-tool-execution/README-zh-CN.md)
 
 > 以下内容所提到的
 > CCB 为 [claude-code-best](https://github.com/claude-code-best/claude-code) 的简称。
@@ -29,17 +29,17 @@
 
 ```mermaid
 flowchart TD
-    Load[01 讀取 Checkpoint / Manifest / 持久證據] --> Valid[核對版本、訊息與執行位置]
-    Valid --> Identity[02 核對請求、重放與業務效果身分]
-    Identity --> Ledger[03 讀取 Ledger 與結果參照]
+    Load[01 读取 Checkpoint / Manifest / 持久证据] --> Valid[核对版本、讯息与执行位置]
+    Valid --> Identity[02 核对请求、重放与业务效果身分]
+    Identity --> Ledger[03 读取 Ledger 与结果参照]
     Ledger --> Evidence[04 回查外部效果]
-    Evidence --> Reuse[已提交且結果可用：重用結果]
-    Evidence --> Retry[證明未提交且允許重試：重新檢查後派送]
-    Evidence --> Park[證據不足：等待或人工介入]
-    Reuse --> Continue[續行前核對目前 Run 與治理條件]
-    Partial[部分業務操作已完成，且符合補償條件] --> Compensate[05 執行已登記的補償動作]
-    Compensate --> Record[保存補償結果與未解項目]
-    Case[06 故障案例] -. 逐段驗證 .-> Evidence
+    Evidence --> Reuse[已提交且结果可用：重用结果]
+    Evidence --> Retry[证明未提交且允许重试：重新检查後派送]
+    Evidence --> Park[证据不足：等待或人工介入]
+    Reuse --> Continue[续行前核对目前 Run 与治理条件]
+    Partial[部分业务操作已完成，且符合补偿条件] --> Compensate[05 执行已登记的补偿动作]
+    Compensate --> Record[保存补偿结果与未解项目]
+    Case[06 故障案例] -. 逐段验证 .-> Evidence
 ```
 
 ### 与其他分类的分工
