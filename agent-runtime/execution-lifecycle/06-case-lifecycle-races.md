@@ -180,7 +180,7 @@ I would inspect both authoritative Stores and actual dispatch counts. A correct 
 
 - [Chat Gun ownership][g-owner], [QueryGuard][g-guard], and their test arrangements.
 - Consumers and wrappers in the [Clarification Resume authorizer][g-resume] and [interaction runtime][g-runtime].
-- The process-local comparison in CCB `src/utils/QueryGuard.ts`; see the [section guide](./README.md#article-sources-and-scope) for the source copy and inspection scope.
+- The process-local comparison in CCB `src/utils/QueryGuard.ts`; see the [section guide](./README.md#sources-and-scope) for the source copy and inspection scope.
 
 ## Further reading
 

@@ -173,7 +173,6 @@ Runtime 承接问题的类型：
 - claude-code-best：src/utils/processUserInput/processUserInput.ts
 - claude-code-best：ARCHITECTURE.md
 
-
 ### Chat Gun 的使用方式
 
 - Chat Gun 在本篇只用于检查这套定义能否延伸到 C 端任务 Agent

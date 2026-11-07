@@ -6,7 +6,7 @@
 
 用户说「不是这个城市」，能让目前任务修正方向；要判断下个版本是否减少同类错误，还需要重现条件、预期结果与固定的比较材料。一段不满意的评语，不会自行变成可验证的回归案例。
 
-本篇依[固定版本与证据范围](./README-zh-CN.md#来源与查证状态)，追踪 Chat Gun 的 feedback helper、workflow CLI 与 Opik experiment 接点。本轮没有执行模型、评分、数据集上传或正式实验。
+本篇依[固定版本与证据范围](./README-zh-CN.md#来源与查证状态)，追踪 Chat Gun 的 feedback helper、workflow CLI 与 Opik experiment 接点。未执行模型、评分、数据集上传或正式实验。
 
 ## 1. 四种材料各有用途
 
@@ -44,7 +44,7 @@ Policy 禁止 token、secret、credential、password、authorization、cookie、
 
 同一版本名称下新增内容，仍需要产品自己的版本治理。若要保证跨实验材料完全相同，应保存内容摘要或不可变快照；不能只依赖版本字符串一致。
 
-[Feedback 测试][g-feedback-test] 使用固定 bad trace，核对 input 只保留指定字段、原敏感文字未出现在案例中，以及版本不符时拒绝。这些断言有明确测试数据范围，本轮没有执行，也不能泛化成任意真实数据皆安全。
+[Feedback 测试][g-feedback-test] 使用固定 bad trace，核对 input 只保留指定栏位、原敏感文字未出现在案例中，以及版本不符时拒绝。这些断言有明确测试数据范围，未执行，也不能泛化成任意真实数据皆安全。
 
 ## 4. Workflow CLI 做到哪里
 
@@ -82,7 +82,7 @@ Timeout 使用 `Promise.race()`，并向 runner 传递 abort。这会停止本�
 
 Runner 将 item 结果、metric、trace ID 与设置写入本地 JSON，并记录 hosted publication 状态。远端发布失败时可以保留本地产物，不能把 local experiment ID 当成已存在的 hosted experiment ID。
 
-[Experiment 测试][g-experiment-test] 有版本不符、timeout、failed、skipped、judge 设置不符与 hosted 失败的案例。它们使用可注入依赖，不能拿测试存在代替本轮真的完成一次远端实验。
+[Experiment 测试][g-experiment-test] 有版本不符、timeout、failed、skipped、judge 配置不符与 hosted 失败的案例。它们使用可注入依赖，不能拿测试存在代替所列版本真的完成一次远端实验。
 
 ![评估 runner、timeout、成本、metrics 与 hosted 发布的范围](../../assets/agent-harness/interaction-and-feedback/05-feedback-and-evaluation/05-evaluation-control-scope-en.svg)
 
@@ -123,7 +123,7 @@ Temperature 0 也不使模型评分变成 deterministic。Judge 分数不能替�
 
 对话反馈可以促成修改，但修改后要重新取得相同情境的控制与结果证据。若问题是旧事件覆盖新状态，应检查 reducer、消息关联与终止回调；增加一段更强的 Prompt，未必会改变这些程序路径。
 
-下一篇用一个厘清与晚到输出的情境，将前五篇的条件放回同一条阅读路径，再分清源代码、测试安排与真正尚待执行的部分。
+下一篇用一个厘清与晚到输出的情境，将前文的条件放回同一条阅读路径，再分清源代码、测试安排与真正尚待执行的部分。
 
 [g-feedback]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/operations/feedback-loop.ts
 [g-feedback-test]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/operations/feedback-loop.test.ts

@@ -6,7 +6,7 @@
 
 用户说「同意」时，系统仍要知道他同意的是哪一次工具调用。若等待期间换了 Run、操作人或资源，不能把同一句回答任意套到新的工作。人工确认要交付可检查的批准数据，才能交回执行器。
 
-本篇依[固定版本与证据范围](./README-zh-CN.md#来源与查证状态)，追踪 Chat Gun 的确认 Store 与 Graph，并对照第三方 CCB 的互动 Permission。已读测试只作案例证据，本轮未重新执行。
+本篇依[固定版本与证据范围](./README-zh-CN.md#来源与查证状态)，追踪 Chat Gun 的确认 Store 与 Graph，并对照第三方 CCB 的互动 Permission。已读测试只作案例证据，未重新执行。
 
 ## 1. 哪些调用需要确认
 
@@ -69,7 +69,7 @@
 
 ### 绑定不等于检查所有变更
 
-Store 会核对所存的 resource 与 policy version，但本轮所读 descriptor 没有完整工具参数杂凑，Store 也没有在消费时自行查询「目前最新政策」的全套逻辑。
+Store 会核对所存的 resource 与 policy version，但所列版本的 descriptor 没有完整工具参数杂凑，Store 也没有在消费时自行查询「目前最新政策」的全套逻辑。
 
 应分开陈述：
 
@@ -100,7 +100,7 @@ CCB 的 [`useCanUseTool()`][ccb-can-use] 消费 `allow`、`deny`、`ask` 等 Per
 
 [确认 Graph 测试][graph-test] 则用 `MemorySaver`、mock Store 与测试工具，断言中断前没有执行、同一 thread 恢复后执行一次，以及 pending 保存失败时不增加调用。
 
-若要宣称批准能跨进程或部署恢复，还需补上实际 checkpointer、数据库、manifest 版本及故障窗口的证据。第六篇会沿这份测试案例展开；下一篇先处理批准之后仍要成立的派送与隔离条件。
+若要宣称批准能跨程序或部署恢复，还需补上实际 checkpointer、数据库、manifest 版本及故障窗口的证据。下一篇先处理批准之后仍要成立的派送与隔离条件。
 
 [governance]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/platform/tool-governance.ts
 [confirmation]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/authorization/confirmation.ts

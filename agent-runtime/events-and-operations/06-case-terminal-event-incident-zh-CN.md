@@ -124,7 +124,7 @@ Endpoint 查不到数据或 terminalResult 为 null 时，应核对 Fact Store �
 | Incident index 无数据 | Fact Store、填入／重建接线及原始状态。 | 不将空投影当成无执行。 |
 | 旧 Run 晚到 | Run、generation、当前 owner。 | 不让旧结果接管新工作。 |
 
-本轮查读了各层接点，未执行跨数据库、真实传输、Frontend、Collector 与 CI 的完整 E2E。案例中持久补送及投影修复属明列的设计责任。
+源代码查读了各层接点，未执行跨数据库、真实传输、Frontend、Collector 与 CI 的完整 E2E。案例中持久补送及投影修复属明列的设计责任。
 
 ## 本篇的工程判断
 
@@ -138,4 +138,4 @@ Endpoint 查不到数据或 terminalResult 为 null 时，应核对 Fact Store �
 
 ## 接续阅读
 
-回到[Events and Operations 导览](./README-zh-CN.md)核对各篇与图解候选，或参照[一次提交不明的恢复](../effects-and-recovery/06-case-ambiguous-commit-recovery-zh-CN.md)，分辨交付缺口与外部效果未知的不同后续。
+回到[Events and Operations 导览](./README-zh-CN.md)核对事件契约与交付条件，或参照[一次提交不明的恢复](../effects-and-recovery/06-case-ambiguous-commit-recovery-zh-CN.md)，分辨交付缺口与外部效果未知的不同后续。

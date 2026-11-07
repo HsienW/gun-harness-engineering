@@ -41,7 +41,7 @@ MCP Agent 的 `callModel()` 先組裝 Context，再呼叫 `createChatModel()`，
 
 這份 Gateway 介面交付完成的模型訊息，沒有在同一契約中宣告逐 Token 的串流方法。Graph event stream、BFF 傳輸與畫面更新仍可能存在，需沿各自 consumer 查證。
 
-正文不從 UI 持續顯示內容，推論這個 invoke 已具備部分 Tool Call 的增量交付。串流區塊的另一種實作見[下一篇](./02-stream-assembly-and-tool-calls-zh-TW.md)。
+UI 持續顯示內容不足以證明這個 invoke 已具備部分 Tool Call 的增量交付。串流區塊的另一種實作見[下一篇](./02-stream-assembly-and-tool-calls-zh-TW.md)。
 
 ## Fallback 在哪裡啟用
 
@@ -121,7 +121,7 @@ Query 在相關 fallback 分支會清理 assistant messages、tool results 或 t
 
 ## 本篇的工程判斷
 
-我會先找正式入口使用哪個 Gateway 方法，再看錯誤白名單與 signal 如何傳入。介面存在、測試存在與部署啟用各自提供不同證據，文章需要把它們對回同一次呼叫。
+我會先找正式入口使用哪個 Gateway 方法，再看錯誤白名單與 signal 如何傳入。介面存在、測試存在與部署啟用各自提供不同證據，這些證據必須對回同一次呼叫。
 
 Fallback 的可恢復範圍取決於目前已產生的資料與執行。只有模型嘗試失敗，和工具已經造成外部效果，應留下不同的後續責任。
 

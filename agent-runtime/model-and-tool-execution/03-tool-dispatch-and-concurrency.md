@@ -10,7 +10,7 @@
 
 > A model proposes two reads and one write together. The code sends reads to a concurrent queue and the write to a serial queue, assuming the write will wait for every read. The queues actually share no barrier, so the write may encounter data that is not ready.
 
-**Tool scheduling needs to establish both whether a proposal may execute and who maintains dependencies between operations.** Concurrency classification, serialization, capacity limits, and resource locks each constrain a particular scope. Documentation should state what they actually check.
+**Tool scheduling needs to establish both whether a proposal may execute and who maintains dependencies between operations.** Concurrency classification, serialization, capacity limits, and resource locks each constrain a particular scope. Their actual checks define their scope.
 
 ## From complete proposal to runner
 

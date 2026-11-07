@@ -48,7 +48,7 @@ return "defer";
 - 查詢來自延遲索引時，保留 unknown 或等待條件，避免直接轉成 not_committed。
 - 查不到 Operation ID 時，確認是否仍有其他可信業務關聯；沒有就保留證據缺口。
 
-這些是外部 adapter 的契約要求，本輪沒有驗證任何真實服務已滿足它們。
+這些是外部 adapter 的契約要求，未驗證任何真實服務已滿足它們。
 
 ## Runner 內部的回查路徑
 
@@ -92,7 +92,7 @@ Kernel `checkBudget()` 檢查取消、attempt 上限與 elapsed 限制。Backoff
 
 ## Production descriptor 的實際限制
 
-本輪續讀 `production-runtime-tool-descriptors.ts`。其中提供 Side-effect Descriptor 的查讀分支，Reconciler 直接回傳 unknown，沒有實作查詢外部 Operation 後確認提交狀態的流程。
+所列版本續讀 `production-runtime-tool-descriptors.ts`。其中提供 Side-effect Descriptor 的查讀分支，Reconciler 直接回傳 unknown，沒有實作查詢外部 Operation 後確認提交狀態的流程。
 
 這個保守出口能保留不確定性；它也表示通用 runner 的「回查已提交後重用」及「證明未提交後重試」能力，仍需由具體工具提供足夠證據。介面、預設物件與測試用 Reconciler，各自具有不同適用範圍。
 
@@ -120,7 +120,7 @@ Runner 測試用替身分別回傳 not_committed 與 committed。前者檢查 At
 - 讓 Reconciler 缺失、拋錯或一直 unknown，核對接手責任與人工處理原因。
 - 從實際恢復入口追到下一次物理 Attempt，確認中間沒有繞過 claim 或治理條件。
 
-本輪只查讀來源及測試安排，未執行外部一致性測試、取消注入或跨程序重試。
+僅查讀來源及測試安排，未執行外部一致性測試、取消注入或跨程序重試。
 
 ## 本篇的工程判斷
 
@@ -131,7 +131,6 @@ Runner 測試用替身分別回傳 not_committed 與 committed。前者檢查 At
 - Chat Gun：`runtime/side-effect/reconciler.ts`、`side-effect-descriptor.ts`、`tool-execution-runner.ts`、`runtime/recovery/conversation-recovery.ts`、`last-execution-point.ts` 與 `tools/production-runtime-tool-descriptors.ts`，路徑相對 `backend/src/`。
 - Chat Gun Worker 接手：`backend/src/operations/recovery/worker-recovery.ts`、`reaper.ts`；預期重試行為另對照 `backend/src/runtime/side-effect/tool-execution-runner.test.ts` 的 assertion。
 - Kernel：`@gun-ai/harness-kernel/src/retry.ts` 的分類、budget 與 backoff。
-- [來源與檔案指紋](./README-zh-TW.md#來源與查證狀態)保留實作版本及未驗證範圍。
 
 ## 接續閱讀
 

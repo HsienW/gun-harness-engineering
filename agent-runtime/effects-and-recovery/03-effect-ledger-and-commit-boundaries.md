@@ -131,7 +131,7 @@ At each `await`, I would ask where the next consumer could learn what happened i
 - Chat Gun: `runtime/side-effect/business-effect-ledger.ts`, `tool-execution-runner.ts`, `result-reference-store.ts`, `runtime/tool-dispatch/pipeline.ts`, and `runtime/persistence/migrations/006_create_business_effects.sql`, relative to `backend/src/`.
 - Chat Gun production composition: `backend/src/tools/registry.ts`, including source-specific flags and executor-factory conditions.
 - CCB: fallback / discard points in `src/query.ts` and `src/services/tools/StreamingToolExecutor.ts`.
-- [Sources and file fingerprints](./README.md#sources-and-verification-status) preserve the inspection scope. Pool, descriptor, Pipeline flag, and external-adapter deployment must still be verified per entry point.
+- Pool, descriptor, Pipeline flag, and external-adapter deployment must still be verified per entry point.
 
 ## Further reading
 

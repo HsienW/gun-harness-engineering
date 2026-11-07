@@ -12,7 +12,7 @@
 
 本篇追踪能力如何进入任务，并指出加载完成与可执行之间还有哪些条件。
 
-实现依 查读的 Chat Gun 与 CCB 固定版本撰写，详见[来源与证据范围](./README-zh-CN.md#来源与证据范围)。本轮采源代码查读，未启动外部 MCP 或执行整合测试。
+实现依 查读的 Chat Gun 与 CCB 固定版本撰写，详见[来源与证据范围](./README-zh-CN.md#来源与证据范围)。此处采源代码查读，未启动外部 MCP 或执行整合测试。
 
 ## 1. 不同能力交付不同产物
 
@@ -104,7 +104,7 @@ Subagent 需要重新解析能力范围。CCB 的 [`resolveAgentTools()`][ccb-ag
 
 这个结果仍须由 caller 使用；单看解析函数，不能宣称所有子任务都会以相同方式拒绝不合法设置。
 
-本轮未在 Chat Gun 所查读的 Agent／Registry 路径确认与上述各 loader 对等的通用组装。正文因而以 CCB 解释这些能力的实现形式，再以 Chat Gun 的 Tool 与 MCP 路径做具体对照。
+未在 Chat Gun 所查读的 Agent／Registry 路径确认与上述各 loader 对等的通用组装。CCB 提供这些能力的实现对照；Chat Gun 则以 Tool 与 MCP 路径呈现具体接点。
 
 ## 5. Chat Gun 从本地工具走到最终清单
 
@@ -173,7 +173,7 @@ MCP loader 会核对曝光名称，并建立默认拒绝未注册工具的风险
 
 产品若把某项能力视为必要条件，应在选用加载退回后再检查它是否存在，并向用户说明任务能完成到哪里。这是本文的设计建议；目前的「继续使用本地工具」记录，不能自行证明接口已向用户呈现降级状态。
 
-能力组装完成后，接下来还要问：这份集合属于谁、适用到何时，以及由模型还是程序决定下一步。这些选择留到[下一篇](./03-capability-selection-zh-CN.md)。
+能力组装完成后，接下来还要问：这份集合属於谁、适用到何时，以及由模型还是代码决定下一步。这些选择留到[下一篇](./03-capability-selection-zh-CN.md)。
 
 [ccb-tool]: https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/Tool.ts
 [ccb-tools]: https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/tools.ts

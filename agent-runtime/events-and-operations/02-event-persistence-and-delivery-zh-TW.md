@@ -98,7 +98,7 @@ CCB 的 transcript 可用來對照保存與載入的用途；它的訊息鏈也�
 
 若產品要求中斷後可接續，至少要說明從哪份持久紀錄補取、如何辨認最後確認位置、如何保留 event ID，以及版本、順序缺口與已終止狀態如何處理。
 
-Outbox 可以是其中一種設計：將事件交付責任與狀態提交建立可恢復關聯，再由獨立 dispatcher 投遞。但本輪沒有查得一條涵蓋所有入口的完整 Outbox 流程，因此將它保留為設計選項，不能寫成現成保證。
+Outbox 可以是其中一種設計：將事件交付責任與狀態提交建立可恢復關聯，再由獨立 dispatcher 投遞。但未查得一條涵蓋所有入口的完整 Outbox 流程，因此將它保留為設計選項，不能寫成現成保證。
 
 補送既有結果也需核對可信 scope 與目標 Run。晚到事件能補證據，不能自動讓 superseded 或 Terminal 的舊執行重新取得控制權。
 
@@ -110,7 +110,7 @@ Outbox 可以是其中一種設計：將事件交付責任與狀態提交建立�
 - 重建前端 buffer，再補送舊事件，驗證投影與去重責任。
 - 中斷後查回 Terminal 與原結果，確認修復交付沒有重做外部操作。
 
-本輪查讀 emit、repository、migration 與 Frontend 接點，未執行資料庫、真實斷線或 E2E 重連測試。
+原始碼查讀 emit、repository、migration 與 Frontend 接點，未執行資料庫、真實斷線或 E2E 重連測試。
 
 ## 本篇的工程判斷
 
@@ -120,7 +120,7 @@ Outbox 可以是其中一種設計：將事件交付責任與狀態提交建立�
 
 - Backend：`runtime/emit-envelope.ts`、`runtime/persistence/event-repository.ts`、`runtime/persistence/migrations/003_create_task_events.sql`，路徑相對 `backend/src/`。
 - Frontend：`frontend/src/App.tsx`、`lib/runtime-event-envelope.ts` 與 `components/AgentTaskTimeline/useTaskEvents.ts`，後兩項相對 `frontend/src/`。
-- [來源與檔案指紋](./README-zh-TW.md#來源與查證狀態)保留本輪查讀範圍；正式部署的傳輸與補送仍需沿入口驗證。
+- [來源與檔案指紋](./README-zh-TW.md#來源與查證狀態)保留適用範圍；正式部署的傳輸與補送仍需沿入口驗證。
 
 ## 接續閱讀
 

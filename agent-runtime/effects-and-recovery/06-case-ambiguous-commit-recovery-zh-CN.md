@@ -131,12 +131,12 @@ Runner 尚在同一执行期间的回查分支，可以在取得 committed 结�
 
 ## 两个来源各自提供的观察
 
-| 来源 | 可用于本案例的观察 | 本轮没有证明的能力 |
+| 来源 | 可用於本案例的观察 | 未证明的能力 |
 |---|---|---|
 | Chat Gun | Claim、Attempt、Ledger、结果参照、回查决策、指定 Resume 与补偿模块。 | 真实外部查询器、通用崩溃接手及全部署自动恢复。 |
 | CCB | Session transcript、恢复数据组装、Tool Call 配对及旧 executor 结果清理。 | 对所有工具共用的持久业务效果 Ledger 与补偿交易。 |
 
-本案例是一份教学责任流程，本轮没有执行跨 Provider、Store、外部工具与治理入口的正式 E2E。所需的外部查询器、恢复接手与补偿 Action，都应在实际产品逐项验证。
+本案例是一份教学责任流程，未执行跨 Provider、Store、外部工具与治理入口的正式 E2E。所需的外部查询器、恢复接手与补偿 Action，都应在实际产品逐项验证。
 
 ## 本篇的工程判断
 
@@ -144,10 +144,9 @@ Runner 尚在同一执行期间的回查分支，可以在取得 committed 结�
 
 ## 实现参照与适用范围
 
-- Chat Gun：前五篇引用的 runner、Ledger、Recovery、Result Reference、production descriptor 与 Saga 模块。
+- Chat Gun：前文引用的 runner、Ledger、Recovery、Result Reference、production descriptor 与 Saga 模块。
 - Chat Gun 接手条件：`backend/src/operations/recovery/reaper.ts` 的 generation 更新；不将 decision 名称视为实际工具重新派送。
 - CCB：`src/QueryEngine.ts`、`src/utils/sessionStorage.ts`、`src/utils/sessionRestore.ts` 与 `src/services/tools/StreamingToolExecutor.ts`。
-- [来源与文件指纹](./README-zh-CN.md#来源与查证状态)记录本地查读范围及教学前提。
 
 ## 接续阅读
 

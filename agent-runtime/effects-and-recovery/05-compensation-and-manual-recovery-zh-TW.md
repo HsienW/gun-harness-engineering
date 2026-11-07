@@ -72,7 +72,7 @@ Action 返回 failed 或直接拋錯時，Orchestrator 保存 failure entry，�
 
 另一個窗口是更新人工處理狀態本身失敗。程式會嘗試 Audit 紀錄，Audit 再失敗時有後續診斷；這些努力仍沒有提供外部補償是否提交的答案。
 
-補償需要保留自己的 Operation 身分、可重用結果及回查方式，尤其當 Action 已開始後遇到 timeout。這些是具體 Action 的設計與驗證要求，本輪沒有查得一套涵蓋所有 Action 的外部冪等實作。
+補償需要保留自己的 Operation 身分、可重用結果及回查方式，尤其當 Action 已開始後遇到 timeout。這些是具體 Action 的設計與驗證要求，未查得一套涵蓋所有 Action 的外部冪等實作。
 
 ![原效果已提交後執行獨立補償，動作成功但保存結果仍可能不確定](../../assets/agent-runtime/effects-and-recovery/05-compensation-and-manual-recovery/05-compensation-and-persistence-uncertainty.svg)
 
@@ -118,7 +118,7 @@ CCB 的檔案歷史與 Session 恢復可提供另一種資料復原視角，但�
 - 交錯兩個 Worker 的補償請求，檢查 Action 是否重複執行及如何接手。
 - 讓 Step、Task、Audit 或事件保存分別失敗，核對未完成項目仍有可查證依據。
 
-本輪查讀 Orchestrator、Action、Registry 及測試安排，未執行真實補償、跨 Worker 競態或儲存故障注入。
+原始碼查讀 Orchestrator、Action、Registry 及測試安排，未執行真實補償、跨 Worker 競態或儲存故障注入。
 
 ## 本篇的工程判斷
 
@@ -128,7 +128,7 @@ CCB 的檔案歷史與 Session 恢復可提供另一種資料復原視角，但�
 
 - Chat Gun：`runtime/compensation/saga-orchestrator.ts`、`compensation-action.ts`、`compensation-registry.ts`、`runtime/side-effect/business-effect-ledger.ts` 與 `runtime/tool-dispatch/pipeline.ts`，路徑相對 `backend/src/`。
 - CCB：`src/utils/fileHistory.ts` 的 rewind、逐檔套用及錯誤處理。
-- [來源與檔案指紋](./README-zh-TW.md#來源與查證狀態)保留本地實作範圍；補償登記、授權及外部重送契約需由具體 Action 提供。
+- 補償登記、授權及外部重送契約需由具體 Action 提供。
 
 ## 接續閱讀
 

@@ -13,7 +13,6 @@
   - 哪次行動需要批准
   - 使用者能否中途改變任務或改變意圖
 
-
 ## 控制層怎麼定義
 
 Control Surface（控制層）：
@@ -95,7 +94,7 @@ Chat Gun 的 Agent Context Assembler 已接到 Chatbot，並可由各 Agent 的 
 
 ### 失敗邊界
 
-Context 組裝失敗時，要區分: 
+Context 組裝失敗時，要區分:
 - Hard Limit、Memory Unavailable、Compression Failure 與來源內容異常。
 - 超過總硬上限不應照常呼叫模型；Memory 查詢失敗則可依產品政策降級，前提是不能悄悄改變安全規則或 Current Task。
 

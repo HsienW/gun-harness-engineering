@@ -108,7 +108,7 @@ Reaper 的卡住 Run 判断也需要实际 Run projection，不能从一次 heal
 - 分别切断 Redis、Postgres、Checkpoint 与 recovery probe，确认各健康层的条件。
 - 开启 draining 或 read-only 标记，沿真正接纳及派送入口验证行为。
 
-本轮查读收集、输出、health projection 与 HTTP 接点，未执行真实依赖探测、负载测试或成本对账。
+源代码查读收集、输出、health projection 与 HTTP 接点，未执行真实依赖探测、负载测试或成本对帐。
 
 ## 本篇的工程判断
 

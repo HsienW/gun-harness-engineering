@@ -138,7 +138,7 @@ I would first inspect reservations around await points and the window where owne
 
 - Chat Gun: `beforeRun()`, rejection, and cleanup paths in `backend/src/platform/interaction-runtime.ts`; reservation in `backend/src/runtime/input/query-guard.ts`; claim in `backend/src/runtime/interaction/ownership.ts`.
 - CCB: entry coordination in `src/utils/QueryGuard.ts` and `src/utils/handlePromptSubmit.ts`.
-- [Chat Gun QueryGuard source][g-guard] and [interaction consumer][g-runtime]; see [sources and scope](./README.md#article-sources-and-scope) for this section's version and CCB copy fingerprints.
+- [Chat Gun QueryGuard source][g-guard] and [interaction consumer][g-runtime]; see [sources and scope](./README.md#sources-and-scope) for this section's version and CCB copy fingerprints.
 
 The admission result type and cross-Store failure table are conceptual designs. Source observations apply to the versions listed for this section. Provider, database race, and end-to-end verification were not performed.
 

@@ -155,7 +155,7 @@ I would follow the error branch through its final await, then check which result
 - [Chat Gun interaction wrapper and afterRun][g-runtime]: invoke, stream, failed flag, and cleanup order.
 - [Chat Gun ownership][g-owner]: terminal fields and conditional updates.
 - CCB `src/query.ts`: query generator, command lifecycle, and return reasons; `src/utils/QueryGuard.ts`: conditional ending.
-- See the [section guide](./README.md#article-sources-and-scope) for versions and inspection scope.
+- See the [section guide](./README.md#sources-and-scope) for versions and inspection scope.
 
 ## Further reading
 

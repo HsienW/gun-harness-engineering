@@ -26,7 +26,7 @@
 
 ## Chat Gun 的鍵如何組成
 
-本輪補查安裝的 `@gun-ai/harness-kernel`，版本為 `0.1.0-alpha.1`。`identity.ts` 提供雜湊與 UUID dependencies，kernel 保存組成規則；查讀 `src/side-effect.ts` 與套件 export 使用的 `dist/side-effect.js`，可確認以下欄位。
+所列版本補查安裝的 `@gun-ai/harness-kernel`，版本為 `0.1.0-alpha.1`。`identity.ts` 提供雜湊與 UUID dependencies，kernel 保存組成規則；查讀 `src/side-effect.ts` 與套件 export 使用的 `dist/side-effect.js`，可確認以下欄位。
 
 Replay Key 的輸入順序為：
 
@@ -97,7 +97,7 @@ Ledger committed 讓 Runtime 知道已有提交紀錄，模型需要的內容則
 
 ## CCB 的 ID 對照
 
-CCB 的 tool-use／tool-result ID 支援訊息配對，StreamingToolExecutor 也以工具關聯收集結果。它們適合辨認結果屬於哪份提案；本輪沒有從這些 ID 找到與 Chat Gun 相同的跨 Run 業務效果唯一約束。
+CCB 的 tool-use／tool-result ID 支援訊息配對，StreamingToolExecutor 也以工具關聯收集結果。它們適合辨認結果屬於哪份提案；未從這些 ID 找到與 Chat Gun 相同的跨 Run 業務效果唯一約束。
 
 若要替 CCB 中某個工具建立外部冪等，仍需查該工具的 adapter、外部 API 與持久紀錄。Transcript 中出現一次成功訊息，只是可用證據的一部分。
 
@@ -109,7 +109,7 @@ CCB 的 tool-use／tool-result ID 支援訊息配對，StreamingToolExecutor 也
 - 在 TTL 回收後交錯新舊持有者的完成更新，核對 owner 與外部效果紀錄。
 - 對外部冪等鍵測試保存期限及同鍵不同參數的服務端行為。
 
-本輪讀取識別、Guard、Ledger 與 Result Reference 實作，未執行外部 API 或多 Worker 重送測試。
+所列版本讀取識別、Guard、Ledger 與 Result Reference 實作，未執行外部 API 或多 Worker 重送測試。
 
 ## 本篇的工程判斷
 
@@ -120,7 +120,7 @@ CCB 的 tool-use／tool-result ID 支援訊息配對，StreamingToolExecutor 也
 - Chat Gun：`runtime/side-effect/identity.ts`、`tool-execution-runner.ts`、`business-effect-ledger.ts`、`result-reference-store.ts` 與 `runtime/idempotency/idempotency-guard.ts`，路徑相對 `backend/src/`。
 - Chat Gun production MCP：`backend/src/tools/production-runtime-tool-descriptors.ts` 的 canonical input 與業務鍵；`backend/src/runtime/tool-dispatch/pipeline.ts` 的 identity 建立。
 - Kernel：`@gun-ai/harness-kernel` 的 `src/side-effect.ts`、`dist/side-effect.js` 與 `src/idempotency.ts`。
-- [來源與檔案指紋](./README-zh-TW.md#來源與查證狀態)記錄套件及本地檔案；本文沒有建立對所有外部服務通用的 exactly-once 保證。
+- 本文沒有建立對所有外部服務通用的 exactly-once 保證。
 
 ## 接續閱讀
 

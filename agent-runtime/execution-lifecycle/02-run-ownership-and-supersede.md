@@ -145,7 +145,7 @@ I would inspect the conditions for claim, supersede, terminal, and release indiv
 - [Chat Gun ownership repository][g-owner]: claim, transactional supersede, and conditional terminal updates.
 - [Chat Gun QueryGuard][g-guard]: local reservation, adopt, and runId/generation release.
 - CCB `src/utils/QueryGuard.ts`: `reserve()`, `tryStart()`, `end()`, and `forceEnd()`.
-- See the [section guide](./README.md#article-sources-and-scope) for source versions, CCB copy fingerprints, and test limitations.
+- See the [section guide](./README.md#sources-and-scope) for source versions, CCB copy fingerprints, and test limitations.
 
 ## Further reading
 

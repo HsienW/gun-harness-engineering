@@ -10,9 +10,9 @@
 
 > Run A 還在串流，使用者要求改成另一種報告格式。Run B 已接手，A 的錯誤與 finalizer 才抵達；此時瀏覽器又重送了一份舊釐清回答。畫面可能只有一次更新，後端卻需要分別判斷三種不同的動作。
 
-本篇用交錯時序把前五篇串起來。主線選擇舊工作尚未留下外部寫入效果、政策允許替換的情境；需要回查、恢復或補償的情況另外分支，避免把它們當成同一路徑必經的步驟。
+本篇用交錯時序把前文串起來。主線選擇舊工作尚未留下外部寫入效果、政策允許替換的情境；需要回查、恢復或補償的情況另外分支，避免把它們當成同一路徑必經的步驟。
 
-**這是一份教學推演與驗證框架。** Chat Gun ownership、QueryGuard、Resume authorizer 與 CCB guard 是分開查讀的證據，本輪沒有執行一條串起全部步驟的正式 E2E。
+**這是一份教學推演與驗證框架。** Chat Gun ownership、QueryGuard、Resume authorizer 與 CCB guard 是分開查讀的證據，未執行一條串起全部步驟的正式 E2E。
 
 ## 場景與身分
 
@@ -160,7 +160,7 @@ CCB 可用程序內 guard 做較小範圍的對照：A 開始後取得一個 gen
 
 ## 來源能支持哪一段
 
-| 證據 | 支持的觀察 | 本輪仍未驗證 |
+| 證據 | 支持的觀察 | 尚未驗證 |
 |---|---|---|
 | Chat Gun ownership 原始碼與測試安排 | Claim、expected generation supersede、指定 Run terminal。 | 正式 PostgreSQL 的多連線與連線中斷。 |
 | Chat Gun QueryGuard | 本地 provisional、durable owner lookup、條件式 release。 | 所有 Worker、工具與下游的共同 fencing。 |
@@ -180,7 +180,7 @@ CCB 可用程序內 guard 做較小範圍的對照：A 開始後取得一個 gen
 
 - [Chat Gun ownership][g-owner]、[QueryGuard][g-guard] 與其測試安排。
 - [Clarification Resume authorizer][g-resume]、[interaction runtime][g-runtime] 的 consumer 與 wrapper。
-- CCB `src/utils/QueryGuard.ts` 的程序內對照；來源副本與查讀範圍見[本區導覽](./README-zh-TW.md#正文來源與適用範圍)。
+- CCB `src/utils/QueryGuard.ts` 的程序內對照；來源副本與查讀範圍見[本區導覽](./README-zh-TW.md#來源與適用範圍)。
 
 ## 接續閱讀
 

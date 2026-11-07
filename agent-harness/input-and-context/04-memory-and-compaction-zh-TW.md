@@ -83,6 +83,6 @@ claude-code-best 的[控制層分析](../foundations/02-control-surfaces-zh-TW.m
 
 ## 接續閱讀
 
-- [從輸入到 Context：一次請求的走法](./05-case-input-to-context-zh-TW.md)：沿一筆請求核對前四篇的接點。
+- [從輸入到 Context：一次請求的走法](./05-case-input-to-context-zh-TW.md)：沿一筆請求核對前文的接點。
 - [Context 信任邊界](./03-context-trust-boundary-zh-TW.md)
 - [Input and Context 導覽](./README-zh-TW.md)

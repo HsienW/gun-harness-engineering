@@ -123,7 +123,7 @@ These are evaluation report design requirements, rather than guarantees the help
 
 Conversation feedback can prompt changes, but those changes require fresh control and outcome evidence for the same scenario. If old events overwrite new state, inspect the reducer, message correlation, and terminal callbacks. A stronger Prompt may leave those code paths unchanged.
 
-The next article uses clarification and late output to bring the first five articles' conditions into one reading path, while distinguishing source, test arrangements, and work that still needs execution.
+The next article uses clarification and late output to bring the preceding sections' conditions into one reading path, while distinguishing source, test arrangements, and work that still needs execution.
 
 [g-feedback]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/operations/feedback-loop.ts
 [g-feedback-test]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/operations/feedback-loop.test.ts

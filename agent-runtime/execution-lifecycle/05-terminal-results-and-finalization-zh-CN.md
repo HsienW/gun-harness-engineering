@@ -142,7 +142,7 @@ Terminal 结果一旦成立，旧 progress 不应恢复 Running。工具在取�
 - 在 repository terminal 更新时注入错误，确认 guard、idempotency 及原始错误的可观察结果。
 - 新 Run 开始后才执行旧 finalizer，确认不会释放新 owner。
 
-这些检查需要正式 consumer 与可控制的 Store。查读源代码可以找出窗口，本轮未执行相应故障注入。
+这些检查需要正式 consumer 与可控制的 Store。查读源代码可以找出窗口，未执行相应故障注入。
 
 ## 本篇的工程判断
 
@@ -153,9 +153,9 @@ Terminal 结果一旦成立，旧 progress 不应恢复 Running。工具在取�
 ## 实现参照与适用范围
 
 - [Chat Gun interaction wrapper 与 afterRun][g-runtime]：invoke、stream、failed flag 与清理顺序。
-- [Chat Gun ownership][g-owner]：terminal 字段与条件式更新。
+- [Chat Gun ownership][g-owner]：terminal 栏位与条件式更新。
 - CCB `src/query.ts`：query generator、command lifecycle 与返回原因；`src/utils/QueryGuard.ts`：条件式结束。
-- 版本与查读范围见[本区导览](./README-zh-CN.md#正文来源与适用范围)。
+- 版本与查读范围见[本区导览](./README-zh-CN.md#来源与适用范围)。
 
 ## 接续阅读
 

@@ -111,7 +111,7 @@ Run 有整体时间限制，一次 Provider 或 Tool 调用也可能有 timeout�
 
 可检查的设计应让转移回到同一个权威，带 expected state 或 version；第一个合法提交之后，其他要求依目前状态返回明确结果。哪一种终止理由有优先权由契约定义，不能只比较 UI 事件的 timestamp。
 
-本区来源提供局部 guard、Abort 与 repository 条件，未证明存在涵盖所有 Native Run、Deadline、取消及效果的共同 transaction。正文不为两者补造统一的竞态优先规则。
+本区来源提供局部 guard、Abort 与 repository 条件，未证明存在涵盖所有 Native Run、Deadline、取消及效果的共同 transaction。本文不为两者补造统一的竞态优先规则。
 
 ## 限制触发后留下什么
 
@@ -137,7 +137,7 @@ Run 有整体时间限制，一次 Provider 或 Tool 调用也可能有 timeout�
 - 让完成、取消与 Deadline 使用可控制的交错时序，检查权威结果与晚到回应。
 - 将传输停止与 business cancel 分开注入，确认产品不会混淆两者。
 
-上述项目是验证方案。本轮没有执行真实 Provider、外部退款、费用试算或多 Worker 压测。
+上述项目是验证方案。未执行真实 Provider、外部退款、费用试算或多 Worker 压测。
 
 ## 本篇的工程判断
 
@@ -150,7 +150,7 @@ Run 有整体时间限制，一次 Provider 或 Tool 调用也可能有 timeout�
 - [Chat Gun cancellation decision][g-cancel]：phase、reconciliation 与 corrective／compensation 交接。
 - [Chat Gun interaction runtime][g-runtime]：允许 supersede 的取消路径与拒绝出口。
 - CCB `src/query.ts`：turn、task budget、Abort 与返回原因；`src/QueryEngine.ts`：`maxBudgetUsd` consumer。
-- 版本与副本指纹见[来源与适用范围](./README-zh-CN.md#正文来源与适用范围)。
+- 版本与副本指纹见[来源与适用范围](./README-zh-CN.md#来源与适用范围)。
 
 ## 接续阅读
 

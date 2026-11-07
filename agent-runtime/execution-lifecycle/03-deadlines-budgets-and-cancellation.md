@@ -150,7 +150,7 @@ I would inspect Cancelled separately from external effects. Subsequent work stop
 - [Chat Gun cancellation decision][g-cancel]: phase, reconciliation, and corrective/compensation handoffs.
 - [Chat Gun interaction runtime][g-runtime]: cancellation paths permitting supersede and rejection exits.
 - CCB `src/query.ts`: turns, task budget, Abort, and return reasons; `src/QueryEngine.ts`: the `maxBudgetUsd` consumer.
-- See [sources and scope](./README.md#article-sources-and-scope) for versions and copy fingerprints.
+- See [sources and scope](./README.md#sources-and-scope) for versions and copy fingerprints.
 
 ## Further reading
 

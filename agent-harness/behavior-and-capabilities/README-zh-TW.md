@@ -2,7 +2,7 @@
 
 [English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
-本區接在 [Input and Context](../input-and-context/README-zh-TW.md) 之後，說明 Harness 如何組裝有效行為指令、建立能力集合，以及如何把候選能力交給模型或程式路由。四篇中英文正文初稿已完成；最後一篇以原始碼追蹤計算任務，保留模型與工具執行尚未驗證的範圍。
+本區接在 [Input and Context](../input-and-context/README-zh-TW.md) 之後，說明 Harness 如何組裝有效行為指令、建立能力集合，以及如何把候選能力交給模型或程式路由。最後一篇以原始碼追蹤計算任務，保留模型與工具執行尚未驗證的範圍。
 
 ## 閱讀順序
 
@@ -13,11 +13,9 @@
 | [03. 能力選擇](./03-capability-selection-zh-TW.md) | 誰縮小候選範圍，誰決定下一個行動？ | CCB 模式與子 Agent 工具範圍；Chat Gun 模型綁定、程式路由與 Provider 條件。 |
 | [04. 能力使用案例](./04-case-capability-use-zh-TW.md) | 同一需求如何經過兩種能力使用路徑？ | Chat Gun MCP Agent 的模型提案，與 Math Agent 的直接 calculator 呼叫。 |
 
-英文正文沿用相同編號與主幹並移除 `-zh-TW`；各篇提供語言切換連結，[英文導覽](./README.md)連到對應英文版。
-
 ## 架構與責任範圍
 
-下圖整理四篇使用的說明模型；方塊不是既有程式的同名型別，也不表示 Chat Gun 已實作每一個來源或條件。
+下圖整理本區的說明模型；方塊不是既有程式的同名型別，也不表示 Chat Gun 已實作每一個來源或條件。
 
 ```mermaid
 flowchart LR
@@ -41,16 +39,14 @@ Input and Context 處理輸入、來源、權威與容量；本區接著追蹤�
 
 ## 來源與證據範圍
 
-GUN-ATLAS v1.0 提供程式庫定位與代碼錨點。本輪透過 GitHub 重新查讀兩個指定來源，取得分支當時指向的 commit，後續程式連結固定到下列版本。
-
 | 代號 | 程式庫與查讀分支 | 固定版本 | 用途 |
 |---|---|---|---|
 | GUN | [HsienW/chat-gun](https://github.com/HsienW/chat-gun)，`master` | [`92a5673003e4ac4ec09be8b1b350f42dbf4a5e69`](https://github.com/HsienW/chat-gun/commit/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69) | Agent 入口、工具組裝、治理交接與 Provider 轉接。 |
 | CCB | [claude-code-best/claude-code](https://github.com/claude-code-best/claude-code)，`main` | [`77a7934e15d69da13879112ed7db695c9ee7a52a`](https://github.com/claude-code-best/claude-code/commit/77a7934e15d69da13879112ed7db695c9ee7a52a) | 第三方 Coding Agent 的 Prompt、工具池、Skill／Command 與子任務能力對照。 |
 
-本文中的 CCB 指附件所列的 Claude Code Best。它不是 Anthropic 官方程式庫，文中不以它推論目前官方產品的全部行為。附件提供的「已查閱」狀態也不直接延用成本輪的測試結果；正文以重新查讀的程式為準。
+CCB 指 Claude Code Best，為第三方專案。其原始碼提供實作對照，不代表 Anthropic 官方產品的全部行為。
 
-本輪已確認原始碼及所列的 consumer 呼叫，未執行兩庫的 unit、integration、E2E 或 live Provider／MCP 測試。文中提及測試時，只說明已讀到的案例與邊界；部署開關、真實 runner、模型選擇及執行效果仍需相應證據。作者提出的快照、必要能力檢查與回覆核對方式，均作為設計建議。
+已確認原始碼及所列的 consumer 呼叫，未執行兩庫的 unit、integration、E2E 或 live Provider／MCP 測試。文中提及測試時，只說明已讀到的案例與邊界；部署開關、真實 runner、模型選擇及執行效果仍需相應證據。建議的快照、必要能力檢查與回覆核對方式，均作為設計建議。
 
 ### 主要代碼索引
 
@@ -59,8 +55,8 @@ GUN-ATLAS v1.0 提供程式庫定位與代碼錨點。本輪透過 GitHub 重新
 | 行為指令 | [`prompts.ts`](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/prompts.ts)、[Context 整合](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/agents/context-integration.ts) | [有效 System Prompt](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/utils/systemPrompt.ts)、[REPL consumer](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/screens/REPL.tsx#L3499) |
 | 工具描述與組裝 | [Registry](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/tools/registry.ts)、[production descriptors](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/tools/production-runtime-tool-descriptors.ts) | [Tool 型別](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/Tool.ts)、[工具池](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/tools.ts)、[外層合併](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/utils/toolPool.ts) |
 | MCP 與 SDK | [MCP loader](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/tools/mcp-loader.ts)、[weather SDK adapter](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/tools/sdk/current-weather-manifest-adapter.ts) | [工具池的 MCP 合併](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/tools.ts) |
-| Skill／Command | 本輪所查 Agent／Registry 路徑未確認對等的通用 loader。 | [Command 組裝](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/commands.ts)、[Skill 設定解析](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/skills/loadSkillsDir.ts)、[SkillTool](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/packages/builtin-tools/src/tools/SkillTool/SkillTool.ts) |
-| 子任務能力範圍 | 本輪未確認與 CCB 對等的通用 Subagent 組裝。 | [工具解析](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/packages/builtin-tools/src/tools/AgentTool/agentToolUtils.ts)、[fork 繼承篩選](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/utils/agentToolFilter.ts) |
+| Skill／Command | 所列的 Agent／Registry 路徑未確認對等的通用 loader。 | [Command 組裝](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/commands.ts)、[Skill 設定解析](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/skills/loadSkillsDir.ts)、[SkillTool](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/packages/builtin-tools/src/tools/SkillTool/SkillTool.ts) |
+| 子任務能力範圍 | 未確認與 CCB 對等的通用 Subagent 組裝。 | [工具解析](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/packages/builtin-tools/src/tools/AgentTool/agentToolUtils.ts)、[fork 繼承篩選](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/utils/agentToolFilter.ts) |
 | 選擇與執行交接 | [MCP Agent](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/agents/mcp-agent.ts)、[Math Agent](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/agents/math-agent.ts)、[Gateway](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/platform/llm-gateway.ts)、[授權 Graph](https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/authorization/confirmation-graph.ts) | [主入口工具合併](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/src/hooks/useMergedTools.ts)、[Skill 觸發](https://github.com/claude-code-best/claude-code/blob/77a7934e15d69da13879112ed7db695c9ee7a52a/packages/builtin-tools/src/tools/SkillTool/SkillTool.ts) |
 
 ### 這些路徑支持的具體差異
@@ -71,4 +67,4 @@ GUN-ATLAS v1.0 提供程式庫定位與代碼錨點。本輪透過 GitHub 重新
 - Chat Gun 的 `source` 在 Registry 中選擇 dispatch pipeline 開關；該函式未顯示逐次 Principal／Tenant 的本地工具曝光篩選。
 - MCP Agent 在模組初始化時取得工具，再交給模型；Math Agent 可由程式直接抽取算式並呼叫 calculator，且其 pipeline 開關會影響取得的工具及 Context instrumentation。
 
-第四篇已把這些差異放回同一項任務。若要將教學情境補成實錄，需取得該版本與設定下的模型請求、實際提案、治理結果、工具效果及最終回覆，不能用一段成功答案取代中間證據。
+實際任務的執行證據需要包含該版本與設定下的模型請求、實際提案、治理結果、工具效果及最終回覆，不能用一段成功答案取代中間證據。

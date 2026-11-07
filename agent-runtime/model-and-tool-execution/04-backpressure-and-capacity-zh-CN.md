@@ -52,7 +52,7 @@ A1 结束 → B1 可取得槽位
 
 全局槽位不足时，读取可以进入 readWaiters。Per-Run 保留不足时，`reserveRunCapacity()` 直接抛出 `TOOL_RUN_CAPACITY_EXCEEDED`，没有先替该项工作排队。
 
-Scheduler 测试有一个名称使用 defers 的案例，但内文实际断言同 Run 第二个操作被拒绝，另一个 Run 仍可执行。正文以程序与 assertion 为依据，不把名称当成延迟重试的证据。
+Scheduler 测试有一个名称使用 defers 的案例，但内文实际断言同 Run 第二个操作被拒绝，另一个 Run 仍可执行。代码与 assertion 才能说明行为；案例名称不足以证明延迟重试。
 
 ![全局读取槽位与每 Run 保留上限皆为一时，A1 执行、B1 已保留并等待、B2 超额拒绝；取消 B1 另行移除 waiter 与释放保留](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation-en.svg)
 
@@ -86,7 +86,7 @@ Chat Gun pipeline 先做 rate limiter check。Deny 时拒绝；defer 时以 sign
 
 Circuit breaker 另在执行前判断 open 或可尝试。它处理近期失败与是否允许新尝试，没有替代 scheduler 的槽位。Per-Run capacity rejection 也不应被当成 Provider 或工具的业务故障计入同一种健康信号。
 
-工具调度、rate limit、circuit breaker 与成本预算可以同时存在。正文需把各自等待及计数位置写出来，不能把 `queue_wait` 这类量测名称直接视为单纯的 scheduler 数组停留时间。
+工具排程、rate limit、circuit breaker 与成本预算可以同时存在。各机制具有不同的等待与计数位置，`queue_wait` 这类量测名称不一定只代表 scheduler 阵列停留时间。
 
 ## CCB 的批次容量与结果拉取
 
@@ -122,7 +122,7 @@ StreamingToolExecutor 的工具记录保存 results 与 pending progress。`getC
 - 同时启动多个 scheduler 实例，核对宣称的上限到底属哪个范围。
 - 检查输出截断或 reference 交付后，下一轮仍可分辨成功、失败与效果不明。
 
-上述是验证方案。本轮没有执行慢 consumer、内存负载或多 Worker 压测。
+上述是验证方案。未执行慢 consumer、记忆体负载或多 Worker 压测。
 
 ## 本篇的工程判断
 

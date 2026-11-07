@@ -2,7 +2,7 @@
 
 [English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
-This section follows [Input and Context](../input-and-context/README.md). It explains how the Harness assembles effective behavior instructions, builds a capability set, and hands candidates to the model or code routing. Four article drafts are available in English and Traditional Chinese. The final article traces a calculation task through source code and identifies the model and tool execution behavior that remains unverified.
+This section follows [Input and Context](../input-and-context/README.md). It explains how the Harness assembles effective behavior instructions, builds a capability set, and hands candidates to the model or code routing. The final article traces a calculation task through source code and identifies the model and tool execution behavior that remains unverified.
 
 ## Reading order
 
@@ -13,11 +13,9 @@ This section follows [Input and Context](../input-and-context/README.md). It exp
 | [03. Capability selection](./03-capability-selection.md) | Who narrows the candidate set, and who decides the next action? | CCB modes and child Agent tool scope; Chat Gun model binding, code routing, and Provider conditions. |
 | [04. A capability use case](./04-case-capability-use.md) | How does the same request pass through two capability use paths? | Chat Gun MCP Agent model proposals and the Math Agent's direct calculator calls. |
 
-English article filenames keep the same numbers and stems without `-zh-TW`. Each article provides language links, and [this English guide](./README.md) links to the corresponding English articles.
-
 ## Architecture and responsibilities
 
-The diagram summarizes the explanatory model used across the four articles. Its boxes are not identically named types in the code, and do not imply that Chat Gun implements every source or condition.
+The diagram summarizes the explanatory model used across the articles. Its boxes are not identically named types in the code, and do not imply that Chat Gun implements every source or condition.
 
 ```mermaid
 flowchart LR
@@ -41,14 +39,12 @@ This section discusses Tools, Skills, Commands, MCP, Plugins, and Subagents by s
 
 ## Sources and evidence
 
-GUN-ATLAS v1.0 supplied repository locations and code anchors. This inspection revisited both sources through GitHub and recorded the commits their branches pointed to. Source links use the following pinned versions.
-
 | Alias | Repository and inspected branch | Pinned version | Purpose |
 |---|---|---|---|
 | GUN | [HsienW/chat-gun](https://github.com/HsienW/chat-gun), `master` | [`92a5673003e4ac4ec09be8b1b350f42dbf4a5e69`](https://github.com/HsienW/chat-gun/commit/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69) | Agent entry points, tool composition, governance handoff, and Provider adapters. |
 | CCB | [claude-code-best/claude-code](https://github.com/claude-code-best/claude-code), `main` | [`77a7934e15d69da13879112ed7db695c9ee7a52a`](https://github.com/claude-code-best/claude-code/commit/77a7934e15d69da13879112ed7db695c9ee7a52a) | A third-party Coding Agent comparison for Prompts, tool pools, Skills/Commands, and subtask capabilities. |
 
-CCB means Claude Code Best, the repository listed in the attachment. It is not an official Anthropic repository, and its code does not establish all behavior of the current official product. The attachment's inspected status is not treated as a test result from this work; the articles rely on the source inspected again here.
+CCB means Claude Code Best, a third-party project. Its source provides an implementation comparison rather than a complete account of Anthropic's official product.
 
 This work inspected source code and the listed consumer calls without running unit, integration, E2E, or live Provider/MCP tests for either repository. Test discussions describe only the cases and boundaries read in code. Deployment flags, real runners, model selection, and execution effects still require corresponding evidence. Snapshots, required-capability checks, and reply checks proposed by the author are design suggestions.
 

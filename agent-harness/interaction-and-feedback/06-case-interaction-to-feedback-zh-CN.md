@@ -6,7 +6,7 @@
 
 假设用户正在选择天气查询的地点，回复后原任务继续执行，先前 Run 的活动却晚到。要说明「答案回到正确任务，旧活动没有盖掉新结果」，至少需要等待关联、ownership、generation 与各消费端的状态证据。
 
-本篇将固定版本的 wrapper、厘清 authorizer、Query Guard、App 与 feedback 测试分段对照。这是教学情境与源代码查读，并非本轮执行的一笔完整 E2E；没有送出模型请求、执行测试或取得正式部署结果。版本与来源范围见[本区导览](./README-zh-CN.md#来源与查证状态)。
+本篇将固定版本的 wrapper、厘清 authorizer、Query Guard、App 与 feedback 测试分段对照。这是教学情境与源代码查读，并非所列版本执行的一笔完整 E2E；没有送出模型请求、执行测试或取得正式部署结果。版本与来源范围见[本区导览](./README-zh-CN.md#来源与查证状态)。
 
 ## 1. 先列出环境与替身
 
@@ -129,7 +129,7 @@ Interrupt ID 在此是示意占位符；原测试使用符合格式的固定值�
 
 这类 UI 状态回归还需要专用 runner／metric 去重播事件与观察 reducer。默认 weather experiment runner 只执行 Agent 并取得回答与 calls，不能因为数据存进 dataset 就宣称已能评估 UI stale-output 问题。
 
-[`feedback-loop.test.ts`][g-feedback-test] 使用另一组固定失败数据验证字段处理与版本比较，没有把本篇新设计的案例接进正式实验。本轮也没有产生 before／after 分数。
+[`feedback-loop.test.ts`][g-feedback-test] 使用另一组固定失败数据验证栏位处理与版本比较，没有把本篇新设计的案例接进正式实验。未产生 before／after 分数。
 
 ## 8. 完成陈述需要把证据接起来
 
@@ -142,7 +142,7 @@ Interrupt ID 在此是示意占位符；原测试使用符合格式的固定值�
 5. 涉及工具时的提交证据、取消或修正结果。
 6. 经数据处理的回归案例、适用 runner／metric 及真正执行出的比较产物。
 
-本区完成的是这些责任与源代码路径的初稿。它把互动政策、执行归属、恢复契约与反馈材料连成可查对的阅读顺序；正式环境的执行、资源效果与改善幅度，仍由相应验收证据支持。
+本区将互动政策、执行归属、恢复契约与回馈材料连成可查对的阅读顺序；正式环境的执行、资源效果与改善幅度，仍由相应验收证据支持。
 
 [g-runtime-test]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/platform/interaction-runtime.test.ts
 [g-resume]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/recovery/clarification-resume-authorization.ts

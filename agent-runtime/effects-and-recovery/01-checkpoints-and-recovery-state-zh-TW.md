@@ -119,7 +119,7 @@ CCB `loadTranscriptFromFile()` 在 JSONL 路徑先呼叫 `loadTranscriptFile()`�
 - 在 Resume 消費後、歷史更新後與 Graph invoke 前停止程序，核對重新接手方式。
 - 對同一部署重啟程序，確認 Checkpointer 實際可讀回；再測不同 Worker 是否讀到同一份狀態。
 
-上述是驗證設計。本輪讀取 Recovery 實作及既有測試安排，未執行程序重啟、資料庫或跨 Worker 演練。
+上述是驗證設計。所列版本讀取 Recovery 實作及既有測試安排，未執行程序重啟、資料庫或跨 Worker 演練。
 
 ## 本篇的工程判斷
 
@@ -129,7 +129,7 @@ CCB `loadTranscriptFromFile()` 在 JSONL 路徑先呼叫 `loadTranscriptFile()`�
 
 - Chat Gun：`runtime/recovery/conversation-recovery.ts`、`langgraph-checkpoint-adapter.ts`、`last-execution-point.ts`、`execution-manifest.ts` 與 `recovery-sanitizer.ts`，路徑相對 `backend/src/`。
 - CCB：`src/QueryEngine.ts`、`src/utils/sessionStorage.ts` 與 `src/utils/sessionRestore.ts`。
-- [來源與檔案指紋](./README-zh-TW.md#來源與查證狀態)記錄本地查讀範圍；本文沒有宣稱通用 Recovery 入口已在所有正式 Graph 啟用。
+- 本文沒有宣稱通用 Recovery 入口已在所有正式 Graph 啟用。
 
 ## 接續閱讀
 

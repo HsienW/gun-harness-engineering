@@ -111,7 +111,7 @@ Runtime 要确认下一轮所需的工具结果已回到正确提案，并处理
 
 CCB query 会收集、规范化工具消息，再沿后续循环处理。Chat Gun MCP Graph 在模型、authorization gate、confirmation 与 physical dispatch 之间有自己的 edge，不能把两者都改写成同一个固定步骤数。
 
-若只完成部分工具，能否继续推理取决于该 orchestration。本文不从单一工具先返回，推论整批前置条件都已成立。
+若只完成部分工具，能否继续推理取决於该 orchestration。不能从单一工具先返回，推论整批前置条件都已成立。
 
 ## 如何验证结果回灌
 
@@ -127,7 +127,7 @@ CCB query 会收集、规范化工具消息，再沿后续循环处理。Chat Gu
 - 让外部操作已提交但回应遗失，核对后续停在回查而非模型重做。
 - 截断大型结果并交付 reference，确认分类、关联与取回位置仍可查。
 
-Chat Gun pipeline 测试已有 Task Step 保存失败仍返回 ambiguous envelope 的案例。本轮只读取 assertion，没有执行真实 Store 或外部交易故障测试。
+Chat Gun pipeline 测试已有 Task Step 保存失败仍回传 ambiguous envelope 的案例。仅读取 assertion，没有执行真实 Store 或外部交易故障测试。
 
 ## 本篇的工程判断
 

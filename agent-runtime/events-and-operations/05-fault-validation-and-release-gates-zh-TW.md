@@ -111,7 +111,7 @@ Policy ID、version 與 digest 在報告中提供關聯，但這個函式沒有�
 - 將 fixture 替換成真實測試產物，核對 build、dataset 與 evidence reference。
 - 從 CI／部署入口驗證失敗確實阻擋，而不只是在本地印出 failed。
 
-本輪查讀 Gate 與 CLI，沒有執行報告、LLM judge、Canary、故障注入或正式 CI／部署流程。
+原始碼查讀 Gate 與 CLI，沒有執行報告、LLM judge、Canary、故障注入或正式 CI／部署流程。
 
 ## 本篇的工程判斷
 

@@ -2,7 +2,7 @@
 
 [English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
-This section follows the [foundations](../foundations/README.md): it traces how the Harness receives a task, decides which material the model may see, and preserves the boundary between instructions and data. Read the five articles in order. Each one distinguishes the code paths that have been read, the capabilities integrated into a production entry point, and the author's design judgment, and marks the claims that still need execution evidence.
+This section follows the [foundations](../foundations/README.md): it traces how the Harness receives a task, decides which material the model may see, and preserves the boundary between instructions and data. Read the articles in order. Each one distinguishes the code paths that have been read, the capabilities integrated into a production entry point, and the author's design judgment, and marks the claims that still need execution evidence.
 
 ## Reading order
 
@@ -16,6 +16,6 @@ This section follows the [foundations](../foundations/README.md): it traces how 
 
 The articles are based on the code paths that can currently be read. Claiming end-to-end Memory behavior for a deployment in Article 04 still requires checking the provider configuration and the relevant Agent entry points. The scenario in Article 05 needs a reproducible request and its Context manifest before it can become a record of an actual run. Budget priority only explains tradeoffs; it cannot by itself support a claim that Prompt Injection is blocked.
 
-## Evidence convention
+## Evidence and scope
 
-Name the repository and path beside each implementation claim. Use **observed** for a code path that has been read, **integrated** only when an actual entry point calls it, and **design judgment** for a rule the author proposes. Recheck Chat Gun's current branch before treating a historical conversation or a foundation article as evidence of its present behavior. The earlier Codex session provides Chat Gun repository context; the claude-code-best path references come from the foundations and are checked again in each article.
+Observed behavior can be located in source code. Integration additionally requires evidence from a production entry point, while design recommendations need product wiring and validation. The repository and version bound each judgment.

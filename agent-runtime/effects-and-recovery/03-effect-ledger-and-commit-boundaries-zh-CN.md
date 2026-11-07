@@ -120,7 +120,7 @@ CCB 的 query fallback 可清理旧消息及工具收集，StreamingToolExecutor
 - 分别让参照保存、Ledger commit 与 Task Step 更新失败，核对后续读取能辨认差异。
 - 让外部成功结果不符输出 Schema，确认 committed 证据仍在，且没有自动重做。
 
-本轮读取 runner、Ledger、Pipeline 与相关测试安排，未执行真实数据库 transaction 故障或外部提交测试。
+所列版本读取 runner、Ledger、Pipeline 与相关测试安排，未执行真实数据库 transaction 故障或外部提交测试。
 
 ## 本篇的工程判断
 
@@ -131,7 +131,7 @@ CCB 的 query fallback 可清理旧消息及工具收集，StreamingToolExecutor
 - Chat Gun：`runtime/side-effect/business-effect-ledger.ts`、`tool-execution-runner.ts`、`result-reference-store.ts`、`runtime/tool-dispatch/pipeline.ts` 与 `runtime/persistence/migrations/006_create_business_effects.sql`，路径相对 `backend/src/`。
 - Chat Gun 正式组装入口：`backend/src/tools/registry.ts`，保留 source 对应标志与 executor factory 的条件。
 - CCB：`src/query.ts` 与 `src/services/tools/StreamingToolExecutor.ts` 的 fallback／discard 接点。
-- [来源与文件指纹](./README-zh-CN.md#来源与查证状态)保留查读范围。Pool、descriptor、Pipeline flag 与外部 adapter 的实际部署仍需逐入口确认。
+- Pool、descriptor、Pipeline flag 与外部 adapter 的实际部署仍需逐入口确认。
 
 ## 接续阅读
 

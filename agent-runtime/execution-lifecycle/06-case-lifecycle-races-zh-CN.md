@@ -10,9 +10,9 @@
 
 > Run A 还在流式传输，用户要求改成另一种报告格式。Run B 已接手，A 的错误与 finalizer 才抵达；此时浏览器又重送了一份旧厘清回答。画面可能只有一次更新，后端却需要分别判断三种不同的动作。
 
-本篇用交错时序把前五篇串起来。主线选择旧工作尚未留下外部写入效果、政策允许替换的情境；需要回查、恢复或补偿的情况另外分支，避免把它们当成同一路径必经的步骤。
+本篇用交错时序把前文串起来。主线选择旧工作尚未留下外部写入效果、政策允许替换的情境；需要回查、恢复或补偿的情况另外分支，避免把它们当成同一路径必经的步骤。
 
-**这是一份教学推演与验证框架。** Chat Gun ownership、QueryGuard、Resume authorizer 与 CCB guard 是分开查读的证据，本轮没有执行一条串起全部步骤的正式 E2E。
+**这是一份教学推演与验证框架。** Chat Gun ownership、QueryGuard、Resume authorizer 与 CCB guard 是分开查读的证据，未执行一条串起全部步骤的正式 E2E。
 
 ## 场景与身份
 
@@ -160,13 +160,13 @@ CCB 可用进程内 guard 做较小范围的对照：A 开始后取得一个 gen
 
 ## 来源能支持哪一段
 
-| 证据 | 支持的观察 | 本轮仍未验证 |
+| 证据 | 支持的观察 | 尚未验证 |
 |---|---|---|
-| Chat Gun ownership 源代码与测试安排 | Claim、expected generation supersede、指定 Run terminal。 | 正式 PostgreSQL 的多连接与连接中断。 |
+| Chat Gun ownership 源代码与测试安排 | Claim、expected generation supersede、指定 Run terminal。 | 正式 PostgreSQL 的多连线与连线中断。 |
 | Chat Gun QueryGuard | 本地 provisional、durable owner lookup、条件式 release。 | 所有 Worker、工具与下游的共同 fencing。 |
-| Clarification authorizer 与 consumer | 指定等待核对、consume 到 replacement 的程序顺序。 | 消费后跨进程接手与完整恢复。 |
+| Clarification authorizer 与 consumer | 指定等待核对、consume 到 replacement 的代码顺序。 | 消费后跨程序接手与完整恢复。 |
 | Interaction wrapper | invoke／stream 的 afterRun 与清理顺序。 | 所有 Graph Waiting 与业务成功的统一判定。 |
-| CCB QueryGuard | 同一实例的新旧 generation 清理。 | 跨进程 ownership 或 durable Resume。 |
+| CCB QueryGuard | 同一实例的新旧 generation 清理。 | 跨程序 ownership 或 durable Resume。 |
 
 这些来源足以建立查读与测试框架，尚未构成一次正式执行结果。要升格为 E2E，需从产品入口经真实 Store、Graph、取消 consumer 与工具 adapter，再记录各个故障时点。
 
@@ -180,7 +180,7 @@ CCB 可用进程内 guard 做较小范围的对照：A 开始后取得一个 gen
 
 - [Chat Gun ownership][g-owner]、[QueryGuard][g-guard] 与其测试安排。
 - [Clarification Resume authorizer][g-resume]、[interaction runtime][g-runtime] 的 consumer 与 wrapper。
-- CCB `src/utils/QueryGuard.ts` 的进程内对照；来源副本与查读范围见[本区导览](./README-zh-CN.md#正文来源与适用范围)。
+- CCB `src/utils/QueryGuard.ts` 的程序内对照；来源副本与查读范围见[本区导览](./README-zh-CN.md#来源与适用范围)。
 
 ## 接续阅读
 

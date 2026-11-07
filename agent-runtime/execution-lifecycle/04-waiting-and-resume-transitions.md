@@ -161,7 +161,7 @@ I would inspect the first await after consume. If it creates a new owner, saves 
 - [Chat Gun clarification authorizer][g-resume]: correlation, status, expiry, compatibility, Schema, and consume handoff.
 - [Chat Gun interaction consumer][g-runtime]: `resume_same_task`, supersede, and events before dispatch.
 - CCB Permission is used only to compare different Runtime forms; this article does not claim a shared durable waiting interface.
-- See the [section guide](./README.md#article-sources-and-scope) for source versions and verification scope.
+- See the [section guide](./README.md#sources-and-scope) for source versions and verification scope.
 
 ## Further reading
 

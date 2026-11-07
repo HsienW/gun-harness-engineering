@@ -78,7 +78,7 @@ Claude Code 會依啟動模式、設定、Feature Gate、身份、目錄信任�
 
 > query() 與內部 query loop 負責模型串流、解析 tool_use、執行工具、回填 tool_result，然後決定繼續下一輪或結束。
 
-這提供了一條可操作的分界: 
+這提供了一條可操作的分界:
 1. Harness 組裝執行條件
 2. Runtime 執行 Agent loop，再由 Harness 消費訊息與事件
 
@@ -109,7 +109,7 @@ Runtime 開始模型與工具迴圈：
 
 ## 從前述的 Coding Agent 的範例延伸到 Chat Gun 的開發經驗
 
-場景落地的類型: 
+場景落地的類型:
 1. Coding Agent 的外部世界主要是檔案、Shell、Git、MCP 與開發環境。
 2. Chat Gun 這類 C 端任務 Agent 會接觸帳號、租戶資料、搜尋服務與未來的業務操作。
    - 當 Tool 只讀取天氣時，Harness 需要決定位置與隱私資料如何進入 Context
@@ -172,7 +172,6 @@ Runtime 承接問題的類型：
 - claude-code-best：src/query.ts
 - claude-code-best：src/utils/processUserInput/processUserInput.ts
 - claude-code-best：ARCHITECTURE.md
-
 
 ### Chat Gun 的使用方式
 

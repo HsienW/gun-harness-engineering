@@ -100,7 +100,7 @@ The [confirmation Store tests][confirmation-test] define cases for repeated cons
 
 The [confirmation Graph tests][graph-test] use `MemorySaver`, a mock Store, and a test tool to assert no execution before interruption, one execution after resuming on the same thread, and no additional call when saving pending data fails.
 
-Claims of approval resumption across processes or deployments still require evidence for the actual checkpointer, database, manifest version, and failure windows. Article 06 expands this test case. The next article first covers the dispatch and isolation conditions that must still hold after approval.
+Claims of approval resumption across processes or deployments still require evidence for the actual checkpointer, database, manifest version, and failure windows. The next article first covers the dispatch and isolation conditions that must still hold after approval.
 
 [governance]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/platform/tool-governance.ts
 [confirmation]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/authorization/confirmation.ts

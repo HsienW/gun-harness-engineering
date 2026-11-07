@@ -171,7 +171,7 @@ The ordinary stdio branch loads multiple servers with `Promise.all`, so one reje
 
 The optional MCP fallback does not cover every initialization error. If SDK staging, required descriptors, or other prerequisites fail in the outer layer, a local tool list cannot be assumed to remain available.
 
-If a product treats a capability as required, it should check for its presence after optional loading falls back and tell the user how much of the task remains possible. This is the article's design recommendation; the existing "continue with local tools" record alone cannot prove that the interface presents the degraded state to the user.
+If a product treats a capability as required, it should check for its presence after optional loading falls back and tell the user how much of the task remains possible. This is a design recommendation; the existing "continue with local tools" record alone cannot prove that the interface presents the degraded state to the user.
 
 Once composition is complete, the next questions are who the set belongs to, how long it applies, and whether the model or code decides the next step. These choices are covered in the [next article](./03-capability-selection.md).
 

@@ -138,4 +138,4 @@ I would have incident handling first answer how far the original work is known t
 
 ## Further reading
 
-Return to the [Events and Operations guide](./README.md) for the articles and diagram candidates, or see [Recovering an ambiguous commit](../effects-and-recovery/06-case-ambiguous-commit-recovery.md) to distinguish the next steps for delivery gaps and unknown external effects.
+Return to the [Events and Operations guide](./README.md) for the event contracts and delivery conditions, or see [Recovering an ambiguous commit](../effects-and-recovery/06-case-ambiguous-commit-recovery.md) to distinguish the next steps for delivery gaps and unknown external effects.

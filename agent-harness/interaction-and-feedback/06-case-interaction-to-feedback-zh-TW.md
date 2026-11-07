@@ -6,7 +6,7 @@
 
 假設使用者正在選擇天氣查詢的地點，回覆後原任務繼續執行，先前 Run 的活動卻晚到。要說明「答案回到正確任務，舊活動沒有蓋掉新結果」，至少需要等待關聯、ownership、generation 與各消費端的狀態證據。
 
-本篇將固定版本的 wrapper、釐清 authorizer、Query Guard、App 與 feedback 測試分段對照。這是教學情境與原始碼查讀，並非本輪執行的一筆完整 E2E；沒有送出模型請求、執行測試或取得正式部署結果。版本與來源範圍見[本區導覽](./README-zh-TW.md#來源與查證狀態)。
+本篇將固定版本的 wrapper、釐清 authorizer、Query Guard、App 與 feedback 測試分段對照。這是教學情境與原始碼查讀，並非所列版本執行的一筆完整 E2E；沒有送出模型請求、執行測試或取得正式部署結果。版本與來源範圍見[本區導覽](./README-zh-TW.md#來源與查證狀態)。
 
 ## 1. 先列出環境與替身
 
@@ -129,7 +129,7 @@ Interrupt ID 在此是示意佔位符；原測試使用符合格式的固定值�
 
 這類 UI 狀態回歸還需要專用 runner／metric 去重播事件與觀察 reducer。預設 weather experiment runner 只執行 Agent 並取得回答與 calls，不能因為資料存進 dataset 就宣稱已能評估 UI stale-output 問題。
 
-[`feedback-loop.test.ts`][g-feedback-test] 使用另一組固定失敗資料驗證欄位處理與版本比較，沒有把本篇新設計的案例接進正式實驗。本輪也沒有產生 before／after 分數。
+[`feedback-loop.test.ts`][g-feedback-test] 使用另一組固定失敗資料驗證欄位處理與版本比較，沒有把本篇新設計的案例接進正式實驗。未產生 before／after 分數。
 
 ## 8. 完成陳述需要把證據接起來
 
@@ -142,7 +142,7 @@ Interrupt ID 在此是示意佔位符；原測試使用符合格式的固定值�
 5. 涉及工具時的提交證據、取消或修正結果。
 6. 經資料處理的回歸案例、適用 runner／metric 及真正執行出的比較產物。
 
-本區完成的是這些責任與原始碼路徑的初稿。它把互動政策、執行歸屬、恢復契約與回饋材料連成可查對的閱讀順序；正式環境的執行、資源效果與改善幅度，仍由相應驗收證據支持。
+本區將互動政策、執行歸屬、恢復契約與回饋材料連成可查對的閱讀順序；正式環境的執行、資源效果與改善幅度，仍由相應驗收證據支持。
 
 [g-runtime-test]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/platform/interaction-runtime.test.ts
 [g-resume]: https://github.com/HsienW/chat-gun/blob/92a5673003e4ac4ec09be8b1b350f42dbf4a5e69/backend/src/runtime/recovery/clarification-resume-authorization.ts

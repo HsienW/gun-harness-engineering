@@ -74,7 +74,7 @@ Trace 的 `sanitizeErrorMessage()` 另有 Bearer 及特定 credential pattern �
 
 Opik redaction 也有自己的 secret、PII、prompt、raw payload 与 correlation 字段处理，以及深度／集合大小限制。各自的规则要沿真正输出接点验证，不能只因项目有 redactor 就宣称全部 exporter 已涵盖。
 
-脱敏后应保留足以查证的 reason、opaque correlation 与安全 reference；原始内容若另存，需要自己的访问与保留期限。这些是数据设计责任，本轮没有执行完整的敏感数据外送或删除验收。
+脱敏后应保留足以查证的 reason、opaque correlation 与安全 reference；原始内容若另存，需要自己的存取与保留期限。这些是数据设计责任，未执行完整的敏感数据外送或删除验收。
 
 ![同一执行关联到 Event、Trace、Audit、权威记录与内容参照的数据边界](../../assets/agent-runtime/events-and-operations/03-tracing-audit-and-data-boundaries/03-records-and-data-output-boundaries-en.svg)
 
@@ -98,7 +98,7 @@ CCB `sessionTracing.ts` 提供 interaction、LLM request、tool、blocked-on-use
 - 以字段变形、短字符串秘密、深层对象与错误消息测试各 redactor 的范围。
 - 检查原始内容、脱敏诊断与 reference 各自的访问、保留及外送位置。
 
-本轮只查读程序，没有验证真实 Collector、Audit 数据库、exporter 或敏感数据删除流程。
+仅查读代码，没有验证真实 Collector、Audit 数据库、exporter 或敏感数据删除流程。
 
 ## 本篇的工程判断
 
@@ -112,4 +112,4 @@ CCB `sessionTracing.ts` 提供 interaction、LLM request、tool、blocked-on-use
 
 ## 接续阅读
 
-下一篇[指标、成本与健康判读](./04-metrics-cost-and-runtime-health-zh-CN.md)从单次查证转向保留窗口与部署信号的判读。
+下一篇[指标、成本与健康判读](./04-metrics-cost-and-runtime-health-zh-CN.md)从单次查证转向保留窗口与部署讯号的判读。

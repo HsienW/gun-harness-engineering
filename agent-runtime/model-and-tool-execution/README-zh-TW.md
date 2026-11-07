@@ -21,8 +21,6 @@
 | 05 | [工具結果與錯誤回灌](./05-tool-results-and-error-feedback-zh-TW.md) · [English](./05-tool-results-and-error-feedback.md) | 成功、拒絕、失敗與效果不明如何保留身分，成為下一輪模型可用的結果？ | `05-tool-results-and-error-feedback-zh-TW.md` |
 | 06 | [一次模型與工具的往返](./06-case-model-tool-roundtrip-zh-TW.md) · [English](./06-case-model-tool-roundtrip.md) | 能否用一段含並行讀取與後續操作的時序，查明每個交接的證據？ | `06-case-model-tool-roundtrip-zh-TW.md` |
 
-六篇英文正文已完成，沿用檔名主幹並移除 `-zh-TW`，可由上表或各篇語系連結切換。程式碼區塊與來源版本保留原樣；兩輪共八張中文 SVG／HTML 圖解已完成，詳見下方圖解進度。
-
 ## 架構與責任範圍
 
 下圖是閱讀模型。工具提案通過的邊界、Provider 資料形式與排程能力，都需對回各來源的實際 consumer；圖中的箭頭沒有指定一套共同介面。
@@ -69,7 +67,7 @@ flowchart TD
 
 從一份已準備好的模型輸入開始，追到 Provider Attempt 返回訊息、失敗或中止。文章說明模型選擇、工具繫結、回應契約及 fallback 接點，並保留模型嘗試與整個 Run 的區別。
 
-正文主題：
+重點如下：
 
 1. Model Step 與 Provider Attempt 的關聯；模型、用途、可見工具、response format 與必要能力從哪裡取得。
 2. Provider envelope、訊息與 Tool Call 的正規化；能力或回應格式不符時如何拒絕。
@@ -84,11 +82,9 @@ Chat Gun `ChatModelInvoker` 目前查讀的契約提供 `invoke()` 與可選 `bi
 
 `FallbackChatModelInvoker.invoke()` 依允許的錯誤類別切換、限制嘗試，並在 caller signal 已 aborted 時停止切換。本段沒有建立「Provider 串流輸出到一半可以透明換接」的契約，該情況留作需獨立查證的路徑。
 
-正文已補查 `provider-error-category.ts`：白名單包含 unavailable、timeout 與 response invalid；429、工具參數解碼失敗、structured output invalid、refusal 及 unknown 不在其中。MCP 入口的 invoke 在查讀段落沒有傳入第二個 options 參數，signal 的全鏈傳遞需另查。
+原始碼顯示 `provider-error-category.ts`：白名單包含 unavailable、timeout 與 response invalid；429、工具參數解碼失敗、structured output invalid、refusal 及 unknown 不在其中。MCP 入口的 invoke 在查讀段落沒有傳入第二個 options 參數，signal 的全鏈傳遞需另查。
 
-CCB API 的串流與非串流 fallback，以及 query loop 的 model fallback 有各自接點。相同名稱可能代表不同重試層，正文需畫出呼叫層次與總嘗試數，避免把每層限制相加後仍宣稱單一上限。
-
-圖解候選：同一 Model Step 的多個 Provider Attempt，分開標示尚未產生可用輸出、已出現部分區塊與已有工具執行的邊界。
+CCB API 的串流與非串流 fallback，以及 query loop 的 model fallback 有各自接點。相同名稱可能代表不同重試層，總嘗試數取決於呼叫層次；各層限制不會自動形成單一總上限。
 
 ## 02. 串流組裝與工具呼叫
 
@@ -96,7 +92,7 @@ CCB API 的串流與非串流 fallback，以及 query loop 的 model fallback �
 
 沿 Provider event 到訊息區塊的組裝流程，說明文字增量、工具參數與訊息結束如何建立可用資料。重點放在何時形成完整提案，以及在整份回應尚未結束時提前執行工具需要哪些條件。
 
-正文主題：
+重點如下：
 
 1. Message、content block、delta、Tool Call ID 與參數的關聯；Provider index 與產品 identity 分開處理。
 2. 片段累積、JSON 正規化、工具名稱核對與 Schema 驗證的先後。
@@ -109,13 +105,11 @@ CCB API 的串流與非串流 fallback，以及 query loop 的 model fallback �
 
 CCB `claude.ts` 會累積 `input_json_delta` 的 `partial_json`，在 `content_block_stop` 正規化並交付 Assistant Message；後續 `message_delta` 還會補回 usage 與 stop reason。這些是分開的觀察點，不能由某個工具區塊完整推論整份模型回應已完成。
 
-正文續讀 `normalizeContentFromAPI()` 後確認，部分 JSON 解析失敗會轉成 `{}`，再交給下游 Schema；區塊結束不能當成解碼成功證據。StreamingToolExecutor 的 `discard()` 設定旗標，由其他執行及結果路徑判讀，沒有單憑該方法證明外部效果撤銷。
+查閱 `normalizeContentFromAPI()` 後確認，部分 JSON 解析失敗會轉成 `{}`，再交給下游 Schema；區塊結束不能當成解碼成功證據。StreamingToolExecutor 的 `discard()` 設定旗標，由其他執行及結果路徑判讀，沒有單憑該方法證明外部效果撤銷。
 
-`query.ts` 另依 `config.gates.streamingToolExecution` 選擇 StreamingToolExecutor。正文需同時追這條路徑與一般批次 `runTools()`，不將其中一條的時序、取消及容量條件套到另一條。
+`query.ts` 另依 `config.gates.streamingToolExecution` 選擇 StreamingToolExecutor。這條路徑與一般批次 `runTools()` 有各自的時序、取消及容量條件。
 
 Chat Gun 本區查讀的 Gateway 主要提供完成訊息的 invoke 契約。Graph／BFF 的逐 Token 轉送、adapter 是否保留 tool-call chunks，以及 consumer 的結束條件，先列為後續入口，不補造對等串流實作。
-
-圖解候選：工具參數片段 → 區塊完整 → 提案驗證 → 可選提前派送的時序，將 message 結束與 usage 補回畫成不同事件。
 
 ## 03. 工具派送與並行排程
 
@@ -123,7 +117,7 @@ Chat Gun 本區查讀的 Gateway 主要提供完成訊息的 invoke 契約。Gra
 
 完整提案進入 Runtime 後，先核對工具、輸入、依賴及可信 Context，再取得可執行的授權結果與排程資格。文章比較批次分組與逐項排程，說清楚 safe、serial 與鎖的有效範圍。
 
-正文主題：
+重點如下：
 
 1. 工具解析與 Schema、dependency、Execution Context 的派送前檢查。
 2. 授權及確認結果如何交接；`executeTyped()` 與已授權入口的差別，政策內容連回 Action Governance。
@@ -138,15 +132,13 @@ CCB `toolOrchestration.ts` 先 safeParse 再呼叫 `isConcurrencySafe()`，解�
 
 Chat Gun pipeline 的並行條件同時要求 `descriptor.isReadOnly` 與 `isConcurrencySafe(parsedInput.data)`；分類拋錯會拒絕派送。本地 scheduler 的 serial tail 只序列化送入該路徑的工作，與 bounded reads 並非同一把全域讀寫鎖。Step Lock 的 key 與租約用途也須另外核對，不能稱為任意業務 Resource 的共同鎖。
 
-圖解候選：同一組工具在 CCB 批次與 Chat Gun scheduler 的分類對照，另標示不能從程序內保護推論的跨 Worker 範圍。
-
 ## 04. 背壓與容量控制
 
 ### 文章範圍
 
 模型、工具與顯示端速度不同時，Runtime 必須選擇等待、拒絕或停止累積。這篇分開說明執行槽位、排隊保留、速率限制、buffer 與 consumer 取消，讓每個上限都有明確的計算位置。
 
-正文主題：
+重點如下：
 
 1. 執行中數量、排隊數量、每 Run 保留、buffer bytes 與輸出大小使用不同單位。
 2. 全域與 per-Run capacity 的取得、等待、拒絕及釋放；慢工具是否占住其他 Run 的位置。
@@ -159,11 +151,9 @@ Chat Gun pipeline 的並行條件同時要求 `descriptor.isReadOnly` 與 `isCon
 
 Chat Gun `BoundedToolDispatchScheduler` 在等待全域讀取槽位之前，先 reserve per-Run capacity；該 Run 超額時拋出 `TOOL_RUN_CAPACITY_EXCEEDED`。因此 per-Run 計數包含已保留但仍在等待的工作，不能僅依變數名把它寫成實際執行中工具數。程式也有等待取消與 finally 釋放位置。
 
-全域讀取槽位有上限，仍需另查 waiter 總量、Run 數量與部署中的共用方式。正文不從 FIFO waiter 陣列推論跨 Run 公平性或跨程序總容量已被保證。
+全域讀取槽位有上限，仍需另查 waiter 總量、Run 數量與部署中的共用方式。不能從 FIFO waiter 陣列推論跨 Run 公平性或跨程序總容量已被保證。
 
-CCB 批次路徑以 `getMaxToolUseConcurrency()` 傳入 `all()`；StreamingToolExecutor 有另一套可執行條件。數字上限與環境設定是否涵蓋兩條路徑，要追各自 consumer。慢 UI 與網路傳輸的 bounded buffer 本輪未查證，保留為設計與後續定位項目。
-
-圖解候選：per-Run reservation、全域槽位與等待取消的分區圖，將拒絕與等待分開畫，註明容量屬單一 scheduler 實例。
+CCB 批次路徑以 `getMaxToolUseConcurrency()` 傳入 `all()`；StreamingToolExecutor 有另一套可執行條件。數字上限與環境設定是否涵蓋兩條路徑，要追各自 consumer。慢 UI 與網路傳輸的 bounded buffer 未查證，保留為設計與後續定位項目。
 
 ## 05. 工具結果與錯誤回灌
 
@@ -171,7 +161,7 @@ CCB 批次路徑以 `getMaxToolUseConcurrency()` 傳入 `all()`；StreamingToolE
 
 工具呼叫返回之後，Runtime 還要判讀 typed outcome、保留 Tool Call 關聯，並組成下一次模型可接受的結果。這篇追到結果 adapter 與 consumer，避免 transport 成功或一段錯誤字串抹掉外部效果的差異。
 
-正文主題：
+重點如下：
 
 1. Tool Call 與 Tool Result 的配對；多個工具完成順序不同時仍依 ID 對應。
 2. 工具拒絕、Schema 錯誤、permission 結果與執行例外如何產生可消費回饋。
@@ -182,13 +172,11 @@ CCB 批次路徑以 `getMaxToolUseConcurrency()` 傳入 `all()`；StreamingToolE
 
 ### 已定位的來源與查證要求
 
-Chat Gun `createStructuredToolResultEnvelope()` 保存 correlation、工具資訊、outcome 與 termination cause；`toLegacyToolResult()` 則轉成成功內容或錯誤字串。正文需追到正式 consumer 是否保留 envelope，不能用 legacy 顯示文字推論已保存完整狀態。
+Chat Gun `createStructuredToolResultEnvelope()` 保存 correlation、工具資訊、outcome 與 termination cause；`toLegacyToolResult()` 則轉成成功內容或錯誤字串。正式 consumer 是否保留 envelope 決定了完整狀態能否延續；legacy 顯示文字不足以證明狀態已保存。
 
-Pipeline 在 Task Step 結果保存失敗後，可以建立 `ambiguous_after_dispatch` 的 envelope，外層仍以 `succeeded` 回傳這份 envelope。此處外層代表交付結果成功，內層 outcome 才描述執行狀態；文章需要保留這層型別關係。
+Pipeline 在 Task Step 結果保存失敗後，可以建立 `ambiguous_after_dispatch` 的 envelope，外層仍以 `succeeded` 回傳這份 envelope。此處外層代表交付結果成功，內層 outcome 才描述執行狀態；兩層型別描述不同事實。
 
 CCB `runToolUse()` 與 permission／validation 分支可用 `tool_use_id` 和 `is_error` 對回原提案。這類協定錯誤回饋無法單獨表達外部交易是否提交，需要在具體工具與恢復路徑補證。
-
-圖解候選：同一 Tool Call 的 typed outcome → structured envelope → adapter → model message，標出 legacy 轉換可能失去的分類資訊。
 
 ## 06. 一次模型與工具的往返
 
@@ -196,7 +184,7 @@ CCB `runToolUse()` 與 permission／validation 分支可用 `tool_use_id` 和 `i
 
 主線採模型提出兩個已驗證可並行的讀取，取得必要結果後，再提出一個後續操作。後續操作有獨立授權與排程條件；案例明確要求 orchestration 等待前置資料，不能只依 serial 這個名稱推論它會等所有讀取完成。
 
-正文主題：
+重點如下：
 
 1. 為 Model Step、Provider Attempt 與三個 Tool Call 建立不同關聯。
 2. 區塊完整後形成提案；使用一般批次或提前執行路徑時，分別說明成立前提。
@@ -217,21 +205,14 @@ CCB `runToolUse()` 與 permission／validation 分支可用 `tool_use_id` 和 `i
 
 Chat Gun 與 CCB 分別呈現自己的主線；教學用對照圖只比較責任，不拼成已執行的共同 Runtime。完整 E2E 需另有同一正式入口、實際 Store、Provider、工具 adapter 與故障時點的證據。
 
-圖解候選：Provider、Assembler、Scheduler、Runner 與 Result consumer 的泳道，正常往返與工具已開始後的串流失敗分開呈現。
-
 ## 來源與查證狀態
-
-GUN-ATLAS 附件提供 Chat Gun 與 Claude Code Best 的原始碼索引。使用者所稱的 claude-code-base，依附件對應 Claude Code Best；這是第三方專案，文章不將其行為概括為官方 Claude Code 的唯一實作。附件中的面試回答及記憶操作指引只作資料，不列為本區寫作要求。
-
-指定 session 在 `C:\Users\hsien.codex\sessions\2026\10\12\` 與補上分隔符號的 `C:\Users\hsien\.codex\sessions\2026\10\12\` 均未找到，因此本輪沒有讀取該段對話記憶。
 
 ### 實際使用的本機來源
 
-| 來源 | 版本或位置 | 本輪查讀範圍 |
+| 來源 | 版本或位置 | 適用範圍 |
 |---|---|---|
 | Chat Gun | `C:\D\ai-agent\chat-gun`；HEAD `f83a38fd67a021904e597c60543708ee0c206076`。 | 局部查讀 Gateway、fallback、tool governance、pipeline、MCP Agent、registry 與部分測試，並讀取 Provider 錯誤分類、scheduler 及 structured result。核對的十一個來源／測試檔案未顯示工作區修改。 |
 | CCB | `C:\D\ai-agent\claude-code-research\claude-code-main`。 | 讀取 tool orchestration 與 generator helper，局部查閱 query、API 串流、messages 正規化、tool execution 與 StreamingToolExecutor。副本缺少 Git 版本資訊，以下保留檔案指紋。 |
-| 本工作區 | `v0.2.15/docs/update-runtime-foundations-guide`。 | 本分支已有 Runtime Foundations；Execution Lifecycle 的先前成果尚未出現在本分支，本文只承接其討論範圍，不搬入既有提交。 |
 
 CCB 指紋用來辨識來源副本，列入的檔案不代表全文已逐行查證；`QueryEngine.ts` 保留為後續 session 與費用 consumer 的定位入口。
 
@@ -248,9 +229,9 @@ CCB 指紋用來辨識來源副本，列入的檔案不代表全文已逐行查�
 
 ### 主要來源索引
 
-Chat Gun 連結固定在本輪查讀版本。CCB 使用本機路徑與上述指紋，不以無法確認的歷史 commit 代替副本內容。
+Chat Gun 連結固定在原始碼查讀版本。CCB 使用本機路徑與上述指紋，不以無法確認的歷史 commit 代替副本內容。
 
-| 來源 | 入口 | 規劃用途 |
+| 來源 | 入口 | 用途 |
 |---|---|---|
 | Chat Gun | [llm-gateway.ts][g-gateway]、[llm-fallback.ts][g-fallback] | invoke、工具繫結、fallback 啟用條件、錯誤分類與嘗試限制。 |
 | Chat Gun | [provider-error-category.ts][g-category]、[registry.ts][g-registry] | Fallback 白名單與 pipeline 的 source 啟用接點。 |
@@ -265,33 +246,7 @@ Chat Gun 連結固定在本輪查讀版本。CCB 使用本機路徑與上述指�
 | CCB | `src/services/tools/toolExecution.ts` | 工具解析、Schema、permission、結果與錯誤訊息。 |
 | CCB | `src/utils/messages.ts`、`src/utils/generators.ts` | 工具輸入正規化、JSON 解析回退及有上限的 generator 拉取。 |
 
-本輪只定位原始碼與部分測試案例，沒有執行來源庫測試、Provider 呼叫、正式資料庫競態、慢 consumer 壓測或完整 E2E。Feature gate、依賴組裝與部署啟用狀態仍需沿正式入口補證。
-
-## 圖解進度
-
-兩輪共完成八張中文圖，對應中文文章已加入引用；八張英文圖與對應英文文章引用亦已完成。前四列為第一輪，後四列為第二輪。
-
-| 文章 | 圖解 | 可編輯 HTML | SVG |
-|---|---|---|---|
-| 01 | Provider 分流 | [開啟](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort.html) | [檢視](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/01-model-calls-and-provider-fallback/01-provider-timeout-and-caller-abort-en.svg) |
-| 04 | 保留、等待與超額拒絕 | [開啟](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation.html) | [檢視](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/04-backpressure-and-capacity/04-reservation-capacity-and-cancellation-en.svg) |
-| 02 | 舊結果清理與外部效果 | [開啟](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects.html) | [檢視](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-fallback-stale-results-and-effects-en.svg) |
-| 03 | 完成次序與 Context 更新 | [開啟](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers.html) | [檢視](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-completion-order-and-context-modifiers-en.svg) |
-| 02 | 串流區塊與工具就緒 | [開啟](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness.html) | [檢視](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/02-stream-assembly-and-tool-calls/02-stream-blocks-and-tool-readiness-en.svg) |
-| 03 | 批次與排程範圍 | [開啟](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope.html) | [檢視](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/03-tool-dispatch-and-concurrency/03-batches-and-scheduler-scope-en.svg) |
-| 05 | 結果封套與內外層 outcome | [開啟](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome.html) | [檢視](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/05-tool-results-and-error-feedback/05-outer-success-and-inner-outcome-en.svg) |
-| 06 | 完整模型與工具往返 | [開啟](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane.html) | [檢視](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane.svg) · [English HTML](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane-en.html) · [English SVG](../../assets/agent-runtime/model-and-tool-execution/06-case-model-tool-roundtrip/06-model-tool-roundtrip-swimlane-en.svg) |
-
-八張圖各自保留來源觀察、教學前提與未驗證能力註記；未以本地幾何檢查宣稱已完成 Runtime 故障測試。
-
-## 正文與圖解的後續製作
-
-六篇正文沿用 `agent-harness/foundations` 的段落、標點與敘述方式，以具體失敗情境開頭，逐項交代執行條件、失敗出口與來源。每篇區分原始碼觀察、概念設計及驗證要求，避免用共同狀態機抹平兩個來源庫的差異。
-
-正文閱讀順序為 01 → 02 → 03 → 04 → 05 → 06。六篇中英文初稿與八組中英文圖已完成，後續可依此順序審閱正文、圖解與來源範圍。
-
-圖檔放在 `assets/agent-runtime/model-and-tool-execution/`，沿用 Foundations 的淺底、藍色焦點、虛線分區與圓角節點，保留 SVG／HTML，方便後續翻譯。SVG 文字保持可編輯，HTML 另附圖意、來源及適用範圍。
-
+僅定位原始碼與部分測試案例，沒有執行來源庫測試、Provider 呼叫、正式資料庫競態、慢 consumer 壓測或完整 E2E。Feature gate、依賴組裝與部署啟用狀態仍需沿正式入口補證。
 [g-gateway]: https://github.com/HsienW/chat-gun/blob/f83a38fd67a021904e597c60543708ee0c206076/backend/src/platform/llm-gateway.ts
 [g-fallback]: https://github.com/HsienW/chat-gun/blob/f83a38fd67a021904e597c60543708ee0c206076/backend/src/platform/llm-fallback.ts
 [g-mcp]: https://github.com/HsienW/chat-gun/blob/f83a38fd67a021904e597c60543708ee0c206076/backend/src/agents/mcp-agent.ts
