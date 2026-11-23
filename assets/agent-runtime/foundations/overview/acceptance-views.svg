@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 330" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+<title id="title">同一件工作，三個驗收位置</title><desc id="desc">三種觀察視角。平台可將 Coding CLI 放進 Worker，屬於可能的部署方式。</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#0066d6"/></marker></defs>
+<rect x="1" y="1" width="1038" height="328" rx="7" fill="#f5f8fc" stroke="#b9cce3"/><text x="28" y="48" font-size="28" fill="#102743" font-weight="600">同一件工作，三個驗收位置</text><path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+<rect x="28" y="115" width="286" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="44" y="148" font-size="20" fill="#0066d6" font-weight="600">Chat Gun｜客服案件</text>
+<text x="44" y="178" font-size="17" fill="#102743" font-weight="400">查回訂單，確認地址已更新</text>
+<rect x="332" y="115" width="286" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="348" y="148" font-size="20" fill="#0066d6" font-weight="600">CCB｜Coding Agent</text>
+<text x="348" y="178" font-size="17" fill="#102743" font-weight="400">核對修正的 diff 與測試版本</text>
+<rect x="636" y="115" width="378" height="154" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+<text x="654" y="147" font-size="20" fill="#0066d6" font-weight="600">Munder Difflin｜平台驗收整體委派</text>
+<rect x="653" y="162" width="342" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="669" y="195" font-size="20" fill="#0066d6" font-weight="600">Worker 內執行 Coding CLI</text>
+<text x="669" y="225" font-size="17" fill="#102743" font-weight="400">可能的部署方式</text>
+<text x="32" y="300" font-size="18" fill="#102743" font-weight="400">客服、實作者與協調者各自核對自己負責的結果。</text>
+</svg>
