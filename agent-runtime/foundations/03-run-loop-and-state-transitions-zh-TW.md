@@ -2,13 +2,17 @@
 
 [English](./03-run-loop-and-state-transitions.md) | [繁體中文](./03-run-loop-and-state-transitions-zh-TW.md) | [简体中文](./03-run-loop-and-state-transitions-zh-CN.md)
 
-> 以下內容所提到的
-> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
-> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+> 本章從三種產品觀察 Runtime：[Chat Gun](https://github.com/HsienW/chat-gun) 的一般對話與客服業務 Agent、[Claude Code Best（CCB）](https://github.com/claude-code-best/claude-code) 的 Coding Agent，以及 [munder-difflin](https://github.com/HarnessMD/munder-difflin) 的多 Agent Harness 平台。
 
 模型回傳一段文字後，Runtime 可能還在處理工具或保存狀態；模型提出 Tool Call 後，也要等待授權與派送。Run Loop 依序處理這些中間結果，直到執行進入完成、失敗、取消、拒絕或可恢復的等待狀態。
 
 若系統只用 `isLoading` 表示全部過程，模型串流、工具排程與人工等待都會共用同一個布林值。Runtime 需要更明確的狀態，才能判斷下一步是否合法，以及外部操作是否仍在進行。
+
+## 誰決定下一步，哪件工作可以結束？
+
+每次收到結果，Runtime 都得決定繼續、等待或結束。以客服案件為例，查到訂單後可能還缺使用者確認；業務流程保存的是這筆案件還在等哪個決定。換到 CCB，讀檔工具傳回內容後，query loop 把結果交回模型，下一步可能是編輯或測試。同樣叫「收到結果」，前者要找有權回答的人，後者要找正在等待工具輸出的模型回合。
+
+在 Munder Difflin，一個 Worker 等另一個 Worker 回覆時，兩者的 CLI 都可能暫時閒置，原委派仍有未解的問題。查詢進度時，內層看這個回合是否還有工具結果待處理，外層則可以沿著訊息的回覆關聯，找出誰欠誰一個答覆。
 
 ## Run Loop 管理的是狀態與下一步
 
@@ -62,7 +66,6 @@ while (!state.isTerminal) {
 ![Run 接納後進入 Running，可等待指定輸入、回查外部效果或處理取消，再依條件收斂到完成、失敗、取消或停放結果](../../assets/agent-runtime/foundations/03-run-loop-and-state-transitions/03-run-state-transitions.svg)
 
 - 圖中整理概念狀態與主要轉移，具體名稱依 Runtime 契約而定。回查後重新進入 Running，仍需核對後續派送條件；終止後取得的新證據保存在效果紀錄中。
-- [開啟圖解與實作註記](../../assets/agent-runtime/foundations/03-run-loop-and-state-transitions/03-run-state-transitions.html)。
 
 Waiting 是否算 Terminal，要看產品與 Runtime 契約。對一次 HTTP 請求而言，等待可能是本次回應的終點；對一個可持久化 Task 而言，它仍是可恢復的非終止狀態。文章與 API 必須說明自己的觀察範圍，不能只看到請求結束就把 Task 標成 Completed。
 
@@ -111,8 +114,6 @@ Tool Call 必須保留模型產生的 call ID、工具名稱與輸入，Runtime 
 
 ![並行工具先完成，訊息仍依 Call ID 配對](../../assets/agent-runtime/foundations/03-run-loop-and-state-transitions/03-tool-use-result-pairing.svg)
 
-[開啟 HTML 圖解](../../assets/agent-runtime/foundations/03-run-loop-and-state-transitions/03-tool-use-result-pairing.html)
-
 圖中 B 比 A 早完成；Runtime 依 call ID 保留配對，收齊這一輪所需的合法結果後，再組裝下一次模型請求。結果在請求內的排列仍依 Provider 契約決定。
 
 ## CCB 的 imperative query loop
@@ -132,6 +133,14 @@ Chat Gun 的 `mcp-agent.ts` 以 node 與 conditional edge 表達相同責任。�
 Graph 表達等待與分支，相關控制則由組裝設定與 adapter 提供。核對時要繼續追蹤 Authorization 的可信 Principal、confirmation store 的持久化方式、tool dispatch pipeline 的啟用條件，以及外部效果的 reconciliation 能力。
 
 `deep-researcher.ts` 展示另一種分支：Planner 可以把輸入導向 direct、weather、calculation、research 或 clarify。Clarify 使用 interrupt 停下 Graph；恢復後仍要通過回覆 Schema 與任務條件。語義 Router 決定下一個業務 node，不能取代 Runtime 的並發鎖、ownership 或 terminal guard。
+
+## Munder Difflin 的收件與喚醒迴圈
+
+假設 A 寄了一封 `query`，請 B 核對報告中的數字。Router 把信送進 B 的 inbox 時，B 可能還在讀檔。這時平台有了投遞紀錄，A 仍在等答案。若 A 只因看到信件抵達就往下寫結論，錯誤出在把投遞事件當成工作結果。
+
+![信已送達時，CLI 還在讀檔](../../assets/agent-runtime/foundations/03-run-loop-and-state-transitions/hive-cli-turn.svg)
+
+依 Hive 對 Claude Worker 的設計，CLI 觸發 Stop hook 時會檢查信箱。有未讀訊息，hook 可以要求繼續工作；沒有待收件，這個回合便可結束，程序仍可留著等待下一次交辦。協定只要求接收端回答特定種類的訊息，例如 `query`。若 B 已用 `done` 回報結果，A 即可收束這次往返。回覆次數上限處理的是 Agent 彼此持續回信的情況。檢查時可分別核對回合的停止訊號、最後一封信的種類及 PTY 退出事件，三者各有自己的終點。[Hive 協作協定](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/HIVE.md)
 
 ## Turn、Step、Run 與 Task
 
