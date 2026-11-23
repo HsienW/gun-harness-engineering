@@ -2,9 +2,7 @@
 
 [English](./01-what-is-agent-runtime.md) | [繁體中文](./01-what-is-agent-runtime-zh-TW.md) | [简体中文](./01-what-is-agent-runtime-zh-CN.md)
 
-> 以下內容所提到的
-> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
-> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+> 本章從三種產品觀察 Runtime：[Chat Gun](https://github.com/HsienW/chat-gun) 的一般對話與客服業務 Agent、[Claude Code Best（CCB）](https://github.com/claude-code-best/claude-code) 的 Coding Agent，以及 [munder-difflin](https://github.com/HarnessMD/munder-difflin) 的多 Agent Harness 平台。
 
 - 我認為 Agent Runtime 是接住一次受治理的執行要求，並把它推進到可判讀結果的執行核心。
   - 它建立或取得這次 Run 的識別。
@@ -16,6 +14,12 @@
 
 > 這個定義從「誰持有執行狀態」判斷 Runtime 的位置。while-loop、StateGraph 都可以承擔執行核心；Queue、Worker 與 Checkpointer 則可能由既有 Agent Server 提供。
 > 沿著一次執行追蹤狀態、順序與停止條件，就能看出 Runtime 的責任落在哪裡。
+
+## 從交付結果界定執行範圍
+
+使用者問「出貨前還能改地址嗎」，客服 Agent 查到適用的配送規則，答覆就能結案。若使用者接著說「把這筆訂單改寄新地址」，完成條件隨之改變。此時要核對訂單與更新結果，才知道系統能否告訴使用者地址已改。換成 Coding Agent 修正地址驗證函式，驗收對象又變成工作區的 diff，以及原本失敗的輸入是否通過測試。
+
+若 Munder Difflin 將修改與測試分派給不同 Worker，實作者交出 diff 時，驗證者可能還在上一個版本上跑測試。即使兩人都回報成功，協調者仍須把測試結果對到這次修改的版本，才能結束整件委派。產品把工作交給幾層執行者，就要能從各層的回報追到同一份交付物。
 
 ## Runtime 位於哪裡
 
@@ -42,7 +46,7 @@ Runtime 與 Harness 可以寫在同一個檔案，也可以部署成不同服務
 
 ![Harness 與 Runtime 的責任交接](../../assets/agent-runtime/foundations/01-what-is-agent-runtime/01-runtime-responsibility-handoffs.svg)
 
-[開啟 HTML 圖解](../../assets/agent-runtime/foundations/01-what-is-agent-runtime/01-runtime-responsibility-handoffs.html)
+以 Windows 啟動故障為例，主程序可確認 PTY 已啟動，CLI 端要核對協作指令是否完整，最後用一封能對回原交辦的回信驗收協作能力。
 
 圖中的交接分開 Execution Request、決策與結果回傳。這些是概念責任，實際介面名稱與通道依 Runtime 契約決定。
 
@@ -149,6 +153,12 @@ Chat Gun 以 LangGraph 註冊多個 Graph。Graph Runtime 持有 Thread、Run、
 `mcp-agent.ts` 呈現一條可觀察的路徑：模型節點產生 Tool Call 後進入 authorization gate，需要確認時停在 confirmation node，獲准後才到 physical dispatch，再將 ToolMessage 接回模型迴圈。這條 Graph 可以說明控制點，不代表所有 Graph 自動套用同一套治理；仍需逐一追到 Registry、composition root 與正式入口。
 
 `deep-researcher.ts` 則使用 StateGraph、`interrupt()` 與 checkpointer 處理釐清。固定版本使用 `MemorySaver` 組裝，可以支持程序內測試與教學分析，不能據此宣稱正式 Agent Server 已具備 PostgreSQL checkpoint、跨程序 durable resume 或多 Worker 競態保證。
+
+## Munder Difflin 如何管理既有 CLI
+
+同樣是要求 Agent 讀一份報告，CCB 的 query loop 可以追到模型提出讀檔、工具回傳內容、模型再次取樣。從 Munder Difflin 的桌面主程序看，第一個交接點則是啟動 Worker。主程序準備命令、參數、工作目錄與環境，透過虛擬終端（PTY）啟動 CLI，把它登錄為可接收輸入、回報輸出與退出狀態的 Session。選擇讀檔工具、處理工具結果及結束模型回合，仍由該 CLI 的執行核心負責。[PTY 建立與退出處理](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/pty.ts#L895-L975)
+
+這條邊界曾在 Windows 上造成一個很難從畫面發現的故障。依 0.4.4 修復紀錄，啟動路徑截斷多行參數，Worker 能正常出現在畫面上，卻少了認識 inbox 與 outbox 的協作指令。若驗收目標是「Worker 可以接手交辦」，測試就要送一封可辨識的請求，再從回信核對收件者與原請求。程序啟動成功只能驗到第一個交接點。[修復紀錄](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/CHANGELOG.md)
 
 ## 如何判斷一個系統有沒有 Runtime
 
