@@ -2,9 +2,7 @@
 
 [English](./06-one-run-walkthrough.md) | [繁體中文](./06-one-run-walkthrough-zh-TW.md) | [简体中文](./06-one-run-walkthrough-zh-CN.md)
 
-> 以下內容所提到的
-> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
-> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+> 本章從三種產品觀察 Runtime：[Chat Gun](https://github.com/HsienW/chat-gun) 的一般對話與客服業務 Agent、[Claude Code Best（CCB）](https://github.com/claude-code-best/claude-code) 的 Coding Agent，以及 [munder-difflin](https://github.com/HarnessMD/munder-difflin) 的多 Agent Harness 平台。
 
 使用者要求把一份報告寫入工作區。模型先讀取現有檔案，再提出 `write_file`；產品規則要求這類修改先經人工確認。畫面上只會看到一個確認問題和最後回覆，Runtime 內部則要保存 Tool Call、停止派送、恢復指定等待，最後才能判斷這次 Run 是否完成。
 
@@ -15,6 +13,23 @@
 - 副作用故障分支：Chat Gun 的 governed outcome 與 Ledger 模組。
 
 上述來源是分開查讀的證據；本文按各段的觀察範圍說明，完整 E2E 仍需另行驗證。
+
+## 用同一組觀察點走過三種任務
+
+以下三件事都是教學情境。共同的走法是接納請求、取得執行結果、核對效果，最後才交付。把記錄排在一起，可以看出同一句「完成了」需要哪些依據。
+
+| 觀察點 | Chat Gun：客服更新配送地址 | CCB：修正地址驗證函式 | Munder Difflin：委派實作與驗證 |
+|---|---|---|---|
+| 接納 | 找到對話、訂單及有權修改的人。 | 確認 repo、工作目錄與失敗案例。 | 建立 Task，指定實作與驗證各由哪位 Worker 接手。 |
+| 執行 | 取得必要確認後，把更新送給業務服務。 | 重現問題、修改函式，執行相關測試。 | 投遞兩份交辦，驗證者取得實作者交付的版本後開始檢查。 |
+| 核對效果 | 讀回指定訂單的地址，對回此次操作。 | 核對 diff 與原本失敗的測試，確認修改範圍。 | 以 Task 與訊息關聯收回兩份結果，核對測試和修改指向同一版本。 |
+| 交付 | 告知使用者哪筆訂單已更新，或還缺哪個確認。 | 說明變更位置、測試結果與未驗證範圍。 | 彙整已驗收的產物，標記尚待補件的子任務。 |
+
+假設兩位 Worker 回覆的是同一筆 Task。協調者要判斷能否驗收，還缺哪個欄位？
+
+![兩封回信，還缺哪一份證據？](../../assets/agent-runtime/foundations/06-one-run-walkthrough/verify-revision.svg)
+
+驗證者只要補回測試使用的版本，就能判斷是否要在版本 B 重跑。接下來回到單次寫檔 Run，核對另一個容易錯配的關係：使用者按下批准時，究竟放行哪一次寫入。
 
 ## 場景與識別
 
@@ -40,7 +55,6 @@
 ![Harness、Runtime、Model、Persistence 與 Tool Runtime 五條泳道，呈現工具提案、保存等待、取得批准、驗證恢復、派送結果與終止判定](../../assets/agent-runtime/foundations/06-one-run-walkthrough/06-one-run-swimlane.svg)
 
 - 圖中九個節點合併下文十個步驟，聚焦需要確認的分支。外部提交與故障回查由第四篇的圖解展開；各段來源仍屬分開查讀的證據，完整 E2E 尚待驗證。
-- [開啟泳道圖與步驟對照](../../assets/agent-runtime/foundations/06-one-run-walkthrough/06-one-run-swimlane.html)。
 
 ## 1. Harness 交付 Execution Request
 
@@ -257,6 +271,21 @@ Chat Gun 的 side-effect 模組提供 governed outcome、Ledger、runner、recon
 CCB 的外層輸入處理準備 messages、tools、`canUseTool`、Abort 與 budgets，再交給 `query()`。`queryLoop()` 呼叫模型，`runTools`／tool execution 在具體 Tool Call 上請求 Permission，執行後把 Tool Result 加回 messages，直到模型不再要求工具或停止條件成立。
 
 這條 imperative path 可以對照本例的 3、4、8、9、10 步。CCB Interactive Permission 透過使用者確認或調整輸入取得決策；Chat Gun 則以 tenant、scope、confirmation descriptor 與 Graph Resume 等契約交接。兩者需要分別核對各自的授權、等待與恢復證據。
+
+## 從 Munder Difflin 的桌面端追一次委派
+
+前面的報告案例可以追到模型與工具的往返。把觀察位置移到 Munder Difflin 桌面端，改用一件容易驗收的工作：請 Claude Worker 找出 README 中一個失效的相對連結，回報所在行號與目標路徑。下表是依程序實作與 Hive 協定整理的教學時序，端到端執行仍待實測。[PTY 建立與退出處理](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/pty.ts#L895-L975)、[Hive 協作協定](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/HIVE.md)
+
+| 時點 | 執行者與動作 | 可核對的證據 |
+|---|---|---|
+| 建立工作 | Orchestrator 指定 Worker、目標 README 與驗收條件。 | Task ID、Agent ID、工作區及指定的檔案版本。 |
+| 啟動 | 主程序準備協作指令、工作目錄與環境，再透過 PTY 啟動 CLI。 | CLI 實際收到的啟動參數、PTY ID 及目前程序。 |
+| 收件 | Orchestrator 寄出請求，Router 投遞，Worker 在可處理新工作時讀信。 | 原 Message ID、收件人、收件紀錄與後續回覆關聯。 |
+| 執行 | CLI 讀 README，按檔案所在目錄解析相對路徑並檢查目標。 | 所屬 CLI Session、可取得的工具事件或 Transcript。 |
+| 回報 | Worker 回信，接收端打開同一版本的 README，依行號與路徑驗收。 | 回信的原件關聯、檔案內容、目標是否存在及 Task 紀錄。 |
+| 退出 | 演練結束後關閉 Worker，主程序處理該 Session 的退出通知。 | 與目前 Session 相符的退出事件、exit code、signal 及登錄清理。 |
+
+假設 Worker 寄出回信後立刻退出，Task 帳本仍寫著「執行中」。接手的人可以沿著原信的 ID 找回覆，再到交辦時指定的版本，核對 README 的行號、相對路徑及目標檔是否存在。三項都對得上，就有依據補登結果。若回信漏了版本，應先釐清它檢查的是哪份 README；此時重新啟動 Worker，只能解決程序已退出的問題。[PTY 建立與退出處理](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/pty.ts#L895-L975)
 
 ## 這個案例能證明什麼
 

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 398" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+<title id="title">信已送達時，CLI 還在讀檔</title><desc id="desc">Hive 協定中的 Claude Worker。時間向右，Stop hook 在回合邊界查看信箱。</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#0066d6"/></marker></defs>
+<rect x="1" y="1" width="1038" height="396" rx="7" fill="#f5f8fc" stroke="#b9cce3"/><text x="28" y="48" font-size="28" fill="#102743" font-weight="600">信已送達時，CLI 還在讀檔</text><path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+<text x="30" y="139" font-size="21" fill="#0066d6" font-weight="600">Hive</text>
+<rect x="155" y="94" width="237" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="171" y="127" font-size="20" fill="#0066d6" font-weight="600">投遞 query</text>
+<text x="171" y="157" font-size="17" fill="#102743" font-weight="400">A 等待 B 的答覆</text>
+<path d="M395 137 L741 137" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="750" y="94" width="260" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="766" y="127" font-size="20" fill="#0066d6" font-weight="600">收到回信</text>
+<text x="766" y="157" font-size="17" fill="#102743" font-weight="400">對回原請求</text>
+<text x="30" y="252" font-size="20" fill="#0066d6" font-weight="600">Worker CLI</text>
+<rect x="155" y="208" width="237" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="171" y="241" font-size="20" fill="#0066d6" font-weight="600">仍在讀檔</text>
+<text x="171" y="271" font-size="17" fill="#102743" font-weight="400">信件留在 inbox</text>
+<path d="M395 250 L435 250" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="444" y="208" width="230" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="460" y="241" font-size="20" fill="#0066d6" font-weight="600">Stop hook</text>
+<text x="460" y="271" font-size="17" fill="#102743" font-weight="400">檢查待處理訊息</text>
+<path d="M676 250 L741 250" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="750" y="208" width="260" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="766" y="241" font-size="20" fill="#0066d6" font-weight="600">有信：延續回合</text>
+<text x="766" y="271" font-size="17" fill="#102743" font-weight="400">讀信、處理並回覆</text>
+<path d="M880 206 L880 182" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M558 295 L558 329" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<text x="420" y="366" font-size="20" fill="#102743" font-weight="400">無信：此收件路徑收束</text>
+</svg>

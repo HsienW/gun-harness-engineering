@@ -2,13 +2,23 @@
 
 [English](./02-execution-identity-and-state-authority.md) | [繁體中文](./02-execution-identity-and-state-authority-zh-TW.md) | [简体中文](./02-execution-identity-and-state-authority-zh-CN.md)
 
-> 以下內容所提到的
-> CCB 為 [claude-code-best](https://github.com/claude-code-best/claude-code) 的簡稱。
-> Chat Gun 為 [chat-gun](https://github.com/HsienW/chat-gun)。
+> 本章從三種產品觀察 Runtime：[Chat Gun](https://github.com/HsienW/chat-gun) 的一般對話與客服業務 Agent、[Claude Code Best（CCB）](https://github.com/claude-code-best/claude-code) 的 Coding Agent，以及 [munder-difflin](https://github.com/HarnessMD/munder-difflin) 的多 Agent Harness 平台。
 
 使用者在同一個對話裡補了一句話，產品建立了新 Run；舊 Run 隨後才送回一個 progress event。若前端只看 Thread ID，它可能把舊進度畫到新任務上；若 finalizer 只知道「任務結束」，它甚至可能清掉新 Run 剛取得的 ownership。
 
 這類錯誤出在系統沒有分清楚「同一個對話」「同一個目標」與「同一次執行」。Execution Identity 把這些關係變成可驗證欄位，讓 Runtime 在恢復、重試與接收晚到輸出時，能判斷資料的歸屬。
+
+## 哪個識別可以決定這次更新的歸屬？
+
+共同的要求是讓每次更新指回它所屬的執行。要選哪個識別，取決於晚到的更新可能改錯什麼。
+
+| 情境 | 可以沿用的身分 | 處理晚到結果時要再核對 |
+|---|---|---|
+| Chat Gun 在同一案件承接使用者的補充 | 對話或 Task | 哪個 Run 目前持有更新資格，舊 Run 是否已被取代 |
+| CCB 在同一 Session 再次呼叫相同工具 | Session、工具名稱 | 回傳值對應哪一次 Tool Use，應加入哪個回合的訊息 |
+| Munder Difflin 在原位重新啟動 Worker | Agent 登錄，甚至相同的 PTY ID | 回呼屬於哪個程序實例，回報又屬於哪一筆委派 |
+
+例如 Worker 重啟後，值班者收到「已退出」與「已完成」兩則晚到訊息。處理退出通知時，要查發出通知的程序實例是否仍占用該 PTY。處理完成回報時，要查它回覆哪封交辦、結果對應哪一筆 Task。兩則訊息即使掛著同一個 Agent ID，仍可能需要忽略前者、採納後者。
 
 ## 為什麼一個 ID 不夠
 
@@ -77,9 +87,23 @@ Request
 
 ![Tool Call、Attempt 與外部效果的識別關聯](../../assets/agent-runtime/foundations/02-execution-identity-and-state-authority/02-execution-identity-relations.svg)
 
-[開啟 HTML 圖解](../../assets/agent-runtime/foundations/02-execution-identity-and-state-authority/02-execution-identity-relations.html)
-
 這張圖聚焦 Tool Call 以下的識別。兩次 Attempt 可以關聯同一外部效果，但是否能重試、沿用哪個 effect key，仍需由效果證據與下游契約判定。連線只表示概念關聯，不限定資料表的包含關係。
+
+## Munder Difflin 的 Worker 重啟後，哪些身分延續？
+
+同一位 Worker 回到原本的終端視窗，畫面上只有一個角色，背後卻可能已經換過程序。沿著前面的 Identity Chain 查這次重啟時，要先說清楚準備接回的是角色、對話，還是一件做到一半的工作。
+
+| 身分 | 狀態由誰持有 | 重啟時如何核對 |
+|---|---|---|
+| Agent ID | Hive 的角色登錄 | 在同一個 Hive 找回原登錄，確認負責人與工作範圍。 |
+| PTY ID | 主程序的 Session 對照表 | 同一個鍵可以指向新程序，須比對目前的 Session 物件。 |
+| CLI Session ID | CLI 持有對話，Hive 保存恢復候選 | 核對 Provider、候選識別碼與可讀取的 Transcript，再確認續接結果。 |
+| Task ID | Hive 任務紀錄 | 查原工作項目的負責人、進度與結果，即使 Worker 已被替換仍可對帳。 |
+| Message ID | Hive 信件及回覆關聯 | 以原件 ID 與回信的 `in_reply_to` 串起交辦與回報，另查工作產物。 |
+
+![同一個 PTY ID，兩個程序實例](../../assets/agent-runtime/foundations/02-execution-identity-and-state-authority/late-pty-exit.svg)
+
+假設 A 正在退出，B 已用相同的 PTY ID 啟動。若 A 的退出回呼直接按 ID 刪除登錄，就會把 B 的輸入通道一起清掉。Munder Difflin 的回呼保留 A 的 Session 物件，等事件抵達時再跟對照表中的現值比對。若已換成 B，A 的晚到輸出與退出事件便各自在回呼入口返回。這項檢查與下文的 generation 處理相似，但有效範圍限於同一主程序內的物件生命週期。整個應用程式重啟後，對話歸屬要回到持久化的登錄查證。[PTY 建立與退出處理](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/pty.ts#L895-L975)、[Session 登錄與恢復候選](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/hive.ts#L2209-L2245)、[Hive 協作協定](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/HIVE.md)
 
 ## 狀態權威與資料副本
 

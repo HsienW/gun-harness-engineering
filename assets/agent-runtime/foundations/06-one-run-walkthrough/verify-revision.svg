@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 320" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+<title id="title">兩封回信，還缺哪一份證據？</title><desc id="desc">兩位 Worker 都回覆同一 Task，協調者仍需確認測試對應的版本。</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#0066d6"/></marker></defs>
+<rect x="1" y="1" width="1038" height="318" rx="7" fill="#f5f8fc" stroke="#b9cce3"/><text x="28" y="48" font-size="28" fill="#102743" font-weight="600">兩封回信，還缺哪一份證據？</text><path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+<rect x="35" y="90" width="320" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="51" y="123" font-size="20" fill="#0066d6" font-weight="600">實作者回報</text>
+<text x="51" y="153" font-size="17" fill="#102743" font-weight="400">修改已交付：版本 B</text>
+<rect x="35" y="206" width="320" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="51" y="239" font-size="20" fill="#0066d6" font-weight="600">驗證者回報</text>
+<text x="51" y="269" font-size="17" fill="#102743" font-weight="400">測試通過；測試版本？</text>
+<path d="M357 132 L494 177" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M357 248 L494 191" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="504" y="143" width="500" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="520" y="176" font-size="20" fill="#0066d6" font-weight="600">協調者核對交付物</text>
+<text x="520" y="206" font-size="17" fill="#102743" font-weight="400">向驗證者補查版本，必要時在 B 重跑測試</text>
+</svg>

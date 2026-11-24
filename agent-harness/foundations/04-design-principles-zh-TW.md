@@ -129,6 +129,8 @@ Runtime 狀態、產品任務狀態與外部效果各有權威來源。Harness �
 
 審閱 Harness 時，我會選一個成功案例和一個會被阻擋的案例，沿著相同入口核對。成功案例說明條件如何傳遞，阻擋案例則能顯示規則是否真的改變了執行。
 
+![如何查出規則在哪一步生效](../../assets/agent-harness/foundations/04-design-principles/rule-evidence.svg)
+
 | 要檢查的判斷 | 適合保留的證據 |
 |---|---|
 | 本次任務控制了範圍 | 正規化輸入、Context 來源、所選能力與限制 |

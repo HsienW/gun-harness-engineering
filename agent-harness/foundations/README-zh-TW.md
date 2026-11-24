@@ -4,6 +4,10 @@
 
 本區先定義 Harness 負責什麼，再追問決策如何進入執行，最後用一次檔案修改任務核對整條路徑。依序閱讀，後一篇會把前一篇留下的問題推進到具體流程。
 
+## 三種類型的 Agent
+
+![同一份交辦，三處控制決策](../../assets/agent-harness/foundations/overview/product-controls.svg)
+
 ## 閱讀順序
 
 1. [實際落地的 Agent Harness 是什麼](./01-what-is-agent-harness-zh-TW.md)：界定 Harness 在 Agent Product 與 Runtime 之間的責任；後續篇章沿用這裡的名詞。
@@ -16,4 +20,5 @@
 * 文中的實作參照庫，應分清已觀察的程式路徑、已接入入口的能力、僅有模組與設計提案；教學案例也不能當成正式環境的執行紀錄。
 
 * [claude-code-best](https://github.com/claude-code-best/claude-code)
-  * [chat-gun](https://github.com/HsienW/chat-gun)
+* [chat-gun](https://github.com/HsienW/chat-gun)
+* [munder-difflin](https://github.com/HarnessMD/munder-difflin)
