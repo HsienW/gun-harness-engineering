@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 622" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+  <title id="title">B 回完信，誰還在等測試版本？</title>
+  <desc id="desc">B 回覆 A 後可結束查找；若只有 C 能查，A 的報告仍須等協調者派 C 取得版本證據。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#0066d6"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="1038" height="620" rx="7" fill="#f5f8fc" stroke="#b9cce3"/>
+  <text x="28" y="48" font-size="28" font-weight="600" fill="#102743">B 回完信，誰還在等測試版本？</text>
+  <path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+  <rect x="30" y="89" width="980" height="506" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <rect x="72" y="103" width="176" height="42" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="160" y="131" text-anchor="middle" font-size="19" font-weight="600" fill="#0066d6">A｜交付報告</text>
+  <path d="M160 145 V557" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round" stroke-dasharray="4 6"/>
+  <rect x="338" y="103" width="176" height="42" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="426" y="131" text-anchor="middle" font-size="19" font-weight="600" fill="#0066d6">B｜查測試版本</text>
+  <path d="M426 145 V557" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round" stroke-dasharray="4 6"/>
+  <rect x="601" y="103" width="176" height="42" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="689" y="131" text-anchor="middle" font-size="19" font-weight="600" fill="#0066d6">協調者</text>
+  <path d="M689 145 V557" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round" stroke-dasharray="4 6"/>
+  <rect x="822" y="103" width="176" height="42" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="910" y="131" text-anchor="middle" font-size="19" font-weight="600" fill="#0066d6">C｜查建置紀錄</text>
+  <path d="M910 145 V557" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round" stroke-dasharray="4 6"/>
+  <text x="290" y="168" text-anchor="middle" font-size="18" font-weight="400" fill="#102743">query：哪個版本？</text>
+  <path d="M160 180 H423" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="42" y="198" width="156" height="34" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="55" y="221" font-size="17" font-weight="600" fill="#0066d6">若 B 查到版本</text>
+  <text x="291" y="250" text-anchor="middle" font-size="18" font-weight="400" fill="#102743">inform：版本與紀錄</text>
+  <path d="M426 262 H163" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="179" y="289" font-size="17" font-weight="400" fill="#52657d">A 核對後可引用；本次查詢結束。</text>
+  <path d="M42 309 H996" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="42" y="321" width="156" height="34" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="55" y="344" font-size="17" font-weight="600" fill="#0066d6">若只有 C 能查</text>
+  <text x="290" y="375" text-anchor="middle" font-size="17" font-weight="400" fill="#102743">B 回報缺口，結束查找</text>
+  <path d="M426 387 H163" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="430" y="418" text-anchor="middle" font-size="17" font-weight="400" fill="#102743">A 請協調者安排查核</text>
+  <path d="M160 430 H686" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="804" y="453" text-anchor="middle" font-size="17" font-weight="400" fill="#102743">指派 C 查紀錄</text>
+  <path d="M689 465 H907" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="529" y="500" text-anchor="middle" font-size="18" font-weight="400" fill="#102743">A 的報告仍待版本，直到 C 提供可核對的證據</text>
+  <path d="M910 514 H163" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="242" y="541" width="700" height="39" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="592" y="567" text-anchor="middle" font-size="18" font-weight="400" fill="#52657d">若無人能取得紀錄，交由協調者決定是否改在指定版本重測。</text>
+</svg>
