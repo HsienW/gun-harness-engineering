@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 332" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+  <title id="title">哪些工作可以在版本 B 交付前開始？</title>
+  <desc id="desc">由左向右閱讀。實作者修正函式的同時，驗證者可以在原版重現錯誤。取得版本 B 且案例備妥後，驗證者才能在 B 上驗證。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#0066d6"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="1038" height="330" rx="7" fill="#f5f8fc" stroke="#b9cce3"/>
+  <text x="28" y="48" font-size="28" font-weight="600" fill="#102743">哪些工作可以在版本 B 交付前開始？</text>
+  <path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+  <text x="146" y="103" font-size="17" font-weight="400" fill="#52657d">可同時開始</text>
+  <text x="481" y="103" font-size="17" font-weight="400" fill="#52657d">各自交付</text>
+  <text x="785" y="103" font-size="17" font-weight="400" fill="#52657d">兩項都備妥後</text>
+  <path d="M28 214 H1012" stroke="#b9cce3" stroke-dasharray="4 5"/>
+  <text x="38" y="167" font-size="21" font-weight="600" fill="#0066d6">實作者</text>
+  <rect x="146" y="124" width="261" height="70" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="166" y="166" font-size="20" font-weight="400" fill="#102743">重現問題並修正函式</text>
+  <path d="M409 159 H476" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="481" y="124" width="204" height="70" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="500" y="166" font-size="20" font-weight="400" fill="#102743">可取得的版本 B</text>
+  <text x="38" y="272" font-size="21" font-weight="600" fill="#0066d6">驗證者</text>
+  <rect x="146" y="229" width="261" height="70" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="166" y="271" font-size="20" font-weight="400" fill="#102743">在原版重現錯誤</text>
+  <path d="M409 264 H476" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="481" y="229" width="204" height="70" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="500" y="271" font-size="20" font-weight="400" fill="#102743">案例已備妥</text>
+  <rect x="785" y="229" width="225" height="70" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="808" y="271" font-size="23" font-weight="600" fill="#102743">在 B 上驗證</text>
+  <path d="M687 159 H897 V225" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <path d="M687 264 H781" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</svg>
