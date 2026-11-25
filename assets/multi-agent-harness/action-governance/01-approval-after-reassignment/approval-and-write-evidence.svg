@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 444" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+  <title id="title">Task 改派給 B，寫入前還要查什麼？</title>
+  <desc id="desc">改派後依 A 已寫入、效果不明或尚未寫入分別處理。B 寫入前仍需自身權限及涵蓋本次操作的批准。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#0066d6"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="1038" height="442" rx="7" fill="#f5f8fc" stroke="#b9cce3"/>
+  <text x="28" y="48" font-size="28" font-weight="600" fill="#102743">Task 改派給 B，寫入前還要查什麼？</text>
+  <path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+  <rect x="32" y="94" width="324" height="86" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="52" y="128" font-size="22" font-weight="600" fill="#0066d6">Task 改派給 B</text>
+  <text x="52" y="159" font-size="18" font-weight="400" fill="#102743">原批准點名 A，只准寫入一次。</text>
+  <path d="M357 137 H461" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="466" y="94" width="540" height="86" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="488" y="128" font-size="22" font-weight="600" fill="#0066d6">A 已經寫入了嗎？</text>
+  <text x="488" y="159" font-size="19" font-weight="400" fill="#102743">查批准的使用紀錄，並讀回工作區 diff。</text>
+  <path d="M736 180 V213 H186 M186 213 H846" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M186 213 V241" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <path d="M516 213 V241" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <path d="M846 213 V241" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="32" y="246" width="308" height="160" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="50" y="284" font-size="21" font-weight="600" fill="#0066d6">已寫入，批准已用</text>
+  <text x="50" y="326" font-size="18" font-weight="400" fill="#102743">B 有讀取權即可核對產物。</text>
+  <text x="50" y="359" font-size="18" font-weight="400" fill="#102743">若要再次寫入，須另有</text>
+  <text x="50" y="385" font-size="18" font-weight="400" fill="#102743">涵蓋該次操作的批准。</text>
+  <rect x="362" y="246" width="308" height="160" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="380" y="284" font-size="21" font-weight="600" fill="#0066d6">寫入效果不明</text>
+  <text x="380" y="326" font-size="18" font-weight="400" fill="#102743">回查 A 的原操作與產物。</text>
+  <text x="380" y="359" font-size="18" font-weight="400" fill="#102743">釐清結果前，B 暫緩重做。</text>
+  <rect x="692" y="246" width="308" height="160" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="710" y="284" font-size="21" font-weight="600" fill="#0066d6">尚未寫入，仍需修改</text>
+  <text x="710" y="326" font-size="18" font-weight="400" fill="#102743">確認 B 本身有寫入權限。</text>
+  <text x="710" y="359" font-size="18" font-weight="400" fill="#102743">由有權者批准 B 對指定</text>
+  <text x="710" y="385" font-size="18" font-weight="400" fill="#102743">資源執行本次寫入。</text>
+</svg>
