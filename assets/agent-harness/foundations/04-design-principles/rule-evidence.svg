@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 346" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
-<title id="title">如何查出規則在哪一步生效</title><desc id="desc">三種業務視角的教學對照；實作範圍以各專案的執行路徑為準。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 280" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+<title id="title">如何查出規則在哪一步生效</title><desc id="desc">分別更換客服訂單與 Coding Agent 的寫入路徑，觀察規則在哪一步生效。</desc>
 <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#0066d6"/></marker></defs>
-<rect x="1" y="1" width="1038" height="344" rx="7" fill="#f5f8fc" stroke="#b9cce3"/><text x="28" y="48" font-size="28" fill="#102743" font-weight="600">如何查出規則在哪一步生效</text><path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+<rect x="1" y="1" width="1038" height="278" rx="7" fill="#f5f8fc" stroke="#b9cce3"/><text x="28" y="48" font-size="28" fill="#102743" font-weight="600">如何查出規則在哪一步生效</text><path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
 <text x="38" y="109" font-size="17" fill="#52657d" font-weight="400">產品規則（教學情境）</text>
 <text x="376" y="109" font-size="17" fill="#52657d" font-weight="400">故意改變一個條件</text>
 <text x="714" y="109" font-size="17" fill="#52657d" font-weight="400">觀察結果</text>
@@ -17,10 +17,4 @@
 <text x="377" y="227" font-size="17" fill="#102743" font-weight="400">選擇範圍外的檔案</text>
 <rect x="702" y="193" width="328" height="54" rx="7" fill="#fff" stroke="#b9cce3"/>
 <text x="715" y="227" font-size="17" fill="#102743" font-weight="400">寫入前是否拒絕</text>
-<rect x="26" y="257" width="328" height="54" rx="7" fill="#e2efff" stroke="#b9cce3"/>
-<text x="39" y="291" font-size="17" fill="#102743" font-weight="400">只驗收指定版本</text>
-<rect x="364" y="257" width="328" height="54" rx="7" fill="#fff" stroke="#b9cce3"/>
-<text x="377" y="291" font-size="17" fill="#102743" font-weight="400">回報另一版本的測試</text>
-<rect x="702" y="257" width="328" height="54" rx="7" fill="#fff" stroke="#b9cce3"/>
-<text x="715" y="291" font-size="17" fill="#102743" font-weight="400">原 Task 是否保留待驗收</text>
 </svg>
