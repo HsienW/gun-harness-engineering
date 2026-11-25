@@ -15,9 +15,7 @@
 這是一套討論 AI Agent 在真實產品中受到約束、完成執行、故障恢復的知識庫
 
 - 這些內容起源自個人對於 [chat-gun](https://github.com/HsienW/chat-gun) 的實戰加上對 [claude-code-best/claude-code](https://github.com/claude-code-best/claude-code) 的研究與思考。
-- 本庫不討論各種 Agent Infra 為出發點的 Harness 論文，而是聚焦看二個 Harness 在業務落地的核心
-  - 由產品實踐視角如何定位 Harness 的責任與能力
-  - 業務落地時 Harness 跟 Runtime 的邊界跟負責什麼任務
+- 多 Agent 管理平台的案例來自 Munder Difflin，討論協調者如何委派、Worker 如何收件，以及平台憑哪些證據驗收。[munder-difflin](https://github.com/HarnessMD/munder-difflin)
 
 ### 首先！不用技術名詞，你能說清楚 Harness 跟 Runtime 是什麼嗎?
 
@@ -59,6 +57,11 @@ Agent 架構常被寫成一張元件清單：Prompt、Memory、Tool、Workflow�
 
 ## 知識庫地圖
 
+| 觀察視角 | Harness | Runtime |
+|---|---|---|
+| 業務 Agent（Chat Gun、CCB） | [客服與開發任務的能力、範圍與授權](./agent-harness/README-zh-TW.md) | [一次 Run 的推進、中斷與恢復](./agent-runtime/README-zh-TW.md) |
+| 多 Agent 管理平台（Munder Difflin） | [跨 Worker 的委派、介入與交付驗收](./multi-agent-harness/README-zh-TW.md) | [Worker 身分、訊息投遞與任務恢復](./multi-agent-runtime/README-zh-TW.md) |
+
 ~~~text
 gun-harness-engineering/
 ├─ README.md
@@ -70,12 +73,20 @@ gun-harness-engineering/
 │  ├─ behavior-and-capabilities/
 │  ├─ action-governance/
 │  └─ interaction-and-feedback/
-└─ agent-runtime/
-   ├─ foundations/
-   ├─ execution-lifecycle/
-   ├─ model-and-tool-execution/
-   ├─ effects-and-recovery/
-   └─ events-and-operations/
+├─ agent-runtime/
+│  ├─ foundations/
+│  ├─ execution-lifecycle/
+│  ├─ model-and-tool-execution/
+│  ├─ effects-and-recovery/
+│  └─ events-and-operations/
+├─ multi-agent-harness/
+│  ├─ foundations/
+│  ├─ input-and-context/
+│  ├─ behavior-and-capabilities/
+│  ├─ action-governance/
+│  └─ interaction-and-feedback/
+└─ multi-agent-runtime/
+   └─ foundations/
 ~~~
 
 ### Agent Harness

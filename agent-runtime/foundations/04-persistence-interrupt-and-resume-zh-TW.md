@@ -2,7 +2,7 @@
 
 [English](./04-persistence-interrupt-and-resume.md) | [繁體中文](./04-persistence-interrupt-and-resume-zh-TW.md) | [简体中文](./04-persistence-interrupt-and-resume-zh-CN.md)
 
-> 本章從三種產品觀察 Runtime：[Chat Gun](https://github.com/HsienW/chat-gun) 的一般對話與客服業務 Agent、[Claude Code Best（CCB）](https://github.com/claude-code-best/claude-code) 的 Coding Agent，以及 [munder-difflin](https://github.com/HarnessMD/munder-difflin) 的多 Agent Harness 平台。
+> 本章以 Chat Gun 的客服與對話任務，以及 Claude Code Best（CCB）的程式開發任務為例。
 
 Runtime 等待確認時暫停執行，過一段時間再收到回覆；另一種情況是工具已呼叫外部系統，程序在保存結果前崩潰。兩者都需要恢復，但核對的資料各有側重：前者要知道在等誰、等什麼；後者還要查明外部操作是否已經生效。
 
@@ -10,13 +10,12 @@ Runtime 等待確認時暫停執行，過一段時間再收到回覆；另一種
 
 ## 恢復同一件工作，要先查哪裡？
 
-設想程序在「操作已送出、結果尚未保存」的瞬間中斷。三種產品重新開工前，都要先找回工作歸屬，再查操作已經造成什麼效果。業務對象決定回查的位置。
+設想程序在「操作已送出、結果尚未保存」的瞬間中斷。恢復執行前，要先找回工作歸屬，再查操作已經造成什麼效果。業務對象決定回查的位置。
 
 | 案例 | 中斷的位置 | 重試前先核對 |
 |---|---|---|
 | Chat Gun 的客服操作 | 資料更新已交給外部服務，對話還沒收到確認 | 用原案件與操作識別回查業務資料。若仍無法判定結果，保留效果不明。 |
 | CCB 的檔案修改 | 編輯工具可能已寫檔，CLI 尚未留下完整回覆 | 查同一工作區的現況與 diff，辨認原修改及其後使用者做的變更，再決定還要改哪裡。 |
-| Munder Difflin 的工作委派 | Worker 可能已寄出結果，Task 尚未登記完成 | 對回原信、回信、結果參照與產物，再決定是否要重新交辦。 |
 
 以地址更新的教學情境為例，若訂單服務讀回舊地址，還要知道這個讀取端是否可能落後。只有能確認前次操作未提交，而且原授權仍有效，才有依據重新派送。若服務暫時查不到結果，可以先恢復對話、向使用者說明仍在查證，並把這筆操作留在待回查狀態。如此一來，使用者能繼續交談，也不會因為多問一句進度就重送修改。
 
@@ -43,19 +42,6 @@ Transcript 保存對話內容，讓模型與使用者知道先前說過什麼。
 Checkpoint 服務執行恢復。它需要保存 Runtime 在哪個 node、有哪些 pending Tool Call、目前是否等待，以及 Resume 後應進入哪條 edge。即使摘要完整重述了任務，Runtime 仍不能從自然語言推回一個可靠的 state machine position。
 
 Checkpoint 中的 Graph State 若要用作長期 Memory，需要另經篩選。直接把每次執行細節帶進下一次模型請求，會增加 Context，還可能重新帶入舊工具錯誤與過期政策。
-
-## Munder Difflin 如何接回原對話
-
-一位整理報告的 Worker 重啟後，仍記得報告格式，卻未必記得剛才改到哪一段。記憶、對話及任務進度各有保存位置，恢復時需要逐一核對。
-
-| 手邊的材料 | 能接回的內容 | 恢復後要核對什麼 |
-|---|---|---|
-| 角色的 `memory.md` | 留給未來回合的知識與偏好 | 本次 Worker 是否實際讀到相關內容 |
-| Transcript | 先前記錄下來的訊息與工具活動 | 所屬對話、最後一筆紀錄及工作區內的實際結果 |
-| CLI Session Resume | 由 CLI 接回可辨識的既有對話 | Provider 是否接受候選 ID，接回後是否能讀到原對話 |
-| Task 紀錄 | 原交辦、負責人與登記進度 | 已登記的結果是否存在，以及下一步由誰執行 |
-
-在固定版本的 Hive 原始碼裡，`recordSession` 依 Agent ID 找登錄項，檢查傳入的 Session ID 格式是否符合該 Provider。識別碼變更時，原值進入歷史候選，新值寫回登錄。這條寫入路徑採盡力保存，可能因缺少登錄或寫入失敗而沒有新紀錄。讀回候選值只完成尋找對話這一步，後續還要查 Transcript 及 CLI 的續接結果。若中斷前正等待使用者批准寫入，仍須依下節的 Interrupt 契約核對等待項目與批准範圍。[Session 登錄與恢復候選](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/hive.ts#L2209-L2245)、[Hive 協作協定](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/HIVE.md)、[修復紀錄](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/CHANGELOG.md)
 
 ## Interrupt 前要先留下什麼
 
@@ -127,7 +113,7 @@ Chat Gun 的 Deep Researcher 會保存 clarification manifest，再以 `interrup
 
 ![外部操作已 Commit、Tool Result 尚未保存到 Checkpoint 時 Runtime 崩潰；重啟後讀取 Ledger 並以 Operation ID 回查，再依提交證據決定後續處理](../../assets/agent-runtime/foundations/04-persistence-interrupt-and-resume/04-commit-checkpoint-crash.svg)
 
-同一個中斷點是操作已送出、結果尚未保存。客服查回原訂單，CCB 核對工作區與 diff，Munder Difflin 則循原信查回覆與交付物，再決定是否重做。
+同一個中斷點是操作已送出、結果尚未保存。客服查回原訂單，CCB 核對工作區與 diff，依查到的結果決定是否重做。
 
 - 圖中選取 Commit 後、Tool Result 保存前的故障窗口；下表再列出其他位置。回查結果分為已提交、已證明未提交與仍無法判讀，分別進入結果重用、派送條件檢查或停放處理。
 

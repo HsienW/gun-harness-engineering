@@ -4,9 +4,7 @@
 
 本區先定義 Harness 負責什麼，再追問決策如何進入執行，最後用一次檔案修改任務核對整條路徑。依序閱讀，後一篇會把前一篇留下的問題推進到具體流程。
 
-## 三種類型的 Agent
-
-![同一份交辦，三處控制決策](../../assets/agent-harness/foundations/overview/product-controls.svg)
+本區以 Chat Gun 的客服與對話、CCB 的程式開發為例。跨 Worker 的交辦與驗收見 [Multi-Agent Harness 基礎篇](../../multi-agent-harness/foundations/README-zh-TW.md)。
 
 ## 閱讀順序
 
@@ -21,4 +19,3 @@
 
 * [claude-code-best](https://github.com/claude-code-best/claude-code)
 * [chat-gun](https://github.com/HsienW/chat-gun)
-* [munder-difflin](https://github.com/HarnessMD/munder-difflin)

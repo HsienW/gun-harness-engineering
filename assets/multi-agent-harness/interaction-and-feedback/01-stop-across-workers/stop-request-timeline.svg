@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 440" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+  <title id="title">收到「先停」後，此刻能向使用者確認什麼？</title>
+  <desc id="desc">回覆使用者時，A 的修改仍在工作區，協調者已對 B 送出停止要求但結果待確認，C 的交辦已在派送前撤下。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#0066d6"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="1038" height="438" rx="7" fill="#f5f8fc" stroke="#b9cce3"/>
+  <text x="28" y="48" font-size="28" font-weight="600" fill="#102743">收到「先停」後，此刻能向使用者確認什麼？</text>
+  <path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+  <rect x="28" y="90" width="984" height="324" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="354" y="124" text-anchor="middle" font-size="19" font-weight="600" fill="#0066d6">收到「先停」</text>
+  <text x="732" y="124" text-anchor="middle" font-size="19" font-weight="600" fill="#0066d6">此刻回覆使用者</text>
+  <path d="M48 148 H984" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M354 141 V396" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" stroke-dasharray="5 6"/>
+  <path d="M732 141 V396" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" stroke-dasharray="5 6"/>
+  <path d="M48 228 H992" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M48 320 H992" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round"/>
+  <text x="49" y="192" font-size="22" font-weight="600" fill="#0066d6">A</text>
+  <text x="49" y="277" font-size="22" font-weight="600" fill="#0066d6">B</text>
+  <text x="49" y="364" font-size="22" font-weight="600" fill="#0066d6">C</text>
+  <path d="M120 204 H710" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="161" cy="204" r="5" fill="#fff" stroke="#0066d6" stroke-width="2"/>
+  <circle cx="485" cy="204" r="5" fill="#fff" stroke="#0066d6" stroke-width="2"/>
+  <text x="122" y="187" font-size="18" font-weight="400" fill="#102743">已寫入檔案</text>
+  <text x="417" y="187" font-size="18" font-weight="400" fill="#102743">核對 diff 與版本</text>
+  <text x="755" y="193" font-size="21" font-weight="600" fill="#102743">修改仍在工作區</text>
+  <path d="M120 293 H536" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M536 293 H720" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" stroke-dasharray="5 6"/>
+  <circle cx="161" cy="293" r="5" fill="#fff" stroke="#0066d6" stroke-width="2"/>
+  <circle cx="536" cy="293" r="5" fill="#fff" stroke="#0066d6" stroke-width="2"/>
+  <text x="122" y="276" font-size="18" font-weight="400" fill="#102743">測試執行中</text>
+  <text x="461" y="276" font-size="18" font-weight="400" fill="#102743">送出停止要求</text>
+  <text x="755" y="273" font-size="21" font-weight="600" fill="#102743">已要求停止</text>
+  <text x="755" y="301" font-size="18" font-weight="400" fill="#52657d">終止結果待確認</text>
+  <path d="M120 380 H544" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="161" cy="380" r="5" fill="#fff" stroke="#0066d6" stroke-width="2"/>
+  <circle cx="544" cy="380" r="5" fill="#fff" stroke="#0066d6" stroke-width="2"/>
+  <text x="122" y="363" font-size="18" font-weight="400" fill="#102743">交辦待派送</text>
+  <text x="449" y="363" font-size="18" font-weight="400" fill="#102743">確認派送前已撤下</text>
+  <text x="755" y="366" font-size="21" font-weight="600" fill="#102743">交辦未派出</text>
+</svg>

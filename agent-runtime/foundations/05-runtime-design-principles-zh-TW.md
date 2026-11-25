@@ -2,7 +2,7 @@
 
 [English](./05-runtime-design-principles.md) | [繁體中文](./05-runtime-design-principles-zh-TW.md) | [简体中文](./05-runtime-design-principles-zh-CN.md)
 
-> 本章從三種產品觀察 Runtime：[Chat Gun](https://github.com/HsienW/chat-gun) 的一般對話與客服業務 Agent、[Claude Code Best（CCB）](https://github.com/claude-code-best/claude-code) 的 Coding Agent，以及 [munder-difflin](https://github.com/HarnessMD/munder-difflin) 的多 Agent Harness 平台。
+> 本章以 Chat Gun 的客服與對話任務，以及 Claude Code Best（CCB）的程式開發任務為例。
 
 工具呼叫已經成功，Runtime 卻在保存 Tool Result 前崩潰；重新啟動後，程式只看到 Checkpoint 沒有結果，於是再呼叫一次。若這個工具是讀檔，代價只是多做一次；若它是退款或寄信，同一套恢復邏輯便會製造第二個外部效果。
 
@@ -30,18 +30,6 @@ Runtime State、Task Ownership、UI Projection 與 Side-effect Ledger 可以同�
 實作時，所有會改變狀態的入口應回到同一個 repository、state machine 或 Agent Server API。若 HTTP handler 可以直接把 Task 標成 completed，Graph finalizer 也能寫入 terminal，兩邊遲早會在取消、late event 或 crash recovery 時產生不同答案。
 
 單一權威會增加 adapter 與 command 的設計工作，也可能讓簡單操作多一次資料存取。這項取捨換來明確的查證位置：發生衝突時，工程人員可以先讀取權威狀態，再檢查各份 Projection 為何不同。
-
-### Munder Difflin 的三種狀態證據
-
-使用者看見 Worker 停在提示列，準備把下一件工作交給它。此時主程序、終端介面與任務帳本各能回答一個不同的問題。
-
-| 判斷 | 核對方式 | 容易誤判的情況 |
-|---|---|---|
-| 程序仍存活 | 找到目前 PTY 對應的程序，核對存活觀察與退出事件歸屬。 | 舊程序退出時，新程序可能已沿用原 PTY ID。 |
-| CLI 已閒置且可接受自動輸入 | 核對活動狀態與投遞條件，包括使用者草稿、開啟中的選單及暫停投遞。 | 畫面沒有新輸出時，使用者可能正在輸入半行文字。 |
-| 任務已完成 | 把回信對回 Task，依交辦條件核對結果，例如打開報告確認指定段落已更新。 | Worker 可以在送出回信後繼續存活，也可能在完成前退出。 |
-
-若漏接一次 hook，可先保留最後觀察的時間與 Session 歸屬，再從同一個 Worker 的收件紀錄及工作產物縮小範圍。查到信件已送達，就記下投遞事實；待檔案內容也符合驗收條件，才有依據更新任務結果。這個查證順序能保留已知進度，也讓值班者看出還缺哪一段。[PTY 建立與退出處理](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/pty.ts#L895-L975)、[終端輸入佇列契約](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/docs/message-queue.md)
 
 ## 2. 狀態轉移必須有型別與前置條件
 
@@ -164,15 +152,13 @@ CCB 的 query abort、Chat Gun 前端 transport stop 與 business cancel 提供�
 
 Failure Drill 要使用正式 composition 與接近部署的 adapter。全部 dependency 都換成無狀態 mock，通常只能驗證分支判斷，不能支持 durability、lock lease 或下游 effect 的結論。
 
-## 同一條設計原則在三種業務裡如何驗證
+## 如何在客服與 Coding 任務中驗證完成條件
 
 CCB 的 query loop讓模型與工具控制流直接可讀，Abort、turn budget、tool batching 與 compaction 也有清楚接點。它適合觀察單程序 Coding Agent 如何維持訊息契約；若要擴到遠端多 Worker、durable interrupt 與業務 side effect，還需補入相應 authority 與 persistence。
 
 Chat Gun 使用 LangGraph 承擔 Run／Thread／Graph State，再以 ownership、authorization、tool dispatch、Ledger 與 recovery 模組補足產品語意。這種分層避免重建整套 Agent Server，代價是每個擴充都必須證明接在正式 Graph、Registry 與部署 adapter 上。
 
-Munder Difflin 把工作分派給各自執行的 CLI。Worker 進入 idle、程序退出、Task 完成分屬不同狀態，平台只能依對應的事件或紀錄更新它負責的那一項。若替代程序已接手相同 PTY ID，晚到的退出回呼還須核對原 Session 物件。
-
-可以用同一個故障檢查這條原則：保留成功回覆，拿掉支持它的結果。客服測試裡，讓訂單服務逾時，檢查 Agent 是否把更新標為待回查。Coding 測試裡，保留上一版通過的測試輸出，再修改程式，檢查交付說明是否標出新版尚待驗證。平台測試裡，讓 Worker 送出完成通知，卻附上另一筆 Task 的產物，檢查協調者是否保留原任務等待驗收。這三項都是可執行的故障情境，通過與否要以各自的測試紀錄為準。
+可以用同一個故障檢查這條原則：保留成功回覆，拿掉支持它的結果。客服測試裡，讓訂單服務逾時，檢查 Agent 是否把更新標為待回查。Coding 測試裡，保留上一版通過的測試輸出，再修改程式，檢查交付說明是否標出新版尚待驗證。兩種情境都要留下實際測試紀錄，才能判斷是否通過。
 
 ## 設計檢查表
 
@@ -213,7 +199,7 @@ Runtime 需要在失敗後交代發生了什麼、哪個狀態算數，以及下
 - `src/services/tools/toolOrchestration.ts`
 - `src/services/compact/autoCompact.ts`
 
-本文對照三個專案中各自可查的控制點。來源版本、已讀模組與測試限制見[本區來源與查證狀態](./README-zh-TW.md#來源與查證狀態)。
+本文對照 Chat Gun 與 CCB 各自可查的控制點。來源版本、已讀模組與測試限制見[本區來源與查證狀態](./README-zh-TW.md#來源與查證狀態)。
 
 ## 接續閱讀
 

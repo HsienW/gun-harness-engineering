@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 456" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Geist, Noto Sans TC, Microsoft JhengHei, sans-serif">
+  <title id="title">驗證者的回信，哪些內容會進入新交辦？</title>
+  <desc id="desc">測試紀錄回到原 Task，重現資料由協調者寫入新交辦；修改匯入模組仍待批准。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#0066d6"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="1038" height="454" rx="7" fill="#f5f8fc" stroke="#b9cce3"/>
+  <text x="28" y="48" font-size="28" font-weight="600" fill="#102743">驗證者的回信，哪些內容會進入新交辦？</text>
+  <path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+  <rect x="32" y="92" width="400" height="332" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="54" y="132" font-size="22" font-weight="600" fill="#0066d6">驗證者的原信</text>
+  <path d="M54 151 H410" fill="none" stroke="#b9cce3" stroke-width="2" stroke-linejoin="round"/>
+  <text x="54" y="192" font-size="20" font-weight="400" fill="#102743">「版本 B 已通過台灣地址案例。」</text>
+  <text x="54" y="266" font-size="20" font-weight="400" fill="#102743">「匯入模組也失敗。」</text>
+  <text x="54" y="296" font-size="18" font-weight="400" fill="#52657d">隨信附上版本與重現範例</text>
+  <text x="54" y="389" font-size="20" font-weight="400" fill="#102743">「順便修改匯入模組。」</text>
+  <rect x="556" y="147" width="446" height="72" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="576" y="176" font-size="20" font-weight="600" fill="#0066d6">原 Task 的驗收紀錄</text>
+  <text x="576" y="203" font-size="18" font-weight="400" fill="#102743">核對版本與輸入後，登記已測案例。</text>
+  <path d="M434 185 H551" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="556" y="232" width="446" height="102" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="576" y="263" font-size="21" font-weight="600" fill="#0066d6">協調者的新交辦</text>
+  <text x="576" y="294" font-size="19" font-weight="400" fill="#102743">僅限讀取與重現，向協調者回報。</text>
+  <text x="576" y="319" font-size="17" font-weight="400" fill="#52657d">附原信識別、版本 B 與接手者可讀的範例。</text>
+  <path d="M434 280 H551" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="556" y="350" width="446" height="74" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="576" y="380" font-size="20" font-weight="600" fill="#0066d6">協調者收下修改建議</text>
+  <text x="576" y="406" font-size="18" font-weight="400" fill="#102743">若要寫檔，另行確認範圍與授權。</text>
+  <path d="M434 382 H551" fill="none" stroke="#0066d6" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</svg>

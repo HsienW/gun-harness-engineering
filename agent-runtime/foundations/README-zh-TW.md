@@ -2,25 +2,22 @@
 
 [English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
 
-> 本章從三種產品觀察 Runtime：[Chat Gun](https://github.com/HsienW/chat-gun) 的一般對話與客服業務 Agent、[Claude Code Best（CCB）](https://github.com/claude-code-best/claude-code) 的 Coding Agent，以及 [munder-difflin](https://github.com/HarnessMD/munder-difflin) 的多 Agent Harness 平台。
+> 本章以 Chat Gun 的客服與對話任務，以及 Claude Code Best（CCB）的程式開發任務為例。
 
 本篇章從 [Harness 與 Runtime 的交接邊界](../../agent-harness/foundations/03-harness-runtime-boundary-zh-TW.md) 往執行端移動。Harness 已交付 Normalized Input、Context、Capabilities、Limits 與 Decision Ports 之後，Runtime 必須把一次執行推進到合法終點，並保留足以回答「執行到哪裡、做過什麼、能否安全繼續」的證據。
 
 第 01、02 篇先界定工作範圍與執行身分。第 03、04 篇追蹤執行如何繼續、停下或恢復。第 05、06 篇回到驗收，檢查每一層交出的證據能否支持對使用者的答覆。各專案的固定版本列在[來源與查證狀態](#來源與查證狀態)。
 
-## 共同的執行問題與三種業務視角
+## 客服案件與 Coding 任務如何驗收
 
-三者都要回答同一組問題：現在是誰在執行、能否繼續、先前做過什麼、憑什麼交付結果。每篇先說明這些共同責任，再依業務對象查找身分、狀態與證據。是否支援跨程序恢復、是否有持久化效果帳本，須查到各自的執行路徑才算成立。
+追蹤一次業務 Run 時，要查明現在是誰在執行、能否繼續、先前做過什麼、憑什麼交付結果。每篇先說明這些共同責任，再依業務對象查找身分、狀態與證據。是否支援跨程序恢復、是否有持久化效果帳本，須查到各自的執行路徑才算成立。
 
 | 觀察對象 | 使用者交付的工作 | 驗收位置 |
 |---|---|---|
 | Chat Gun 的對話或客服案件 | 回答問題，必要時查詢或更新業務資料 | 核對答覆是否解決原訴求。有外部操作時，另向業務系統確認結果。 |
 | CCB 的工作區 | 找到問題、修改程式並驗證 | 核對工作目錄、實際 diff，以及測試是否涵蓋原問題。 |
-| Munder Difflin 的跨 Worker 委派 | 分配工作，收回各 Worker 的結果 | 把回報連回原交辦，再驗收整體產物。 |
 
-![同一件工作，三個驗收位置](../../assets/agent-runtime/foundations/overview/acceptance-views.svg)
-
-三個案例可以出現在同一件工作裡。客服回報地址欄位會拒絕有效輸入，協調者請 Coding Worker 修正，再請另一位 Worker 驗證。客服案件關心受影響的訂單是否得到處理，Coding Worker 關心哪個版本修好了函式，平台則要知道驗證者收到哪一版。以下各篇以這些可以獨立核對的工作範圍界定一次執行。
+平台在多個 Worker 之間如何追蹤與接回同一筆委派，見 [Multi-Agent Runtime 基礎篇](../../multi-agent-runtime/foundations/README-zh-TW.md)。
 
 ## 閱讀順序
 
@@ -135,7 +132,7 @@ Runtime 不以框架名稱、背景 Worker 或單一 `query()` 函式定義，�
 
 ### 文章範圍
 
-模型輸出會依內容進入不同路徑。Tool Call 進入派送與結果回灌，Decision Request 或 Interrupt 讓執行停在可辨認的等待位置。CCB 與 Chat Gun 的實作可對照這些轉移，Munder Difflin 的收件與喚醒則補上外層委派仍在進行的情況。
+模型輸出會依內容進入不同路徑。Tool Call 進入派送與結果回灌，Decision Request 或 Interrupt 讓執行停在可辨認的等待位置。本章以 CCB 的 query loop 與 Chat Gun 的 Graph 對照這些轉移。
 
 重點如下：
 
@@ -243,7 +240,6 @@ Runtime 的執行責任可收斂為工程上可檢查的不變條件。原則要
 |---|---|---|
 | [Chat Gun](https://github.com/HsienW/chat-gun) | `92a5673003e4ac4ec09be8b1b350f42dbf4a5e69` | LangGraph 邊界、execution composition、interaction ownership、tool dispatch、interrupt／resume、side-effect evidence 與事件。 |
 | [Claude Code Best](https://github.com/claude-code-best/claude-code) | `77a7934e15d69da13879112ed7db695c9ee7a52a` | 第三方 Coding Agent 的 query loop、session orchestration、tool execution、並行排程、abort 與 compaction 對照。 |
-| [munder-difflin](https://github.com/HarnessMD/munder-difflin) | `96ae43e3292447f68af6904afb353f6f5bdaa412` | 平台的 PTY 程序歸屬、CLI Session 保存、Hive 協作設計與歷史故障。跨 Worker 的完整時序為教學案例。 |
 
 ### 主要來源索引
 
