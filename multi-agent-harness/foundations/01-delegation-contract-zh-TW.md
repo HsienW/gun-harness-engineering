@@ -1,5 +1,7 @@
 # 如何把工作交給另一個 Agent？
 
+[English](./01-delegation-contract.md) | [繁體中文](./01-delegation-contract-zh-TW.md) | [简体中文](./01-delegation-contract-zh-CN.md)
+
 假設協調者要查 README 裡的一個失效連結。只交代「檢查文件」，Worker 即使回覆「已檢查」，接手的人仍得猜它查了哪個版本。把工作縮到指定工作區、版本和檔案，回信附行號與目標路徑，另一個人就能重做同一次查核。
 
 | 交辦時要說清楚什麼 | 這次查核的約定 |
