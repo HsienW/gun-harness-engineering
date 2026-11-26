@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 409" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Microsoft JhengHei, Noto Sans TC, Geist, sans-serif">
+  <title id="title">看見 Worker 視窗後，還要驗哪兩件事？</title>
+  <desc id="desc">Windows 啟動故障與修復後的驗收：核對 CLI 實收指令，再用回信驗證協作通道</desc>
+  <rect x="1" y="1" width="1038" height="407" rx="7" fill="#f5f8fc" stroke="#b9cce3"/>
+  <text x="28" y="48" font-size="28" font-weight="600" fill="#102743">看見 Worker 視窗後，還要驗哪兩件事？</text>
+  <path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+  <text x="32" y="106" font-size="20" font-weight="600" fill="#0066d6">Munder Difflin 0.4.4 修復的 Windows 啟動故障</text>
+  <rect x="32" y="125" width="265" height="83" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="51" y="157" font-size="20" font-weight="600" fill="#0066d6">桌面主程序</text>
+  <text x="51" y="189" font-size="18" font-weight="400" fill="#102743">PTY 已啟動，視窗可見</text>
+  <text x="344" y="151" font-size="19" font-weight="400" fill="#102743">多行啟動參數遭截斷</text>
+  <path d="M300 171 H622" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M622 171 L613 167 L613 175 Z" fill="#0066d6"/>
+  <rect x="628" y="125" width="380" height="83" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="647" y="157" font-size="20" font-weight="600" fill="#0066d6">Worker CLI</text>
+  <text x="647" y="189" font-size="18" font-weight="400" fill="#102743">缺少 inbox／outbox 協作指令</text>
+  <path d="M32 232 H1008" fill="none" stroke="#b9cce3" stroke-width="1"/>
+  <text x="32" y="268" font-size="20" font-weight="600" fill="#0066d6">修復後的驗收方法</text>
+  <rect x="32" y="286" width="270" height="92" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="52" y="321" font-size="20" font-weight="600" fill="#0066d6">核對 CLI 實收指令</text>
+  <text x="52" y="353" font-size="18" font-weight="400" fill="#102743">確認收件與回信規則完整</text>
+  <path d="M304 332 H360" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M360 332 L351 328 L351 336 Z" fill="#0066d6"/>
+  <rect x="365" y="286" width="262" height="92" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="383" y="321" font-size="20" font-weight="600" fill="#0066d6">送出可辨識的請求</text>
+  <text x="383" y="353" font-size="18" font-weight="400" fill="#102743">記下收件者與原件 ID</text>
+  <path d="M629 332 H683" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M683 332 L674 328 L674 336 Z" fill="#0066d6"/>
+  <rect x="689" y="286" width="319" height="92" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="709" y="321" font-size="20" font-weight="600" fill="#0066d6">從回信核對原交辦</text>
+  <text x="709" y="353" font-size="18" font-weight="400" fill="#102743">比對回信者與 in_reply_to</text>
+</svg>
