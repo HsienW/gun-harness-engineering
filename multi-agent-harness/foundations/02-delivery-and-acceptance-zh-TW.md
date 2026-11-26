@@ -1,5 +1,7 @@
 # 收到回信後，誰能判定交付完成？
 
+[English](./02-delivery-and-acceptance.md) | [繁體中文](./02-delivery-and-acceptance-zh-TW.md) | [简体中文](./02-delivery-and-acceptance-zh-CN.md)
+
 協調者請實作者修正地址驗證函式，再請另一位 Worker 驗證。兩封回信都對得上原 Task。實作者交付版本 B，驗證者只寫「測試通過」。此時可以登記已收到測試回報，驗收仍缺測試使用的版本。
 
 ![實作者交付版本 B，驗證者的回信缺少測試版本](../../assets/multi-agent-harness/foundations/02-delivery-and-acceptance/verify-revision.svg)
