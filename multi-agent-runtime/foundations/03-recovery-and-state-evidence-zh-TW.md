@@ -11,6 +11,8 @@
 
 在固定版本的 Hive 原始碼裡，`recordSession` 依 Agent ID 找登錄項，檢查傳入的 Session ID 格式是否符合該 Provider。識別碼變更時，原值進入歷史候選，新值寫回登錄。這條寫入路徑採盡力保存，可能因缺少登錄或寫入失敗而沒有新紀錄。讀回候選值只完成尋找對話這一步，後續還要查 Transcript 及 CLI 的續接結果。若中斷前正等待使用者批准寫入，仍須核對原等待項目、批准範圍及批准是否已被使用。[Session 登錄與恢復候選](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/hive.ts#L2209-L2245)、[Hive 協作協定](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/HIVE.md)、[修復紀錄](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/CHANGELOG.md)
 
+![從候選 Session ID 查到 CLI 續接結果；接回對話後，原 Task 的寫入仍須核對批准](../../assets/multi-agent-runtime/foundations/03-recovery-and-state-evidence/session-resume-and-approval.svg)
+
 ## 程序、輸入與任務各查什麼？
 
 使用者看見 Worker 停在提示列，準備把下一件工作交給它。此時主程序、終端介面與任務帳本各能回答一個不同的問題。
