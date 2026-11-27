@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 475" role="img" aria-labelledby="title desc" lang="en" font-family="Arial, sans-serif">
+<title id="title">The message arrives while the CLI is reading a file</title><desc id="desc">Time runs left to right. A Claude worker’s Stop hook checks for mail at the turn boundary. An empty inbox lets the turn end. A done reply closes the query. A PTY event records process exit.</desc>
+<rect x="1" y="1" width="1038" height="473" rx="7" fill="#f5f8fc" stroke="#b9cce3"/><text x="28" y="48" font-size="28" fill="#102743" font-weight="600">The message arrives while the CLI is reading a file</text><path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+<text x="30" y="139" font-size="21" fill="#0066d6" font-weight="600">Hive</text>
+<rect x="155" y="94" width="237" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="171" y="127" font-size="20" fill="#0066d6" font-weight="600">Deliver query</text>
+<text x="171" y="157" font-size="17" fill="#102743" font-weight="400">A waits for B’s reply</text>
+<path d="M395 137 L741 137" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M741 137 L732 133 L732 141 Z" fill="#0066d6"/>
+<rect x="750" y="94" width="260" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="766" y="127" font-size="20" fill="#0066d6" font-weight="600">Match done to query</text>
+<text x="766" y="157" font-size="17" fill="#102743" font-weight="400">The exchange ends</text>
+<text x="30" y="252" font-size="20" fill="#0066d6" font-weight="600">Worker CLI</text>
+<rect x="155" y="208" width="237" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="171" y="241" font-size="20" fill="#0066d6" font-weight="600">Still reading a file</text>
+<text x="171" y="271" font-size="17" fill="#102743" font-weight="400">Message waits in inbox</text>
+<path d="M395 250 L435 250" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M435 250 L426 246 L426 254 Z" fill="#0066d6"/>
+<rect x="444" y="208" width="230" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="460" y="241" font-size="20" fill="#0066d6" font-weight="600">Stop hook</text>
+<text x="460" y="271" font-size="17" fill="#102743" font-weight="400">Check for pending mail</text>
+<path d="M676 250 L741 250" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M741 250 L732 246 L732 254 Z" fill="#0066d6"/>
+<rect x="750" y="208" width="260" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+<text x="766" y="241" font-size="20" fill="#0066d6" font-weight="600">Mail: continue the turn</text>
+<text x="766" y="271" font-size="17" fill="#102743" font-weight="400">Read, process, and reply</text>
+<path d="M880 206 L880 182" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M880 182 L876 191 L884 191 Z" fill="#0066d6"/>
+<path d="M558 295 L558 329" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M558 329 L562 320 L554 320 Z" fill="#0066d6"/>
+<rect x="367" y="334" width="408" height="50" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="385" y="366" font-size="18" font-weight="400" fill="#102743">No mail: turn may end, PTY can stay open</text>
+  <path d="M30 405 H1010" fill="none" stroke="#b9cce3" stroke-width="1"/>
+  <text x="30" y="447" font-size="18" font-weight="600" fill="#0066d6">Process exit</text>
+  <text x="155" y="447" font-size="19" font-weight="400" fill="#102743">Check the exit event for the current PTY session to identify the process that ended.</text>
+</svg>

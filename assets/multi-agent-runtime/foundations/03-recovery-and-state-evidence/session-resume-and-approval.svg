@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 530" role="img" aria-labelledby="title desc" lang="zh-TW" font-family="Microsoft JhengHei, Noto Sans TC, Geist, sans-serif">
+  <title id="title">找回原對話後，哪一步還在等批准？</title>
+  <desc id="desc">從候選 Session ID 查到 CLI 續接結果；接回對話後，原 Task 的寫入仍須核對批准</desc>
+  <rect x="1" y="1" width="1038" height="528" rx="7" fill="#f5f8fc" stroke="#b9cce3"/>
+  <text x="28" y="48" font-size="28" font-weight="600" fill="#102743">找回原對話後，哪一步還在等批准？</text>
+  <path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+  <rect x="32" y="96" width="276" height="100" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="51" y="132" font-size="21" font-weight="600" fill="#0066d6">Hive 角色登錄</text>
+  <text x="51" y="166" font-size="18" font-weight="400" fill="#102743">取回候選 CLI Session ID</text>
+  <path d="M311 146 H373" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M373 146 L364 142 L364 150 Z" fill="#0066d6"/>
+  <rect x="378" y="96" width="279" height="100" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="397" y="132" font-size="21" font-weight="600" fill="#0066d6">核對 Transcript</text>
+  <text x="397" y="166" font-size="18" font-weight="400" fill="#102743">確認可讀且屬於目標對話</text>
+  <path d="M660 146 H721" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M721 146 L712 142 L712 150 Z" fill="#0066d6"/>
+  <rect x="726" y="96" width="282" height="100" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="745" y="132" font-size="21" font-weight="600" fill="#0066d6">檢查 CLI 續接結果</text>
+  <text x="745" y="166" font-size="18" font-weight="400" fill="#102743">確認能讀回原對話歷史</text>
+  <path d="M170 197 V249" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M170 249 L174 240 L166 240 Z" fill="#0066d6"/>
+  <path d="M516 197 V249" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M516 249 L520 240 L512 240 Z" fill="#0066d6"/>
+  <rect x="32" y="255" width="625" height="85" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="52" y="288" font-size="21" font-weight="600" fill="#0066d6">續接待查</text>
+  <text x="52" y="319" font-size="18" font-weight="400" fill="#102743">缺少候選 ID 或可讀紀錄時，先回查對話歸屬。</text>
+  <path d="M867 197 V249" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M867 249 L871 240 L863 240 Z" fill="#0066d6"/>
+  <rect x="726" y="255" width="282" height="85" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="746" y="288" font-size="21" font-weight="600" fill="#0066d6">已接回對話</text>
+  <text x="746" y="319" font-size="18" font-weight="400" fill="#102743">找回原 Task 的等待項目</text>
+  <path d="M867 342 V383" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M867 383 L871 374 L863 374 Z" fill="#0066d6"/>
+  <rect x="32" y="389" width="976" height="109" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="54" y="425" font-size="22" font-weight="600" fill="#0066d6">若中斷前正在等批准，寫入仍待確認</text>
+  <text x="54" y="468" font-size="20" font-weight="400" fill="#102743">核對原等待項目、批准涵蓋的操作與範圍，以及這次批准是否已被使用。</text>
+</svg>

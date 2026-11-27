@@ -1,5 +1,7 @@
 # Multi-Agent Runtime 基礎篇
 
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+
 Munder Difflin 主程序透過虛擬終端（PTY）啟動 Worker CLI。Hive 管理交辦和信件，模型取樣與工具結果回灌則在 CLI 的回合裡進行。追查一次執行時，可以先從主程序持有的身分找到 Worker，再沿著信件找待處理的工作。[平台架構](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/docs/ARCHITECTURE.md)
 
 1. [Worker 重啟後，平台還在跟誰說話？](./01-worker-identity-zh-TW.md)　辨認五種 ID、同一個 PTY 下的替代程序，以及啟動參數遺失的故障。

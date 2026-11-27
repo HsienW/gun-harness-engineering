@@ -1,10 +1,14 @@
 # Worker 重啟後，平台還在跟誰說話？
 
+[English](./01-worker-identity.md) | [繁體中文](./01-worker-identity-zh-TW.md) | [简体中文](./01-worker-identity-zh-CN.md)
+
 ## 啟動 Worker 時的責任交接
 
 Munder Difflin 的桌面主程序準備命令、參數、工作目錄與環境，透過虛擬終端（PTY）啟動 CLI，把它登錄為可接收輸入、回報輸出與退出狀態的 Session。選擇讀檔工具、處理工具結果及結束模型回合，仍由該 CLI 的執行核心負責。[PTY 建立與退出處理](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/pty.ts#L895-L975)
 
 這條邊界曾在 Windows 上造成一個很難從畫面發現的故障。依 0.4.4 修復紀錄，啟動路徑截斷多行參數，Worker 能正常出現在畫面上，卻少了認識 inbox 與 outbox 的協作指令。若驗收目標是「Worker 可以接手交辦」，測試就要送一封可辨識的請求，再從回信核對收件者與原請求。程序啟動成功只能驗到第一個交接點。[修復紀錄](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/CHANGELOG.md)
+
+![Windows 啟動故障與修復後的驗收：核對 CLI 實收指令，再用回信驗證協作通道](../../assets/multi-agent-runtime/foundations/01-worker-identity/windows-worker-startup.svg)
 
 ## 哪些身分會延續？
 

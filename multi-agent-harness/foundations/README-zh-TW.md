@@ -1,5 +1,7 @@
 # Multi-Agent Harness 基礎篇
 
+[English](./README.md) | [繁體中文](./README-zh-TW.md) | [简体中文](./README-zh-CN.md)
+
 一封交辦信要讓 Worker 知道在哪個工作區行動、向誰回覆，也要讓接手驗收的人認得交付物。以下以 Munder Difflin 的 Hive 協作協定為例。
 
 1. [如何把工作交給另一個 Agent？](./01-delegation-contract-zh-TW.md)　從一個 README 查核任務，定出收件人、工作範圍與回報條件。

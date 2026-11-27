@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 409" role="img" aria-labelledby="title desc" lang="en" font-family="Arial, sans-serif">
+  <title id="title">The worker window is open. What else needs checking?</title>
+  <desc id="desc">After the Windows startup fix, check which instructions the CLI received and match a reply to a test request.</desc>
+  <rect x="1" y="1" width="1038" height="407" rx="7" fill="#f5f8fc" stroke="#b9cce3"/>
+  <text x="28" y="48" font-size="28" font-weight="600" fill="#102743">The worker window is open. What else needs checking?</text>
+  <path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+  <text x="32" y="106" font-size="20" font-weight="600" fill="#0066d6">Windows startup bug fixed in Munder Difflin 0.4.4</text>
+  <rect x="32" y="125" width="265" height="83" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="51" y="157" font-size="20" font-weight="600" fill="#0066d6">Desktop main process</text>
+  <text x="51" y="189" font-size="18" font-weight="400" fill="#102743">PTY started, window visible</text>
+  <text x="344" y="151" font-size="19" font-weight="400" fill="#102743">Multiline argument cut short</text>
+  <path d="M300 171 H622" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M622 171 L613 167 L613 175 Z" fill="#0066d6"/>
+  <rect x="628" y="125" width="380" height="83" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="647" y="157" font-size="20" font-weight="600" fill="#0066d6">Worker CLI</text>
+  <text x="647" y="189" font-size="18" font-weight="400" fill="#102743">Missing inbox and outbox instructions</text>
+  <path d="M32 232 H1008" fill="none" stroke="#b9cce3" stroke-width="1"/>
+  <text x="32" y="268" font-size="20" font-weight="600" fill="#0066d6">Acceptance check after the fix</text>
+  <rect x="32" y="286" width="270" height="92" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="52" y="321" font-size="20" font-weight="600" fill="#0066d6">Inspect CLI instructions</text>
+  <text x="52" y="353" font-size="18" font-weight="400" fill="#102743">Check inbox and reply rules</text>
+  <path d="M304 332 H360" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M360 332 L351 328 L351 336 Z" fill="#0066d6"/>
+  <rect x="365" y="286" width="262" height="92" rx="7" fill="#fff" stroke="#b9cce3"/>
+  <text x="383" y="321" font-size="20" font-weight="600" fill="#0066d6">Send a test request</text>
+  <text x="383" y="353" font-size="18" font-weight="400" fill="#102743">Log recipient and ID</text>
+  <path d="M629 332 H683" fill="none" stroke="#0066d6" stroke-width="2"/>
+  <path d="M683 332 L674 328 L674 336 Z" fill="#0066d6"/>
+  <rect x="689" y="286" width="319" height="92" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+  <text x="709" y="321" font-size="20" font-weight="600" fill="#0066d6">Match reply to request</text>
+  <text x="709" y="353" font-size="18" font-weight="400" fill="#102743">Check sender and in_reply_to</text>
+</svg>
