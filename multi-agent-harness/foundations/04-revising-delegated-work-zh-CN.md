@@ -18,6 +18,6 @@
 
 假设最终沿用 B，而验证者此前只测试了台湾地址。这份结果可以支持“原本失败的输入在 B 上已经通过”。协调者保留该结果，再请验证者比较原版本和 B 在其他地区代表性用例上的行为。交付说明应列出实际覆盖的用例，让操作人员知道“其他地区保持原有行为”这一要求验证到了什么范围。
 
-如果实现者交付 C，协调者应明确把新版本交给验证者。旧回信仍对应 B，无论多晚送达，都只能说明 B 的测试结果。平台此时要判断哪份证据符合当前要求。修订后的消息何时送达、Worker 何时能读取，可以沿收件流程查证。[收到回信后，谁能判定交付完成？](./02-delivery-and-acceptance-zh-CN.md) · [信已送达，Worker 何时会处理？（繁体中文）](../../multi-agent-runtime/foundations/02-mailbox-and-cli-progress-zh-TW.md)
+如果实现者交付 C，协调者应明确把新版本交给验证者。旧回信仍对应 B，无论多晚送达，都只能说明 B 的测试结果。平台此时要判断哪份证据符合当前要求。修订后的消息何时送达、Worker 何时能读取，可以沿收件流程查证。[收到回信后，谁能判定交付完成？](./02-delivery-and-acceptance-zh-CN.md) · [信已送达，Worker 何时会处理？](../../multi-agent-runtime/foundations/02-mailbox-and-cli-progress-zh-CN.md)
 
 [返回本区基础篇](./README-zh-CN.md)
