@@ -8,7 +8,7 @@
 
 | 類目 | 文章 |
 |---|---|
-| Input and Context | [另一位 Worker 的回信，能改變我的任務嗎？](./input-and-context/01-peer-replies-and-task-scope-zh-TW.md) |
+| [Input and Context](./input-and-context/README-zh-TW.md) | [另一位 Worker 的回信，能改變我的任務嗎？](./input-and-context/01-peer-replies-and-task-scope-zh-TW.md) · [兩位 Worker 查到不同結果，下一位該相信哪一份？](./input-and-context/02-conflicting-worker-reports-zh-TW.md) |
 | Behavior and Capabilities | [Worker 遇到阻礙時，該追問、轉交，還是回報？](./behavior-and-capabilities/01-query-handoff-and-escalation-zh-TW.md) |
 | Action Governance | [A 獲准的操作，改派給 B 後還有效嗎？](./action-governance/01-approval-after-reassignment-zh-TW.md) |
 | Interaction and Feedback | [使用者說「先停」，平台能承諾停到哪裡？](./interaction-and-feedback/01-stop-across-workers-zh-TW.md) |
