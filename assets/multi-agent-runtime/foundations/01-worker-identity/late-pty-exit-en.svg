@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 382" role="img" aria-labelledby="title desc" lang="en" font-family="Arial, sans-serif">
+<title id="title">One PTY ID, two process instances</title><desc id="desc">Time runs from top to bottom. By the time A’s exit callback arrives, p already points to B.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#0066d6"/></marker></defs>
+<rect x="1" y="1" width="1038" height="380" rx="7" fill="#f5f8fc" stroke="#b9cce3"/><text x="28" y="48" font-size="28" fill="#102743" font-weight="600">One PTY ID, two process instances</text><path d="M28 68 H92" stroke="#0078fc" stroke-width="4"/>
+<rect x="57" y="86" width="196" height="44" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+<text x="80" y="115" font-size="20" fill="#102743" font-weight="400">Old process A</text>
+<path d="M155 130 V360" stroke="#b9cce3" stroke-dasharray="5 5"/>
+<rect x="412" y="86" width="196" height="44" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+<text x="435" y="115" font-size="20" fill="#102743" font-weight="400">PTY manager</text>
+<path d="M510 130 V360" stroke="#b9cce3" stroke-dasharray="5 5"/>
+<rect x="772" y="86" width="196" height="44" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+<text x="795" y="115" font-size="20" fill="#102743" font-weight="400">New process B</text>
+<path d="M870 130 V360" stroke="#b9cce3" stroke-dasharray="5 5"/>
+<text x="525" y="155" font-size="16" fill="#102743" font-weight="400">p → Session A</text>
+<path d="M510 188 L864 188" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<text x="560" y="178" font-size="17" fill="#102743" font-weight="400">Start B with the same ID</text>
+<text x="525" y="223" font-size="16" fill="#102743" font-weight="400">p → Session B</text>
+<path d="M155 265 L503 265" fill="none" stroke="#0066d6" stroke-width="2" marker-end="url(#arr)"/>
+<text x="202" y="254" font-size="17" fill="#102743" font-weight="400">A’s onExit arrives late</text>
+<rect x="392" y="289" width="382" height="52" rx="7" fill="#e2efff" stroke="#b9cce3"/>
+<text x="409" y="322" font-size="20" fill="#102743" font-weight="400">Current object is B. Keep B’s entry.</text>
+</svg>

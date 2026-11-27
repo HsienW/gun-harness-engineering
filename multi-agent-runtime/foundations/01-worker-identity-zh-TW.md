@@ -1,5 +1,7 @@
 # Worker 重啟後，平台還在跟誰說話？
 
+[English](./01-worker-identity.md) | [繁體中文](./01-worker-identity-zh-TW.md) | [简体中文](./01-worker-identity-zh-CN.md)
+
 ## 啟動 Worker 時的責任交接
 
 Munder Difflin 的桌面主程序準備命令、參數、工作目錄與環境，透過虛擬終端（PTY）啟動 CLI，把它登錄為可接收輸入、回報輸出與退出狀態的 Session。選擇讀檔工具、處理工具結果及結束模型回合，仍由該 CLI 的執行核心負責。[PTY 建立與退出處理](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/src/main/pty.ts#L895-L975)
