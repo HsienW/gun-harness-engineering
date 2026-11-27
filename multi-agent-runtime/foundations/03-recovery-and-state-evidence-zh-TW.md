@@ -1,5 +1,7 @@
 # 平台重啟後，憑什麼接回原任務？
 
+[English](./03-recovery-and-state-evidence.md) | [繁體中文](./03-recovery-and-state-evidence-zh-TW.md) | [简体中文](./03-recovery-and-state-evidence-zh-CN.md)
+
 一位整理報告的 Worker 重啟後，仍記得報告格式，卻未必記得剛才改到哪一段。記憶、對話及任務進度各有保存位置，恢復時需要逐一核對。
 
 | 手邊的材料 | 能接回的內容 | 恢復後要核對什麼 |
