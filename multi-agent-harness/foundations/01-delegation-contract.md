@@ -13,7 +13,7 @@ Suppose a coordinator needs a worker to find a broken link in a README. If the a
 
 ## Did the worker receive the collaboration instructions?
 
-A worker needs instructions for using the inbox and outbox to read an assignment and reply to the original message. In Munder Difflin, a worker on Windows could start successfully even though those instructions had been cut off. To check the full handoff, the coordinator can send a request with a recognizable ID and verify that the worker’s reply points back to it. The startup failure and its process-level evidence are described in [Worker startup and identity (Traditional Chinese)](../../multi-agent-runtime/foundations/01-worker-identity-zh-TW.md).
+A worker needs instructions for using the inbox and outbox to read an assignment and reply to the original message. In Munder Difflin, a worker on Windows could start successfully even though those instructions had been cut off. To check the full handoff, the coordinator can send a request with a recognizable ID and verify that the worker’s reply points back to it. The startup failure and its process-level evidence are described in [Worker startup and identity](../../multi-agent-runtime/foundations/01-worker-identity.md).
 
 Hive distinguishes requests that need an answer from notifications that can end an exchange. When the coordinator changes the recipient or asks for a different revision, the assignment should name the new owner and target so the reviewer can tell which reports still apply. The table gives the terms of this example. The protocol defines the actual message fields. [Hive collaboration protocol](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/HIVE.md)
 

@@ -13,7 +13,7 @@
 
 ## Worker 收到协作规则了吗？
 
-Worker 需要知道如何使用 inbox 和 outbox，才能读取任务并回复原消息。Munder Difflin 曾在 Windows 上出现过这种故障：Worker 启动成功，却缺少这段指令。协调者可以发送一条带标识的请求，检查 Worker 的回复是否指向原请求。启动参数在何处被截断，以及进程端能取得哪些证据，见 [Worker 启动与身份（繁体中文）](../../multi-agent-runtime/foundations/01-worker-identity-zh-TW.md)。
+Worker 需要知道如何使用 inbox 和 outbox，才能读取任务并回复原消息。Munder Difflin 曾在 Windows 上出现过这种故障：Worker 启动成功，却缺少这段指令。协调者可以发送一条带标识的请求，检查 Worker 的回复是否指向原请求。启动参数在何处被截断，以及进程端能取得哪些证据，见 [Worker 启动与身份](../../multi-agent-runtime/foundations/01-worker-identity-zh-CN.md)。
 
 Hive 的设计区分了需要回答的请求和可以结束往返的通知。如果协调者更换收件人或要求检查另一个版本，分派任务时也应写明新的负责人和目标，让验收者知道哪些报告仍然适用。上表列出的是教学任务的约定，实际消息字段见 [Hive 协作协议](https://github.com/HarnessMD/munder-difflin/blob/96ae43e3292447f68af6904afb353f6f5bdaa412/HIVE.md)。
 
