@@ -1,5 +1,7 @@
 # 信已送達，Worker 何時會處理？
 
+[English](./02-mailbox-and-cli-progress.md) | [繁體中文](./02-mailbox-and-cli-progress-zh-TW.md) | [简体中文](./02-mailbox-and-cli-progress-zh-CN.md)
+
 假設 A 寄了一封 `query`，請 B 核對報告中的數字。Router 把信送進 B 的 inbox 時，B 可能還在讀檔。這時平台有了投遞紀錄，A 仍在等答案。若 A 只因看到信件抵達就往下寫結論，錯誤出在把投遞事件當成工作結果。
 
 ![Hive 以 done 對回 query；CLI 在無待收件時可結束回合，程序退出另查 PTY 事件](../../assets/multi-agent-runtime/foundations/02-mailbox-and-cli-progress/hive-cli-turn.svg)
